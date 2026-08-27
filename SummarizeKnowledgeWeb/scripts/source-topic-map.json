@@ -1,0 +1,111 @@
+{
+  "sourceRoots": [
+    "AIEngineer",
+    "Algorithms",
+    "ClaudeArchitectFoundation",
+    "DatabaseAdvance",
+    "DataEngineerTutorial",
+    "Interview",
+    "JavaAdvanceMapCsharp",
+    "MultiThreadDotnet",
+    "RAG",
+    "Terraform"
+  ],
+  "aggregatePatterns": [
+    "^ClaudeArchitectFoundation/Tool2/Output/ALL_DOMAINS\\.md$"
+  ],
+  "rules": [
+    {
+      "topicId": "algorithms-data-structures",
+      "pattern": "^AIEngineer/Lessions/04-"
+    },
+    {
+      "topicId": "software-engineering-quality",
+      "pattern": "^AIEngineer/Lessions/03-"
+    },
+    {
+      "topicId": "data-engineering",
+      "pattern": "^AIEngineer/Lessions/(09-|10-|15-)"
+    },
+    {
+      "topicId": "rag-agent-systems",
+      "pattern": "^AIEngineer/Lessions/(2[7-9]-|3[0-8]-|4[7-9]-)"
+    },
+    {
+      "topicId": "rag-agent-systems",
+      "pattern": "^AIEngineer/Quiz/checkpoints/04-"
+    },
+    {
+      "topicId": "system-design-interview",
+      "pattern": "^AIEngineer/Lessions/50-"
+    },
+    {
+      "topicId": "devops-sre-security",
+      "pattern": "^ClaudeArchitectFoundation/guide_deploy\\.md$"
+    },
+    {
+      "topicId": "algorithms-data-structures",
+      "pattern": "^Interview/(Anwsers/)?algorithms_data_structures\\.md$"
+    },
+    {
+      "topicId": "advanced-databases",
+      "pattern": "^Interview/(Anwsers/)?database\\.md$"
+    },
+    {
+      "topicId": "dotnet-api-containers",
+      "pattern": "^Interview/(Anwsers/)?(c_sharp|dotnet_aspnet)\\.md$"
+    },
+    {
+      "topicId": "java-jvm-spring",
+      "pattern": "^Interview/(Anwsers/)?(java|jvm_spring)\\.md$"
+    },
+    {
+      "topicId": "devops-sre-security",
+      "pattern": "^Interview/(Anwsers/)?(devops_observability|infra_cloud|security)\\.md$"
+    },
+    {
+      "topicId": "software-engineering-quality",
+      "pattern": "^Interview/(Anwsers/)?software_engineering\\.md$"
+    },
+    {
+      "topicId": "concurrency-messaging",
+      "pattern": "^JavaAdvanceMapCsharp/Lessions/(06-|15-|19-|20-|21-)"
+    },
+    {
+      "topicId": "software-engineering-quality",
+      "pattern": "^JavaAdvanceMapCsharp/Lessions/(02-|09-)"
+    },
+    {
+      "topicId": "devops-sre-security",
+      "pattern": "^JavaAdvanceMapCsharp/Lessions/(18-|22-|23-)"
+    },
+    {
+      "topicId": "algorithms-data-structures",
+      "pattern": "^JavaAdvanceMapCsharp/Lessions/24-"
+    },
+    {
+      "topicId": "system-design-interview",
+      "pattern": "^JavaAdvanceMapCsharp/(Lessions/(25-|26-)|SourceSamples/26-)"
+    },
+    {
+      "topicId": "software-engineering-quality",
+      "pattern": "^Terraform/Devops/Templates/(ADR|PRODUCTION-READINESS|RUNBOOK|THREAT-MODEL)\\.md$"
+    },
+    {
+      "topicId": "devops-sre-security",
+      "pattern": "^Terraform/Devops/(?!Templates/(ADR|PRODUCTION-READINESS|RUNBOOK|THREAT-MODEL)\\.md$)"
+    }
+  ],
+  "fallbacks": {
+    "AIEngineer": "ai-machine-learning",
+    "Algorithms": "algorithms-data-structures",
+    "ClaudeArchitectFoundation": "rag-agent-systems",
+    "DatabaseAdvance": "advanced-databases",
+    "DataEngineerTutorial": "data-engineering",
+    "Interview": "system-design-interview",
+    "JavaAdvanceMapCsharp": "java-jvm-spring",
+    "MultiThreadDotnet": "concurrency-messaging",
+    "RAG": "rag-agent-systems",
+    "Terraform": "terraform-cloud"
+  }
+}

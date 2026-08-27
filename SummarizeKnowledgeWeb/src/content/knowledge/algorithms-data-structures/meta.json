@@ -1,0 +1,33 @@
+{
+  "id": "algorithms-data-structures",
+  "title": "Algorithms & Data Structures",
+  "navTitle": "Thuật toán",
+  "eyebrow": "Pattern · Invariant · C#",
+  "description": "Bản đồ 36 chủ đề thuật toán, cấu trúc dữ liệu và cách giải coding interview bằng invariant, độ phức tạp, dry-run và kiểm thử có hệ thống.",
+  "order": 4,
+  "icon": "binary",
+  "accent": "amber",
+  "level": "Nâng cao",
+  "estimatedMinutes": 95,
+  "tags": [
+    "Big-O",
+    "Data Structures",
+    "Graph",
+    "Dynamic Programming",
+    "Coding Interview",
+    "C#"
+  ],
+  "sourceFolders": [
+    "AIEngineer/Lessions/04-algorithms-data-structures-complexity",
+    "Algorithms",
+    "Interview/Anwsers/algorithms_data_structures.md",
+    "Interview/algorithms_data_structures.md",
+    "JavaAdvanceMapCsharp/Lessions/24-dsa-coding-interview.md"
+  ],
+  "outcomes": [
+    "Nhận diện đúng pattern từ constraint và access pattern của đề bài",
+    "Phát biểu invariant, chứng minh correctness và phân tích time/space complexity",
+    "Chọn đúng cấu trúc dữ liệu, thuật toán đồ thị hoặc mô hình dynamic programming",
+    "Giải bài coding interview bằng C# với edge case và quy trình kiểm thử rõ ràng"
+  ]
+}

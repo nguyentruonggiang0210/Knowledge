@@ -1,0 +1,226 @@
+[
+  {
+    "id": "dataeng-001",
+    "question": "Thứ tự đúng của quy trình ETL là gì?",
+    "options": [
+      "Extract → Transform → Load",
+      "Load → Extract → Transform",
+      "Transform → Load → Extract",
+      "Extract → Load → Transform"
+    ],
+    "answerIndex": 0,
+    "explanation": "ETL lấy dữ liệu thô từ nguồn (Extract), làm sạch/tính toán (Transform), rồi ghi kết quả vào nơi lưu trữ phục vụ truy vấn (Load).",
+    "difficulty": "Cơ bản",
+    "source": "DataEngineerTutorial/DataEngineerTutorial/etl-spark/etl-spark-explain.md"
+  },
+  {
+    "id": "dataeng-002",
+    "question": "Trong Spark, thao tác nào sau đây là transformation và chưa chạy tính toán ngay?",
+    "options": [
+      "count()",
+      "filter()",
+      "save()",
+      "collect()"
+    ],
+    "answerIndex": 1,
+    "explanation": "filter() chỉ bổ sung một bước vào DAG theo cơ chế lazy evaluation. count(), collect() và save() là action kích hoạt Spark thực thi kế hoạch.",
+    "difficulty": "Cơ bản",
+    "source": "DataEngineerTutorial/DataEngineerTutorial/etl-spark/etl-spark-explain.md"
+  },
+  {
+    "id": "dataeng-003",
+    "question": "Khi tạo feature dự đoán churn cho một mẫu có observation cutoff là ngày 30/06, dữ liệu nào được phép dùng?",
+    "options": [
+      "Mọi giao dịch trong năm, miễn là job batch đã đọc được",
+      "Chỉ giao dịch sau ngày 30/06 để phản ánh kết quả gần nhất",
+      "Các giao dịch xảy ra tại hoặc trước ngày 30/06; giao dịch tương lai phải bị loại",
+      "Chỉ ID khách hàng, vì ID luôn là feature không gây leakage"
+    ],
+    "answerIndex": 2,
+    "explanation": "Feature tại cutoff chỉ được tổng hợp từ event có thời điểm không muộn hơn cutoff. Dùng giao dịch sau 30/06 đưa thông tin tương lai vào training, làm metric offline lạc quan nhưng không tái tạo được khi inference.",
+    "difficulty": "Trung cấp",
+    "source": "AIEngineer/Lessions/10-data-analysis-feature-engineering/README.md"
+  },
+  {
+    "id": "dataeng-004",
+    "question": "Vì sao pipeline gọi cache() trên DataFrame đã clean?",
+    "options": [
+      "Để tự động ghi DataFrame vào PostgreSQL",
+      "Để thay mọi partition bằng một file CSV",
+      "Để bỏ qua validation dữ liệu",
+      "Để 3 transform và count() tái dùng kết quả clean thay vì đọc/clean CSV lại nhiều lần"
+    ],
+    "answerIndex": 3,
+    "explanation": "DataFrame cleaned được dùng bởi ba transform độc lập và một action count. Cache giúp tính phần đọc/làm sạch một lần rồi tái sử dụng, thay vì recompute cùng lineage nhiều lần.",
+    "difficulty": "Trung cấp",
+    "source": "DataEngineerTutorial/DataEngineerTutorial/etl-spark/etl-spark-explain.md"
+  },
+  {
+    "id": "dataeng-005",
+    "question": "Điểm khác biệt chính của window function so với groupBy aggregation trong ví dụ là gì?",
+    "options": [
+      "Window tính trên nhóm liên quan nhưng vẫn giữ từng hàng",
+      "Window chỉ chạy được trên một dòng duy nhất",
+      "groupBy luôn giữ nguyên mọi hàng đầu vào",
+      "Window không cho phép partitionBy hoặc orderBy"
+    ],
+    "answerIndex": 0,
+    "explanation": "Window định nghĩa nhóm và thứ tự để tính RANK/LAG nhưng vẫn trả kết quả gắn với từng hàng. groupBy aggregation thường thu gọn mỗi nhóm thành dòng tổng hợp.",
+    "difficulty": "Trung cấp",
+    "source": "DataEngineerTutorial/DataEngineerTutorial/etl-spark/etl-spark-explain.md"
+  },
+  {
+    "id": "dataeng-006",
+    "question": "Trong transform growth, hàm LAG được dùng để lấy dữ liệu nào?",
+    "options": [
+      "Tổng star của mọi ngôn ngữ",
+      "Giá trị star của hàng/ngày trước trong cùng repo",
+      "Tên organization ở hàng kế tiếp",
+      "Số partition của executor"
+    ],
+    "answerIndex": 1,
+    "explanation": "LAG(stars) lấy star của thời điểm trước trong window của cùng repo, từ đó pipeline tính star_delta và growth_rate theo ngày.",
+    "difficulty": "Trung cấp",
+    "source": "DataEngineerTutorial/DataEngineerTutorial/etl-spark/etl-spark-explain.md"
+  },
+  {
+    "id": "dataeng-007",
+    "question": "transform_trending xếp hạng repo trong phạm vi nào?",
+    "options": [
+      "Toàn bộ corpus không phân nhóm",
+      "Chỉ theo organization",
+      "Trong từng cặp trending category và ngày, rồi giữ Top 25",
+      "Chỉ theo thứ tự alphabet của repo_name"
+    ],
+    "answerIndex": 2,
+    "explanation": "Pipeline dùng window và rank() theo từng (category, ngày), sau đó giữ 25 repo đứng đầu trong từng nhóm.",
+    "difficulty": "Cơ bản",
+    "source": "DataEngineerTutorial/DataEngineerTutorial/etl-spark/etl-spark-explain.md"
+  },
+  {
+    "id": "dataeng-008",
+    "question": "Theo yêu cầu làm sạch, một record trùng được xác định bởi khóa kết hợp nào?",
+    "options": [
+      "language + description",
+      "star + forks",
+      "repo_url + trending_category",
+      "org_name + repo_name + date"
+    ],
+    "answerIndex": 3,
+    "explanation": "Đề bài yêu cầu loại bản ghi có cùng organization, repository và ngày; đây là grain của thống kê repo theo ngày.",
+    "difficulty": "Cơ bản",
+    "source": "DataEngineerTutorial/github-trending-analytics.md"
+  },
+  {
+    "id": "dataeng-009",
+    "question": "Dòng dữ liệu nào phải bị loại theo bước validation số liệu?",
+    "options": [
+      "Dòng có daily_star = -3",
+      "Dòng có description rỗng nhưng đã được xử lý missing value",
+      "Dòng có date hợp lệ kiểu DateType",
+      "Dòng có star = 0"
+    ],
+    "answerIndex": 0,
+    "explanation": "star, forks và daily_star đều phải lớn hơn hoặc bằng 0. Giá trị daily_star âm vi phạm invariant; giá trị 0 vẫn hợp lệ.",
+    "difficulty": "Cơ bản",
+    "source": "DataEngineerTutorial/github-trending-analytics.md"
+  },
+  {
+    "id": "dataeng-010",
+    "question": "Trong schema PostgreSQL được đề xuất, bảng nào chứa thống kê theo repo và ngày và là bảng lớn nhất?",
+    "options": [
+      "organizations",
+      "repo_daily_stats",
+      "repositories",
+      "language_dictionary"
+    ],
+    "answerIndex": 1,
+    "explanation": "repo_daily_stats chứa repo_id, date, star, forks, daily_star và trending_category; với dữ liệu theo thời gian, đây là bảng fact khoảng 10 triệu dòng.",
+    "difficulty": "Cơ bản",
+    "source": "DataEngineerTutorial/github-trending-analytics.md"
+  },
+  {
+    "id": "dataeng-011",
+    "question": "Cách kiểm chứng nào mạnh nhất để đồng thời phát hiện temporal leakage và train-serving skew của một feature rolling?",
+    "options": [
+      "Fit scaler trên toàn bộ dữ liệu rồi so sánh trung bình train với test",
+      "Chỉ kiểm tra feature online có latency thấp hơn feature batch",
+      "Dùng cùng định nghĩa có cutoff cho offline và online; parity test tại biên thời gian và xác nhận event tương lai không đổi feature tại cutoff",
+      "Random split từng event rồi kiểm tra hai tập có số dòng bằng nhau"
+    ],
+    "answerIndex": 2,
+    "explanation": "Một định nghĩa cutoff-aware dùng chung loại bỏ khác biệt semantics giữa training và serving. Parity test trên cùng history phát hiện skew, còn test thêm event sau cutoff mà kết quả cũ không đổi trực tiếp kiểm tra temporal leakage và boundary.",
+    "difficulty": "Nâng cao",
+    "source": "AIEngineer/Lessions/10-data-analysis-feature-engineering/README.md"
+  },
+  {
+    "id": "dataeng-012",
+    "question": "Chiến lược partitioning bắt buộc cho bảng repo_daily_stats trong PostgreSQL là gì?",
+    "options": [
+      "Partition theo từng ký tự của description",
+      "Không partition vì bảng nhỏ",
+      "Partition ngẫu nhiên sau mỗi request",
+      "Native table partitioning theo tháng"
+    ],
+    "answerIndex": 3,
+    "explanation": "repo_daily_stats là bảng lớn theo thời gian, nên đề bài yêu cầu PostgreSQL native partitioning theo tháng để các truy vấn theo khoảng ngày có thể giới hạn partition cần quét.",
+    "difficulty": "Trung cấp",
+    "source": "DataEngineerTutorial/github-trending-analytics.md"
+  },
+  {
+    "id": "dataeng-013",
+    "question": "Endpoint nào được thiết kế để trả chuỗi daily_star theo thời gian của một repository?",
+    "options": [
+      "GET /repos/{repo_id}/growth",
+      "GET /languages/stats",
+      "GET /organizations/{org_id}/summary",
+      "GET /metrics/reload"
+    ],
+    "answerIndex": 0,
+    "explanation": "API contract quy định /repos/{repo_id}/growth trả dữ liệu daily_star theo thời gian, phục vụ trang chi tiết và biểu đồ tăng trưởng repo.",
+    "difficulty": "Cơ bản",
+    "source": "DataEngineerTutorial/github-trending-analytics.md"
+  },
+  {
+    "id": "dataeng-014",
+    "question": "Backend được yêu cầu dùng cấu hình truy cập PostgreSQL nào?",
+    "options": [
+      "Blocking driver cho mọi concurrent request",
+      "SQLAlchemy async với asyncpg",
+      "Pandas đọc trực tiếp file 1.5 GB cho mỗi request",
+      "SparkSession bên trong từng route"
+    ],
+    "answerIndex": 1,
+    "explanation": "FastAPI backend phải dùng SQLAlchemy ở chế độ async với asyncpg, tránh chặn event loop bằng lời gọi database đồng bộ khi có nhiều request đồng thời.",
+    "difficulty": "Trung cấp",
+    "source": "DataEngineerTutorial/github-trending-analytics.md"
+  },
+  {
+    "id": "dataeng-015",
+    "question": "Vì sao metrics của Spark batch job được đẩy qua Pushgateway?",
+    "options": [
+      "Vì Grafana không đọc được Prometheus",
+      "Vì FastAPI không có endpoint /metrics",
+      "Vì Spark job chạy xong rồi thoát, không phải service sống lâu để Prometheus luôn scrape",
+      "Vì Pushgateway thay thế hoàn toàn PostgreSQL"
+    ],
+    "answerIndex": 2,
+    "explanation": "Spark ETL là batch job on-demand, có vòng đời ngắn. Nó push số dòng/thời gian job lên Pushgateway để Prometheus có thể thu thập sau khi tiến trình đã kết thúc.",
+    "difficulty": "Trung cấp",
+    "source": "DataEngineerTutorial/DataEngineerTutorial/docs/architecture.md"
+  },
+  {
+    "id": "dataeng-016",
+    "question": "Theo thứ tự dựng source đề xuất, thành phần nào nên làm cuối khi API contract đã ổn định?",
+    "options": [
+      "Database migrations",
+      "ETL Spark với sample nhỏ",
+      "Backend API với seed data",
+      "Frontend Angular"
+    ],
+    "answerIndex": 3,
+    "explanation": "Thứ tự đề xuất là schema database, ETL, backend, monitoring rồi frontend. Angular làm cuối để dựa trên request/response contract đã ổn định.",
+    "difficulty": "Cơ bản",
+    "source": "DataEngineerTutorial/project-structure.md"
+  }
+]

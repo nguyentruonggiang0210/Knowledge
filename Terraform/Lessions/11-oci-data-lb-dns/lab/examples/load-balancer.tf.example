@@ -1,0 +1,54 @@
+# Review-only: cần variables/provider/network từ root module.
+resource "oci_load_balancer_load_balancer" "app" {
+  compartment_id            = var.compartment_id
+  display_name              = "${var.name_prefix}-lb"
+  shape                     = "flexible"
+  subnet_ids                = var.lb_subnet_ids
+  is_private                = false
+  network_security_group_ids = [var.lb_nsg_id]
+
+  shape_details {
+    minimum_bandwidth_in_mbps = 10
+    maximum_bandwidth_in_mbps = 100
+  }
+
+  freeform_tags = var.tags
+}
+
+resource "oci_load_balancer_backend_set" "app" {
+  load_balancer_id = oci_load_balancer_load_balancer.app.id
+  name             = "app"
+  policy           = "LEAST_CONNECTIONS"
+
+  health_checker {
+    protocol            = "HTTP"
+    port                = 8080
+    url_path            = "/health"
+    return_code         = 200
+    retries             = 3
+    timeout_in_millis   = 3000
+    interval_ms         = 10000
+  }
+}
+
+resource "oci_load_balancer_backend" "app" {
+  for_each = var.backend_private_ips
+
+  load_balancer_id = oci_load_balancer_load_balancer.app.id
+  backendset_name  = oci_load_balancer_backend_set.app.name
+  ip_address       = each.value
+  port             = 8080
+  weight           = 1
+  backup           = false
+  drain            = false
+  offline          = false
+}
+
+resource "oci_load_balancer_listener" "http" {
+  load_balancer_id         = oci_load_balancer_load_balancer.app.id
+  name                     = "http"
+  default_backend_set_name = oci_load_balancer_backend_set.app.name
+  port                     = 80
+  protocol                 = "HTTP"
+}
+

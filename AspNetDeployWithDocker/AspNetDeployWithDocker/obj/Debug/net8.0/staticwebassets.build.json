@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "2rgHqupFrza/O7Md2HSwcRQp3ZuXTBo+8IwTPKCfM3s=",
+  "Source": "AspNetDeployWithDocker",
+  "BasePath": "_content/AspNetDeployWithDocker",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

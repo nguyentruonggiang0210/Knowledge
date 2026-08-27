@@ -1,0 +1,226 @@
+[
+  {
+    "id": "tf-001",
+    "question": "Mô tả nào đúng nhất về cách Terraform quản lý hạ tầng?",
+    "options": [
+      "Thực thi tuần tự mọi file theo tên file",
+      "Khai báo desired state, xây dependency graph và lập kế hoạch để hội tụ",
+      "Chỉ chạy shell script trên máy ảo",
+      "Thay thế hoàn toàn config management bên trong OS"
+    ],
+    "answerIndex": 1,
+    "explanation": "Terraform dùng configuration khai báo trạng thái mong muốn, kết hợp state và dữ liệu provider để xây graph và tính delta. Nó không thay thế mọi công cụ cấu hình hệ điều hành hay ứng dụng.",
+    "difficulty": "Cơ bản",
+    "source": "Terraform/Quiz/answers/01-foundation-answers.md"
+  },
+  {
+    "id": "tf-002",
+    "question": "terraform plan mặc định làm gì?",
+    "options": [
+      "Đọc configuration/state và remote objects để đề xuất thay đổi nhưng không create/update/delete",
+      "Áp dụng ngay mọi thay đổi không cần xác nhận",
+      "Chỉ format file HCL",
+      "Xóa state cũ rồi tạo state mới"
+    ],
+    "answerIndex": 0,
+    "explanation": "Plan tính và trình bày các action dự kiến; mặc định nó không thực thi các action create, update hoặc delete được đề xuất.",
+    "difficulty": "Cơ bản",
+    "source": "Terraform/Quiz/answers/01-foundation-answers.md"
+  },
+  {
+    "id": "tf-003",
+    "question": "Biểu thức oci_core_vcn.main.id trong resource subnet tạo ra điều gì?",
+    "options": [
+      "Một provider alias mới",
+      "Một backend state riêng",
+      "Một implicit dependency từ subnet tới VCN",
+      "Một lifecycle prevent_destroy tự động"
+    ],
+    "answerIndex": 2,
+    "explanation": "Reference tới attribute của resource khác tạo cạnh trong dependency graph. Terraform dựa vào reference dữ liệu, không dựa vào thứ tự file.",
+    "difficulty": "Cơ bản",
+    "source": "Terraform/Quiz/answers/02-core-answers.md"
+  },
+  {
+    "id": "tf-004",
+    "question": "Vai trò cốt lõi của Terraform state là gì?",
+    "options": [
+      "Lưu source code của provider",
+      "Thay thế remote API của cloud",
+      "Chỉ lưu log hiển thị cho người dùng",
+      "Lưu mapping giữa resource address và remote object cùng metadata vận hành"
+    ],
+    "answerIndex": 3,
+    "explanation": "State giữ binding giữa địa chỉ trong configuration và object thực, cùng metadata cần cho diff/lifecycle. Vì có thể chứa ID và dữ liệu nhạy cảm, state phải được bảo vệ.",
+    "difficulty": "Cơ bản",
+    "source": "Terraform/Quiz/answers/02-core-answers.md"
+  },
+  {
+    "id": "tf-005",
+    "question": "Vì sao for_each với map có key ổn định thường an toàn hơn count khi thêm một subnet vào giữa danh sách?",
+    "options": [
+      "Address theo key không bị dịch index của các instance khác",
+      "for_each bỏ qua hoàn toàn state",
+      "for_each tự import mọi subnet có sẵn",
+      "Map làm provider không cần credentials"
+    ],
+    "answerIndex": 0,
+    "explanation": "Instance address như resource.this[\"web\"] gắn với identity key ổn định. Với count, chèn phần tử có thể làm dịch index và tạo kế hoạch thay đổi ngoài ý muốn.",
+    "difficulty": "Trung cấp",
+    "source": "Terraform/Quiz/answers/02-core-answers.md"
+  },
+  {
+    "id": "tf-006",
+    "question": "Khi đổi resource address do refactor nhưng remote object vẫn là cùng một object, cơ chế nào nên được ưu tiên?",
+    "options": [
+      "Xóa resource trên cloud rồi apply lại",
+      "Dùng -target làm workflow thường trực",
+      "Khai báo moved block ánh xạ address cũ sang address mới",
+      "Xóa thủ công toàn bộ state"
+    ],
+    "answerIndex": 2,
+    "explanation": "moved block cho Terraform biết binding đã được refactor, tránh mặc định hiểu là destroy/create. Mapping phải đúng identity và plan cần xác nhận không có replacement ngoài ý muốn.",
+    "difficulty": "Trung cấp",
+    "source": "Terraform/Quiz/answers/05-expert-answers.md"
+  },
+  {
+    "id": "tf-007",
+    "question": "Đánh dấu một variable là sensitive bảo đảm điều gì và không bảo đảm điều gì?",
+    "options": [
+      "Mã hóa tuyệt đối giá trị ở mọi nơi",
+      "Chủ yếu che hiển thị; giá trị vẫn có thể nằm trong state hoặc plan artifact",
+      "Ngăn provider gửi giá trị tới remote API",
+      "Tự động lưu secret vào Vault"
+    ],
+    "answerIndex": 1,
+    "explanation": "sensitive hỗ trợ redaction/propagation ở CLI và UI, nhưng không biến state hay plan thành nơi không chứa secret. Backend và artifact vẫn cần access control, encryption và retention phù hợp.",
+    "difficulty": "Trung cấp",
+    "source": "Terraform/Quiz/answers/01-foundation-answers.md"
+  },
+  {
+    "id": "tf-008",
+    "question": "data block trong Terraform có mục đích chính nào?",
+    "options": [
+      "Tạo resource mới nhưng không ghi state",
+      "Xóa resource ngoài stack",
+      "Chạy provisioner sau mỗi plan",
+      "Đọc thông tin object tồn tại mà stack không nhận quản lý lifecycle của object đó"
+    ],
+    "answerIndex": 3,
+    "explanation": "Data source đọc dữ liệu từ provider để dùng trong configuration. Nó không tuyên bố stack sở hữu vòng đời object như resource block.",
+    "difficulty": "Cơ bản",
+    "source": "Terraform/Quiz/answers/01-foundation-answers.md"
+  },
+  {
+    "id": "tf-009",
+    "question": "Trong OCI, private subnet cần Internet egress cho update package nhưng không nhận inbound Internet trực tiếp thường dùng gateway nào?",
+    "options": [
+      "Internet Gateway gắn trực tiếp public IP cho mọi instance",
+      "Local Peering Gateway",
+      "NAT Gateway cùng route phù hợp",
+      "Dynamic Routing Gateway không cần route"
+    ],
+    "answerIndex": 2,
+    "explanation": "NAT Gateway cho private workloads khởi tạo kết nối ra Internet mà không làm chúng nhận inbound trực tiếp. Route, egress rule và return traffic vẫn phải đúng.",
+    "difficulty": "Cơ bản",
+    "source": "Terraform/Quiz/answers/03-oci-answers.md"
+  },
+  {
+    "id": "tf-010",
+    "question": "Khác biệt đúng giữa OCI Network Security Group và Security List là gì?",
+    "options": [
+      "NSG áp policy theo tập VNIC/workload; Security List áp cho VNIC trong subnet",
+      "NSG chỉ dùng cho DNS; Security List chỉ dùng cho Object Storage",
+      "Security List thay thế route table",
+      "NSG là resource toàn cầu còn Security List không thuộc VCN"
+    ],
+    "answerIndex": 0,
+    "explanation": "NSG nhóm và áp rule theo VNIC/workload, còn Security List gắn với subnet và áp cho VNIC trong subnet. Cả hai là security policy, không thay routing.",
+    "difficulty": "Trung cấp",
+    "source": "Terraform/Quiz/answers/03-oci-answers.md"
+  },
+  {
+    "id": "tf-011",
+    "question": "Root module có provider oci mặc định và oci.dr. Làm sao để một child module dùng region DR?",
+    "options": [
+      "Đặt depends_on vào provider",
+      "Copy credentials vào child module",
+      "Đổi tên mọi resource trong child thành dr",
+      "Truyền mapping providers = { oci = oci.dr } tại module call"
+    ],
+    "answerIndex": 3,
+    "explanation": "Provider configuration thuộc composition root. Root cấu hình alias rồi map alias đó vào local provider name mà child mong đợi; child chỉ khai required_providers và không hard-code auth/region.",
+    "difficulty": "Nâng cao",
+    "source": "Terraform/Quiz/answers/03-oci-answers.md"
+  },
+  {
+    "id": "tf-012",
+    "question": "Lợi ích chính của remote backend trong workflow team là gì?",
+    "options": [
+      "Làm mọi apply tự động an toàn không cần review",
+      "Tạo nguồn state dùng chung và cho phép kiểm soát truy cập/bảo vệ tập trung",
+      "Bảo đảm mọi backend đều có locking giống nhau",
+      "Loại bỏ nhu cầu version provider"
+    ],
+    "answerIndex": 1,
+    "explanation": "Remote backend tập trung state cho team và giúp áp access control. Locking, versioning và encryption là capability phải xác minh theo backend, không được mặc định.",
+    "difficulty": "Trung cấp",
+    "source": "Terraform/Quiz/answers/04-production-answers.md"
+  },
+  {
+    "id": "tf-013",
+    "question": "Plan artifact đã lưu để apply sau nên được xử lý như thế nào?",
+    "options": [
+      "Như artifact có thể chứa secret: quyền tối thiểu, mã hóa và retention ngắn",
+      "Public để mọi người dễ review vì sensitive đã mã hóa",
+      "Commit trực tiếp vào Git cùng source",
+      "Dùng lại vô hạn dù commit, input và state đã đổi"
+    ],
+    "answerIndex": 0,
+    "explanation": "Saved plan là dữ liệu máy đọc và có thể chứa giá trị nhạy cảm dù CLI che hiển thị. Nó cần được gắn đúng commit/input/environment và bảo vệ như secret-bearing artifact.",
+    "difficulty": "Nâng cao",
+    "source": "Terraform/Quiz/answers/04-production-answers.md"
+  },
+  {
+    "id": "tf-014",
+    "question": "Trước khi force-unlock một Terraform lock được cho là stale, hành động đúng là gì?",
+    "options": [
+      "Luôn thêm -lock=false để bỏ qua",
+      "Xóa backend rồi init lại",
+      "Xác minh owner/job đã chết, peer-review theo runbook rồi mới force-unlock đúng lock ID",
+      "Chạy đồng thời hai apply để xem job nào thắng"
+    ],
+    "answerIndex": 2,
+    "explanation": "Phá lock khi writer còn sống cho phép ghi song song và có thể làm state stale/corrupt. Cần evidence runner đã dừng, approval, audit và plan/reconciliation sau unlock.",
+    "difficulty": "Nâng cao",
+    "source": "Terraform/Quiz/answers/04-production-answers.md"
+  },
+  {
+    "id": "tf-015",
+    "question": "Drift trong Terraform là gì?",
+    "options": [
+      "Bất kỳ pull request nào sửa HCL",
+      "Remote object khác configuration/state do thay đổi ngoài workflow hoặc controller khác",
+      "Provider được pin bằng lock file",
+      "Một plan đã được review và apply đúng artifact"
+    ],
+    "answerIndex": 1,
+    "explanation": "Drift là khác biệt giữa reality và intent/binding được quản lý, thường từ thay đổi out-of-band, automation hoặc field do hệ khác sở hữu. Nó cần được phân loại và xử lý có owner, không auto-remediate mù quáng.",
+    "difficulty": "Trung cấp",
+    "source": "Terraform/Quiz/answers/04-production-answers.md"
+  },
+  {
+    "id": "tf-016",
+    "question": "Cách dùng terraform -target phù hợp nhất là gì?",
+    "options": [
+      "Workflow deploy thường trực cho mọi môi trường",
+      "Cách sửa dependency cycle mà không cần đổi thiết kế",
+      "Cách bảo đảm plan luôn đầy đủ hơn full plan",
+      "Công cụ ngoại lệ cho recovery/troubleshooting, sau đó phải chạy full plan để reconcile"
+    ],
+    "answerIndex": 3,
+    "explanation": "Targeted plan có thể không đại diện toàn bộ thay đổi cần thiết của graph. Nó chỉ nên dùng cho tình huống ngoại lệ có kiểm soát và luôn theo sau bằng full plan.",
+    "difficulty": "Nâng cao",
+    "source": "Terraform/Quiz/answers/05-expert-answers.md"
+  }
+]

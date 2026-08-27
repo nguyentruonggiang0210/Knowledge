@@ -1,0 +1,28 @@
+#cloud-config
+package_update: true
+packages:
+  - python3
+
+write_files:
+  - path: /opt/capstone/health
+    permissions: "0644"
+    content: |
+      healthy
+  - path: /etc/systemd/system/capstone.service
+    permissions: "0644"
+    content: |
+      [Unit]
+      Description=Capstone health endpoint
+      After=network-online.target
+      [Service]
+      WorkingDirectory=/opt/capstone
+      ExecStart=/usr/bin/python3 -m http.server ${app_port}
+      Restart=always
+      [Install]
+      WantedBy=multi-user.target
+
+runcmd:
+  - [mkdir, -p, /opt/capstone]
+  - [systemctl, daemon-reload]
+  - [systemctl, enable, --now, capstone.service]
+

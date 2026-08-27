@@ -1,0 +1,32 @@
+apiVersion: platform.example/v1
+kind: Service
+metadata:
+  name: order-api
+  owner: team-orders
+  lifecycle: production
+  tier: critical
+spec:
+  source:
+    repository: https://example.invalid/orders/order-api
+  runtime:
+    type: kubernetes
+    region: example-region
+    dataClassification: confidential
+  delivery:
+    artifactPromotion: immutable-digest
+    strategy: canary
+  reliability:
+    slo: 99.9-percent-valid-orders-over-30-days
+    runbook: docs/runbook.md
+    onCall: orders-primary
+    rto: 60m
+    rpo: 5m
+  governance:
+    costCenter: commerce
+    expiresAt: null
+    internetExposed: true
+  dependencies:
+    - payment-api
+    - orders-database
+
+# example.invalid and placeholder region are deliberate. Never place credentials here.

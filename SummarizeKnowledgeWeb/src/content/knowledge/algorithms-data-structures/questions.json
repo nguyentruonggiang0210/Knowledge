@@ -1,0 +1,226 @@
+[
+  {
+    "id": "alg-001",
+    "question": "Vì sao thao tác thêm phần tử vào cuối dynamic array thường được mô tả là O(1) amortized?",
+    "options": [
+      "Vì dynamic array không bao giờ phải cấp phát lại bộ nhớ",
+      "Vì các lần resize O(n) hiếm được phân bổ trên cả chuỗi nhiều lần thêm",
+      "Vì mọi lần thêm đều sao chép đúng một nửa số phần tử",
+      "Vì compiler luôn chuyển dynamic array thành linked list"
+    ],
+    "answerIndex": 1,
+    "explanation": "Phần lớn lần thêm chỉ ghi vào ô trống O(1); thỉnh thoảng array phải resize và sao chép O(n). Tổng chi phí của một chuỗi n lần thêm vẫn là O(n), nên chi phí amortized mỗi lần là O(1).",
+    "difficulty": "Cơ bản",
+    "source": "Algorithms/Lessions/01-big-o-and-complexity.md"
+  },
+  {
+    "id": "alg-002",
+    "question": "Điều kiện nào cho phép two pointers tìm một cặp có tổng bằng target bằng cách tăng con trỏ trái khi tổng quá nhỏ và giảm con trỏ phải khi tổng quá lớn?",
+    "options": [
+      "Mảng chỉ chứa số dương",
+      "Mảng không có phần tử trùng",
+      "Mảng đã được sắp xếp theo thứ tự",
+      "Target luôn lớn hơn mọi phần tử"
+    ],
+    "answerIndex": 2,
+    "explanation": "Tính có thứ tự bảo đảm rằng tăng con trỏ trái chỉ có thể làm giá trị tăng và giảm con trỏ phải chỉ có thể làm giá trị giảm, nên mỗi bước loại bỏ an toàn một vùng ứng viên.",
+    "difficulty": "Cơ bản",
+    "source": "Algorithms/Lessions/02-array-string-two-pointers.md"
+  },
+  {
+    "id": "alg-003",
+    "question": "Khi tìm subarray ngắn nhất có tổng ít nhất target bằng sliding window, giả định nào làm cho việc co và mở cửa sổ có tính đơn điệu?",
+    "options": [
+      "Các phần tử đều dương",
+      "Độ dài mảng là số chẵn",
+      "Mảng đã được sắp xếp",
+      "Mỗi giá trị chỉ xuất hiện một lần"
+    ],
+    "answerIndex": 0,
+    "explanation": "Với số dương, mở rộng cửa sổ không làm tổng giảm và thu hẹp từ trái không làm tổng tăng. Nếu có số âm, tổng không còn đơn điệu và sliding window chuẩn có thể bỏ lỡ nghiệm.",
+    "difficulty": "Trung cấp",
+    "source": "Algorithms/Lessions/03-sliding-window.md"
+  },
+  {
+    "id": "alg-004",
+    "question": "Tại sao một thuật toán monotonic stack có vòng while lồng bên trong vẫn thường chạy O(n)?",
+    "options": [
+      "Vì vòng while chỉ chạy trên input đã sort",
+      "Vì compiler loại bỏ vòng while khi tối ưu",
+      "Vì stack luôn chỉ chứa một phần tử",
+      "Vì mỗi phần tử được push và pop nhiều nhất một lần"
+    ],
+    "answerIndex": 3,
+    "explanation": "Phân tích amortized đếm tổng số thao tác trên toàn bộ vòng lặp: mỗi phần tử chỉ vào stack một lần và rời stack tối đa một lần, nên tổng push/pop là O(n).",
+    "difficulty": "Trung cấp",
+    "source": "Algorithms/Lessions/06-stack-monotonic-stack.md"
+  },
+  {
+    "id": "alg-005",
+    "question": "Lower bound của target trên khoảng chỉ số [0, n) trả về vị trí nào?",
+    "options": [
+      "Vị trí đầu tiên có giá trị lớn hơn hoặc bằng target",
+      "Vị trí cuối cùng có giá trị nhỏ hơn target",
+      "Vị trí bất kỳ có giá trị bằng target",
+      "Vị trí đầu tiên có giá trị lớn hơn target"
+    ],
+    "answerIndex": 0,
+    "explanation": "Lower bound là boundary đầu tiên mà giá trị không còn nhỏ hơn target, tức phần tử đầu tiên >= target; kết quả có thể bằng n nếu không có phần tử phù hợp.",
+    "difficulty": "Cơ bản",
+    "source": "Algorithms/Lessions/09-binary-search.md"
+  },
+  {
+    "id": "alg-006",
+    "question": "Cặp cấu trúc dữ liệu nào giúp LRU cache thực hiện Get và Put với thời gian expected O(1)?",
+    "options": [
+      "Binary search tree và queue",
+      "Heap và singly linked list",
+      "Hash map và doubly linked list",
+      "Trie và stack"
+    ],
+    "answerIndex": 2,
+    "explanation": "Hash map tìm node theo key expected O(1), còn doubly linked list cho phép detach, đưa node lên đầu và loại node cuối O(1) khi đã có reference.",
+    "difficulty": "Trung cấp",
+    "source": "Algorithms/Lessions/36-data-structure-design.md"
+  },
+  {
+    "id": "alg-007",
+    "question": "Cách nào kiểm tra một binary tree là BST đúng cả constraint từ tổ tiên?",
+    "options": [
+      "Chỉ so sánh mỗi node với node cha trực tiếp",
+      "Chỉ kiểm tra traversal preorder có tăng hay không",
+      "Đếm số node ở subtree trái và phải",
+      "Truyền lower/upper bound xuống từng subtree"
+    ],
+    "answerIndex": 3,
+    "explanation": "Mỗi node phải nằm trong khoảng do toàn bộ tổ tiên tạo ra. Khi đi trái cập nhật upper bound; khi đi phải cập nhật lower bound. Chỉ so với cha không phát hiện được vi phạm từ tổ tiên xa hơn.",
+    "difficulty": "Trung cấp",
+    "source": "Algorithms/Lessions/15-binary-search-tree.md"
+  },
+  {
+    "id": "alg-008",
+    "question": "Thuật toán nào tìm shortest path theo số cạnh từ một nguồn trong graph không trọng số?",
+    "options": [
+      "DFS preorder",
+      "BFS",
+      "Kruskal",
+      "Union-Find"
+    ],
+    "answerIndex": 1,
+    "explanation": "BFS khám phá đỉnh theo từng level, tức theo khoảng cách số cạnh tăng dần. Lần đầu một đỉnh được discover là một đường đi ngắn nhất trong graph không trọng số.",
+    "difficulty": "Cơ bản",
+    "source": "Algorithms/Lessions/18-graph-dfs-bfs.md"
+  },
+  {
+    "id": "alg-009",
+    "question": "Điều kiện trọng số nào là bắt buộc đối với Dijkstra chuẩn?",
+    "options": [
+      "Mọi cạnh phải có cùng trọng số",
+      "Graph phải không có chu trình",
+      "Mọi cạnh phải có trọng số không âm",
+      "Graph phải là undirected"
+    ],
+    "answerIndex": 2,
+    "explanation": "Dijkstra chốt đỉnh có distance nhỏ nhất dựa trên việc một đường đi nối thêm cạnh không thể làm distance giảm. Cạnh âm phá invariant greedy này.",
+    "difficulty": "Trung cấp",
+    "source": "Algorithms/Lessions/21-shortest-path-dijkstra.md"
+  },
+  {
+    "id": "alg-010",
+    "question": "Trong Kruskal, Union-Find được dùng trực tiếp để làm gì?",
+    "options": [
+      "Kiểm tra hai đầu cạnh có thuộc hai component khác nhau hay không",
+      "Tìm cạnh có trọng số nhỏ nhất mà không cần sort",
+      "Tính shortest path từ một nguồn",
+      "Cân bằng chiều cao của graph"
+    ],
+    "answerIndex": 0,
+    "explanation": "Sau khi sort cạnh, Kruskal chỉ chọn cạnh nối hai component khác nhau. Union-Find hỗ trợ kiểm tra connectivity và hợp nhất component gần O(1) amortized.",
+    "difficulty": "Trung cấp",
+    "source": "Algorithms/Lessions/23-minimum-spanning-tree.md"
+  },
+  {
+    "id": "alg-011",
+    "question": "Khi nén 0/1 knapsack xuống mảng dp một chiều, capacity phải được duyệt theo hướng nào cho mỗi item?",
+    "options": [
+      "Luân phiên tăng và giảm",
+      "Từ lớn xuống nhỏ",
+      "Từ nhỏ lên lớn",
+      "Thứ tự không ảnh hưởng"
+    ],
+    "answerIndex": 1,
+    "explanation": "Duyệt giảm để dp[c - weight] vẫn là trạng thái trước item hiện tại, nhờ đó mỗi item chỉ được dùng tối đa một lần. Duyệt tăng sẽ cho phép tái dùng item vừa cập nhật.",
+    "difficulty": "Nâng cao",
+    "source": "Algorithms/Lessions/27-knapsack-subset-sum.md"
+  },
+  {
+    "id": "alg-012",
+    "question": "Trong thuật toán LIS O(n log n), mảng tails tự nó bảo đảm điều gì?",
+    "options": [
+      "Luôn chứa đúng một LIS cần xuất ra",
+      "Đếm chính xác số lượng LIS",
+      "Lưu mọi subsequence tăng đã gặp",
+      "Lưu tail nhỏ nhất biết được cho mỗi độ dài subsequence"
+    ],
+    "answerIndex": 3,
+    "explanation": "tails[len-1] giữ giá trị đuôi nhỏ nhất có thể cho một subsequence tăng độ dài len, giúp tính đúng độ dài LIS. Muốn dựng lại sequence phải lưu thêm predecessor/index.",
+    "difficulty": "Nâng cao",
+    "source": "Algorithms/Lessions/28-longest-increasing-subsequence.md"
+  },
+  {
+    "id": "alg-013",
+    "question": "Vì sao Kadane cho mảng có toàn số âm không nên khởi tạo best = 0 nếu subarray phải không rỗng?",
+    "options": [
+      "Vì 0 có thể gây integer overflow",
+      "Vì thuật toán sẽ trả subarray rỗng thay vì phần tử âm lớn nhất",
+      "Vì Kadane chỉ dùng được cho số dương",
+      "Vì best phải luôn bằng tổng toàn mảng"
+    ],
+    "answerIndex": 1,
+    "explanation": "Khởi tạo 0 vô tình cho phép nghiệm rỗng. Với contract subarray không rỗng, bestEndingHere và bestSoFar nên bắt đầu từ phần tử đầu tiên.",
+    "difficulty": "Trung cấp",
+    "source": "Algorithms/Lessions/29-kadane-maximum-subarray.md"
+  },
+  {
+    "id": "alg-014",
+    "question": "Khi dữ liệu có point update và cần nhiều prefix-sum query, cấu trúc nào thường đơn giản và gọn hơn segment tree?",
+    "options": [
+      "Trie",
+      "Disjoint Set Union",
+      "Monotonic deque",
+      "Fenwick tree"
+    ],
+    "answerIndex": 3,
+    "explanation": "Fenwick tree hỗ trợ point update và prefix sum trong O(log n) với implementation và bộ nhớ gọn. Segment tree linh hoạt hơn khi cần nhiều loại range query/update.",
+    "difficulty": "Nâng cao",
+    "source": "Algorithms/Lessions/32-fenwick-segment-tree.md"
+  },
+  {
+    "id": "alg-015",
+    "question": "Bloom filter chuẩn chỉ hỗ trợ insert/query và được cài đúng có bảo đảm nào?",
+    "options": [
+      "Có thể false positive nhưng không false negative",
+      "Có thể false negative nhưng không false positive",
+      "Không có cả hai loại sai số",
+      "Luôn trả chính xác số lần phần tử xuất hiện"
+    ],
+    "answerIndex": 0,
+    "explanation": "Nếu một bit cần thiết bằng 0 thì phần tử chắc chắn không có; nếu mọi bit bằng 1 thì phần tử chỉ có thể có. Xóa bit trực tiếp có thể phá bảo đảm và tạo false negative.",
+    "difficulty": "Nâng cao",
+    "source": "Interview/Anwsers/algorithms_data_structures.md"
+  },
+  {
+    "id": "alg-016",
+    "question": "Trong C#, nhận định nào đúng về kiểu char khi xử lý Unicode?",
+    "options": [
+      "Một char luôn là một grapheme người dùng nhìn thấy",
+      "Một char luôn lưu toàn bộ Unicode scalar",
+      "Một char là một UTF-16 code unit; một ký tự có thể cần nhiều char",
+      "char chỉ biểu diễn được ASCII"
+    ],
+    "answerIndex": 2,
+    "explanation": "char là UTF-16 code unit. Supplementary scalar dùng surrogate pair và một grapheme còn có thể gồm nhiều scalar, nên xử lý text production có thể cần Rune hoặc StringInfo.",
+    "difficulty": "Nâng cao",
+    "source": "Algorithms/Lessions/02-array-string-two-pointers.md"
+  }
+]

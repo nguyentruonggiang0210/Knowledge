@@ -1,0 +1,28 @@
+#cloud-config
+package_update: true
+packages:
+  - python3
+
+write_files:
+  - path: /opt/tf-course/index.html
+    permissions: "0644"
+    content: |
+      healthy
+  - path: /etc/systemd/system/tf-course.service
+    permissions: "0644"
+    content: |
+      [Unit]
+      Description=Terraform course health endpoint
+      After=network-online.target
+      [Service]
+      WorkingDirectory=/opt/tf-course
+      ExecStart=/usr/bin/python3 -m http.server ${app_port}
+      Restart=always
+      [Install]
+      WantedBy=multi-user.target
+
+runcmd:
+  - [mkdir, -p, /opt/tf-course]
+  - [systemctl, daemon-reload]
+  - [systemctl, enable, --now, tf-course.service]
+

@@ -1,0 +1,335 @@
+.article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 205px;
+  align-items: start;
+  gap: 34px;
+  margin-top: 32px;
+}
+
+.knowledge-article {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  padding: clamp(22px, 4vw, 48px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.knowledge-article > :first-child {
+  margin-top: 0;
+}
+
+.knowledge-article > :last-child {
+  margin-bottom: 0;
+}
+
+.knowledge-article h2,
+.knowledge-article h3,
+.knowledge-article h4 {
+  color: var(--ink);
+  scroll-margin-top: 100px;
+}
+
+.knowledge-article h2 {
+  margin: 56px 0 18px;
+  padding-top: 6px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(25px, 3vw, 34px);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+}
+
+.knowledge-article h2::before {
+  display: block;
+  width: 34px;
+  height: 4px;
+  margin-bottom: 13px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--lime), var(--mint));
+  content: '';
+}
+
+.knowledge-article h3 {
+  margin: 32px 0 12px;
+  font-size: 17px;
+  line-height: 1.35;
+}
+
+.knowledge-article h4 {
+  margin: 24px 0 10px;
+  font-size: 14px;
+}
+
+.knowledge-article p,
+.knowledge-article li {
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.82;
+}
+
+.knowledge-article p {
+  margin: 0 0 17px;
+}
+
+.knowledge-article strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.knowledge-article ul,
+.knowledge-article ol {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 22px;
+  padding-left: 22px;
+}
+
+.knowledge-article li::marker {
+  color: #77a745;
+  font-weight: 700;
+}
+
+.knowledge-article blockquote {
+  margin: 26px 0;
+  padding: 18px 22px;
+  border: 0;
+  border-left: 4px solid var(--lime);
+  border-radius: 0 13px 13px 0;
+  background: var(--lime-soft);
+}
+
+.knowledge-article blockquote p {
+  margin: 0;
+  color: color-mix(in srgb, var(--ink) 86%, #4a683b);
+  font-size: 13px;
+}
+
+.knowledge-article a {
+  color: color-mix(in srgb, #23805f 78%, var(--ink));
+  text-decoration-color: color-mix(in srgb, #23805f 35%, transparent);
+  text-underline-offset: 3px;
+}
+
+.knowledge-article :not(pre) > code {
+  padding: 2px 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: color-mix(in srgb, var(--ink) 82%, #2f704f);
+  background: var(--surface-soft);
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 0.83em;
+}
+
+.code-block {
+  overflow: hidden;
+  margin: 22px 0 28px;
+  border: 1px solid #303a34;
+  border-radius: 15px;
+  background: #151b17;
+  box-shadow: var(--shadow-soft);
+}
+
+.code-block__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 38px;
+  padding: 0 12px 0 15px;
+  border-bottom: 1px solid #303a34;
+  color: #7f8d84;
+  background: #1b231e;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.copy-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 7px;
+  border-radius: 7px;
+  color: #9da9a1;
+  background: transparent;
+  font-size: 9px;
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  color: #eef3ef;
+  background: #263029;
+}
+
+.code-block pre {
+  overflow-x: auto;
+  margin: 0;
+  padding: 19px;
+  color: #dce7df;
+  background: transparent;
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.65;
+  scrollbar-color: #47544c #151b17;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.knowledge-article table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.knowledge-article th,
+.knowledge-article td {
+  padding: 12px 14px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.knowledge-article th:last-child,
+.knowledge-article td:last-child {
+  border-right: 0;
+}
+
+.knowledge-article tr:last-child td {
+  border-bottom: 0;
+}
+
+.knowledge-article th {
+  color: var(--ink);
+  background: var(--surface-soft);
+  font-weight: 750;
+}
+
+.knowledge-article td {
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+.knowledge-article hr {
+  margin: 42px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+.knowledge-article input[type='checkbox'] {
+  width: 15px;
+  height: 15px;
+  margin: 0 7px 0 0;
+  accent-color: #79a947;
+}
+
+.article-outline {
+  position: sticky;
+  top: 102px;
+  padding: 17px 0 17px 17px;
+  border-left: 1px solid var(--line);
+}
+
+.article-outline__title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 13px;
+  color: var(--ink);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.article-outline nav {
+  display: grid;
+}
+
+.article-outline a {
+  position: relative;
+  padding: 6px 0 6px 11px;
+  color: var(--ink-faint);
+  font-size: 10px;
+  line-height: 1.45;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.article-outline a:hover {
+  color: var(--ink);
+}
+
+.article-outline a::before {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--line-strong);
+  content: '';
+}
+
+@media (max-width: 1280px) {
+  .article-layout {
+    grid-template-columns: minmax(0, 1fr) 170px;
+    gap: 22px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .knowledge-article h2,
+  .knowledge-article h3,
+  .knowledge-article h4 {
+    scroll-margin-top: 148px;
+  }
+}
+
+@media (max-width: 760px) {
+  .article-layout {
+    display: block;
+    margin-top: 18px;
+  }
+
+  .article-outline {
+    display: none;
+  }
+
+  .knowledge-article {
+    padding: 24px 19px;
+    border-radius: 19px;
+  }
+
+  .knowledge-article h2 {
+    margin-top: 44px;
+  }
+
+  .knowledge-article h2,
+  .knowledge-article h3,
+  .knowledge-article h4 {
+    scroll-margin-top: 236px;
+  }
+
+  .knowledge-article p,
+  .knowledge-article li {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .code-block {
+    margin-inline: -8px;
+  }
+
+  .code-block pre {
+    padding: 15px;
+    font-size: 11px;
+  }
+}

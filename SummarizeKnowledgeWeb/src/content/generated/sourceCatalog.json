@@ -1,0 +1,4606 @@
+{
+  "totalSourceFiles": 376,
+  "totalUniqueDocuments": 376,
+  "totalWords": 633759,
+  "totalRawWords": 699575,
+  "topics": [
+    {
+      "topicId": "advanced-databases",
+      "documentCount": 52,
+      "sourceFileCount": 52,
+      "wordCount": 118928,
+      "rawWordCount": 118928
+    },
+    {
+      "topicId": "ai-machine-learning",
+      "documentCount": 40,
+      "sourceFileCount": 40,
+      "wordCount": 16033,
+      "rawWordCount": 16033
+    },
+    {
+      "topicId": "algorithms-data-structures",
+      "documentCount": 51,
+      "sourceFileCount": 51,
+      "wordCount": 70249,
+      "rawWordCount": 70249
+    },
+    {
+      "topicId": "concurrency-messaging",
+      "documentCount": 11,
+      "sourceFileCount": 11,
+      "wordCount": 15893,
+      "rawWordCount": 15893
+    },
+    {
+      "topicId": "data-engineering",
+      "documentCount": 9,
+      "sourceFileCount": 9,
+      "wordCount": 4672,
+      "rawWordCount": 4672
+    },
+    {
+      "topicId": "devops-sre-security",
+      "documentCount": 71,
+      "sourceFileCount": 71,
+      "wordCount": 89009,
+      "rawWordCount": 89009
+    },
+    {
+      "topicId": "dotnet-api-containers",
+      "documentCount": 4,
+      "sourceFileCount": 4,
+      "wordCount": 26789,
+      "rawWordCount": 26789
+    },
+    {
+      "topicId": "java-jvm-spring",
+      "documentCount": 22,
+      "sourceFileCount": 22,
+      "wordCount": 41480,
+      "rawWordCount": 41480
+    },
+    {
+      "topicId": "rag-agent-systems",
+      "documentCount": 32,
+      "sourceFileCount": 32,
+      "wordCount": 123449,
+      "rawWordCount": 189265
+    },
+    {
+      "topicId": "software-engineering-quality",
+      "documentCount": 9,
+      "sourceFileCount": 9,
+      "wordCount": 11591,
+      "rawWordCount": 11591
+    },
+    {
+      "topicId": "system-design-interview",
+      "documentCount": 23,
+      "sourceFileCount": 23,
+      "wordCount": 73993,
+      "rawWordCount": 73993
+    },
+    {
+      "topicId": "terraform-cloud",
+      "documentCount": 52,
+      "sourceFileCount": 52,
+      "wordCount": 41673,
+      "rawWordCount": 41673
+    }
+  ],
+  "documents": [
+    {
+      "id": "advanced-databases-80b0fa6eb753",
+      "topicId": "advanced-databases",
+      "title": "00 - Cài đặt miễn phí và làm quen dataset",
+      "wordCount": 884,
+      "lineCount": 163,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/00-cai-dat-va-dataset.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-80b0fa6eb753-bd33b33c2f2a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-ede82417c790",
+      "topicId": "advanced-databases",
+      "title": "01 - Kiến trúc columnar và tư duy OLAP",
+      "wordCount": 1146,
+      "lineCount": 184,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/01-kien-truc-columnar-olap.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-ede82417c790-4f30d7de6493.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-778c83c87db0",
+      "topicId": "advanced-databases",
+      "title": "02 - Kiểu dữ liệu và thiết kế schema phân tích",
+      "wordCount": 1176,
+      "lineCount": 181,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/02-kieu-du-lieu-schema.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-778c83c87db0-cc20ba8d3583.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-761076591d4e",
+      "topicId": "advanced-databases",
+      "title": "03 - MergeTree, sorting key, partition, primary index và granule",
+      "wordCount": 1406,
+      "lineCount": 265,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/03-mergetree-key-partition-granule.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-761076591d4e-3ba853713fee.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-641f34018005",
+      "topicId": "advanced-databases",
+      "title": "04 - Ingestion: batch, async insert, format và retry",
+      "wordCount": 1235,
+      "lineCount": 215,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/04-ingestion-batch-async.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-641f34018005-23648a343da7.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-f88d8b415aaf",
+      "topicId": "advanced-databases",
+      "title": "05 - Truy vấn phân tích, aggregate, funnel và window",
+      "wordCount": 1312,
+      "lineCount": 274,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/05-query-aggregation-window.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-f88d8b415aaf-a9c8f4adc30d.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-191c9d67be59",
+      "topicId": "advanced-databases",
+      "title": "06 - LowCardinality, Nullable, codec và dữ liệu bán cấu trúc",
+      "wordCount": 1143,
+      "lineCount": 218,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/06-lowcardinality-nullable-codec.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-191c9d67be59-6b718d929e06.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-8a8334ec79b4",
+      "topicId": "advanced-databases",
+      "title": "07 - Materialized view, projection và data-skipping index",
+      "wordCount": 1236,
+      "lineCount": 266,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/07-mv-projection-skip-index.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-8a8334ec79b4-321523d40fda.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-ac03432530b7",
+      "topicId": "advanced-databases",
+      "title": "08 - Mutation, TTL, deduplication và late data",
+      "wordCount": 1202,
+      "lineCount": 231,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/08-mutation-ttl-dedup.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-ac03432530b7-3e7342d2747e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-64965430272e",
+      "topicId": "advanced-databases",
+      "title": "09 - Distributed table, sharding và replication",
+      "wordCount": 2099,
+      "lineCount": 342,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/09-distributed-sharding-replication.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-64965430272e-61de02409a11.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-ecdab0584c19",
+      "topicId": "advanced-databases",
+      "title": "10 - Hiệu năng: EXPLAIN, system tables và phương pháp triage",
+      "wordCount": 1391,
+      "lineCount": 263,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/10-performance-explain-system.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-ecdab0584c19-f02568ce94f0.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-753137247971",
+      "topicId": "advanced-databases",
+      "title": "11 - Security, backup, restore và monitoring",
+      "wordCount": 1318,
+      "lineCount": 239,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/11-security-backup-monitoring.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-753137247971-ed6ac0a1ef90.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-aa4ed7f25b79",
+      "topicId": "advanced-databases",
+      "title": "12 - Tích hợp PostgreSQL và CDC",
+      "wordCount": 1944,
+      "lineCount": 299,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/12-postgres-cdc-integration.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-aa4ed7f25b79-facb8b22fd58.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-e7417ab84ece",
+      "topicId": "advanced-databases",
+      "title": "13 - Capstone: nền tảng analytics thương mại điện tử production-ready",
+      "wordCount": 1940,
+      "lineCount": 394,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/13-capstone.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-e7417ab84ece-476cce4a9645.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-a7339127b0e4",
+      "topicId": "advanced-databases",
+      "title": "14 - Dictionary, external lookup và chiến lược JOIN",
+      "wordCount": 1782,
+      "lineCount": 291,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/14-dictionary-external-join.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-a7339127b0e4-26f2895e5020.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-503504bf9dcb",
+      "topicId": "advanced-databases",
+      "title": "15 - Kafka, object storage và table functions",
+      "wordCount": 2574,
+      "lineCount": 402,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/15-kafka-object-storage-table-functions.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-503504bf9dcb-5690f90aab63.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-f30bc4f13be5",
+      "topicId": "advanced-databases",
+      "title": "16 - Query cache và quản trị tài nguyên",
+      "wordCount": 1733,
+      "lineCount": 284,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/16-query-cache-resource-governance.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-f30bc4f13be5-a51357280905.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-763dd723c032",
+      "topicId": "advanced-databases",
+      "title": "17 - Schema evolution, data quality và kiểm thử/benchmark",
+      "wordCount": 2445,
+      "lineCount": 416,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/17-schema-evolution-quality-testing.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-763dd723c032-892ee119110f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-b87dc33aa9ad",
+      "topicId": "advanced-databases",
+      "title": "Lộ trình ClickHouse: từ nhập môn đến production",
+      "wordCount": 1530,
+      "lineCount": 172,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionClickHouse/README.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-b87dc33aa9ad-7b894790c8aa.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-e91fcbde4aea",
+      "topicId": "advanced-databases",
+      "title": "00 — Nền tảng PostgreSQL duy nhất",
+      "wordCount": 1220,
+      "lineCount": 196,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/00-nen-tang-duy-nhat.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-e91fcbde4aea-8c0ab683f60f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-03b5f8ac64f7",
+      "topicId": "advanced-databases",
+      "title": "01 — Advanced SQL: từ báo cáo đến truy vấn đồ thị",
+      "wordCount": 1349,
+      "lineCount": 242,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/01-advanced-sql.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-03b5f8ac64f7-a4ab407fe74a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-bf5fefb50c9e",
+      "topicId": "advanced-databases",
+      "title": "02 — MVCC, isolation, lock và deadlock",
+      "wordCount": 1954,
+      "lineCount": 318,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/02-mvcc-isolation-locks.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-bf5fefb50c9e-ab1f74fd5c89.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-052a1b54f27f",
+      "topicId": "advanced-databases",
+      "title": "03 — Index chuyên sâu: đúng operator, đúng workload",
+      "wordCount": 2185,
+      "lineCount": 328,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/03-index-chuyen-sau.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-052a1b54f27f-bd6c32357d29.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-f6ec1bce99dd",
+      "topicId": "advanced-databases",
+      "title": "04 — EXPLAIN, optimizer và statistics",
+      "wordCount": 2042,
+      "lineCount": 318,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/04-explain-optimizer-thong-ke.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-f6ec1bce99dd-76130c0e8183.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-f9f45eb0f0d1",
+      "topicId": "advanced-databases",
+      "title": "05 — Declarative partitioning và lifecycle dữ liệu",
+      "wordCount": 1795,
+      "lineCount": 249,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/05-partitioning.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-f9f45eb0f0d1-2d187dd98c37.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-c5e319a27658",
+      "topicId": "advanced-databases",
+      "title": "06 — JSONB và full-text search",
+      "wordCount": 1618,
+      "lineCount": 268,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/06-jsonb-full-text-search.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-c5e319a27658-acd6a45267c4.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-2b8f47a8be6f",
+      "topicId": "advanced-databases",
+      "title": "07 — Function, trigger, RLS và security",
+      "wordCount": 2344,
+      "lineCount": 401,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/07-functions-triggers-rls-security.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-2b8f47a8be6f-47f3ea9fd218.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-917c8f069349",
+      "topicId": "advanced-databases",
+      "title": "08 — Hiệu năng hệ thống, connection pooling, vacuum và bloat",
+      "wordCount": 2151,
+      "lineCount": 351,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/08-performance-pooling-vacuum-bloat.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-917c8f069349-411180f53890.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-4cb2c934d545",
+      "topicId": "advanced-databases",
+      "title": "09 — Backup, PITR, replication và High Availability",
+      "wordCount": 2327,
+      "lineCount": 393,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/09-backup-pitr-replication-ha.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-4cb2c934d545-d379ee05428c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-25068c66f814",
+      "topicId": "advanced-databases",
+      "title": "10 — Observability và troubleshooting theo bằng chứng",
+      "wordCount": 2362,
+      "lineCount": 442,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/10-observability-troubleshooting.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-25068c66f814-a1366797d807.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-df7bba498bb4",
+      "topicId": "advanced-databases",
+      "title": "11 — Data modeling và integrity nâng cao",
+      "wordCount": 3391,
+      "lineCount": 541,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/11-data-modeling-integrity-advanced.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-df7bba498bb4-c8028315e91c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-b49f953edd27",
+      "topicId": "advanced-databases",
+      "title": "12 — WAL, checkpoint và durability internals",
+      "wordCount": 2234,
+      "lineCount": 347,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/12-wal-checkpoint-durability.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-b49f953edd27-4b118a08f438.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-3e7ac217eed8",
+      "topicId": "advanced-databases",
+      "title": "13 — Zero-downtime schema migrations",
+      "wordCount": 2624,
+      "lineCount": 458,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/13-zero-downtime-schema-migrations.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-3e7ac217eed8-48d437e467b8.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-ab6ecb32dd80",
+      "topicId": "advanced-databases",
+      "title": "14 — Extension lifecycle và nâng cấp PostgreSQL",
+      "wordCount": 2665,
+      "lineCount": 421,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/14-extension-lifecycle-version-upgrades.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-ab6ecb32dd80-6ac4d24e7870.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-f4318625cbfd",
+      "topicId": "advanced-databases",
+      "title": "15 — Capacity planning, deadlines và query cancellation",
+      "wordCount": 3120,
+      "lineCount": 535,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/15-capacity-timeouts-cancellation.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-f4318625cbfd-4a0e4a4c1728.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-6569b76ee3d8",
+      "topicId": "advanced-databases",
+      "title": "16 — Capstone: OrderHub multi-tenant ở mức production",
+      "wordCount": 2694,
+      "lineCount": 496,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/16-capstone.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-6569b76ee3d8-f7e4ab6d6d94.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-3bd490d94177",
+      "topicId": "advanced-databases",
+      "title": "Roadmap PostgreSQL nâng cao",
+      "wordCount": 1283,
+      "lineCount": 128,
+      "sourcePaths": [
+        "DatabaseAdvance/LessionPostresql/README.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-3bd490d94177-f819e9167645.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-e87ca8761e33",
+      "topicId": "advanced-databases",
+      "title": "Capstone — Rubric, checklist và đáp án kỳ vọng",
+      "wordCount": 1376,
+      "lineCount": 195,
+      "sourcePaths": [
+        "DatabaseAdvance/Quiz/CAPSTONE_RUBRIC.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-e87ca8761e33-747ed30d97d9.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-8c442796ad9e",
+      "topicId": "advanced-databases",
+      "title": "Capstone — Commerce Event Platform",
+      "wordCount": 1234,
+      "lineCount": 241,
+      "sourcePaths": [
+        "DatabaseAdvance/Quiz/CAPSTONE.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-8c442796ad9e-b17a80ca9aad.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-c60276d7ec3d",
+      "topicId": "advanced-databases",
+      "title": "ClickHouse — Đáp án và giải thích",
+      "wordCount": 6252,
+      "lineCount": 931,
+      "sourcePaths": [
+        "DatabaseAdvance/Quiz/CLICKHOUSE_ANSWERS.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-c60276d7ec3d-3003b9904ce2.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-60dccd0272a4",
+      "topicId": "advanced-databases",
+      "title": "ClickHouse — Đề tự kiểm tra từ cơ bản đến nâng cao",
+      "wordCount": 2335,
+      "lineCount": 363,
+      "sourcePaths": [
+        "DatabaseAdvance/Quiz/CLICKHOUSE_QUESTIONS.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-60dccd0272a4-6e71a58f413a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-a353d5710424",
+      "topicId": "advanced-databases",
+      "title": "Assessment coverage matrix",
+      "wordCount": 1434,
+      "lineCount": 78,
+      "sourcePaths": [
+        "DatabaseAdvance/Quiz/COVERAGE_MATRIX.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-a353d5710424-0ebff557ae6a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-715a47de346e",
+      "topicId": "advanced-databases",
+      "title": "Entry diagnostic — Đáp án và giải thích",
+      "wordCount": 1707,
+      "lineCount": 293,
+      "sourcePaths": [
+        "DatabaseAdvance/Quiz/ENTRY_DIAGNOSTIC_ANSWERS.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-715a47de346e-a746a1d5c025.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-c696b04ee665",
+      "topicId": "advanced-databases",
+      "title": "Entry diagnostic — Đề kiểm tra đầu vào",
+      "wordCount": 894,
+      "lineCount": 127,
+      "sourcePaths": [
+        "DatabaseAdvance/Quiz/ENTRY_DIAGNOSTIC_QUESTIONS.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-c696b04ee665-09881f4b9b04.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-53cf8be01fd7",
+      "topicId": "advanced-databases",
+      "title": "PostgreSQL nâng cao — Đáp án và giải thích",
+      "wordCount": 6653,
+      "lineCount": 959,
+      "sourcePaths": [
+        "DatabaseAdvance/Quiz/POSTGRESQL_ADVANCED_ANSWERS.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-53cf8be01fd7-bbf467b6390b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-96002f79e66d",
+      "topicId": "advanced-databases",
+      "title": "PostgreSQL nâng cao — Đề tự kiểm tra",
+      "wordCount": 2817,
+      "lineCount": 430,
+      "sourcePaths": [
+        "DatabaseAdvance/Quiz/POSTGRESQL_ADVANCED_QUESTIONS.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-96002f79e66d-937c501913d9.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-32277a2ff20a",
+      "topicId": "advanced-databases",
+      "title": "Practical labs — Lời giải tham khảo",
+      "wordCount": 5473,
+      "lineCount": 916,
+      "sourcePaths": [
+        "DatabaseAdvance/Quiz/PRACTICAL_LABS_SOLUTIONS.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-32277a2ff20a-86f87896291a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-17359b6277e3",
+      "topicId": "advanced-databases",
+      "title": "Practical labs — Đề bài",
+      "wordCount": 2640,
+      "lineCount": 330,
+      "sourcePaths": [
+        "DatabaseAdvance/Quiz/PRACTICAL_LABS.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-17359b6277e3-5470438ddb91.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-7e1864fec33b",
+      "topicId": "advanced-databases",
+      "title": "Hệ thống tự kiểm tra",
+      "wordCount": 925,
+      "lineCount": 117,
+      "sourcePaths": [
+        "DatabaseAdvance/Quiz/README.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-7e1864fec33b-0879097980a8.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-a20130d74fab",
+      "topicId": "advanced-databases",
+      "title": "Database Advance — PostgreSQL nâng cao và ClickHouse",
+      "wordCount": 1380,
+      "lineCount": 154,
+      "sourcePaths": [
+        "DatabaseAdvance/README.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-a20130d74fab-682e95116340.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-e719272a06bc",
+      "topicId": "advanced-databases",
+      "title": "Đáp án phỏng vấn Database — Middle/Senior",
+      "wordCount": 11478,
+      "lineCount": 535,
+      "sourcePaths": [
+        "Interview/Anwsers/database.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-e719272a06bc-f01803acb4ab.md",
+      "isAggregate": false
+    },
+    {
+      "id": "advanced-databases-e41a38ac5867",
+      "topicId": "advanced-databases",
+      "title": "Câu hỏi phỏng vấn Database — Middle/Senior",
+      "wordCount": 3476,
+      "lineCount": 275,
+      "sourcePaths": [
+        "Interview/database.md"
+      ],
+      "assetPath": "knowledge-sources/advanced-databases/advanced-databases-e41a38ac5867-55e368e72083.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-51ddd3e11017",
+      "topicId": "ai-machine-learning",
+      "title": "Bản đồ kiến thức và thứ tự học",
+      "wordCount": 886,
+      "lineCount": 97,
+      "sourcePaths": [
+        "AIEngineer/COURSE_MAP.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-51ddd3e11017-416367960d1d.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-4fe8d82c7609",
+      "topicId": "ai-machine-learning",
+      "title": "00 — Bản đồ năng lực AI Engineer",
+      "wordCount": 525,
+      "lineCount": 53,
+      "sourcePaths": [
+        "AIEngineer/Lessions/00-roadmap-ai-engineer/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-4fe8d82c7609-1fbc5e4c529b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-f237db2b1510",
+      "topicId": "ai-machine-learning",
+      "title": "01 — Computing, CLI và Git",
+      "wordCount": 465,
+      "lineCount": 56,
+      "sourcePaths": [
+        "AIEngineer/Lessions/01-computing-cli-git/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-f237db2b1510-a239ee6d0030.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-c03fe18540ea",
+      "topicId": "ai-machine-learning",
+      "title": "02 — Nền tảng Python cho AI",
+      "wordCount": 404,
+      "lineCount": 44,
+      "sourcePaths": [
+        "AIEngineer/Lessions/02-python-foundations/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-c03fe18540ea-8640fb0415d1.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-ebb0201efb05",
+      "topicId": "ai-machine-learning",
+      "title": "05 — Lexer, parser, AST và schema validator",
+      "wordCount": 498,
+      "lineCount": 61,
+      "sourcePaths": [
+        "AIEngineer/Lessions/05-parsers-ast-schemas/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-ebb0201efb05-664039d03b80.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-33d92fdc6a32",
+      "topicId": "ai-machine-learning",
+      "title": "06 — Đại số tuyến tính cho AI",
+      "wordCount": 430,
+      "lineCount": 46,
+      "sourcePaths": [
+        "AIEngineer/Lessions/06-linear-algebra/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-33d92fdc6a32-b57f4f50a1b5.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-435d41eb4b00",
+      "topicId": "ai-machine-learning",
+      "title": "07 — Giải tích và tối ưu hóa",
+      "wordCount": 403,
+      "lineCount": 44,
+      "sourcePaths": [
+        "AIEngineer/Lessions/07-calculus-optimization/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-435d41eb4b00-c9b54f35e358.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-6b8fdc29821f",
+      "topicId": "ai-machine-learning",
+      "title": "08 — Xác suất, thống kê và thí nghiệm",
+      "wordCount": 437,
+      "lineCount": 44,
+      "sourcePaths": [
+        "AIEngineer/Lessions/08-probability-statistics-experiments/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-6b8fdc29821f-7bb6b070e6de.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-a2b87a18332a",
+      "topicId": "ai-machine-learning",
+      "title": "11 — Workflow ML, validation và data leakage",
+      "wordCount": 431,
+      "lineCount": 46,
+      "sourcePaths": [
+        "AIEngineer/Lessions/11-ml-workflow-validation-leakage/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-a2b87a18332a-b2dd774a1065.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-9428c2ca73df",
+      "topicId": "ai-machine-learning",
+      "title": "12 — Regression",
+      "wordCount": 383,
+      "lineCount": 44,
+      "sourcePaths": [
+        "AIEngineer/Lessions/12-regression/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-9428c2ca73df-ab2a1a7abda9.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-4a4c4e92e808",
+      "topicId": "ai-machine-learning",
+      "title": "13 — Classification, metric và dữ liệu mất cân bằng",
+      "wordCount": 396,
+      "lineCount": 44,
+      "sourcePaths": [
+        "AIEngineer/Lessions/13-classification-metrics-imbalance/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-4a4c4e92e808-ab6b8fa88b76.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-e16fc7018104",
+      "topicId": "ai-machine-learning",
+      "title": "14 — Decision tree và ensemble",
+      "wordCount": 437,
+      "lineCount": 47,
+      "sourcePaths": [
+        "AIEngineer/Lessions/14-trees-ensembles/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-e16fc7018104-219aed101b1e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-d3c7bc75de43",
+      "topicId": "ai-machine-learning",
+      "title": "Lesson 16 — Unsupervised learning, giảm chiều và anomaly detection",
+      "wordCount": 430,
+      "lineCount": 58,
+      "sourcePaths": [
+        "AIEngineer/Lessions/16-unsupervised-dimensionality-anomaly/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-d3c7bc75de43-6bf91963bcf2.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-b3e0cd053245",
+      "topicId": "ai-machine-learning",
+      "title": "Lesson 17 — Time series, recommender systems và ranking",
+      "wordCount": 369,
+      "lineCount": 56,
+      "sourcePaths": [
+        "AIEngineer/Lessions/17-time-series-recommenders-ranking/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-b3e0cd053245-1863028f0e05.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-732478575782",
+      "topicId": "ai-machine-learning",
+      "title": "Lesson 18 — Graph Machine Learning và Graph Neural Networks",
+      "wordCount": 404,
+      "lineCount": 63,
+      "sourcePaths": [
+        "AIEngineer/Lessions/18-graph-ml-and-gnns/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-732478575782-5714c3a8909e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-ca35fcc8354f",
+      "topicId": "ai-machine-learning",
+      "title": "Lesson 19 — Explainability, fairness và tư duy nhân quả",
+      "wordCount": 415,
+      "lineCount": 56,
+      "sourcePaths": [
+        "AIEngineer/Lessions/19-explainability-fairness-causality/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-ca35fcc8354f-c5d598ac0378.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-2aaa6aa85f58",
+      "topicId": "ai-machine-learning",
+      "title": "Lesson 20 — Neural networks, backpropagation và autodiff",
+      "wordCount": 359,
+      "lineCount": 56,
+      "sourcePaths": [
+        "AIEngineer/Lessions/20-neural-networks-backprop-autodiff/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-2aaa6aa85f58-231ca11ed8d4.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-a43bb299d521",
+      "topicId": "ai-machine-learning",
+      "title": "Lesson 21 — Deep-learning training và tư duy PyTorch",
+      "wordCount": 354,
+      "lineCount": 62,
+      "sourcePaths": [
+        "AIEngineer/Lessions/21-deep-learning-training-pytorch/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-a43bb299d521-12acc33e2a33.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-0e0659bd25b8",
+      "topicId": "ai-machine-learning",
+      "title": "Lesson 22 — Computer Vision và Convolutional Neural Networks",
+      "wordCount": 359,
+      "lineCount": 55,
+      "sourcePaths": [
+        "AIEngineer/Lessions/22-computer-vision-cnns/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-0e0659bd25b8-65ec240849d0.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-5c46cf635544",
+      "topicId": "ai-machine-learning",
+      "title": "Lesson 23 — NLP, tokenization, embeddings và sequences",
+      "wordCount": 376,
+      "lineCount": 56,
+      "sourcePaths": [
+        "AIEngineer/Lessions/23-nlp-tokenization-embeddings-sequences/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-5c46cf635544-e49edb029315.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-e6f3a5705c5c",
+      "topicId": "ai-machine-learning",
+      "title": "Lesson 24 — Attention và Transformers",
+      "wordCount": 360,
+      "lineCount": 57,
+      "sourcePaths": [
+        "AIEngineer/Lessions/24-attention-transformers/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-e6f3a5705c5c-20259184bfd8.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-bc0fe95be936",
+      "topicId": "ai-machine-learning",
+      "title": "Lesson 25 — LLM training, inference và decoding",
+      "wordCount": 340,
+      "lineCount": 56,
+      "sourcePaths": [
+        "AIEngineer/Lessions/25-llm-training-inference-decoding/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-bc0fe95be936-9f296e757de2.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-f2a1c1acf9ef",
+      "topicId": "ai-machine-learning",
+      "title": "Lesson 26 — Prompting, context và structured output",
+      "wordCount": 363,
+      "lineCount": 56,
+      "sourcePaths": [
+        "AIEngineer/Lessions/26-prompting-context-structured-output/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-f2a1c1acf9ef-809acf5d04e9.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-d3789790f387",
+      "topicId": "ai-machine-learning",
+      "title": "39 — Fine-tuning, LoRA và quantization",
+      "wordCount": 441,
+      "lineCount": 43,
+      "sourcePaths": [
+        "AIEngineer/Lessions/39-fine-tuning-lora-quantization/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-d3789790f387-1846c8f9c9f8.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-ded72a245551",
+      "topicId": "ai-machine-learning",
+      "title": "40 — Reinforcement Learning và alignment",
+      "wordCount": 351,
+      "lineCount": 43,
+      "sourcePaths": [
+        "AIEngineer/Lessions/40-reinforcement-learning-alignment/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-ded72a245551-e2c669fcde42.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-bd96849be45c",
+      "topicId": "ai-machine-learning",
+      "title": "41 — Synthetic data, distillation và data flywheel",
+      "wordCount": 331,
+      "lineCount": 43,
+      "sourcePaths": [
+        "AIEngineer/Lessions/41-synthetic-data-distillation/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-bd96849be45c-efc6f0592654.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-03ac8717ea41",
+      "topicId": "ai-machine-learning",
+      "title": "42 — Multimodal: vision, audio, document và diffusion",
+      "wordCount": 315,
+      "lineCount": 41,
+      "sourcePaths": [
+        "AIEngineer/Lessions/42-multimodal-audio-vision-diffusion/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-03ac8717ea41-ee5bfe1bb354.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-8bdf7aa4888e",
+      "topicId": "ai-machine-learning",
+      "title": "43 — Model serving và inference optimization",
+      "wordCount": 337,
+      "lineCount": 43,
+      "sourcePaths": [
+        "AIEngineer/Lessions/43-serving-inference-optimization/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-8bdf7aa4888e-09f08918f3a5.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-915766e8066a",
+      "topicId": "ai-machine-learning",
+      "title": "44 — MLOps/LLMOps: artifact, CI eval, canary, drift và rollback",
+      "wordCount": 331,
+      "lineCount": 43,
+      "sourcePaths": [
+        "AIEngineer/Lessions/44-mlops-llmops-lifecycle/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-915766e8066a-feae90253d38.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-0a2ca5308d5a",
+      "topicId": "ai-machine-learning",
+      "title": "45 — GPU, distributed và cloud AI systems",
+      "wordCount": 329,
+      "lineCount": 48,
+      "sourcePaths": [
+        "AIEngineer/Lessions/45-distributed-gpu-cloud-systems/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-0a2ca5308d5a-0d5fef60c2e6.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-30976ddcf2f5",
+      "topicId": "ai-machine-learning",
+      "title": "46 — Governance, privacy, human-in-the-loop và AI product",
+      "wordCount": 353,
+      "lineCount": 40,
+      "sourcePaths": [
+        "AIEngineer/Lessions/46-governance-privacy-ai-product/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-30976ddcf2f5-b3d77623e6a5.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-af74754dc741",
+      "topicId": "ai-machine-learning",
+      "title": "Checkpoint 01 — Foundations (lessons 00–10)",
+      "wordCount": 178,
+      "lineCount": 27,
+      "sourcePaths": [
+        "AIEngineer/Quiz/checkpoints/01-foundations.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-af74754dc741-f9e5712f8458.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-4fb62f4ace26",
+      "topicId": "ai-machine-learning",
+      "title": "Checkpoint 02 — Machine Learning (lessons 11–19)",
+      "wordCount": 150,
+      "lineCount": 24,
+      "sourcePaths": [
+        "AIEngineer/Quiz/checkpoints/02-machine-learning.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-4fb62f4ace26-7c078f42e113.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-ef932e87c44b",
+      "topicId": "ai-machine-learning",
+      "title": "Checkpoint 03 — Deep Learning và LLM (lessons 20–27)",
+      "wordCount": 152,
+      "lineCount": 24,
+      "sourcePaths": [
+        "AIEngineer/Quiz/checkpoints/03-deep-learning-llm.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-ef932e87c44b-a7b20e2ae400.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-0346b04c2b81",
+      "topicId": "ai-machine-learning",
+      "title": "Checkpoint 05 — Reliability và Production (lessons 36–46)",
+      "wordCount": 160,
+      "lineCount": 24,
+      "sourcePaths": [
+        "AIEngineer/Quiz/checkpoints/05-reliability-production.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-0346b04c2b81-3932539259df.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-5daafa78acdd",
+      "topicId": "ai-machine-learning",
+      "title": "Checkpoint 06 — Final bake-off và portfolio (lessons 47–50)",
+      "wordCount": 201,
+      "lineCount": 31,
+      "sourcePaths": [
+        "AIEngineer/Quiz/checkpoints/06-final-bakeoff.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-5daafa78acdd-2eca07db8453.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-f7d812315d05",
+      "topicId": "ai-machine-learning",
+      "title": "Quiz và checkpoint",
+      "wordCount": 244,
+      "lineCount": 35,
+      "sourcePaths": [
+        "AIEngineer/Quiz/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-f7d812315d05-c7bdbea8fe75.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-7e09131f286e",
+      "topicId": "ai-machine-learning",
+      "title": "AI Engineer: từ nền tảng đến production",
+      "wordCount": 680,
+      "lineCount": 69,
+      "sourcePaths": [
+        "AIEngineer/README.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-7e09131f286e-2a2f00023345.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-d004c66a8c78",
+      "topicId": "ai-machine-learning",
+      "title": "Nguồn học và chính sách cập nhật",
+      "wordCount": 1030,
+      "lineCount": 92,
+      "sourcePaths": [
+        "AIEngineer/SOURCES.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-d004c66a8c78-6ff8cd372762.md",
+      "isAggregate": false
+    },
+    {
+      "id": "ai-machine-learning-2da72d23f907",
+      "topicId": "ai-machine-learning",
+      "title": "Kế hoạch học 52 tuần",
+      "wordCount": 626,
+      "lineCount": 82,
+      "sourcePaths": [
+        "AIEngineer/STUDY_PLAN.md"
+      ],
+      "assetPath": "knowledge-sources/ai-machine-learning/ai-machine-learning-2da72d23f907-521534b67818.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-8f4aa7393edc",
+      "topicId": "algorithms-data-structures",
+      "title": "04 — Thuật toán, cấu trúc dữ liệu và độ phức tạp",
+      "wordCount": 388,
+      "lineCount": 44,
+      "sourcePaths": [
+        "AIEngineer/Lessions/04-algorithms-data-structures-complexity/README.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-8f4aa7393edc-e2a2143d7d6e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-adb7428c1676",
+      "topicId": "algorithms-data-structures",
+      "title": "Lộ trình thuật toán phỏng vấn Big Tech với C",
+      "wordCount": 1770,
+      "lineCount": 127,
+      "sourcePaths": [
+        "Algorithms/ALGORITHMS_INTERVIEW_ROADMAP.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-adb7428c1676-48826a50d410.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-f420d61f9a3f",
+      "topicId": "algorithms-data-structures",
+      "title": "01. Big O và phân tích độ phức tạp",
+      "wordCount": 1382,
+      "lineCount": 215,
+      "sourcePaths": [
+        "Algorithms/Lessions/01-big-o-and-complexity.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-f420d61f9a3f-c3a1a972bf8c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-95a7d0867154",
+      "topicId": "algorithms-data-structures",
+      "title": "02. Array, String và kỹ thuật Two Pointers",
+      "wordCount": 1278,
+      "lineCount": 219,
+      "sourcePaths": [
+        "Algorithms/Lessions/02-array-string-two-pointers.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-95a7d0867154-94c1d8985d7c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-e98f07db24bd",
+      "topicId": "algorithms-data-structures",
+      "title": "03. Sliding Window",
+      "wordCount": 1297,
+      "lineCount": 207,
+      "sourcePaths": [
+        "Algorithms/Lessions/03-sliding-window.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-e98f07db24bd-27dd0cee983d.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-2bb51ee92223",
+      "topicId": "algorithms-data-structures",
+      "title": "04. Prefix Sum và Difference Array",
+      "wordCount": 1279,
+      "lineCount": 225,
+      "sourcePaths": [
+        "Algorithms/Lessions/04-prefix-sum-difference-array.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-2bb51ee92223-69763244102b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-c046cf60662c",
+      "topicId": "algorithms-data-structures",
+      "title": "05. Hash Table và Frequency Counting",
+      "wordCount": 1310,
+      "lineCount": 224,
+      "sourcePaths": [
+        "Algorithms/Lessions/05-hash-table-counting.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-c046cf60662c-d8f08c3d931c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-b0ef92c9e6c7",
+      "topicId": "algorithms-data-structures",
+      "title": "06. Stack và Monotonic Stack",
+      "wordCount": 1168,
+      "lineCount": 218,
+      "sourcePaths": [
+        "Algorithms/Lessions/06-stack-monotonic-stack.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-b0ef92c9e6c7-39ce7548ec71.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-f1d0d8160170",
+      "topicId": "algorithms-data-structures",
+      "title": "07. Queue, Deque và Monotonic Queue",
+      "wordCount": 1304,
+      "lineCount": 221,
+      "sourcePaths": [
+        "Algorithms/Lessions/07-queue-deque-monotonic-queue.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-f1d0d8160170-5e514df1749f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-7e40c1971574",
+      "topicId": "algorithms-data-structures",
+      "title": "08. Linked List và Fast/Slow Pointers",
+      "wordCount": 1277,
+      "lineCount": 236,
+      "sourcePaths": [
+        "Algorithms/Lessions/08-linked-list-fast-slow-pointers.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-7e40c1971574-e38aff73995f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-0fb87620a552",
+      "topicId": "algorithms-data-structures",
+      "title": "09. Binary Search",
+      "wordCount": 1317,
+      "lineCount": 256,
+      "sourcePaths": [
+        "Algorithms/Lessions/09-binary-search.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-0fb87620a552-777745f61a1b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-924a532c76d0",
+      "topicId": "algorithms-data-structures",
+      "title": "10. Sorting và cách so sánh thuật toán",
+      "wordCount": 1584,
+      "lineCount": 258,
+      "sourcePaths": [
+        "Algorithms/Lessions/10-sorting-comparison.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-924a532c76d0-8308284307f7.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-e6a5702a3cb8",
+      "topicId": "algorithms-data-structures",
+      "title": "11. Intervals và Sweep Line",
+      "wordCount": 623,
+      "lineCount": 123,
+      "sourcePaths": [
+        "Algorithms/Lessions/11-intervals-sweep-line.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-e6a5702a3cb8-ca057d432eea.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-77d5df825518",
+      "topicId": "algorithms-data-structures",
+      "title": "12. Recursion và Divide & Conquer",
+      "wordCount": 474,
+      "lineCount": 94,
+      "sourcePaths": [
+        "Algorithms/Lessions/12-recursion-divide-and-conquer.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-77d5df825518-11e16d1aacbd.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-a4bbb37f475d",
+      "topicId": "algorithms-data-structures",
+      "title": "13. Backtracking",
+      "wordCount": 479,
+      "lineCount": 105,
+      "sourcePaths": [
+        "Algorithms/Lessions/13-backtracking.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-a4bbb37f475d-fdcd84d28cd3.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-208549e5088c",
+      "topicId": "algorithms-data-structures",
+      "title": "14. Binary Tree: DFS và BFS",
+      "wordCount": 473,
+      "lineCount": 111,
+      "sourcePaths": [
+        "Algorithms/Lessions/14-binary-tree-dfs-bfs.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-208549e5088c-ba58281ca205.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-96cdb9f04192",
+      "topicId": "algorithms-data-structures",
+      "title": "15. Binary Search Tree (BST)",
+      "wordCount": 488,
+      "lineCount": 102,
+      "sourcePaths": [
+        "Algorithms/Lessions/15-binary-search-tree.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-96cdb9f04192-921cdd856713.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-98d2c5f31e34",
+      "topicId": "algorithms-data-structures",
+      "title": "16. Trie (Prefix Tree)",
+      "wordCount": 427,
+      "lineCount": 104,
+      "sourcePaths": [
+        "Algorithms/Lessions/16-trie-prefix-tree.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-98d2c5f31e34-a4c8257642f9.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-73207cd58e61",
+      "topicId": "algorithms-data-structures",
+      "title": "17. Heap, Priority Queue và Top-K",
+      "wordCount": 471,
+      "lineCount": 90,
+      "sourcePaths": [
+        "Algorithms/Lessions/17-heap-priority-queue-top-k.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-73207cd58e61-5ddbb86a8e97.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-d9676d40dfd6",
+      "topicId": "algorithms-data-structures",
+      "title": "18. Graph DFS/BFS và Grid",
+      "wordCount": 582,
+      "lineCount": 125,
+      "sourcePaths": [
+        "Algorithms/Lessions/18-graph-dfs-bfs.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-d9676d40dfd6-c5556a336e73.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-b14274cce994",
+      "topicId": "algorithms-data-structures",
+      "title": "19. Topological Sort",
+      "wordCount": 448,
+      "lineCount": 103,
+      "sourcePaths": [
+        "Algorithms/Lessions/19-topological-sort.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-b14274cce994-382ac9f9ada3.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-95b7ab762f3b",
+      "topicId": "algorithms-data-structures",
+      "title": "20. Union-Find (Disjoint Set Union - DSU)",
+      "wordCount": 404,
+      "lineCount": 97,
+      "sourcePaths": [
+        "Algorithms/Lessions/20-union-find-disjoint-set.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-95b7ab762f3b-474f71a117c2.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-6a2d2a19bb6b",
+      "topicId": "algorithms-data-structures",
+      "title": "21. Shortest Path: BFS, 0-1 BFS và Dijkstra",
+      "wordCount": 741,
+      "lineCount": 158,
+      "sourcePaths": [
+        "Algorithms/Lessions/21-shortest-path-dijkstra.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-6a2d2a19bb6b-cb02f9432b2e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-518987e73629",
+      "topicId": "algorithms-data-structures",
+      "title": "22. Bellman–Ford và Floyd–Warshall",
+      "wordCount": 1724,
+      "lineCount": 336,
+      "sourcePaths": [
+        "Algorithms/Lessions/22-bellman-ford-floyd-warshall.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-518987e73629-9fd94513d79f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-894ed2b67216",
+      "topicId": "algorithms-data-structures",
+      "title": "23. Minimum Spanning Tree: Kruskal và Prim",
+      "wordCount": 1734,
+      "lineCount": 369,
+      "sourcePaths": [
+        "Algorithms/Lessions/23-minimum-spanning-tree.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-894ed2b67216-dcc953da6da3.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-bc9b6cfbd635",
+      "topicId": "algorithms-data-structures",
+      "title": "24. Greedy: chọn tối ưu cục bộ có chứng minh",
+      "wordCount": 1312,
+      "lineCount": 215,
+      "sourcePaths": [
+        "Algorithms/Lessions/24-greedy.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-bc9b6cfbd635-8067c9122fa7.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-73e8972c31fc",
+      "topicId": "algorithms-data-structures",
+      "title": "25. Dynamic Programming 1D",
+      "wordCount": 1219,
+      "lineCount": 199,
+      "sourcePaths": [
+        "Algorithms/Lessions/25-dynamic-programming-1d.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-73e8972c31fc-2fb2cb0d1132.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-fbd1458aed37",
+      "topicId": "algorithms-data-structures",
+      "title": "26. Dynamic Programming trên Grid 2D",
+      "wordCount": 1258,
+      "lineCount": 216,
+      "sourcePaths": [
+        "Algorithms/Lessions/26-dynamic-programming-grid-2d.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-fbd1458aed37-9929e4a7ba26.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-1efa419a702c",
+      "topicId": "algorithms-data-structures",
+      "title": "27. 0/1 Knapsack và Subset Sum",
+      "wordCount": 1203,
+      "lineCount": 234,
+      "sourcePaths": [
+        "Algorithms/Lessions/27-knapsack-subset-sum.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-1efa419a702c-5004530bdbb2.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-30caf88538b7",
+      "topicId": "algorithms-data-structures",
+      "title": "28. Longest Increasing Subsequence (LIS)",
+      "wordCount": 1286,
+      "lineCount": 248,
+      "sourcePaths": [
+        "Algorithms/Lessions/28-longest-increasing-subsequence.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-30caf88538b7-3d05f02f4607.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-8a81b67ae6c2",
+      "topicId": "algorithms-data-structures",
+      "title": "29. Kadane và Maximum Subarray",
+      "wordCount": 431,
+      "lineCount": 99,
+      "sourcePaths": [
+        "Algorithms/Lessions/29-kadane-maximum-subarray.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-8a81b67ae6c2-ca79ac5fb0c1.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-80fec2852d78",
+      "topicId": "algorithms-data-structures",
+      "title": "30. Bit Manipulation",
+      "wordCount": 471,
+      "lineCount": 132,
+      "sourcePaths": [
+        "Algorithms/Lessions/30-bit-manipulation.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-80fec2852d78-637ca8873747.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-4a5f90da5469",
+      "topicId": "algorithms-data-structures",
+      "title": "31. String Matching: KMP và Rabin–Karp",
+      "wordCount": 775,
+      "lineCount": 190,
+      "sourcePaths": [
+        "Algorithms/Lessions/31-string-matching-kmp-rabin-karp.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-4a5f90da5469-36ca5857f97c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-21700a88bd9e",
+      "topicId": "algorithms-data-structures",
+      "title": "32. Fenwick Tree và Segment Tree",
+      "wordCount": 822,
+      "lineCount": 208,
+      "sourcePaths": [
+        "Algorithms/Lessions/32-fenwick-segment-tree.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-21700a88bd9e-8ff46a30908a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-4d3cdedbba6e",
+      "topicId": "algorithms-data-structures",
+      "title": "33. Dynamic Programming trên String",
+      "wordCount": 796,
+      "lineCount": 165,
+      "sourcePaths": [
+        "Algorithms/Lessions/33-dynamic-programming-strings.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-4d3cdedbba6e-b01d77126557.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-61e0d9e45cbd",
+      "topicId": "algorithms-data-structures",
+      "title": "34. Graph nâng cao: Bipartite, SCC, Bridge",
+      "wordCount": 1299,
+      "lineCount": 350,
+      "sourcePaths": [
+        "Algorithms/Lessions/34-advanced-graph-scc-bridges-bipartite.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-61e0d9e45cbd-fd75fa5192a2.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-8bbd62c94094",
+      "topicId": "algorithms-data-structures",
+      "title": "35. Math và Number Theory cơ bản",
+      "wordCount": 612,
+      "lineCount": 120,
+      "sourcePaths": [
+        "Algorithms/Lessions/35-math-number-theory.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-8bbd62c94094-1cd1be03973f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-86a70441fdce",
+      "topicId": "algorithms-data-structures",
+      "title": "36. Thiết kế Data Structure trong phỏng vấn",
+      "wordCount": 1427,
+      "lineCount": 367,
+      "sourcePaths": [
+        "Algorithms/Lessions/36-data-structure-design.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-86a70441fdce-e19a6bf9bd5f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-6dfc801c7318",
+      "topicId": "algorithms-data-structures",
+      "title": "Quiz 01 — Foundations",
+      "wordCount": 1538,
+      "lineCount": 272,
+      "sourcePaths": [
+        "Algorithms/Quiz/01-foundations.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-6dfc801c7318-63cfbccbfbbd.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-98c350c57e16",
+      "topicId": "algorithms-data-structures",
+      "title": "Quiz 02 — Trees, Heaps và Graphs",
+      "wordCount": 1497,
+      "lineCount": 311,
+      "sourcePaths": [
+        "Algorithms/Quiz/02-trees-graphs.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-98c350c57e16-d8521cd5cbf6.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-1c5bd0b3d668",
+      "topicId": "algorithms-data-structures",
+      "title": "Quiz 03 — Backtracking, Greedy, DP và String Algorithms",
+      "wordCount": 1536,
+      "lineCount": 255,
+      "sourcePaths": [
+        "Algorithms/Quiz/03-dp-greedy-advanced.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-1c5bd0b3d668-9dc4a20473c6.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-ba4ad5af74d7",
+      "topicId": "algorithms-data-structures",
+      "title": "Quiz 04 — Big-tech-style Mock Interviews",
+      "wordCount": 1142,
+      "lineCount": 213,
+      "sourcePaths": [
+        "Algorithms/Quiz/04-big-tech-mock-interview.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-ba4ad5af74d7-3eb934f5a42a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-b6f92dbf128c",
+      "topicId": "algorithms-data-structures",
+      "title": "Quiz 05 — Advanced Coverage Checkpoint",
+      "wordCount": 1420,
+      "lineCount": 219,
+      "sourcePaths": [
+        "Algorithms/Quiz/05-advanced-coverage-checkpoint.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-b6f92dbf128c-fe88d531e8ab.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-a0a7a40f8c66",
+      "topicId": "algorithms-data-structures",
+      "title": "Answer Key, Giải thích và Rubric",
+      "wordCount": 8104,
+      "lineCount": 840,
+      "sourcePaths": [
+        "Algorithms/Quiz/answer-key.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-a0a7a40f8c66-cd4ade7401d7.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-29d05c359405",
+      "topicId": "algorithms-data-structures",
+      "title": "Ma trận Lesson → Quiz",
+      "wordCount": 482,
+      "lineCount": 50,
+      "sourcePaths": [
+        "Algorithms/Quiz/lesson-coverage-map.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-29d05c359405-f149d8ade339.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-dafa9de7756f",
+      "topicId": "algorithms-data-structures",
+      "title": "Progress Tracker",
+      "wordCount": 502,
+      "lineCount": 97,
+      "sourcePaths": [
+        "Algorithms/Quiz/progress-tracker.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-dafa9de7756f-f936f6faa355.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-b3b95c2c49d9",
+      "topicId": "algorithms-data-structures",
+      "title": "Bộ Quiz giải thuật phỏng vấn",
+      "wordCount": 914,
+      "lineCount": 72,
+      "sourcePaths": [
+        "Algorithms/Quiz/README.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-b3b95c2c49d9-1a3dcdb679e9.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-0817c6f309a7",
+      "topicId": "algorithms-data-structures",
+      "title": "Algorithms Interview Kit (C)",
+      "wordCount": 102,
+      "lineCount": 8,
+      "sourcePaths": [
+        "Algorithms/README.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-0817c6f309a7-bed221db809b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-0061e722c3d4",
+      "topicId": "algorithms-data-structures",
+      "title": "Câu hỏi phỏng vấn Algorithms & Data Structures — Middle/Senior",
+      "wordCount": 3301,
+      "lineCount": 258,
+      "sourcePaths": [
+        "Interview/algorithms_data_structures.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-0061e722c3d4-3090dbb7d354.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-38a1b86524b8",
+      "topicId": "algorithms-data-structures",
+      "title": "Đáp án phỏng vấn Algorithms & Data Structures — Middle/Senior",
+      "wordCount": 11127,
+      "lineCount": 418,
+      "sourcePaths": [
+        "Interview/Anwsers/algorithms_data_structures.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-38a1b86524b8-8de08d79d3be.md",
+      "isAggregate": false
+    },
+    {
+      "id": "algorithms-data-structures-b347473975b8",
+      "topicId": "algorithms-data-structures",
+      "title": "Bài 24 — DSA và coding interview bằng Java",
+      "wordCount": 1251,
+      "lineCount": 138,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/24-dsa-coding-interview.md"
+      ],
+      "assetPath": "knowledge-sources/algorithms-data-structures/algorithms-data-structures-b347473975b8-ce222188a342.md",
+      "isAggregate": false
+    },
+    {
+      "id": "concurrency-messaging-f31297f7e2f6",
+      "topicId": "concurrency-messaging",
+      "title": "Bài 06 — Concurrency: Task sang thread/future/virtual thread",
+      "wordCount": 731,
+      "lineCount": 64,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/06-concurrency.md"
+      ],
+      "assetPath": "knowledge-sources/concurrency-messaging/concurrency-messaging-f31297f7e2f6-95aa14f7c41b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "concurrency-messaging-e39f14ff235e",
+      "topicId": "concurrency-messaging",
+      "title": "Bài 15 — JMM, safe publication, executors, Loom và backpressure",
+      "wordCount": 2284,
+      "lineCount": 169,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/15-concurrency-deep-dive.md"
+      ],
+      "assetPath": "knowledge-sources/concurrency-messaging/concurrency-messaging-e39f14ff235e-a17375c88cd4.md",
+      "isAggregate": false
+    },
+    {
+      "id": "concurrency-messaging-a788d1bf0955",
+      "topicId": "concurrency-messaging",
+      "title": "Bài 19 — Kafka, messaging và event-driven correctness",
+      "wordCount": 1067,
+      "lineCount": 104,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/19-messaging-kafka-event-driven.md"
+      ],
+      "assetPath": "knowledge-sources/concurrency-messaging/concurrency-messaging-a788d1bf0955-cc68628b07da.md",
+      "isAggregate": false
+    },
+    {
+      "id": "concurrency-messaging-d5ce8f09ba25",
+      "topicId": "concurrency-messaging",
+      "title": "Bài 20 — Distributed systems, consistency và data architecture",
+      "wordCount": 1022,
+      "lineCount": 117,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/20-distributed-systems-data.md"
+      ],
+      "assetPath": "knowledge-sources/concurrency-messaging/concurrency-messaging-d5ce8f09ba25-c131e350e27d.md",
+      "isAggregate": false
+    },
+    {
+      "id": "concurrency-messaging-fe60c6eaa6e8",
+      "topicId": "concurrency-messaging",
+      "title": "Bài 21 — Cache, retry, circuit breaker, bulkhead và rate limiting",
+      "wordCount": 974,
+      "lineCount": 96,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/21-caching-resilience-rate-limiting.md"
+      ],
+      "assetPath": "knowledge-sources/concurrency-messaging/concurrency-messaging-fe60c6eaa6e8-d727bceff3a8.md",
+      "isAggregate": false
+    },
+    {
+      "id": "concurrency-messaging-c75e517ca517",
+      "topicId": "concurrency-messaging",
+      "title": "BatchEtlSample — hướng dẫn luồng xử lý và kỹ thuật sử dụng",
+      "wordCount": 2258,
+      "lineCount": 388,
+      "sourcePaths": [
+        "MultiThreadDotnet/BatchEtlSample/BatchEtlSample_GUIDE.md"
+      ],
+      "assetPath": "knowledge-sources/concurrency-messaging/concurrency-messaging-c75e517ca517-5797c1f2a15e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "concurrency-messaging-541ab262a66c",
+      "topicId": "concurrency-messaging",
+      "title": "Batch ETL multithreading sample",
+      "wordCount": 199,
+      "lineCount": 40,
+      "sourcePaths": [
+        "MultiThreadDotnet/BatchEtlSample/README.md"
+      ],
+      "assetPath": "knowledge-sources/concurrency-messaging/concurrency-messaging-541ab262a66c-73319275c551.md",
+      "isAggregate": false
+    },
+    {
+      "id": "concurrency-messaging-4e6b7c3cd6dd",
+      "topicId": "concurrency-messaging",
+      "title": "Channel và Bounded Channel trong .NET",
+      "wordCount": 1621,
+      "lineCount": 526,
+      "sourcePaths": [
+        "MultiThreadDotnet/Documents/Channel.md"
+      ],
+      "assetPath": "knowledge-sources/concurrency-messaging/concurrency-messaging-4e6b7c3cd6dd-089b9cb15670.md",
+      "isAggregate": false
+    },
+    {
+      "id": "concurrency-messaging-2c06271b199b",
+      "topicId": "concurrency-messaging",
+      "title": "MediaProcessingSample — xử lý ảnh, video và audio đa luồng",
+      "wordCount": 2064,
+      "lineCount": 469,
+      "sourcePaths": [
+        "MultiThreadDotnet/Documents/MediaProcessing.md"
+      ],
+      "assetPath": "knowledge-sources/concurrency-messaging/concurrency-messaging-2c06271b199b-64f3b7bf4360.md",
+      "isAggregate": false
+    },
+    {
+      "id": "concurrency-messaging-1e00885d040d",
+      "topicId": "concurrency-messaging",
+      "title": "Các kỹ thuật khác được sử dụng trong FileProcessingSample",
+      "wordCount": 1560,
+      "lineCount": 415,
+      "sourcePaths": [
+        "MultiThreadDotnet/Documents/OtherTechnical.md"
+      ],
+      "assetPath": "knowledge-sources/concurrency-messaging/concurrency-messaging-1e00885d040d-6e14a82bab56.md",
+      "isAggregate": false
+    },
+    {
+      "id": "concurrency-messaging-a6532e403655",
+      "topicId": "concurrency-messaging",
+      "title": "FileProcessingSample — hướng dẫn chạy và flow source code",
+      "wordCount": 2113,
+      "lineCount": 439,
+      "sourcePaths": [
+        "MultiThreadDotnet/FileProcessingSample/FileProcessingSample_GUIDE.md"
+      ],
+      "assetPath": "knowledge-sources/concurrency-messaging/concurrency-messaging-a6532e403655-939c781dde53.md",
+      "isAggregate": false
+    },
+    {
+      "id": "data-engineering-9a47c0330b0a",
+      "topicId": "data-engineering",
+      "title": "09 — Data engineering: SQL, ETL và chất lượng dữ liệu",
+      "wordCount": 399,
+      "lineCount": 46,
+      "sourcePaths": [
+        "AIEngineer/Lessions/09-data-engineering-sql-etl-quality/README.md"
+      ],
+      "assetPath": "knowledge-sources/data-engineering/data-engineering-9a47c0330b0a-4d628411f949.md",
+      "isAggregate": false
+    },
+    {
+      "id": "data-engineering-1134d86fbf73",
+      "topicId": "data-engineering",
+      "title": "10 — Phân tích dữ liệu và feature engineering",
+      "wordCount": 421,
+      "lineCount": 44,
+      "sourcePaths": [
+        "AIEngineer/Lessions/10-data-analysis-feature-engineering/README.md"
+      ],
+      "assetPath": "knowledge-sources/data-engineering/data-engineering-1134d86fbf73-ec8c11dfff9d.md",
+      "isAggregate": false
+    },
+    {
+      "id": "data-engineering-730eec2c6e7d",
+      "topicId": "data-engineering",
+      "title": "Lesson 15 — HTTP APIs, concurrency và streaming",
+      "wordCount": 527,
+      "lineCount": 60,
+      "sourcePaths": [
+        "AIEngineer/Lessions/15-http-apis-concurrency-streaming/README.md"
+      ],
+      "assetPath": "knowledge-sources/data-engineering/data-engineering-730eec2c6e7d-8efc945938be.md",
+      "isAggregate": false
+    },
+    {
+      "id": "data-engineering-523f21ec1cc3",
+      "topicId": "data-engineering",
+      "title": "Kiến trúc tổng thể",
+      "wordCount": 134,
+      "lineCount": 31,
+      "sourcePaths": [
+        "DataEngineerTutorial/DataEngineerTutorial/docs/architecture.md"
+      ],
+      "assetPath": "knowledge-sources/data-engineering/data-engineering-523f21ec1cc3-dffc6b8e1e4e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "data-engineering-f8f7a812c512",
+      "topicId": "data-engineering",
+      "title": "Câu trả lời tự kiểm tra theo phase",
+      "wordCount": 40,
+      "lineCount": 24,
+      "sourcePaths": [
+        "DataEngineerTutorial/DataEngineerTutorial/docs/self-check-answers.md"
+      ],
+      "assetPath": "knowledge-sources/data-engineering/data-engineering-f8f7a812c512-3cee42dceb68.md",
+      "isAggregate": false
+    },
+    {
+      "id": "data-engineering-860652d4c283",
+      "topicId": "data-engineering",
+      "title": "Giải thích module etl-spark",
+      "wordCount": 922,
+      "lineCount": 84,
+      "sourcePaths": [
+        "DataEngineerTutorial/DataEngineerTutorial/etl-spark/etl-spark-explain.md"
+      ],
+      "assetPath": "knowledge-sources/data-engineering/data-engineering-860652d4c283-23f687a840f6.md",
+      "isAggregate": false
+    },
+    {
+      "id": "data-engineering-b969e8619e00",
+      "topicId": "data-engineering",
+      "title": "GitHub Trending Analytics Platform",
+      "wordCount": 228,
+      "lineCount": 38,
+      "sourcePaths": [
+        "DataEngineerTutorial/DataEngineerTutorial/README.md"
+      ],
+      "assetPath": "knowledge-sources/data-engineering/data-engineering-b969e8619e00-8e21708a6810.md",
+      "isAggregate": false
+    },
+    {
+      "id": "data-engineering-88a953b4e6ae",
+      "topicId": "data-engineering",
+      "title": "Đề bài: GitHub Trending Analytics Platform",
+      "wordCount": 1061,
+      "lineCount": 158,
+      "sourcePaths": [
+        "DataEngineerTutorial/github-trending-analytics.md"
+      ],
+      "assetPath": "knowledge-sources/data-engineering/data-engineering-88a953b4e6ae-01d5a0aa3087.md",
+      "isAggregate": false
+    },
+    {
+      "id": "data-engineering-89674ad86d43",
+      "topicId": "data-engineering",
+      "title": "Cấu trúc source chuẩn — GitHub Trending Analytics Platform",
+      "wordCount": 940,
+      "lineCount": 161,
+      "sourcePaths": [
+        "DataEngineerTutorial/project-structure.md"
+      ],
+      "assetPath": "knowledge-sources/data-engineering/data-engineering-89674ad86d43-7fc6a116682f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-21097bf705b4",
+      "topicId": "devops-sre-security",
+      "title": "Hướng dẫn deploy web React/Vite lên Oracle Cloud (Oracle Linux)",
+      "wordCount": 6872,
+      "lineCount": 1303,
+      "sourcePaths": [
+        "ClaudeArchitectFoundation/guide_deploy.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-21097bf705b4-e1f45395e651.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-7a5eff857368",
+      "topicId": "devops-sre-security",
+      "title": "Đáp án DevOps, Delivery, SRE và Observability",
+      "wordCount": 8928,
+      "lineCount": 640,
+      "sourcePaths": [
+        "Interview/Anwsers/devops_observability.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-7a5eff857368-6158cfd33ec8.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-fa0c43ccd405",
+      "topicId": "devops-sre-security",
+      "title": "Đáp án — Infrastructure, Networking, Containers và Cloud",
+      "wordCount": 5515,
+      "lineCount": 486,
+      "sourcePaths": [
+        "Interview/Anwsers/infra_cloud.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-fa0c43ccd405-5317d7a1268c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-a6e103419682",
+      "topicId": "devops-sre-security",
+      "title": "Đáp án — Application Security",
+      "wordCount": 6289,
+      "lineCount": 526,
+      "sourcePaths": [
+        "Interview/Anwsers/security.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-a6e103419682-80cb929c4dc9.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-06dde7a44df5",
+      "topicId": "devops-sre-security",
+      "title": "DevOps, Delivery, SRE và Observability",
+      "wordCount": 1565,
+      "lineCount": 211,
+      "sourcePaths": [
+        "Interview/devops_observability.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-06dde7a44df5-6a8dde00e770.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-05fef5c30082",
+      "topicId": "devops-sre-security",
+      "title": "Infrastructure, Networking, Containers và Cloud",
+      "wordCount": 1455,
+      "lineCount": 196,
+      "sourcePaths": [
+        "Interview/infra_cloud.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-05fef5c30082-19a2f514d45a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-ee55d1d84962",
+      "topicId": "devops-sre-security",
+      "title": "Application Security cho Backend Engineer",
+      "wordCount": 1578,
+      "lineCount": 213,
+      "sourcePaths": [
+        "Interview/security.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-ee55d1d84962-468a3dfb8d3f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-96d0e851ef8e",
+      "topicId": "devops-sre-security",
+      "title": "Bài 18 — Security engineering, OAuth/OIDC/JWT và OWASP",
+      "wordCount": 1127,
+      "lineCount": 109,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/18-security-oauth-owasp.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-96d0e851ef8e-7a1eab0915bd.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-480557de236e",
+      "topicId": "devops-sre-security",
+      "title": "Bài 22 — Observability, SRE, capacity và incident diagnostics",
+      "wordCount": 1088,
+      "lineCount": 113,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/22-observability-sre-performance.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-480557de236e-70538ab6fe65.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-18c55946f23e",
+      "topicId": "devops-sre-security",
+      "title": "Bài 23 — OS/networking, HTTP/gRPC, containers, Kubernetes và CI/CD",
+      "wordCount": 1224,
+      "lineCount": 124,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/23-networking-cloud-devops.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-18c55946f23e-2f4410909151.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-b90ac9b05366",
+      "topicId": "devops-sre-security",
+      "title": "D00 - Roadmap, baseline và cách học",
+      "wordCount": 708,
+      "lineCount": 145,
+      "sourcePaths": [
+        "Terraform/Devops/00-roadmap/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-b90ac9b05366-af77aa751f45.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-bba51d9d822d",
+      "topicId": "devops-sre-security",
+      "title": "D01 - DevOps culture, product và SDLC",
+      "wordCount": 1053,
+      "lineCount": 143,
+      "sourcePaths": [
+        "Terraform/Devops/01-devops-culture-sdlc/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-bba51d9d822d-c730774a448a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-5344554bf570",
+      "topicId": "devops-sre-security",
+      "title": "D02 - Linux và system administration",
+      "wordCount": 1273,
+      "lineCount": 226,
+      "sourcePaths": [
+        "Terraform/Devops/02-linux-systems/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-5344554bf570-c3bc52635dac.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-69cc79805314",
+      "topicId": "devops-sre-security",
+      "title": "Network troubleshooting lab",
+      "wordCount": 311,
+      "lineCount": 51,
+      "sourcePaths": [
+        "Terraform/Devops/03-networking-dns-http-tls/lab/troubleshooting-playbook.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-69cc79805314-f9f3b615fa28.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-bd2fc295c5bd",
+      "topicId": "devops-sre-security",
+      "title": "D03 - Networking, DNS, HTTP và TLS",
+      "wordCount": 1193,
+      "lineCount": 195,
+      "sourcePaths": [
+        "Terraform/Devops/03-networking-dns-http-tls/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-bd2fc295c5bd-13e6d2484c01.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-612af89ab380",
+      "topicId": "devops-sre-security",
+      "title": "Git recovery drill",
+      "wordCount": 309,
+      "lineCount": 64,
+      "sourcePaths": [
+        "Terraform/Devops/04-git-collaboration/lab/git-recovery-drill.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-612af89ab380-bbecdcba536a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-c4dcf16427a4",
+      "topicId": "devops-sre-security",
+      "title": "D04 - Git và collaboration",
+      "wordCount": 845,
+      "lineCount": 136,
+      "sourcePaths": [
+        "Terraform/Devops/04-git-collaboration/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-c4dcf16427a4-04cb9db4f4de.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-1b9f69733bac",
+      "topicId": "devops-sre-security",
+      "title": "D05 - Scripting và automation engineering",
+      "wordCount": 1004,
+      "lineCount": 179,
+      "sourcePaths": [
+        "Terraform/Devops/05-scripting-automation/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-1b9f69733bac-5e424f845632.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-eea448e06a1f",
+      "topicId": "devops-sre-security",
+      "title": "D06 - Cloud fundamentals và architecture",
+      "wordCount": 1020,
+      "lineCount": 154,
+      "sourcePaths": [
+        "Terraform/Devops/06-cloud-architecture/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-eea448e06a1f-7cf5e514a0a7.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-9369ca711339",
+      "topicId": "devops-sre-security",
+      "title": "D07 - Infrastructure as Code, configuration và image",
+      "wordCount": 904,
+      "lineCount": 141,
+      "sourcePaths": [
+        "Terraform/Devops/07-iac-configuration-images/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-9369ca711339-96d26a1d4cf5.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-14d91cb43752",
+      "topicId": "devops-sre-security",
+      "title": "D08 - CI/CD, artifact lifecycle và release engineering",
+      "wordCount": 942,
+      "lineCount": 156,
+      "sourcePaths": [
+        "Terraform/Devops/08-cicd-artifacts-release/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-14d91cb43752-8eff0fe30b58.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-4f2625109cf5",
+      "topicId": "devops-sre-security",
+      "title": "D09 - Containers, images và Docker",
+      "wordCount": 970,
+      "lineCount": 154,
+      "sourcePaths": [
+        "Terraform/Devops/09-containers-docker/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-4f2625109cf5-3daa4f66f479.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-2e2a8383a6ae",
+      "topicId": "devops-sre-security",
+      "title": "D10 - Kubernetes, Helm và GitOps từ cơ bản đến production",
+      "wordCount": 1206,
+      "lineCount": 194,
+      "sourcePaths": [
+        "Terraform/Devops/10-kubernetes-helm-gitops/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-2e2a8383a6ae-dc2570c180cf.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-0328f560ecad",
+      "topicId": "devops-sre-security",
+      "title": "D11 - DevSecOps, identity và software supply chain",
+      "wordCount": 1031,
+      "lineCount": 161,
+      "sourcePaths": [
+        "Terraform/Devops/11-devsecops-supply-chain/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-0328f560ecad-1096ec5c23c7.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-dc07e17a9e9c",
+      "topicId": "devops-sre-security",
+      "title": "D12 - Observability và OpenTelemetry",
+      "wordCount": 1052,
+      "lineCount": 183,
+      "sourcePaths": [
+        "Terraform/Devops/12-observability-opentelemetry/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-dc07e17a9e9c-c7b6f7addd8c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-b0a822945504",
+      "topicId": "devops-sre-security",
+      "title": "D13 - SRE, SLI/SLO, reliability và performance",
+      "wordCount": 932,
+      "lineCount": 139,
+      "sourcePaths": [
+        "Terraform/Devops/13-sre-reliability-performance/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-b0a822945504-d66f8977ddb4.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-e622341cd514",
+      "topicId": "devops-sre-security",
+      "title": "D14 - Data, database, cache và messaging",
+      "wordCount": 935,
+      "lineCount": 140,
+      "sourcePaths": [
+        "Terraform/Devops/14-data-databases-messaging/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-e622341cd514-cca4b60414d5.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-ed62ea502d4a",
+      "topicId": "devops-sre-security",
+      "title": "D15 - Platform engineering và Developer Experience",
+      "wordCount": 932,
+      "lineCount": 160,
+      "sourcePaths": [
+        "Terraform/Devops/15-platform-engineering-dx/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-ed62ea502d4a-28ffe07b73df.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-fdfb4396aaec",
+      "topicId": "devops-sre-security",
+      "title": "D16 - FinOps, capacity và sustainability",
+      "wordCount": 849,
+      "lineCount": 141,
+      "sourcePaths": [
+        "Terraform/Devops/16-finops-capacity-sustainability/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-fdfb4396aaec-af24be579c13.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-291c9d4987b4",
+      "topicId": "devops-sre-security",
+      "title": "SEV1 game day - OrderFlow",
+      "wordCount": 249,
+      "lineCount": 43,
+      "sourcePaths": [
+        "Terraform/Devops/17-incident-change-problem/lab/sev1-scenario.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-291c9d4987b4-7ea5c6eae562.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-09c41123c992",
+      "topicId": "devops-sre-security",
+      "title": "D17 - Incident, change và problem management",
+      "wordCount": 908,
+      "lineCount": 158,
+      "sourcePaths": [
+        "Terraform/Devops/17-incident-change-problem/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-09c41123c992-36cbb62474cd.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-f26c423682fe",
+      "topicId": "devops-sre-security",
+      "title": "D18 - High Availability, backup, BCP và Disaster Recovery",
+      "wordCount": 952,
+      "lineCount": 145,
+      "sourcePaths": [
+        "Terraform/Devops/18-ha-backup-disaster-recovery/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-f26c423682fe-db9e85bc61f2.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-4778ca6b1c2a",
+      "topicId": "devops-sre-security",
+      "title": "D19 - Distributed systems, hybrid và multi-cloud",
+      "wordCount": 1170,
+      "lineCount": 177,
+      "sourcePaths": [
+        "Terraform/Devops/19-distributed-hybrid-multicloud/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-4778ca6b1c2a-cddc62b7aa13.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-0cdaaadb876a",
+      "topicId": "devops-sre-security",
+      "title": "D20 - Senior DevOps leadership và capstone",
+      "wordCount": 1168,
+      "lineCount": 195,
+      "sourcePaths": [
+        "Terraform/Devops/20-senior-leadership-capstone/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-0cdaaadb876a-77e0dcc93ca5.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-34001f15a77b",
+      "topicId": "devops-sre-security",
+      "title": "DevOps Investigation Cheatsheet",
+      "wordCount": 817,
+      "lineCount": 207,
+      "sourcePaths": [
+        "Terraform/Devops/CHEATSHEET.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-34001f15a77b-18daa8cd7a0e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-7220391aef65",
+      "topicId": "devops-sre-security",
+      "title": "DevOps Glossary",
+      "wordCount": 771,
+      "lineCount": 70,
+      "sourcePaths": [
+        "Terraform/Devops/GLOSSARY.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-7220391aef65-7315c4e9529b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-528a381fa95c",
+      "topicId": "devops-sre-security",
+      "title": "DevOps Mastery Checklist",
+      "wordCount": 1001,
+      "lineCount": 126,
+      "sourcePaths": [
+        "Terraform/Devops/MASTERY-CHECKLIST.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-528a381fa95c-f6644f04e507.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-35a65eeaa12b",
+      "topicId": "devops-sre-security",
+      "title": "Project 01 - Ship một API local-first có thể vận hành",
+      "wordCount": 1151,
+      "lineCount": 162,
+      "sourcePaths": [
+        "Terraform/Devops/Projects/01-beginner-local-delivery/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-35a65eeaa12b-24099af65465.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-ff128c0535e5",
+      "topicId": "devops-sre-security",
+      "title": "Runbook - Local API unavailable hoặc release lỗi",
+      "wordCount": 526,
+      "lineCount": 90,
+      "sourcePaths": [
+        "Terraform/Devops/Projects/01-beginner-local-delivery/RUNBOOK.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-ff128c0535e5-21a1950e4a45.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-0df02476020e",
+      "topicId": "devops-sre-security",
+      "title": "Project 02 - OCI staging platform bằng Terraform",
+      "wordCount": 1471,
+      "lineCount": 181,
+      "sourcePaths": [
+        "Terraform/Devops/Projects/02-intermediate-oci-staging/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-0df02476020e-94fae1d64012.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-6f0071f538ef",
+      "topicId": "devops-sre-security",
+      "title": "Runbook - OCI staging unhealthy hoặc Terraform apply lỗi",
+      "wordCount": 537,
+      "lineCount": 75,
+      "sourcePaths": [
+        "Terraform/Devops/Projects/02-intermediate-oci-staging/RUNBOOK.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-6f0071f538ef-2dcefbde44e3.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-83c3193af8cd",
+      "topicId": "devops-sre-security",
+      "title": "Project 03 - OCI production platform có SLO và vận hành sự cố",
+      "wordCount": 1597,
+      "lineCount": 213,
+      "sourcePaths": [
+        "Terraform/Devops/Projects/03-senior-production-platform/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-83c3193af8cd-c42585e6746b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-1b272577c229",
+      "topicId": "devops-sre-security",
+      "title": "Runbook - Production high error rate hoặc latency",
+      "wordCount": 632,
+      "lineCount": 92,
+      "sourcePaths": [
+        "Terraform/Devops/Projects/03-senior-production-platform/RUNBOOK.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-1b272577c229-63103346c812.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-7788bdae8fa7",
+      "topicId": "devops-sre-security",
+      "title": "Capstone - Multi-cloud resilience: OCI primary, AWS hoặc Azure DR",
+      "wordCount": 1726,
+      "lineCount": 242,
+      "sourcePaths": [
+        "Terraform/Devops/Projects/04-capstone-multicloud-resilience/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-7788bdae8fa7-a2f907b4e0f0.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-a9a1b554cd83",
+      "topicId": "devops-sre-security",
+      "title": "Runbook - OCI primary sang AWS/Azure DR và failback",
+      "wordCount": 806,
+      "lineCount": 113,
+      "sourcePaths": [
+        "Terraform/Devops/Projects/04-capstone-multicloud-resilience/RUNBOOK.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-a9a1b554cd83-7d8c0cdc6d40.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-3fd8cfa0c382",
+      "topicId": "devops-sre-security",
+      "title": "DevOps Portfolio Projects",
+      "wordCount": 619,
+      "lineCount": 76,
+      "sourcePaths": [
+        "Terraform/Devops/Projects/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-3fd8cfa0c382-c850595a2c85.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-b9a9d0ca8477",
+      "topicId": "devops-sre-security",
+      "title": "Đáp án Level 1 – Foundation",
+      "wordCount": 1232,
+      "lineCount": 133,
+      "sourcePaths": [
+        "Terraform/Devops/Quiz/answers/01-foundation-answers.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-b9a9d0ca8477-b03d0b3f3d8a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-e696a59fcfe6",
+      "topicId": "devops-sre-security",
+      "title": "Đáp án Level 2 – Core Delivery và Runtime",
+      "wordCount": 1074,
+      "lineCount": 111,
+      "sourcePaths": [
+        "Terraform/Devops/Quiz/answers/02-core-answers.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-e696a59fcfe6-bbc36ee899ff.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-33e3d4a358b8",
+      "topicId": "devops-sre-security",
+      "title": "Đáp án Level 3 – Cloud-Native",
+      "wordCount": 1057,
+      "lineCount": 106,
+      "sourcePaths": [
+        "Terraform/Devops/Quiz/answers/03-cloud-native-answers.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-33e3d4a358b8-314a4655066c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-48fc1b45e465",
+      "topicId": "devops-sre-security",
+      "title": "Đáp án Level 4 – Production Operations",
+      "wordCount": 1087,
+      "lineCount": 103,
+      "sourcePaths": [
+        "Terraform/Devops/Quiz/answers/04-production-answers.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-48fc1b45e465-8c2d632ebaa6.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-5f8bc258b77b",
+      "topicId": "devops-sre-security",
+      "title": "Đáp án Level 5 – Senior / Staff DevOps-SRE",
+      "wordCount": 1304,
+      "lineCount": 109,
+      "sourcePaths": [
+        "Terraform/Devops/Quiz/answers/05-senior-answers.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-5f8bc258b77b-965fc6f117a8.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-5e59dba20a1b",
+      "topicId": "devops-sre-security",
+      "title": "Ánh xạ curriculum D01–D20",
+      "wordCount": 621,
+      "lineCount": 47,
+      "sourcePaths": [
+        "Terraform/Devops/Quiz/lesson-map.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-5e59dba20a1b-b1dc47a1ddcb.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-41068fb8c9bd",
+      "topicId": "devops-sre-security",
+      "title": "Level 1 – Foundation",
+      "wordCount": 913,
+      "lineCount": 119,
+      "sourcePaths": [
+        "Terraform/Devops/Quiz/levels/01-foundation.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-41068fb8c9bd-297197fcc356.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-20c1281bbaa2",
+      "topicId": "devops-sre-security",
+      "title": "Level 2 – Core Delivery và Runtime",
+      "wordCount": 892,
+      "lineCount": 120,
+      "sourcePaths": [
+        "Terraform/Devops/Quiz/levels/02-core.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-20c1281bbaa2-407f701a4ac6.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-2053eb824774",
+      "topicId": "devops-sre-security",
+      "title": "Level 3 – Cloud-Native",
+      "wordCount": 760,
+      "lineCount": 110,
+      "sourcePaths": [
+        "Terraform/Devops/Quiz/levels/03-cloud-native.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-2053eb824774-b9c4b9ad310e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-8957fe1b7485",
+      "topicId": "devops-sre-security",
+      "title": "Level 4 – Production Operations",
+      "wordCount": 870,
+      "lineCount": 110,
+      "sourcePaths": [
+        "Terraform/Devops/Quiz/levels/04-production.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-8957fe1b7485-79abd3160f29.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-a8edb9bf9a7f",
+      "topicId": "devops-sre-security",
+      "title": "Level 5 – Senior / Staff DevOps-SRE",
+      "wordCount": 873,
+      "lineCount": 104,
+      "sourcePaths": [
+        "Terraform/Devops/Quiz/levels/05-senior.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-a8edb9bf9a7f-e6428268c735.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-bc89336be536",
+      "topicId": "devops-sre-security",
+      "title": "Rubric Capstone OrderFlow",
+      "wordCount": 729,
+      "lineCount": 112,
+      "sourcePaths": [
+        "Terraform/Devops/Quiz/practical/capstone-rubric.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-bc89336be536-29a8f9f44782.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-e8a73616343d",
+      "topicId": "devops-sre-security",
+      "title": "Practical Capstone – OrderFlow Production Platform",
+      "wordCount": 1173,
+      "lineCount": 145,
+      "sourcePaths": [
+        "Terraform/Devops/Quiz/practical/capstone.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-e8a73616343d-76e121ec46a3.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-88b269f91153",
+      "topicId": "devops-sre-security",
+      "title": "Question Bank và ma trận truy vết",
+      "wordCount": 1351,
+      "lineCount": 172,
+      "sourcePaths": [
+        "Terraform/Devops/Quiz/question-bank.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-88b269f91153-151a0a45d5be.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-b66a73ccdcad",
+      "topicId": "devops-sre-security",
+      "title": "Bộ tự kiểm tra DevOps/SRE từ Foundation đến Senior",
+      "wordCount": 521,
+      "lineCount": 71,
+      "sourcePaths": [
+        "Terraform/Devops/Quiz/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-b66a73ccdcad-6ab296438e8a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-876b89aba01b",
+      "topicId": "devops-sre-security",
+      "title": "Phiếu trả lời DevOps/SRE",
+      "wordCount": 82,
+      "lineCount": 27,
+      "sourcePaths": [
+        "Terraform/Devops/Quiz/templates/answer-sheet.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-876b89aba01b-323c68ae6c3d.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-ad32ca48e797",
+      "topicId": "devops-sre-security",
+      "title": "DevOps từ nền tảng đến Senior/Master",
+      "wordCount": 1201,
+      "lineCount": 134,
+      "sourcePaths": [
+        "Terraform/Devops/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-ad32ca48e797-ba24b57d7775.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-a681d2d2adf6",
+      "topicId": "devops-sre-security",
+      "title": "Nguồn chính thức và cách cập nhật",
+      "wordCount": 739,
+      "lineCount": 104,
+      "sourcePaths": [
+        "Terraform/Devops/SOURCES.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-a681d2d2adf6-8ba83670213f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-edf51c1163e3",
+      "topicId": "devops-sre-security",
+      "title": "Capacity và cost review -",
+      "wordCount": 396,
+      "lineCount": 119,
+      "sourcePaths": [
+        "Terraform/Devops/Templates/CAPACITY-COST-REVIEW.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-edf51c1163e3-42d37993bed0.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-30de68741a2c",
+      "topicId": "devops-sre-security",
+      "title": "Change plan và rollback -",
+      "wordCount": 502,
+      "lineCount": 141,
+      "sourcePaths": [
+        "Terraform/Devops/Templates/CHANGE-PLAN-ROLLBACK.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-30de68741a2c-ae65931fca1b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-6fdb8938df2e",
+      "topicId": "devops-sre-security",
+      "title": "DR test report -",
+      "wordCount": 589,
+      "lineCount": 161,
+      "sourcePaths": [
+        "Terraform/Devops/Templates/DR-TEST.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-6fdb8938df2e-9568a794a14e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-afe1dd388530",
+      "topicId": "devops-sre-security",
+      "title": "Incident timeline -",
+      "wordCount": 297,
+      "lineCount": 85,
+      "sourcePaths": [
+        "Terraform/Devops/Templates/INCIDENT-TIMELINE.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-afe1dd388530-ea40a0116228.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-5c8cbbf9229e",
+      "topicId": "devops-sre-security",
+      "title": "Blameless postmortem -",
+      "wordCount": 549,
+      "lineCount": 133,
+      "sourcePaths": [
+        "Terraform/Devops/Templates/POSTMORTEM-BLAMELESS.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-5c8cbbf9229e-19c55f32ce92.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-ee9bc6202b62",
+      "topicId": "devops-sre-security",
+      "title": "DevOps document templates",
+      "wordCount": 364,
+      "lineCount": 34,
+      "sourcePaths": [
+        "Terraform/Devops/Templates/README.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-ee9bc6202b62-a84ff8b7b196.md",
+      "isAggregate": false
+    },
+    {
+      "id": "devops-sre-security-0b99543fa196",
+      "topicId": "devops-sre-security",
+      "title": "SLO -",
+      "wordCount": 622,
+      "lineCount": 142,
+      "sourcePaths": [
+        "Terraform/Devops/Templates/SLO.md"
+      ],
+      "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-0b99543fa196-ffcfc868d3b4.md",
+      "isAggregate": false
+    },
+    {
+      "id": "dotnet-api-containers-d40d274a3630",
+      "topicId": "dotnet-api-containers",
+      "title": "Đáp án phỏng vấn C — Middle & Senior",
+      "wordCount": 11489,
+      "lineCount": 884,
+      "sourcePaths": [
+        "Interview/Anwsers/c_sharp.md"
+      ],
+      "assetPath": "knowledge-sources/dotnet-api-containers/dotnet-api-containers-d40d274a3630-2310995058ba.md",
+      "isAggregate": false
+    },
+    {
+      "id": "dotnet-api-containers-8147bfabfce2",
+      "topicId": "dotnet-api-containers",
+      "title": "Đáp án phỏng vấn .NET & ASP.NET Core — Middle & Senior",
+      "wordCount": 10884,
+      "lineCount": 772,
+      "sourcePaths": [
+        "Interview/Anwsers/dotnet_aspnet.md"
+      ],
+      "assetPath": "knowledge-sources/dotnet-api-containers/dotnet-api-containers-8147bfabfce2-b3284ed4ae6a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "dotnet-api-containers-c21396c444e1",
+      "topicId": "dotnet-api-containers",
+      "title": "Ngân hàng câu hỏi phỏng vấn C — Middle & Senior",
+      "wordCount": 2316,
+      "lineCount": 117,
+      "sourcePaths": [
+        "Interview/c_sharp.md"
+      ],
+      "assetPath": "knowledge-sources/dotnet-api-containers/dotnet-api-containers-c21396c444e1-74dd0c4b9aef.md",
+      "isAggregate": false
+    },
+    {
+      "id": "dotnet-api-containers-f5bda3e8a1df",
+      "topicId": "dotnet-api-containers",
+      "title": "Ngân hàng câu hỏi phỏng vấn .NET & ASP.NET Core — Middle & Senior",
+      "wordCount": 2100,
+      "lineCount": 106,
+      "sourcePaths": [
+        "Interview/dotnet_aspnet.md"
+      ],
+      "assetPath": "knowledge-sources/dotnet-api-containers/dotnet-api-containers-f5bda3e8a1df-4664aba874fc.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-52bb472f1382",
+      "topicId": "java-jvm-spring",
+      "title": "Đáp án — Java Middle & Senior",
+      "wordCount": 11081,
+      "lineCount": 834,
+      "sourcePaths": [
+        "Interview/Anwsers/java.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-52bb472f1382-95afe4a18d95.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-0f5ea0996715",
+      "topicId": "java-jvm-spring",
+      "title": "Đáp án — JVM, Spring và Hibernate Middle & Senior",
+      "wordCount": 10955,
+      "lineCount": 759,
+      "sourcePaths": [
+        "Interview/Anwsers/jvm_spring.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-0f5ea0996715-db0077cea92d.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-55317f4af0e6",
+      "topicId": "java-jvm-spring",
+      "title": "Bộ câu hỏi phỏng vấn Java — Middle & Senior",
+      "wordCount": 2253,
+      "lineCount": 180,
+      "sourcePaths": [
+        "Interview/java.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-55317f4af0e6-d06810207786.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-d4f0862b315f",
+      "topicId": "java-jvm-spring",
+      "title": "Bộ câu hỏi phỏng vấn JVM, Spring và Hibernate — Middle & Senior",
+      "wordCount": 2186,
+      "lineCount": 172,
+      "sourcePaths": [
+        "Interview/jvm_spring.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-d4f0862b315f-64dbc20c30ee.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-6a954d207f15",
+      "topicId": "java-jvm-spring",
+      "title": "Senior Java competency matrix — bản audit 2026",
+      "wordCount": 804,
+      "lineCount": 64,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/00-senior-competency-matrix.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-6a954d207f15-c1604058a459.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-20119d364f54",
+      "topicId": "java-jvm-spring",
+      "title": "Bài 01 — JVM, runtime và type system",
+      "wordCount": 516,
+      "lineCount": 56,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/01-runtime-va-type-system.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-20119d364f54-9c323514dfe7.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-c70536ec4d20",
+      "topicId": "java-jvm-spring",
+      "title": "Bài 03 — Generics, variance và Collections",
+      "wordCount": 569,
+      "lineCount": 65,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/03-generics-collections.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-c70536ec4d20-0aae4f5a2b9b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-30f3844679f2",
+      "topicId": "java-jvm-spring",
+      "title": "Bài 04 — Lambda, Stream API và LINQ",
+      "wordCount": 466,
+      "lineCount": 58,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/04-functional-streams.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-30f3844679f2-feacbd86f142.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-6decf323410f",
+      "topicId": "java-jvm-spring",
+      "title": "Bài 05 — Exception, resource ownership và error boundary",
+      "wordCount": 422,
+      "lineCount": 52,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/05-exceptions-resources.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-6decf323410f-5e2b0eac6f25.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-f6a078e39a28",
+      "topicId": "java-jvm-spring",
+      "title": "Bài 07 — JVM memory, GC, JIT và performance",
+      "wordCount": 582,
+      "lineCount": 60,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/07-jvm-memory-performance.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-f6a078e39a28-dae3f522b752.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-8a603f339292",
+      "topicId": "java-jvm-spring",
+      "title": "Bài 08 — Annotation, reflection, proxy và framework mechanics",
+      "wordCount": 354,
+      "lineCount": 49,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/08-annotations-reflection.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-8a603f339292-aa8ec4b45fdd.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-55a6c4644ad1",
+      "topicId": "java-jvm-spring",
+      "title": "Bài 10 — SQL, JDBC, transaction và persistence",
+      "wordCount": 1315,
+      "lineCount": 112,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/10-sql-jdbc-transactions.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-55a6c4644ad1-5b1083f673e7.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-489df98484a8",
+      "topicId": "java-jvm-spring",
+      "title": "Bài 11 — Kiến trúc Java service và mapping ASP.NET Core → Spring",
+      "wordCount": 487,
+      "lineCount": 69,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/11-architecture-spring.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-489df98484a8-a6442939b3e2.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-96d6977623d5",
+      "topicId": "java-jvm-spring",
+      "title": "Bài 12 — Capstone: Order & Inventory Service",
+      "wordCount": 524,
+      "lineCount": 65,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/12-capstone.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-96d6977623d5-92682ff3207a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-91d6228e76c4",
+      "topicId": "java-jvm-spring",
+      "title": "Bài 13 — Java semantics, standard library và API design traps",
+      "wordCount": 1157,
+      "lineCount": 97,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/13-standard-library-api-design.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-91d6228e76c4-99096c8c9733.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-c4b88658c7ab",
+      "topicId": "java-jvm-spring",
+      "title": "Bài 14 — Bytecode, class loading, JPMS, GC/JIT và diagnostics",
+      "wordCount": 1084,
+      "lineCount": 113,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/14-jpms-classloading-compatibility.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-c4b88658c7ab-978cd7304078.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-a845e04895a3",
+      "topicId": "java-jvm-spring",
+      "title": "Bài 16 — Spring Boot production: IoC, Web, transaction proxy và testing",
+      "wordCount": 1262,
+      "lineCount": 123,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/16-spring-boot-production.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-a845e04895a3-fd15baa18be4.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-07167ab4bf80",
+      "topicId": "java-jvm-spring",
+      "title": "Bài 17 — JPA/Hibernate, PostgreSQL, transaction và schema evolution",
+      "wordCount": 1299,
+      "lineCount": 123,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/17-jpa-hibernate-persistence.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-07167ab4bf80-52887e8ba8e5.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-4231d4e78774",
+      "topicId": "java-jvm-spring",
+      "title": "Bài 27 — MyBatis production và mapping sang Dapper/ADO.NET",
+      "wordCount": 2445,
+      "lineCount": 206,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/27-mybatis-dapper-sql-mapper.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-4231d4e78774-968ccd1bd76a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-c5875aa0f3a5",
+      "topicId": "java-jvm-spring",
+      "title": "Roadmap Senior Java từ nền C",
+      "wordCount": 822,
+      "lineCount": 64,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/README.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-c5875aa0f3a5-c4fad9503965.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-9eac32f12805",
+      "topicId": "java-jvm-spring",
+      "title": "Java Advanced for C Engineers",
+      "wordCount": 312,
+      "lineCount": 33,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/README.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-9eac32f12805-3730d86d4065.md",
+      "isAggregate": false
+    },
+    {
+      "id": "java-jvm-spring-b0e0c3d6f421",
+      "topicId": "java-jvm-spring",
+      "title": "Source samples",
+      "wordCount": 585,
+      "lineCount": 70,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/SourceSamples/README.md"
+      ],
+      "assetPath": "knowledge-sources/java-jvm-spring/java-jvm-spring-b0e0c3d6f421-c99ab5a90c62.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-d5a3bb3051ab",
+      "topicId": "rag-agent-systems",
+      "title": "Lesson 27 — Vector search, local inference và quantization",
+      "wordCount": 358,
+      "lineCount": 56,
+      "sourcePaths": [
+        "AIEngineer/Lessions/27-vector-search-local-inference/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-d5a3bb3051ab-09846a934ed3.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-e750994437a7",
+      "topicId": "rag-agent-systems",
+      "title": "Lesson 28 — Retrieval-Augmented Generation fundamentals",
+      "wordCount": 342,
+      "lineCount": 58,
+      "sourcePaths": [
+        "AIEngineer/Lessions/28-rag-fundamentals/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-e750994437a7-81b5c815fd85.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-db04a6a3fb0e",
+      "topicId": "rag-agent-systems",
+      "title": "Lesson 29 — Advanced RAG, document parsers và GraphRAG",
+      "wordCount": 412,
+      "lineCount": 63,
+      "sourcePaths": [
+        "AIEngineer/Lessions/29-advanced-rag-document-parsers-graphrag/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-db04a6a3fb0e-255f9831faea.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-eb8759347e66",
+      "topicId": "rag-agent-systems",
+      "title": "Lesson 30 — Tool calling, bounded agent loops và workflows",
+      "wordCount": 384,
+      "lineCount": 56,
+      "sourcePaths": [
+        "AIEngineer/Lessions/30-tool-calling-agent-loop-workflows/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-eb8759347e66-1e6c049abd02.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-e8a6c47e4e8b",
+      "topicId": "rag-agent-systems",
+      "title": "Lesson 31 — Lập kế hoạch, phản tư và kiểm chứng",
+      "wordCount": 561,
+      "lineCount": 63,
+      "sourcePaths": [
+        "AIEngineer/Lessions/31-planning-reflection-verification/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-e8a6c47e4e8b-064e317a61c3.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-0b2d838a6520",
+      "topicId": "rag-agent-systems",
+      "title": "Lesson 32 — Agent harness runtime",
+      "wordCount": 604,
+      "lineCount": 75,
+      "sourcePaths": [
+        "AIEngineer/Lessions/32-agent-harness-runtime/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-0b2d838a6520-455aed48ac0c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-0425de85dde3",
+      "topicId": "rag-agent-systems",
+      "title": "Lesson 33 — Memory, state, context compaction và “Metis”",
+      "wordCount": 764,
+      "lineCount": 80,
+      "sourcePaths": [
+        "AIEngineer/Lessions/33-memory-state-compaction-metis/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-0425de85dde3-e8f2a0050ba1.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-ce2d20d7bbd6",
+      "topicId": "rag-agent-systems",
+      "title": "Lesson 34 — Multi-agent orchestration",
+      "wordCount": 539,
+      "lineCount": 73,
+      "sourcePaths": [
+        "AIEngineer/Lessions/34-multi-agent-orchestration/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-ce2d20d7bbd6-6f04c51ca989.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-7c481784ba26",
+      "topicId": "rag-agent-systems",
+      "title": "Lesson 35 — MCP, skills, connectors và protocols",
+      "wordCount": 621,
+      "lineCount": 74,
+      "sourcePaths": [
+        "AIEngineer/Lessions/35-mcp-skills-connectors-protocols/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-7c481784ba26-df76b16b5a42.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-71459f4c5d50",
+      "topicId": "rag-agent-systems",
+      "title": "Lesson 36 — Evals, benchmarks và thiết kế thí nghiệm",
+      "wordCount": 560,
+      "lineCount": 73,
+      "sourcePaths": [
+        "AIEngineer/Lessions/36-evals-benchmarks-experiment-design/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-71459f4c5d50-3bccef556e76.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-f241174e32cb",
+      "topicId": "rag-agent-systems",
+      "title": "Lesson 37 — Observability, latency và cost",
+      "wordCount": 569,
+      "lineCount": 70,
+      "sourcePaths": [
+        "AIEngineer/Lessions/37-observability-latency-cost/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-f241174e32cb-36b81561626e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-41677996b0b2",
+      "topicId": "rag-agent-systems",
+      "title": "Lesson 38 — Safety, security và red teaming",
+      "wordCount": 649,
+      "lineCount": 74,
+      "sourcePaths": [
+        "AIEngineer/Lessions/38-safety-security-red-teaming/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-41677996b0b2-d3135b9801d1.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-7aa9dd6f9b91",
+      "topicId": "rag-agent-systems",
+      "title": "Lesson 47 — So sánh coding agents bằng bằng chứng",
+      "wordCount": 1505,
+      "lineCount": 99,
+      "sourcePaths": [
+        "AIEngineer/Lessions/47-coding-agents-comparison/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-7aa9dd6f9b91-bb1088ece39f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-519c4b0717d5",
+      "topicId": "rag-agent-systems",
+      "title": "48 — Capstone: Production RAG Agent tiếng Việt",
+      "wordCount": 463,
+      "lineCount": 58,
+      "sourcePaths": [
+        "AIEngineer/Lessions/48-capstone-production-rag-agent/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-519c4b0717d5-27eb06b6a0c7.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-a5fbe10c44b6",
+      "topicId": "rag-agent-systems",
+      "title": "49 — Capstone: Coding Agent Harness có kiểm soát",
+      "wordCount": 445,
+      "lineCount": 53,
+      "sourcePaths": [
+        "AIEngineer/Lessions/49-capstone-coding-agent-harness/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-a5fbe10c44b6-f91dff94a82c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-3a35e6d16894",
+      "topicId": "rag-agent-systems",
+      "title": "Checkpoint 04 — RAG và Agents (lessons 28–35)",
+      "wordCount": 162,
+      "lineCount": 25,
+      "sourcePaths": [
+        "AIEngineer/Quiz/checkpoints/04-rag-agents.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-3a35e6d16894-61cd98480ffd.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-1257181ec631",
+      "topicId": "rag-agent-systems",
+      "title": "Bài học tổng ôn CCAR-F Foundations cho người mới",
+      "wordCount": 5291,
+      "lineCount": 489,
+      "sourcePaths": [
+        "ClaudeArchitectFoundation/Tool1/BAI_HOC_CCAR_F_FOUNDATIONS.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-1257181ec631-bad73a59213f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-5c7960b78bc9",
+      "topicId": "rag-agent-systems",
+      "title": "CCAR-F Foundations Study Guide for Beginners",
+      "wordCount": 5114,
+      "lineCount": 507,
+      "sourcePaths": [
+        "ClaudeArchitectFoundation/Tool1/CCAR_F_FOUNDATIONS_STUDY_GUIDE_EN.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-5c7960b78bc9-872ac2eff220.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-c8dc32a1854e",
+      "topicId": "rag-agent-systems",
+      "title": "CCAR-F Practice — Questions and answer choices",
+      "wordCount": 28397,
+      "lineCount": 3083,
+      "sourcePaths": [
+        "ClaudeArchitectFoundation/Tool1/quiz_questions_answers.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-c8dc32a1854e-d70997e9f912.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-8c3d37df0344",
+      "topicId": "rag-agent-systems",
+      "title": "Quiz screenshot tool",
+      "wordCount": 294,
+      "lineCount": 49,
+      "sourcePaths": [
+        "ClaudeArchitectFoundation/Tool1/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-8c3d37df0344-d8f2436dd2e0.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-67a3f702a8e9",
+      "topicId": "rag-agent-systems",
+      "title": "CCAR-F Documentation — Complete Export",
+      "wordCount": 65816,
+      "lineCount": 6155,
+      "sourcePaths": [
+        "ClaudeArchitectFoundation/Tool2/Output/ALL_DOMAINS.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-67a3f702a8e9-e6d10d67df05.md",
+      "isAggregate": true
+    },
+    {
+      "id": "rag-agent-systems-c2286c1ee191",
+      "topicId": "rag-agent-systems",
+      "title": "D1 — Agentic Architecture & Orchestration",
+      "wordCount": 12402,
+      "lineCount": 891,
+      "sourcePaths": [
+        "ClaudeArchitectFoundation/Tool2/Output/D1-agentic-architecture-orchestration.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-c2286c1ee191-a48bc226e511.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-af0538d717fe",
+      "topicId": "rag-agent-systems",
+      "title": "D2 — Tool Design & MCP Integration",
+      "wordCount": 11742,
+      "lineCount": 1230,
+      "sourcePaths": [
+        "ClaudeArchitectFoundation/Tool2/Output/D2-tool-design-mcp-integration.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-af0538d717fe-ff4b8b2470ba.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-39ccf6010f6a",
+      "topicId": "rag-agent-systems",
+      "title": "D3 — Claude Code Configuration & Workflows",
+      "wordCount": 14043,
+      "lineCount": 1374,
+      "sourcePaths": [
+        "ClaudeArchitectFoundation/Tool2/Output/D3-claude-code-configuration-workflows.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-39ccf6010f6a-cd4a3a1f745d.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-b8e123f02a19",
+      "topicId": "rag-agent-systems",
+      "title": "D4 — Prompt Engineering & Structured Output",
+      "wordCount": 15952,
+      "lineCount": 1360,
+      "sourcePaths": [
+        "ClaudeArchitectFoundation/Tool2/Output/D4-prompt-engineering-structured-output.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-b8e123f02a19-feae656dead3.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-0f06c9afa8bc",
+      "topicId": "rag-agent-systems",
+      "title": "D5 — Context Management & Reliability",
+      "wordCount": 11561,
+      "lineCount": 1267,
+      "sourcePaths": [
+        "ClaudeArchitectFoundation/Tool2/Output/D5-context-management-reliability.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-0f06c9afa8bc-4d67230e0155.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-3850ccb7a1d4",
+      "topicId": "rag-agent-systems",
+      "title": "CCAR-F documentation scraper",
+      "wordCount": 182,
+      "lineCount": 41,
+      "sourcePaths": [
+        "ClaudeArchitectFoundation/Tool2/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-3850ccb7a1d4-bfc91ff93cea.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-92c47b1827a5",
+      "topicId": "rag-agent-systems",
+      "title": "CCAR-F five-domain coverage audit",
+      "wordCount": 645,
+      "lineCount": 101,
+      "sourcePaths": [
+        "ClaudeArchitectFoundation/web/DOMAIN_COVERAGE_AUDIT.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-92c47b1827a5-6883a5aede0f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-3b44bd9c876a",
+      "topicId": "rag-agent-systems",
+      "title": "Triển khai RAG Workspace lên Oracle Cloud Infrastructure",
+      "wordCount": 932,
+      "lineCount": 179,
+      "sourcePaths": [
+        "RAG/deploy/ORACLE_CLOUD.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-3b44bd9c876a-80fdaf0ef20c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-146ee8278a97",
+      "topicId": "rag-agent-systems",
+      "title": "Mục lục",
+      "wordCount": 3970,
+      "lineCount": 1200,
+      "sourcePaths": [
+        "RAG/RAG_GUIDE_v2.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-146ee8278a97-990c0e05296b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-1e7dbc62c073",
+      "topicId": "rag-agent-systems",
+      "title": "Mục lục",
+      "wordCount": 3420,
+      "lineCount": 767,
+      "sourcePaths": [
+        "RAG/RAG_GUIDE.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-1e7dbc62c073-2b27b1ab5093.md",
+      "isAggregate": false
+    },
+    {
+      "id": "rag-agent-systems-59be1cd0de21",
+      "topicId": "rag-agent-systems",
+      "title": "RAG Workspace",
+      "wordCount": 566,
+      "lineCount": 120,
+      "sourcePaths": [
+        "RAG/README.md"
+      ],
+      "assetPath": "knowledge-sources/rag-agent-systems/rag-agent-systems-59be1cd0de21-739ec8897079.md",
+      "isAggregate": false
+    },
+    {
+      "id": "software-engineering-quality-0baa30b12ba8",
+      "topicId": "software-engineering-quality",
+      "title": "03 — Python chuyên nghiệp: typing, test và thiết kế biên",
+      "wordCount": 400,
+      "lineCount": 46,
+      "sourcePaths": [
+        "AIEngineer/Lessions/03-professional-python-testing-typing/README.md"
+      ],
+      "assetPath": "knowledge-sources/software-engineering-quality/software-engineering-quality-0baa30b12ba8-125e25d79da8.md",
+      "isAggregate": false
+    },
+    {
+      "id": "software-engineering-quality-45e10fa4ebac",
+      "topicId": "software-engineering-quality",
+      "title": "Đáp án — Software Engineering và kiến trúc ứng dụng",
+      "wordCount": 6433,
+      "lineCount": 486,
+      "sourcePaths": [
+        "Interview/Anwsers/software_engineering.md"
+      ],
+      "assetPath": "knowledge-sources/software-engineering-quality/software-engineering-quality-45e10fa4ebac-2f26460cc9dc.md",
+      "isAggregate": false
+    },
+    {
+      "id": "software-engineering-quality-3120db8387d5",
+      "topicId": "software-engineering-quality",
+      "title": "Software Engineering và kiến trúc ứng dụng",
+      "wordCount": 1650,
+      "lineCount": 196,
+      "sourcePaths": [
+        "Interview/software_engineering.md"
+      ],
+      "assetPath": "knowledge-sources/software-engineering-quality/software-engineering-quality-3120db8387d5-b90198eacfcb.md",
+      "isAggregate": false
+    },
+    {
+      "id": "software-engineering-quality-24d5a3986121",
+      "topicId": "software-engineering-quality",
+      "title": "Bài 02 — OOP và domain modeling theo idiom Java",
+      "wordCount": 466,
+      "lineCount": 58,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/02-oop-domain-modeling.md"
+      ],
+      "assetPath": "knowledge-sources/software-engineering-quality/software-engineering-quality-24d5a3986121-9ca28c073252.md",
+      "isAggregate": false
+    },
+    {
+      "id": "software-engineering-quality-71c33d571116",
+      "topicId": "software-engineering-quality",
+      "title": "Bài 09 — Maven, testing và tooling",
+      "wordCount": 516,
+      "lineCount": 68,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/09-testing-build-tooling.md"
+      ],
+      "assetPath": "knowledge-sources/software-engineering-quality/software-engineering-quality-71c33d571116-98f93b746a73.md",
+      "isAggregate": false
+    },
+    {
+      "id": "software-engineering-quality-13e406adb3a5",
+      "topicId": "software-engineering-quality",
+      "title": "ADR- -",
+      "wordCount": 454,
+      "lineCount": 155,
+      "sourcePaths": [
+        "Terraform/Devops/Templates/ADR.md"
+      ],
+      "assetPath": "knowledge-sources/software-engineering-quality/software-engineering-quality-13e406adb3a5-a55ad6a83c98.md",
+      "isAggregate": false
+    },
+    {
+      "id": "software-engineering-quality-5ae217953060",
+      "topicId": "software-engineering-quality",
+      "title": "Production Readiness Review -",
+      "wordCount": 665,
+      "lineCount": 151,
+      "sourcePaths": [
+        "Terraform/Devops/Templates/PRODUCTION-READINESS.md"
+      ],
+      "assetPath": "knowledge-sources/software-engineering-quality/software-engineering-quality-5ae217953060-9d89435bc0a8.md",
+      "isAggregate": false
+    },
+    {
+      "id": "software-engineering-quality-77635a7796e5",
+      "topicId": "software-engineering-quality",
+      "title": "Runbook -",
+      "wordCount": 440,
+      "lineCount": 114,
+      "sourcePaths": [
+        "Terraform/Devops/Templates/RUNBOOK.md"
+      ],
+      "assetPath": "knowledge-sources/software-engineering-quality/software-engineering-quality-77635a7796e5-7638d44c3133.md",
+      "isAggregate": false
+    },
+    {
+      "id": "software-engineering-quality-82b8ddfe6ce8",
+      "topicId": "software-engineering-quality",
+      "title": "Threat model -",
+      "wordCount": 567,
+      "lineCount": 142,
+      "sourcePaths": [
+        "Terraform/Devops/Templates/THREAT-MODEL.md"
+      ],
+      "assetPath": "knowledge-sources/software-engineering-quality/software-engineering-quality-82b8ddfe6ce8-1d92057920cf.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-093926a6acf0",
+      "topicId": "system-design-interview",
+      "title": "50 — Career, portfolio, interview và AI system design",
+      "wordCount": 461,
+      "lineCount": 62,
+      "sourcePaths": [
+        "AIEngineer/Lessions/50-career-portfolio-interview-system-design/README.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-093926a6acf0-8d0ae9b0f00e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-859c0264a608",
+      "topicId": "system-design-interview",
+      "title": "Khung trả lời Behavioral & Leadership",
+      "wordCount": 7628,
+      "lineCount": 534,
+      "sourcePaths": [
+        "Interview/Anwsers/behavioral_leadership.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-859c0264a608-2b98b908427b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-3b37a1f45c37",
+      "topicId": "system-design-interview",
+      "title": "Đáp án và rubric — Quiz phỏng vấn kinh điển",
+      "wordCount": 12678,
+      "lineCount": 968,
+      "sourcePaths": [
+        "Interview/Anwsers/classic_interview_answers.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-3b37a1f45c37-64a3558640dc.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-28c0fe71f87e",
+      "topicId": "system-design-interview",
+      "title": "Đáp án và rubric — Mock interview Senior Backend",
+      "wordCount": 6519,
+      "lineCount": 422,
+      "sourcePaths": [
+        "Interview/Anwsers/practical_scenarios_answers.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-28c0fe71f87e-2afbb26c99d4.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-e218ba0406d1",
+      "topicId": "system-design-interview",
+      "title": "Mục lục đáp án Quiz",
+      "wordCount": 199,
+      "lineCount": 19,
+      "sourcePaths": [
+        "Interview/Anwsers/quiz_answer_key.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-e218ba0406d1-9b22124e1422.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-3749c2b17d89",
+      "topicId": "system-design-interview",
+      "title": "Đáp án và rubric — Bài kiểm tra tổng hợp Middle Backend",
+      "wordCount": 5897,
+      "lineCount": 619,
+      "sourcePaths": [
+        "Interview/Anwsers/quiz_middle_answers.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-3749c2b17d89-c0e32a966316.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-599c73cf0606",
+      "topicId": "system-design-interview",
+      "title": "Đáp án và rubric — Quiz tổng hợp Senior Backend",
+      "wordCount": 9081,
+      "lineCount": 592,
+      "sourcePaths": [
+        "Interview/Anwsers/quiz_senior_answers.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-599c73cf0606-2851a7d4415e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-2f3a3c80162e",
+      "topicId": "system-design-interview",
+      "title": "Đáp án và rubric — Rapid Fire Backend",
+      "wordCount": 5797,
+      "lineCount": 670,
+      "sourcePaths": [
+        "Interview/Anwsers/rapid_fire_answers.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-2f3a3c80162e-f434131c266b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-8484ce26c69e",
+      "topicId": "system-design-interview",
+      "title": "Cách dùng thư mục đáp án",
+      "wordCount": 175,
+      "lineCount": 15,
+      "sourcePaths": [
+        "Interview/Anwsers/README.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-8484ce26c69e-29d1108af4e1.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-a464f1d8182b",
+      "topicId": "system-design-interview",
+      "title": "Đáp án — System Design và Distributed Systems",
+      "wordCount": 7411,
+      "lineCount": 606,
+      "sourcePaths": [
+        "Interview/Anwsers/system_design.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-a464f1d8182b-842e3e3df768.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-640ac27a462c",
+      "topicId": "system-design-interview",
+      "title": "Câu hỏi Behavioral & Leadership — Middle đến Senior",
+      "wordCount": 1598,
+      "lineCount": 101,
+      "sourcePaths": [
+        "Interview/behavioral_leadership.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-640ac27a462c-f26ee8399d5d.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-cd493073d9fd",
+      "topicId": "system-design-interview",
+      "title": "Checklist câu hỏi phỏng vấn kinh điển — Basic đến Senior",
+      "wordCount": 856,
+      "lineCount": 84,
+      "sourcePaths": [
+        "Interview/classic_checklist.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-cd493073d9fd-8cf22363207b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-15bfcb636ce1",
+      "topicId": "system-design-interview",
+      "title": "Quiz phỏng vấn kinh điển — 12 miền",
+      "wordCount": 2543,
+      "lineCount": 320,
+      "sourcePaths": [
+        "Interview/Quiz/classic_interview.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-15bfcb636ce1-6f4e52b166ba.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-35f418f08cf3",
+      "topicId": "system-design-interview",
+      "title": "Mock interview Senior Backend — 12 tình huống thực chiến",
+      "wordCount": 1894,
+      "lineCount": 180,
+      "sourcePaths": [
+        "Interview/Quiz/practical_scenarios.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-35f418f08cf3-9c3aa9efab67.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-45ccba52520c",
+      "topicId": "system-design-interview",
+      "title": "Bài kiểm tra tổng hợp Middle Backend — 90 phút",
+      "wordCount": 1914,
+      "lineCount": 298,
+      "sourcePaths": [
+        "Interview/Quiz/quiz_middle.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-45ccba52520c-8b8974bc9d1a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-05b4e2e5639f",
+      "topicId": "system-design-interview",
+      "title": "Quiz tổng hợp Senior Backend — 120 phút",
+      "wordCount": 2368,
+      "lineCount": 235,
+      "sourcePaths": [
+        "Interview/Quiz/quiz_senior.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-05b4e2e5639f-7f0854448c3c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-f2b69830072b",
+      "topicId": "system-design-interview",
+      "title": "Rapid Fire Backend — 80 câu trong 65 phút",
+      "wordCount": 1707,
+      "lineCount": 360,
+      "sourcePaths": [
+        "Interview/Quiz/rapid_fire.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-f2b69830072b-ca80081c027f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-68c77cee3f59",
+      "topicId": "system-design-interview",
+      "title": "Quiz kiểm tra kiến thức",
+      "wordCount": 237,
+      "lineCount": 22,
+      "sourcePaths": [
+        "Interview/Quiz/README.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-68c77cee3f59-91facc4062ad.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-73bab7466037",
+      "topicId": "system-design-interview",
+      "title": "Bộ câu hỏi phỏng vấn Middle/Senior Backend Engineer",
+      "wordCount": 799,
+      "lineCount": 61,
+      "sourcePaths": [
+        "Interview/README.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-73bab7466037-372220d578df.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-e3bb464710f4",
+      "topicId": "system-design-interview",
+      "title": "System Design và Distributed Systems",
+      "wordCount": 1821,
+      "lineCount": 243,
+      "sourcePaths": [
+        "Interview/system_design.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-e3bb464710f4-c427b26ee723.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-da51481a6b42",
+      "topicId": "system-design-interview",
+      "title": "Bài 25 — LLD/HLD và distributed-system interview",
+      "wordCount": 1095,
+      "lineCount": 159,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/25-system-design-interview.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-da51481a6b42-f8407ad573b2.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-a2e85173e29a",
+      "topicId": "system-design-interview",
+      "title": "Bài 26 — Behavioral, leadership, resume deep dive và full interview loop",
+      "wordCount": 1182,
+      "lineCount": 145,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/Lessions/26-behavioral-leadership-interview.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-a2e85173e29a-e6a61acf439e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "system-design-interview-c694326bfd1a",
+      "topicId": "system-design-interview",
+      "title": "Senior story bank template",
+      "wordCount": 133,
+      "lineCount": 32,
+      "sourcePaths": [
+        "JavaAdvanceMapCsharp/SourceSamples/26-interview-artifacts/story-bank-template.md"
+      ],
+      "assetPath": "knowledge-sources/system-design-interview/system-design-interview-c694326bfd1a-a12114ad111b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-2232a6226e25",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 00 — Roadmap, setup và cách học",
+      "wordCount": 749,
+      "lineCount": 124,
+      "sourcePaths": [
+        "Terraform/Lessions/00-roadmap/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-2232a6226e25-bef0e9936629.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-45326eba405b",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 01 — IaC và Terraform foundations",
+      "wordCount": 641,
+      "lineCount": 103,
+      "sourcePaths": [
+        "Terraform/Lessions/01-iac-terraform-foundations/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-45326eba405b-92f9f89dab40.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-75f82ecff6e4",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 02 — HCL, type system và expressions",
+      "wordCount": 588,
+      "lineCount": 110,
+      "sourcePaths": [
+        "Terraform/Lessions/02-hcl-types-expressions/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-75f82ecff6e4-1793278248cf.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-5ebe2b965149",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 03 — CLI workflow, providers và OCI authentication",
+      "wordCount": 654,
+      "lineCount": 120,
+      "sourcePaths": [
+        "Terraform/Lessions/03-cli-workflow-providers/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-5ebe2b965149-2b05acb9b417.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-3cd62618f95e",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 04 — Variables, locals, outputs và module interface",
+      "wordCount": 512,
+      "lineCount": 94,
+      "sourcePaths": [
+        "Terraform/Lessions/04-variables-locals-outputs/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-3cd62618f95e-f1bae8ed3948.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-06918d1d8eb6",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 05 — Resources, data sources, graph và lifecycle",
+      "wordCount": 731,
+      "lineCount": 126,
+      "sourcePaths": [
+        "Terraform/Lessions/05-resources-data-graph/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-06918d1d8eb6-641aba890c5f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-12371c57e74f",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 06 — State, backend, locking, import và refactor",
+      "wordCount": 971,
+      "lineCount": 174,
+      "sourcePaths": [
+        "Terraform/Lessions/06-state-backend-import-refactor/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-12371c57e74f-96cabab6d4c9.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-3c5f172b7515",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 07 — Module engineering, composition và versioning",
+      "wordCount": 643,
+      "lineCount": 142,
+      "sourcePaths": [
+        "Terraform/Lessions/07-modules-versioning/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-3c5f172b7515-45d0bb69f330.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-becb34b8548e",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 08 — OCI identity, authentication và governance",
+      "wordCount": 775,
+      "lineCount": 144,
+      "sourcePaths": [
+        "Terraform/Lessions/08-oci-identity-auth-governance/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-becb34b8548e-9c6d379f5e67.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-2a35b9a1e0c0",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 09 — OCI networking từ VCN đến hybrid",
+      "wordCount": 784,
+      "lineCount": 121,
+      "sourcePaths": [
+        "Terraform/Lessions/09-oci-networking/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-2a35b9a1e0c0-a6d477118b97.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-8e5d740fbf14",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 10 — OCI compute và storage",
+      "wordCount": 828,
+      "lineCount": 148,
+      "sourcePaths": [
+        "Terraform/Lessions/10-oci-compute-storage/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-8e5d740fbf14-77a51ebdada5.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-dcf10deb567c",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 11 — OCI data services, load balancing và DNS",
+      "wordCount": 770,
+      "lineCount": 116,
+      "sourcePaths": [
+        "Terraform/Lessions/11-oci-data-lb-dns/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-dcf10deb567c-b4d46eef8e1c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-1377f0b2bb42",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 12 — Security, secrets, policy và supply chain",
+      "wordCount": 889,
+      "lineCount": 144,
+      "sourcePaths": [
+        "Terraform/Lessions/12-security-secrets-policy/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-1377f0b2bb42-f9d043a757a8.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-6ce17d5f6545",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 13 — Testing, quality gates và documentation",
+      "wordCount": 682,
+      "lineCount": 130,
+      "sourcePaths": [
+        "Terraform/Lessions/13-testing-quality/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-6ce17d5f6545-86dcb6f44358.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-cc5bb2537dbd",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 14 — CI/CD, team workflow và OCI Resource Manager",
+      "wordCount": 845,
+      "lineCount": 149,
+      "sourcePaths": [
+        "Terraform/Lessions/14-cicd-team-workflow/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-cc5bb2537dbd-5cf675aa6846.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-cab52b2bd9bc",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 15 — Advanced patterns và migration",
+      "wordCount": 846,
+      "lineCount": 180,
+      "sourcePaths": [
+        "Terraform/Lessions/15-advanced-patterns/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-cab52b2bd9bc-d563ba01ff52.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-9494bc870366",
+      "topicId": "terraform-cloud",
+      "title": "Cost và DR worksheet",
+      "wordCount": 87,
+      "lineCount": 29,
+      "sourcePaths": [
+        "Terraform/Lessions/16-operations-drift-cost-dr/lab/cost-dr-checklist.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-9494bc870366-f76cef728410.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-32ed940b9abb",
+      "topicId": "terraform-cloud",
+      "title": "Incident drills",
+      "wordCount": 117,
+      "lineCount": 16,
+      "sourcePaths": [
+        "Terraform/Lessions/16-operations-drift-cost-dr/lab/incident-drill.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-32ed940b9abb-5a41fb48cd87.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-e21b90cdaa27",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 16 — Operations, drift, troubleshooting, cost và DR",
+      "wordCount": 971,
+      "lineCount": 173,
+      "sourcePaths": [
+        "Terraform/Lessions/16-operations-drift-cost-dr/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-e21b90cdaa27-a037794ead12.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-5ba152698948",
+      "topicId": "terraform-cloud",
+      "title": "Lesson 17 — Capstone OCI production",
+      "wordCount": 910,
+      "lineCount": 169,
+      "sourcePaths": [
+        "Terraform/Lessions/17-capstone-production/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-5ba152698948-240c5d46c2df.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-abb7049ac4a3",
+      "topicId": "terraform-cloud",
+      "title": "Reference solution",
+      "wordCount": 165,
+      "lineCount": 25,
+      "sourcePaths": [
+        "Terraform/Lessions/17-capstone-production/solution/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-abb7049ac4a3-045db5d3b96a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-2f2ed08805fb",
+      "topicId": "terraform-cloud",
+      "title": "Capstone starter",
+      "wordCount": 112,
+      "lineCount": 26,
+      "sourcePaths": [
+        "Terraform/Lessions/17-capstone-production/starter/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-2f2ed08805fb-4613443dd454.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-49e5cfde931a",
+      "topicId": "terraform-cloud",
+      "title": "Terraform CLI cheatsheet an toàn",
+      "wordCount": 473,
+      "lineCount": 142,
+      "sourcePaths": [
+        "Terraform/Lessions/CHEATSHEET.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-49e5cfde931a-9a773256e831.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-7f9070bd624c",
+      "topicId": "terraform-cloud",
+      "title": "Glossary Terraform và OCI",
+      "wordCount": 905,
+      "lineCount": 101,
+      "sourcePaths": [
+        "Terraform/Lessions/GLOSSARY.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-7f9070bd624c-b76ef8d12d5f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-c4b7058fe1cf",
+      "topicId": "terraform-cloud",
+      "title": "Terraform + OCI mastery checklist",
+      "wordCount": 947,
+      "lineCount": 156,
+      "sourcePaths": [
+        "Terraform/Lessions/MASTERY-CHECKLIST.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-c4b7058fe1cf-f375860f643a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-1afdf595f3b0",
+      "topicId": "terraform-cloud",
+      "title": "Lessions — mục lục Terraform từ cơ bản đến production",
+      "wordCount": 477,
+      "lineCount": 60,
+      "sourcePaths": [
+        "Terraform/Lessions/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-1afdf595f3b0-575a6131c658.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-fe27eb32d81c",
+      "topicId": "terraform-cloud",
+      "title": "Đáp án Level 1 – Foundation",
+      "wordCount": 488,
+      "lineCount": 74,
+      "sourcePaths": [
+        "Terraform/Quiz/answers/01-foundation-answers.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-fe27eb32d81c-0a8fd3795fea.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-5ba2f8dcb72c",
+      "topicId": "terraform-cloud",
+      "title": "Đáp án Level 2 – Core Terraform",
+      "wordCount": 737,
+      "lineCount": 122,
+      "sourcePaths": [
+        "Terraform/Quiz/answers/02-core-answers.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-5ba2f8dcb72c-380bcaccbde5.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-2e96dbf6370b",
+      "topicId": "terraform-cloud",
+      "title": "Đáp án Level 3 – OCI",
+      "wordCount": 912,
+      "lineCount": 116,
+      "sourcePaths": [
+        "Terraform/Quiz/answers/03-oci-answers.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-2e96dbf6370b-8f11198a2a96.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-c42e2d4b8264",
+      "topicId": "terraform-cloud",
+      "title": "Đáp án Level 4 – Production Engineering",
+      "wordCount": 984,
+      "lineCount": 79,
+      "sourcePaths": [
+        "Terraform/Quiz/answers/04-production-answers.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-c42e2d4b8264-62f860b6b6c6.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-4e95bdf65cda",
+      "topicId": "terraform-cloud",
+      "title": "Đáp án Level 5 – Expert",
+      "wordCount": 1117,
+      "lineCount": 86,
+      "sourcePaths": [
+        "Terraform/Quiz/answers/05-expert-answers.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-4e95bdf65cda-5249f48b7a9c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-72e0d3e56ecb",
+      "topicId": "terraform-cloud",
+      "title": "Ánh xạ Quiz ↔ Lessions 01–17",
+      "wordCount": 531,
+      "lineCount": 46,
+      "sourcePaths": [
+        "Terraform/Quiz/lesson-map.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-72e0d3e56ecb-2e4b53103ed0.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-795f03626eb8",
+      "topicId": "terraform-cloud",
+      "title": "Level 1 – Foundation",
+      "wordCount": 508,
+      "lineCount": 94,
+      "sourcePaths": [
+        "Terraform/Quiz/levels/01-foundation.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-795f03626eb8-d91bcdc1ebbd.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-d0be848a5fdd",
+      "topicId": "terraform-cloud",
+      "title": "Level 2 – Core Terraform",
+      "wordCount": 705,
+      "lineCount": 111,
+      "sourcePaths": [
+        "Terraform/Quiz/levels/02-core.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-d0be848a5fdd-453131dfba0a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-bc3dd795b30d",
+      "topicId": "terraform-cloud",
+      "title": "Level 3 – Terraform với Oracle Cloud Infrastructure",
+      "wordCount": 753,
+      "lineCount": 85,
+      "sourcePaths": [
+        "Terraform/Quiz/levels/03-oci.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-bc3dd795b30d-88b980b152c7.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-d451002514dd",
+      "topicId": "terraform-cloud",
+      "title": "Level 4 – Production Engineering",
+      "wordCount": 744,
+      "lineCount": 80,
+      "sourcePaths": [
+        "Terraform/Quiz/levels/04-production.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-d451002514dd-8aaf5a6cbb45.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-9c275f14f892",
+      "topicId": "terraform-cloud",
+      "title": "Level 5 – Expert Terraform / DevOps",
+      "wordCount": 695,
+      "lineCount": 62,
+      "sourcePaths": [
+        "Terraform/Quiz/levels/05-expert.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-9c275f14f892-2ac859c6a2b8.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-6123c7b5750b",
+      "topicId": "terraform-cloud",
+      "title": "Practical Assessment – OCI Production-Ready Foundation",
+      "wordCount": 1064,
+      "lineCount": 125,
+      "sourcePaths": [
+        "Terraform/Quiz/practical/capstone-oci.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-6123c7b5750b-d9b52fa5186c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-fbbb82f7dece",
+      "topicId": "terraform-cloud",
+      "title": "Rubric chấm Capstone OCI",
+      "wordCount": 688,
+      "lineCount": 98,
+      "sourcePaths": [
+        "Terraform/Quiz/practical/capstone-rubric.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-fbbb82f7dece-827c8f82bcdb.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-3fbc4fcb3071",
+      "topicId": "terraform-cloud",
+      "title": "Ngân hàng câu hỏi và ma trận truy vết",
+      "wordCount": 1110,
+      "lineCount": 134,
+      "sourcePaths": [
+        "Terraform/Quiz/question-bank.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-3fbc4fcb3071-7f8b9ff2d9ea.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-19954d027d43",
+      "topicId": "terraform-cloud",
+      "title": "Bộ tự kiểm tra Terraform – OCI làm nền tảng chính",
+      "wordCount": 593,
+      "lineCount": 73,
+      "sourcePaths": [
+        "Terraform/Quiz/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-19954d027d43-fe8ab0dd7f03.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-075f652a6017",
+      "topicId": "terraform-cloud",
+      "title": "Phiếu trả lời",
+      "wordCount": 76,
+      "lineCount": 26,
+      "sourcePaths": [
+        "Terraform/Quiz/templates/answer-sheet.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-075f652a6017-8409f158a060.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-dacc3656b752",
+      "topicId": "terraform-cloud",
+      "title": "Terraform Mastery Roadmap — Oracle Cloud làm trọng tâm",
+      "wordCount": 514,
+      "lineCount": 62,
+      "sourcePaths": [
+        "Terraform/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-dacc3656b752-fc988267e1c7.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-f6fb83c168d2",
+      "topicId": "terraform-cloud",
+      "title": "01 - Bảng đối chiếu dịch vụ OCI, AWS và Azure",
+      "wordCount": 1955,
+      "lineCount": 129,
+      "sourcePaths": [
+        "Terraform/Refer/01-bang-doi-chieu-dich-vu.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-f6fb83c168d2-2290efd9d112.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-397699b10a26",
+      "topicId": "terraform-cloud",
+      "title": "02 - Khác biệt nền tảng khi viết Terraform",
+      "wordCount": 2485,
+      "lineCount": 325,
+      "sourcePaths": [
+        "Terraform/Refer/02-khac-biet-nen-tang.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-397699b10a26-5109a6561f12.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-e2ed462835cc",
+      "topicId": "terraform-cloud",
+      "title": "03 - Thiết kế Terraform multi-cloud trong dự án thật",
+      "wordCount": 1635,
+      "lineCount": 274,
+      "sourcePaths": [
+        "Terraform/Refer/03-thiet-ke-multi-cloud.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-e2ed462835cc-1282d73c505d.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-d4fd2013ad1e",
+      "topicId": "terraform-cloud",
+      "title": "04 - Checklist migration OCI → AWS/Azure",
+      "wordCount": 1819,
+      "lineCount": 199,
+      "sourcePaths": [
+        "Terraform/Refer/04-checklist-migration.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-d4fd2013ad1e-e111c4dbd93a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-c5d8762b5507",
+      "topicId": "terraform-cloud",
+      "title": "05 - Anti-patterns Terraform đa cloud",
+      "wordCount": 1319,
+      "lineCount": 163,
+      "sourcePaths": [
+        "Terraform/Refer/05-anti-patterns.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-c5d8762b5507-289194430e5f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-c5aefa25595a",
+      "topicId": "terraform-cloud",
+      "title": "06 - Nguồn chính thức và phiên bản kiểm tra",
+      "wordCount": 854,
+      "lineCount": 83,
+      "sourcePaths": [
+        "Terraform/Refer/06-nguon-chinh-thuc.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-c5aefa25595a-e207c8cba481.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-d1ef2c8654f9",
+      "topicId": "terraform-cloud",
+      "title": "AWS lab - VPC + EC2 tùy chọn",
+      "wordCount": 750,
+      "lineCount": 119,
+      "sourcePaths": [
+        "Terraform/Refer/aws/minimal-network-compute/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-d1ef2c8654f9-726597f75d31.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-4276402eea58",
+      "topicId": "terraform-cloud",
+      "title": "Azure lab - VNet + VM tùy chọn",
+      "wordCount": 868,
+      "lineCount": 136,
+      "sourcePaths": [
+        "Terraform/Refer/azure/minimal-network-compute/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-4276402eea58-209971204564.md",
+      "isAggregate": false
+    },
+    {
+      "id": "terraform-cloud-70d963aee460",
+      "topicId": "terraform-cloud",
+      "title": "Tham chiếu Terraform đa đám mây: OCI → AWS và Azure",
+      "wordCount": 697,
+      "lineCount": 72,
+      "sourcePaths": [
+        "Terraform/Refer/README.md"
+      ],
+      "assetPath": "knowledge-sources/terraform-cloud/terraform-cloud-70d963aee460-af494a049a1e.md",
+      "isAggregate": false
+    }
+  ]
+}

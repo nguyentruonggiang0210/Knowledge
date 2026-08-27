@@ -1,0 +1,10 @@
+# Đây là template, không phải file .tf nên terraform validate bỏ qua.
+# Bootstrap Storage Account/container riêng, thay placeholder rồi đổi tên thành backend.tf.
+terraform {
+  backend "azurerm" {
+    storage_account_name = "REPLACE_WITH_STATE_STORAGE_ACCOUNT"
+    container_name       = "tfstate"
+    key                  = "labs/azure-minimal/terraform.tfstate"
+    use_azuread_auth     = true
+  }
+}

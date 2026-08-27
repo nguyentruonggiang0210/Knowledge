@@ -1,0 +1,48 @@
+{
+  "id": "system-design-interview",
+  "title": "System Design & Interview",
+  "navTitle": "System Design & Interview",
+  "eyebrow": "Tư duy có cấu trúc • Giao tiếp • Ra quyết định",
+  "description": "Hệ thống ôn luyện hợp nhất từ 834 câu hỏi, bài thuật toán, thiết kế hệ thống, chuyên môn Java/.NET và behavioral—tập trung vào cách suy luận chứ không học thuộc đáp án.",
+  "order": 11,
+  "icon": "interview",
+  "accent": "amber",
+  "level": "Nâng cao",
+  "estimatedMinutes": 24,
+  "tags": [
+    "system design",
+    "interview",
+    "behavioral",
+    "leadership",
+    "coding interview",
+    "STAR",
+    "architecture"
+  ],
+  "sourceFolders": [
+    "AIEngineer/Lessions/50-career-portfolio-interview-system-design",
+    "Interview/Anwsers/behavioral_leadership.md",
+    "Interview/Anwsers/classic_interview_answers.md",
+    "Interview/Anwsers/practical_scenarios_answers.md",
+    "Interview/Anwsers/quiz_answer_key.md",
+    "Interview/Anwsers/quiz_middle_answers.md",
+    "Interview/Anwsers/quiz_senior_answers.md",
+    "Interview/Anwsers/rapid_fire_answers.md",
+    "Interview/Anwsers/README.md",
+    "Interview/Anwsers/system_design.md",
+    "Interview/behavioral_leadership.md",
+    "Interview/classic_checklist.md",
+    "Interview/Quiz",
+    "Interview/README.md",
+    "Interview/system_design.md",
+    "JavaAdvanceMapCsharp/Lessions/25-system-design-interview.md",
+    "JavaAdvanceMapCsharp/Lessions/26-behavioral-leadership-interview.md",
+    "JavaAdvanceMapCsharp/SourceSamples/26-interview-artifacts"
+  ],
+  "outcomes": [
+    "Đi qua một bài system design bằng quy trình failure-first rõ ràng",
+    "Trình bày trade-off về dữ liệu, consistency, scale và reliability",
+    "Giải bài coding có protocol, test và phân tích độ phức tạp",
+    "Kể câu chuyện STAR(R) có bằng chứng và bài học",
+    "Tạo vòng luyện tập bằng quiz, mock interview và rubric"
+  ]
+}

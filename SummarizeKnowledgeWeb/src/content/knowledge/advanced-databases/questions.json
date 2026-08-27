@@ -1,0 +1,226 @@
+[
+  {
+    "id": "db-001",
+    "question": "Một transaction PostgreSQL giữ snapshot cũ quá lâu thường gây tác động nào?",
+    "options": [
+      "VACUUM có thể xóa ngay mọi tuple version cũ",
+      "VACUUM chưa reclaim được version còn thấy bởi snapshot, làm dead tuple và bloat tăng",
+      "Mọi index tự động chuyển thành invalid",
+      "WAL ngừng được tạo cho toàn cluster"
+    ],
+    "answerIndex": 1,
+    "explanation": "MVCC phải giữ tuple version mà snapshot đang hoạt động vẫn có thể nhìn thấy. Transaction dài kéo lùi xmin horizon, trì hoãn cleanup và có thể làm bloat tăng.",
+    "difficulty": "Trung cấp",
+    "source": "DatabaseAdvance/Quiz/POSTGRESQL_ADVANCED_ANSWERS.md"
+  },
+  {
+    "id": "db-002",
+    "question": "Khi nào planner PostgreSQL có thể dùng một partial index có predicate status = 'pending'?",
+    "options": [
+      "Bất kỳ query nào có cột status trong SELECT",
+      "Chỉ khi bảng không có NULL",
+      "Khi planner chứng minh predicate của query nằm trong predicate của index",
+      "Chỉ khi tắt sequential scan"
+    ],
+    "answerIndex": 2,
+    "explanation": "Partial index chỉ bao phủ một tập hàng. Planner phải chứng minh query chỉ cần hàng thuộc tập đó; parameter của generic plan có thể khiến việc chứng minh không thực hiện được.",
+    "difficulty": "Nâng cao",
+    "source": "DatabaseAdvance/Quiz/POSTGRESQL_ADVANCED_ANSWERS.md"
+  },
+  {
+    "id": "db-003",
+    "question": "Vì sao một query có index chứa đủ các cột cần đọc vẫn có thể phải truy cập heap thay vì luôn index-only?",
+    "options": [
+      "PostgreSQL có thể phải kiểm tra visibility nếu page chưa được đánh dấu all-visible",
+      "B-tree không lưu bất kỳ giá trị cột nào",
+      "Index-only scan chỉ dùng được trong transaction read-write",
+      "Mọi query có WHERE đều bắt buộc đọc heap"
+    ],
+    "answerIndex": 0,
+    "explanation": "Index có thể chứa đủ dữ liệu nhưng MVCC visibility vẫn cần xác minh. Visibility map cho phép bỏ heap lookup ở các page all-visible; VACUUM cập nhật map khi điều kiện cho phép.",
+    "difficulty": "Nâng cao",
+    "source": "DatabaseAdvance/Quiz/POSTGRESQL_ADVANCED_ANSWERS.md"
+  },
+  {
+    "id": "db-004",
+    "question": "Vì sao tăng work_mem toàn cục để cứu một report có thể tạo memory storm?",
+    "options": [
+      "work_mem chỉ được dùng một lần khi PostgreSQL khởi động",
+      "work_mem tự nhân đôi kích thước mọi table",
+      "work_mem vô hiệu hóa connection pool",
+      "work_mem áp dụng theo sort/hash operation và có thể nhân theo node, worker và concurrency"
+    ],
+    "answerIndex": 3,
+    "explanation": "Một query có thể có nhiều sort/hash và nhiều parallel worker; nhiều session lại chạy đồng thời. Vì vậy tổng RAM không đơn giản bằng một giá trị work_mem duy nhất.",
+    "difficulty": "Nâng cao",
+    "source": "DatabaseAdvance/Quiz/POSTGRESQL_ADVANCED_ANSWERS.md"
+  },
+  {
+    "id": "db-005",
+    "question": "Rủi ro chính khi một consumer gắn replication slot PostgreSQL dừng quá lâu là gì?",
+    "options": [
+      "Primary tự xóa toàn bộ table liên quan",
+      "Replication slot tự chuyển thành synchronous replica",
+      "WAL cần cho consumer bị giữ lại và có thể làm đầy disk",
+      "Mọi transaction mới bị đổi sang SERIALIZABLE"
+    ],
+    "answerIndex": 2,
+    "explanation": "Slot giữ WAL chưa được consumer xác nhận để bảo toàn continuity. Khi consumer lag lâu, khoảng cách từ restart_lsn tới WAL hiện tại tăng và pg_wal có thể chiếm hết dung lượng.",
+    "difficulty": "Trung cấp",
+    "source": "DatabaseAdvance/Quiz/POSTGRESQL_ADVANCED_ANSWERS.md"
+  },
+  {
+    "id": "db-006",
+    "question": "SELECT ... FOR UPDATE SKIP LOCKED phù hợp nhất với trường hợp nào?",
+    "options": [
+      "Nhiều worker cùng claim job mà không chờ job đang bị worker khác khóa",
+      "Đọc báo cáo cần snapshot nhất quán toàn bảng",
+      "Ép mọi transaction chạy tuần tự",
+      "Thay thế hoàn toàn lease, retry và idempotency của worker"
+    ],
+    "answerIndex": 0,
+    "explanation": "SKIP LOCKED giúp worker bỏ qua hàng đang bị khóa để claim công việc khác. Hệ thống vẫn cần lease/reaper, giới hạn retry và handler idempotent để xử lý crash hoặc side effect dở dang.",
+    "difficulty": "Nâng cao",
+    "source": "DatabaseAdvance/Quiz/POSTGRESQL_ADVANCED_ANSWERS.md"
+  },
+  {
+    "id": "db-007",
+    "question": "Một PITR drill PostgreSQL đáng tin cậy phải làm gì?",
+    "options": [
+      "Chỉ kiểm tra file backup có tồn tại",
+      "Chỉ xem replication lag của replica",
+      "Chạy pg_dump trên primary rồi xóa ngay",
+      "Restore base backup ở nơi tách biệt, replay chuỗi WAL tới target và kiểm tra dữ liệu/RPO/RTO"
+    ],
+    "answerIndex": 3,
+    "explanation": "PITR phụ thuộc cả base backup và chuỗi WAL liên tục. Drill phải thật sự recovery tới time/LSN mục tiêu, kiểm tra timeline, invariant và đo kết quả phục hồi.",
+    "difficulty": "Nâng cao",
+    "source": "DatabaseAdvance/Quiz/POSTGRESQL_ADVANCED_ANSWERS.md"
+  },
+  {
+    "id": "db-008",
+    "question": "Guardrail quan trọng cho PostgreSQL SECURITY DEFINER function là gì?",
+    "options": [
+      "Cho runtime role làm owner của mọi table",
+      "Khóa search_path tin cậy, schema-qualify object và giới hạn quyền owner",
+      "Tắt Row-Level Security cho mọi session",
+      "Dùng dynamic SQL từ input mà không kiểm tra"
+    ],
+    "answerIndex": 1,
+    "explanation": "SECURITY DEFINER chạy với quyền owner nên search_path không tin cậy có thể bị lợi dụng để shadow object. Function cần search_path cố định, object được qualify và owner có quyền tối thiểu.",
+    "difficulty": "Nâng cao",
+    "source": "DatabaseAdvance/Quiz/POSTGRESQL_ADVANCED_ANSWERS.md"
+  },
+  {
+    "id": "db-009",
+    "question": "Trong ClickHouse MergeTree, ORDER BY chủ yếu quyết định điều gì?",
+    "options": [
+      "Sort key trong data part, data locality và khả năng primary-index pruning",
+      "Unique constraint tuyệt đối cho mọi row",
+      "Thứ tự output mặc định của mọi SELECT",
+      "Số replica của mỗi shard"
+    ],
+    "answerIndex": 0,
+    "explanation": "ORDER BY sắp dữ liệu trong mỗi part và định hình sparse primary index/marks, ảnh hưởng locality, compression và pruning. Nó không phải unique constraint và SELECT không ORDER BY không bảo đảm output order.",
+    "difficulty": "Cơ bản",
+    "source": "DatabaseAdvance/Quiz/CLICKHOUSE_ANSWERS.md"
+  },
+  {
+    "id": "db-010",
+    "question": "Vì sao dùng event_id gần như unique làm partition key ClickHouse là thiết kế nguy hiểm?",
+    "options": [
+      "Nó làm mọi query tự động chạy trên PostgreSQL",
+      "Nó ngăn ClickHouse nén cột số",
+      "Nó tạo quá nhiều partition/part và gây metadata, merge scheduling bùng nổ",
+      "Nó buộc mọi insert phải synchronous replication"
+    ],
+    "answerIndex": 2,
+    "explanation": "Partition có cardinality rất cao tạo số lượng partition và tiny part cực lớn; merge không kết hợp được qua partition. Partition thường phục vụ lifecycle/coarse pruning và nên đủ thô.",
+    "difficulty": "Trung cấp",
+    "source": "DatabaseAdvance/Quiz/CLICKHOUSE_ANSWERS.md"
+  },
+  {
+    "id": "db-011",
+    "question": "Điều nào đúng về ReplacingMergeTree trước khi relevant parts được merge?",
+    "options": [
+      "Duplicate luôn bị loại ngay lúc INSERT trả về",
+      "Các version trùng key vẫn có thể cùng xuất hiện khi đọc",
+      "Engine từ chối mọi row có cùng ORDER BY key",
+      "Mutation tự động chạy đồng bộ sau từng insert"
+    ],
+    "answerIndex": 1,
+    "explanation": "ReplacingMergeTree áp semantics thay thế khi parts merge, mà thời điểm merge không xác định. Trước đó query có thể thấy nhiều version; FINAL hoặc argMax là các cách xử lý ở read path với trade-off riêng.",
+    "difficulty": "Nâng cao",
+    "source": "DatabaseAdvance/Quiz/CLICKHOUSE_ANSWERS.md"
+  },
+  {
+    "id": "db-012",
+    "question": "Một materialized view ClickHouse mới tạo mặc định xử lý dữ liệu nào?",
+    "options": [
+      "Tự động quét và backfill toàn bộ lịch sử source",
+      "Chỉ các row source bị mutation hoặc delete",
+      "Chỉ dữ liệu trong partition cũ nhất",
+      "Các inserted block mới đi qua source sau khi view tồn tại"
+    ],
+    "answerIndex": 3,
+    "explanation": "Materialized view hoạt động gần như insert trigger trên các block mới. CREATE không tự backfill lịch sử và mutation/xóa ở source cũng không tự đảo dữ liệu đã ghi ở target.",
+    "difficulty": "Trung cấp",
+    "source": "DatabaseAdvance/Quiz/CLICKHOUSE_ANSWERS.md"
+  },
+  {
+    "id": "db-013",
+    "question": "LowCardinality(String) thường phù hợp nhất với kiểu cột nào?",
+    "options": [
+      "Payload JSON gần như unique cho từng row",
+      "Chuỗi lặp lại nhiều như country, plan hoặc event_type",
+      "Binary blob dung lượng lớn",
+      "UUID ngẫu nhiên không lặp"
+    ],
+    "answerIndex": 1,
+    "explanation": "LowCardinality dùng dictionary encoding, có lợi khi số giá trị phân biệt tương đối thấp và lặp lại nhiều. Với cột gần unique, overhead có thể không đem lại lợi ích.",
+    "difficulty": "Cơ bản",
+    "source": "DatabaseAdvance/Quiz/CLICKHOUSE_ANSWERS.md"
+  },
+  {
+    "id": "db-014",
+    "question": "Cách sửa gốc cho tình trạng ClickHouse có quá nhiều tiny parts do insert từng row là gì?",
+    "options": [
+      "Batch insert theo rows/bytes/time hoặc dùng async inserts phù hợp",
+      "Chạy OPTIMIZE FINAL liên tục sau mỗi row",
+      "Tạo một partition cho mỗi row",
+      "Tắt background merge"
+    ],
+    "answerIndex": 0,
+    "explanation": "Mỗi INSERT vào MergeTree tạo part; insert quá nhỏ tạo part nhanh hơn merge xử lý. Batch hoặc async insert giảm số part ngay tại producer/ingestion path.",
+    "difficulty": "Cơ bản",
+    "source": "DatabaseAdvance/Quiz/CLICKHOUSE_ANSWERS.md"
+  },
+  {
+    "id": "db-015",
+    "question": "Nhận định nào đúng về UPDATE/DELETE mutation phạm vi lớn trong ClickHouse?",
+    "options": [
+      "Chỉ cập nhật một catalog entry, không đụng data part",
+      "Luôn hoàn tất trên mọi replica trước khi lệnh trả về",
+      "Không cạnh tranh tài nguyên với query và merge",
+      "Có thể rewrite nhiều parts bất đồng bộ và tiêu tốn I/O, CPU cùng disk headroom"
+    ],
+    "answerIndex": 3,
+    "explanation": "Mutation tạo công việc rewrite các part chứa row bị ảnh hưởng và thường hoàn tất bất đồng bộ. Mutation lớn có thể cạnh tranh I/O với merge/query và cần theo dõi system.mutations.",
+    "difficulty": "Nâng cao",
+    "source": "DatabaseAdvance/Quiz/CLICKHOUSE_ANSWERS.md"
+  },
+  {
+    "id": "db-016",
+    "question": "Phân biệt đúng giữa ReplicatedMergeTree và Distributed table là gì?",
+    "options": [
+      "Cả hai đều chỉ là query cache",
+      "Distributed table luôn giữ bản sao đầy đủ trên mọi node",
+      "ReplicatedMergeTree đồng bộ local table replicas; Distributed table route insert và fan-out select qua shards",
+      "ReplicatedMergeTree chỉ dùng để chia partition theo thời gian"
+    ],
+    "answerIndex": 2,
+    "explanation": "Replication sao chép cùng tập dữ liệu của local shard để HA/read scale. Distributed table thường không giữ data parts mà phân phối truy vấn và insert tới local tables trên các shard.",
+    "difficulty": "Trung cấp",
+    "source": "DatabaseAdvance/Quiz/CLICKHOUSE_ANSWERS.md"
+  }
+]

@@ -1,0 +1,226 @@
+[
+  {
+    "id": "concurrency-messaging-01",
+    "question": "Lợi ích chính của bounded Channel<T> trong pipeline producer–consumer là gì?",
+    "options": [
+      "Giới hạn số item chờ và tạo backpressure khi producer nhanh hơn consumer",
+      "Bảo đảm mọi worker hoàn thành theo đúng thứ tự bắt đầu",
+      "Tự động retry mọi item thất bại vô hạn",
+      "Thay thế hoàn toàn việc xử lý cancellation"
+    ],
+    "answerIndex": 0,
+    "explanation": "Bounded channel đặt giới hạn cho queue. Khi đầy, producer phải chờ consumer lấy bớt dữ liệu, nhờ đó tốc độ đầu vào được điều tiết và bộ nhớ không tăng không giới hạn.",
+    "difficulty": "Cơ bản",
+    "source": "MultiThreadDotnet/Documents/Channel.md"
+  },
+  {
+    "id": "concurrency-messaging-02",
+    "question": "BoundedChannelFullMode.Wait xử lý WriteAsync thế nào khi channel đã đầy?",
+    "options": [
+      "Bỏ item cũ nhất để lấy chỗ",
+      "Bỏ item đang được ghi",
+      "Chờ bất đồng bộ tới khi có chỗ trống mà không âm thầm làm mất item",
+      "Chuyển channel thành unbounded"
+    ],
+    "answerIndex": 2,
+    "explanation": "Ở chế độ Wait, WriteAsync tạm dừng cho đến khi reader giải phóng một vị trí. Khác với các chế độ DropWrite, DropOldest hoặc DropNewest, lựa chọn này phù hợp khi không được phép bỏ job.",
+    "difficulty": "Cơ bản",
+    "source": "MultiThreadDotnet/Documents/Channel.md"
+  },
+  {
+    "id": "concurrency-messaging-03",
+    "question": "Theo CAP, khi network partition thực sự xảy ra, hệ thống phân tán phải đánh đổi điều gì?",
+    "options": [
+      "Chọn giữa durability và khả năng mã hóa dữ liệu",
+      "Chọn giữa linearizable consistency và việc mọi phía partition đều tiếp tục trả lời",
+      "Chọn giữa SQL và NoSQL trong mọi request",
+      "Chọn giữa throughput và chi phí lưu trữ ngay cả khi không có partition"
+    ],
+    "answerIndex": 1,
+    "explanation": "CAP nói về tình huống có partition: hoặc từ chối/đợi ở một phía để giữ linearizability, hoặc để các phía tiếp tục phục vụ và chấp nhận kết quả có thể lệch. PACELC mới nhắc trade-off latency–consistency khi không có partition.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/20-distributed-systems-data.md"
+  },
+  {
+    "id": "concurrency-messaging-04",
+    "question": "Một cache key nóng hết hạn khiến hàng nghìn request đồng thời cùng gọi database. Biện pháp nào nhắm trực tiếp vào cache stampede này?",
+    "options": [
+      "Tắt toàn bộ timeout của request",
+      "Đổi cache thành unbounded và không bao giờ invalidation",
+      "Retry database ngay lập tức ở mọi tầng",
+      "Single-flight/request coalescing, kết hợp TTL jitter hoặc stale-while-revalidate"
+    ],
+    "answerIndex": 3,
+    "explanation": "Single-flight cho các request cùng key dùng chung một lần refresh; TTL jitter tránh nhiều key hết hạn cùng lúc và stale-while-revalidate có thể phục vụ bản cũ có giới hạn trong lúc refresh. Các cách còn lại khuếch đại tải hoặc bỏ mất kiểm soát consistency.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/21-caching-resilience-rate-limiting.md"
+  },
+  {
+    "id": "concurrency-messaging-05",
+    "question": "Phát biểu nào đúng về Task<T> trong .NET?",
+    "options": [
+      "Task là abstraction cho một công việc/kết quả và không đồng nghĩa mỗi Task có một thread riêng",
+      "Mọi Task luôn tạo một operating-system thread mới",
+      "Task chỉ dùng được cho công việc CPU-bound",
+      "Task tự bảo đảm shared state bên trong thread-safe"
+    ],
+    "answerIndex": 0,
+    "explanation": "Task biểu diễn công việc bất đồng bộ hoặc kết quả sẽ có, còn runtime điều phối thực thi. Một Task không tương ứng 1:1 với thread; async I/O còn có thể chờ mà không chiếm thread trong suốt thời gian I/O.",
+    "difficulty": "Cơ bản",
+    "source": "JavaAdvanceMapCsharp/Lessions/06-concurrency.md"
+  },
+  {
+    "id": "concurrency-messaging-06",
+    "question": "Trong Java Memory Model, khai báo volatile int count có làm count++ trở thành atomic không?",
+    "options": [
+      "Có, vì volatile khóa field trong toàn bộ phép tăng",
+      "Có, nhưng chỉ trên máy 64-bit",
+      "Không; volatile hỗ trợ visibility/ordering, còn count++ là read–modify–write nhiều bước",
+      "Không, vì volatile chỉ có tác dụng với reference type"
+    ],
+    "answerIndex": 2,
+    "explanation": "Volatile tạo các bảo đảm visibility và ordering liên quan, nhưng phép tăng gồm đọc, tính và ghi nên vẫn có thể mất update. Hãy dùng AtomicInteger/Interlocked hoặc lock tùy invariant cần bảo vệ.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/06-concurrency.md"
+  },
+  {
+    "id": "concurrency-messaging-07",
+    "question": "Khi nào Interlocked hoặc một atomic counter riêng lẻ là chưa đủ để bảo vệ shared state?",
+    "options": [
+      "Khi chỉ cần tăng một bộ đếm độc lập",
+      "Khi phải duy trì invariant liên quan nhiều field hoặc nhiều bước như một đơn vị",
+      "Khi không có thread nào khác truy cập dữ liệu",
+      "Khi giá trị chỉ được đọc sau khi mọi worker đã kết thúc"
+    ],
+    "answerIndex": 1,
+    "explanation": "Atomic primitive tuyến tính hóa operation trên một location, nhưng không tự làm cả workflow nhiều field trở thành atomic. Invariant kết hợp thường cần lock, actor/message passing, transaction hoặc primitive phối hợp cấp cao hơn.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/15-concurrency-deep-dive.md"
+  },
+  {
+    "id": "concurrency-messaging-08",
+    "question": "Cặp sự kiện nào tạo một happens-before edge trong Java Memory Model?",
+    "options": [
+      "Hai thread đọc cùng một field thông thường",
+      "Hai phép ghi không đồng bộ vào hai field khác nhau",
+      "Một thread sleep trước khi thread khác đọc",
+      "Một volatile write và volatile read sau đó trên cùng field"
+    ],
+    "answerIndex": 3,
+    "explanation": "JMM định nghĩa volatile write happens-before một volatile read sau đó trên cùng field. Các edge khác gồm monitor unlock tới lock sau đó, thread start/join và quy tắc completion của concurrent utilities; sleep không tự tạo publication guarantee.",
+    "difficulty": "Nâng cao",
+    "source": "JavaAdvanceMapCsharp/Lessions/15-concurrency-deep-dive.md"
+  },
+  {
+    "id": "concurrency-messaging-09",
+    "question": "Kafka bảo đảm thứ tự record ở phạm vi nào?",
+    "options": [
+      "Trong từng partition theo record order, không phải trên toàn topic",
+      "Trên toàn bộ cluster bất kể topic và partition",
+      "Chỉ giữa các consumer group, không trong partition",
+      "Theo thời gian đồng hồ của producer trên mọi partition"
+    ],
+    "answerIndex": 0,
+    "explanation": "Ordering của Kafka có phạm vi partition. Partition key quyết định locality và thứ tự cho cùng key; hot key có thể tạo skew, còn thay số partition có thể đổi cách key được ánh xạ.",
+    "difficulty": "Cơ bản",
+    "source": "JavaAdvanceMapCsharp/Lessions/19-messaging-kafka-event-driven.md"
+  },
+  {
+    "id": "concurrency-messaging-10",
+    "question": "Trong cùng một Kafka consumer group, một partition được xử lý bởi bao nhiêu member tại một thời điểm?",
+    "options": [
+      "Mọi member cùng xử lý để tăng throughput",
+      "Luôn đúng hai member để dự phòng",
+      "Một member; rebalance có thể gán partition đó sang member khác",
+      "Số member bằng replication factor"
+    ],
+    "answerIndex": 2,
+    "explanation": "Consumer group phân các partition cho members và tại một thời điểm mỗi partition chỉ thuộc một member trong group. Vì vậy tăng consumer vượt số partition không tự tăng parallelism, và handler phải xử lý đúng lifecycle khi rebalance.",
+    "difficulty": "Cơ bản",
+    "source": "JavaAdvanceMapCsharp/Lessions/19-messaging-kafka-event-driven.md"
+  },
+  {
+    "id": "concurrency-messaging-11",
+    "question": "Rủi ro chính khi consumer commit offset trước khi thực hiện side effect là gì?",
+    "options": [
+      "Event chắc chắn bị xử lý hai lần",
+      "Nếu process crash sau commit, broker coi record đã qua và side effect có thể bị mất",
+      "Partition tự động bị xóa",
+      "Producer không thể gửi record mới"
+    ],
+    "answerIndex": 1,
+    "explanation": "Offset chỉ là progress marker, không mặc định là business transaction. Commit trước effect tạo cửa sổ mất xử lý; effect trước commit lại có thể tạo duplicate khi replay, nên consumer thường cần idempotency/dedup và transaction boundary rõ.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/19-messaging-kafka-event-driven.md"
+  },
+  {
+    "id": "concurrency-messaging-12",
+    "question": "Mô tả nào đúng nhất về cách phối hợp outbox và inbox?",
+    "options": [
+      "Producer ghi database rồi publish broker bằng hai thao tác không liên quan; consumer chỉ commit offset",
+      "Outbox loại bỏ hoàn toàn khả năng duplicate nên consumer không cần idempotency",
+      "Inbox chỉ là log text và không cần nằm cùng transaction với side effect",
+      "Producer ghi aggregate cùng outbox trong một transaction; consumer ghi processed ID cùng local side effect"
+    ],
+    "answerIndex": 3,
+    "explanation": "Outbox đóng transaction boundary giữa thay đổi aggregate và bản ghi cần publish; relay/CDC có thể retry và vẫn phát duplicate. Inbox/dedup nên ghi processed ID atomically với side effect cục bộ để duplicate không lặp lại tác động nghiệp vụ.",
+    "difficulty": "Nâng cao",
+    "source": "JavaAdvanceMapCsharp/Lessions/19-messaging-kafka-event-driven.md"
+  },
+  {
+    "id": "concurrency-messaging-13",
+    "question": "Kafka exactly-once semantics không tự bảo đảm điều gì?",
+    "options": [
+      "Một external database update hoặc email nằm ngoài Kafka transaction chỉ xảy ra đúng một lần",
+      "Output topic và offset có thể được phối hợp trong Kafka transaction",
+      "Consumer có thể đọc record theo partition",
+      "Producer có thể dùng idempotence trong phạm vi Kafka"
+    ],
+    "answerIndex": 0,
+    "explanation": "Exactly once luôn phải nêu phạm vi. Kafka transaction có thể atomically phối hợp read–process–write tới Kafka và offsets, nhưng không tự bao trùm database, HTTP hay email bên ngoài; các effect đó vẫn cần idempotency, reconciliation hoặc pattern phù hợp.",
+    "difficulty": "Nâng cao",
+    "source": "JavaAdvanceMapCsharp/Lessions/19-messaging-kafka-event-driven.md"
+  },
+  {
+    "id": "concurrency-messaging-14",
+    "question": "Ba tầng service đều cấu hình tối đa 3 attempt cho cùng một call chain. Trong trường hợp xấu nhất, tầng cuối có thể nhận bao nhiêu attempt và nên sửa theo hướng nào?",
+    "options": [
+      "3 attempt; tăng mỗi tầng lên 5 để phục hồi nhanh hơn",
+      "9 attempt; bỏ deadline để retry có đủ thời gian",
+      "27 attempt; chọn một retry owner, dùng backoff + jitter và giới hạn theo deadline/budget",
+      "81 attempt; thay mọi retry bằng cache vĩnh viễn"
+    ],
+    "answerIndex": 2,
+    "explanation": "Retry lồng nhau khuếch đại theo phép nhân: 3 × 3 × 3 = 27 attempt xuống tầng cuối. Một retry owner cùng budget end-to-end, exponential backoff và jitter giúp tránh retry storm; operation còn phải idempotent hoặc có idempotency key.",
+    "difficulty": "Nâng cao",
+    "source": "JavaAdvanceMapCsharp/Lessions/21-caching-resilience-rate-limiting.md"
+  },
+  {
+    "id": "concurrency-messaging-15",
+    "question": "Trade-off đúng khi chọn BatchSize cho một ETL chạy nhiều worker là gì?",
+    "options": [
+      "Batch càng lớn luôn càng tốt vì không ảnh hưởng bộ nhớ hay retry",
+      "Batch quá nhỏ tăng overhead; batch quá lớn tăng RAM, thời gian lock và chi phí retry",
+      "BatchSize chỉ thay đổi thứ tự log, không ảnh hưởng throughput",
+      "Mỗi record nên luôn là một task riêng để tối đa parallelism"
+    ],
+    "answerIndex": 1,
+    "explanation": "Partition theo batch giảm scheduling overhead và tận dụng bulk operation. Tuy nhiên kích thước quá lớn giữ nhiều dữ liệu, có thể tăng lock time và làm một lần retry đắt hơn; cần benchmark với dữ liệu và database thực tế.",
+    "difficulty": "Trung cấp",
+    "source": "MultiThreadDotnet/BatchEtlSample/BatchEtlSample_GUIDE.md"
+  },
+  {
+    "id": "concurrency-messaging-16",
+    "question": "Vì sao điều kiện W + R > N chưa đủ để tự khẳng định một replicated store là linearizable?",
+    "options": [
+      "Vì read quorum và write quorum sẽ không bao giờ giao nhau",
+      "Vì linearizability chỉ áp dụng cho cache local",
+      "Vì N bắt buộc phải bằng 1 trong mọi hệ thống tuyến tính hóa",
+      "Vì giao quorum chỉ tạo overlap; version/conflict resolution, concurrent write, failure và reconfiguration vẫn quyết định semantics"
+    ],
+    "answerIndex": 3,
+    "explanation": "W + R > N bảo đảm một read quorum và write quorum có ít nhất một replica chung trong mô hình đơn giản. Nó chưa quy định cách chọn version mới nhất, giải quyết concurrent write, xử lý sloppy quorum/failure hay đổi membership, nên không phải một proof linearizability hoàn chỉnh.",
+    "difficulty": "Nâng cao",
+    "source": "JavaAdvanceMapCsharp/Lessions/20-distributed-systems-data.md"
+  }
+]

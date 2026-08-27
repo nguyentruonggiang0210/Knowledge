@@ -1,0 +1,14 @@
+# Viết resource configuration tương ứng trước hoặc dùng generate-config-out như
+# bước bootstrap. Không apply sample này khi chưa thay OCID và review ownership.
+resource "oci_core_vcn" "existing" {
+  compartment_id = "ocid1.compartment...replace"
+  cidr_blocks     = ["10.42.0.0/16"]
+  display_name    = "existing-vcn"
+  dns_label       = "existing"
+}
+
+import {
+  to = oci_core_vcn.existing
+  id = "ocid1.vcn...replace"
+}
+

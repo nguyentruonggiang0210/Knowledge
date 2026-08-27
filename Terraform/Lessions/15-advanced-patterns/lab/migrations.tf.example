@@ -1,0 +1,11 @@
+# Ví dụ khi configuration cũ có count instance 0/1 và mới có stable keys.
+moved {
+  from = terraform_data.deployment[0]
+  to   = terraform_data.deployment["api@primary"]
+}
+
+moved {
+  from = terraform_data.deployment[1]
+  to   = terraform_data.deployment["worker@primary"]
+}
+

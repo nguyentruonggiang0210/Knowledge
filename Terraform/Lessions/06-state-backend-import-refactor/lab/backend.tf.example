@@ -1,0 +1,5 @@
+terraform {
+  # Native OCI backend yêu cầu Terraform 1.12 trở lên.
+  backend "oci" {}
+}
+

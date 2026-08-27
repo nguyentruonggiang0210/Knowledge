@@ -1,0 +1,51 @@
+{
+  "id": "java-jvm-spring",
+  "title": "Java, JVM & Spring cho kỹ sư C#",
+  "navTitle": "Java · JVM · Spring",
+  "eyebrow": "Backend engineering",
+  "description": "Lộ trình cô đọng từ ngôn ngữ Java và JVM đến Spring Boot, persistence, security, observability và năng lực phỏng vấn senior.",
+  "order": 6,
+  "icon": "code",
+  "accent": "coral",
+  "level": "Nâng cao",
+  "estimatedMinutes": 32,
+  "tags": [
+    "Java 21",
+    "JVM",
+    "Spring Boot",
+    "JPA",
+    "MyBatis",
+    "Senior backend"
+  ],
+  "sourceFolders": [
+    "Interview/Anwsers/java.md",
+    "Interview/Anwsers/jvm_spring.md",
+    "Interview/java.md",
+    "Interview/jvm_spring.md",
+    "JavaAdvanceMapCsharp/Lessions/00-senior-competency-matrix.md",
+    "JavaAdvanceMapCsharp/Lessions/01-runtime-va-type-system.md",
+    "JavaAdvanceMapCsharp/Lessions/03-generics-collections.md",
+    "JavaAdvanceMapCsharp/Lessions/04-functional-streams.md",
+    "JavaAdvanceMapCsharp/Lessions/05-exceptions-resources.md",
+    "JavaAdvanceMapCsharp/Lessions/07-jvm-memory-performance.md",
+    "JavaAdvanceMapCsharp/Lessions/08-annotations-reflection.md",
+    "JavaAdvanceMapCsharp/Lessions/10-sql-jdbc-transactions.md",
+    "JavaAdvanceMapCsharp/Lessions/11-architecture-spring.md",
+    "JavaAdvanceMapCsharp/Lessions/12-capstone.md",
+    "JavaAdvanceMapCsharp/Lessions/13-standard-library-api-design.md",
+    "JavaAdvanceMapCsharp/Lessions/14-jpms-classloading-compatibility.md",
+    "JavaAdvanceMapCsharp/Lessions/16-spring-boot-production.md",
+    "JavaAdvanceMapCsharp/Lessions/17-jpa-hibernate-persistence.md",
+    "JavaAdvanceMapCsharp/Lessions/27-mybatis-dapper-sql-mapper.md",
+    "JavaAdvanceMapCsharp/Lessions/README.md",
+    "JavaAdvanceMapCsharp/README.md",
+    "JavaAdvanceMapCsharp/SourceSamples/README.md"
+  ],
+  "outcomes": [
+    "Ánh xạ đúng tư duy C#/.NET sang idiom Java thay vì dịch code từng dòng",
+    "Giải thích runtime JVM, class loading, GC/JIT và chọn đúng bằng chứng chẩn đoán",
+    "Thiết kế Spring Boot service với boundary, transaction, security và test rõ ràng",
+    "Chọn JDBC, JPA hay MyBatis theo query shape, lifecycle và quyền sở hữu SQL",
+    "Xây roadmap học và capstone có tiêu chí kiểm chứng ở mức senior"
+  ]
+}

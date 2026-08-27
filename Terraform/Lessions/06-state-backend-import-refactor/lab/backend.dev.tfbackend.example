@@ -1,0 +1,6 @@
+bucket              = "replace-terraform-state-bucket"
+namespace           = "replace_object_storage_namespace"
+key                 = "terraform-course/dev/state-lab.tfstate"
+region              = "ap-singapore-1"
+config_file_profile = "TF-LEARNING"
+

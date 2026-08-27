@@ -1,0 +1,33 @@
+1.
+A developer asks the agent to investigate why a specific API endpoint intermittently returns 500 responses. The codebase has 200+ files and the developer doesn't know which components are involved. The agent must trace the error through routing, middleware, business logic, and database layers.
+
+What task decomposition approach would be most effective?
+
+
+☆
+Lưu để xem lại
+
+Run parallel worker agents on the file system of four layers, then combine their findings to reconstruct the complete error path.
+
+Define a fixed sequence of investigation steps upfront—grep for error handlers, then examine middleware, then check database queries, then examine middleware-woven code.
+
+Have the agent first create a comprehensive plan mapping all code paths through documented components before beginning any exploration or code reading.
+
+Have the agent dynamically generate investigation subtasks based on what it discovers at each step, adapting its exploration plan as new information about the error path emerges.
+
+2.
+Your agent needs to insert a new helper function into the middle of a 150-line utility module, between two existing functions. The Edit tool fails because its old_string parameter cannot find unique text to match – the file has repetitive docstrings, variable names, and structural patterns.
+
+What's the most reliable way to complete this insertion?
+
+
+☆
+Lưu để xem lại
+
+Use Edit with an extremely long old_string capturing 30+ lines of context to guarantee uniqueness
+
+Use Read to load the file, add the function at the appropriate location, then Write the updated file
+
+Use Edit's replace_all parameter to target a common pattern and embed the new function in the replacement text
+
+Use Bash to append the function definition to the end of the file using heredoc syntax

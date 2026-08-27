@@ -1,0 +1,19 @@
+# PLAN/MOCK trước. Resource này có thể phát sinh chi phí lớn và lưu password vào state.
+variable "database_admin_password" {
+  type      = string
+  sensitive = true
+}
+
+resource "oci_database_autonomous_database" "example" {
+  compartment_id           = var.compartment_id
+  db_name                  = "TFCOURSE"
+  display_name             = "${var.name_prefix}-adb"
+  db_workload              = "OLTP"
+  admin_password           = var.database_admin_password
+  cpu_core_count           = 1
+  data_storage_size_in_tbs = 1
+  is_auto_scaling_enabled  = false
+  license_model            = "LICENSE_INCLUDED"
+  freeform_tags            = var.tags
+}
+

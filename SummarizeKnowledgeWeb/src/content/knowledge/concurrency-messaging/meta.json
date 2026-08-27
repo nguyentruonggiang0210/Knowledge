@@ -1,0 +1,38 @@
+{
+  "id": "concurrency-messaging",
+  "title": "Concurrency, Pipelines & Messaging",
+  "navTitle": "Concurrency · Messaging",
+  "eyebrow": "Parallel workloads",
+  "description": "Mental model và pipeline .NET thực hành, từ bounded concurrency/messaging đến consistency phân tán, cache, retry và admission control.",
+  "order": 8,
+  "icon": "cpu",
+  "accent": "violet",
+  "level": "Nâng cao",
+  "estimatedMinutes": 40,
+  "tags": [
+    ".NET 9",
+    "Channel",
+    "Backpressure",
+    "ActiveMQ",
+    "Kafka",
+    "Java concurrency",
+    "Distributed Systems",
+    "Resilience"
+  ],
+  "sourceFolders": [
+    "MultiThreadDotnet",
+    "JavaAdvanceMapCsharp/Lessions/06-concurrency.md",
+    "JavaAdvanceMapCsharp/Lessions/15-concurrency-deep-dive.md",
+    "JavaAdvanceMapCsharp/Lessions/19-messaging-kafka-event-driven.md",
+    "JavaAdvanceMapCsharp/Lessions/20-distributed-systems-data.md",
+    "JavaAdvanceMapCsharp/Lessions/21-caching-resilience-rate-limiting.md"
+  ],
+  "outcomes": [
+    "Phân biệt concurrency, parallelism, async I/O và thread ownership",
+    "Xây producer-consumer pipeline có bounded capacity và backpressure",
+    "Chọn pattern phù hợp cho file processing, batch ETL và media workload",
+    "Thiết kế cancellation, fault isolation, thread-safe state và deterministic output",
+    "Giải thích redelivery, idempotency, outbox/inbox và phạm vi exactly-once của broker",
+    "Phân tích CAP/PACELC, quorum, saga, cache và các cơ chế admission control theo failure mode"
+  ]
+}

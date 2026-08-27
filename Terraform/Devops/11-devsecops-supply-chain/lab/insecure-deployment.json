@@ -1,0 +1,25 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "name": "intentionally-insecure-fixture"
+  },
+  "spec": {
+    "template": {
+      "spec": {
+        "containers": [
+          {
+            "name": "app",
+            "image": "example.invalid/app:latest",
+            "securityContext": {
+              "readOnlyRootFilesystem": false,
+              "capabilities": {
+                "drop": []
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,226 @@
+[
+  {
+    "id": "rag-001",
+    "question": "Trong kiến trúc RAG v2, việc parse, chunk, tạo embedding và ghi persistent index thuộc pha nào?",
+    "options": [
+      "Offline ingestion/indexing",
+      "Online generation sau mỗi token",
+      "Render giao diện người dùng",
+      "Đánh giá câu trả lời thủ công"
+    ],
+    "answerIndex": 0,
+    "explanation": "RAG v2 tách offline ingestion/indexing khỏi online query. Các công việc nặng như parse, chunk, TF-IDF, embedding và lưu index được làm trước để tái sử dụng cho nhiều câu hỏi.",
+    "difficulty": "Cơ bản",
+    "source": "RAG/RAG_GUIDE_v2.md"
+  },
+  {
+    "id": "rag-002",
+    "question": "Khi incremental indexing, chunk và embedding cũ có thể được tái sử dụng khi điều kiện nào được giữ nguyên?",
+    "options": [
+      "Chỉ cần câu hỏi giống nhau",
+      "Hash tài liệu, cấu hình chunk và embedding model tương thích",
+      "Chỉ cần tên file có cùng phần mở rộng",
+      "Mọi tài liệu đều luôn được tái sử dụng bất kể nội dung"
+    ],
+    "answerIndex": 1,
+    "explanation": "Hệ thống đối chiếu hash tài liệu cùng cấu hình chunk/model. Khi các đầu vào quyết định nội dung chunk và vector không đổi, kết quả cũ mới an toàn để tái sử dụng; TF-IDF toàn corpus vẫn được fit lại.",
+    "difficulty": "Trung cấp",
+    "source": "RAG/RAG_GUIDE_v2.md"
+  },
+  {
+    "id": "rag-003",
+    "question": "Stable chunk ID trong hướng dẫn được tạo từ nhóm dữ liệu nào?",
+    "options": [
+      "Chỉ thời điểm chạy index",
+      "Chỉ số thứ tự ngẫu nhiên",
+      "Source, page, ordinal và nội dung text",
+      "Câu hỏi gần nhất của người dùng"
+    ],
+    "answerIndex": 2,
+    "explanation": "Chunk ID băm source, page, ordinal và text, giúp định danh ổn định theo tài liệu/chunk thay vì phụ thuộc một ID ngẫu nhiên của lần chạy.",
+    "difficulty": "Trung cấp",
+    "source": "RAG/RAG_GUIDE_v2.md"
+  },
+  {
+    "id": "rag-004",
+    "question": "Vì sao dense retrieval trong hướng dẫn có thể dùng tích vô hướng để tính cosine similarity?",
+    "options": [
+      "Vì mọi vector đều chỉ có một chiều",
+      "Vì TF-IDF đã xóa toàn bộ dấu tiếng Việt",
+      "Vì query không cần embedding",
+      "Vì document embedding và query embedding đã được chuẩn hóa L2"
+    ],
+    "answerIndex": 3,
+    "explanation": "Với hai vector có norm bằng 1 sau L2 normalization, cosine similarity đúng bằng dot product, nên phép nhân ma trận có thể dùng trực tiếp để chấm điểm dense.",
+    "difficulty": "Trung cấp",
+    "source": "RAG/RAG_GUIDE_v2.md"
+  },
+  {
+    "id": "rag-005",
+    "question": "Tại sao Reciprocal Rank Fusion (RRF) phù hợp để hợp nhất kết quả lexical và dense?",
+    "options": [
+      "RRF kết hợp thứ hạng nên không cần ép hai loại score về cùng một thang đo",
+      "RRF luôn yêu cầu fine-tune embedding model",
+      "RRF loại bỏ hoàn toàn lexical retrieval",
+      "RRF chỉ hoạt động khi hai danh sách giống hệt nhau"
+    ],
+    "answerIndex": 0,
+    "explanation": "TF-IDF và dense similarity có thang điểm khác nhau. RRF cộng đóng góp theo rank, ví dụ 1/(K + rank), nên hợp nhất được hai danh sách mà không cần hiệu chỉnh score trực tiếp.",
+    "difficulty": "Trung cấp",
+    "source": "RAG/RAG_GUIDE_v2.md"
+  },
+  {
+    "id": "rag-006",
+    "question": "MMR được dùng sau retrieval để đạt mục tiêu gì?",
+    "options": [
+      "Tăng temperature của LLM",
+      "Cân bằng relevance với độ đa dạng, giảm các chunk trùng lặp",
+      "Thay toàn bộ index bằng cache answer",
+      "Cho phép tài liệu vượt qua ACL"
+    ],
+    "answerIndex": 1,
+    "explanation": "Maximal Marginal Relevance chọn evidence vừa liên quan với truy vấn vừa không quá giống các chunk đã chọn, giúp context có độ phủ tốt hơn.",
+    "difficulty": "Trung cấp",
+    "source": "RAG/RAG_GUIDE_v2.md"
+  },
+  {
+    "id": "rag-007",
+    "question": "Chỉ dẫn trong prompt rằng tài liệu là untrusted data có thay thế được authentication và document ACL không?",
+    "options": [
+      "Có, nếu model đủ lớn",
+      "Có, nếu top_k bằng 1",
+      "Không; quyền phải được kiểm tra trước retrieval và prompt chỉ là một lớp phòng vệ",
+      "Không cần ACL nếu có citation"
+    ],
+    "answerIndex": 2,
+    "explanation": "Prompt giúp giảm rủi ro làm theo nội dung độc hại trong tài liệu nhưng không phải cơ chế bảo mật. Hệ thống nội bộ vẫn cần xác thực, tenant/document ACL và lọc quyền trước retrieval.",
+    "difficulty": "Nâng cao",
+    "source": "RAG/RAG_GUIDE_v2.md"
+  },
+  {
+    "id": "rag-008",
+    "question": "Hit@K trong bộ đánh giá retrieval đo điều gì?",
+    "options": [
+      "Tỷ lệ token được sinh đúng chính tả",
+      "Số lần model được load vào GPU",
+      "Độ dài trung bình của câu trả lời",
+      "Tỷ lệ câu hỏi có ít nhất một source đúng trong Top-K"
+    ],
+    "answerIndex": 3,
+    "explanation": "Hit@K kiểm tra liệu danh sách Top-K có chứa ít nhất một nguồn kỳ vọng hay không. Nó đánh giá retrieval source, không tự chứng minh correctness hoặc faithfulness của câu trả lời LLM.",
+    "difficulty": "Cơ bản",
+    "source": "RAG/RAG_GUIDE_v2.md"
+  },
+  {
+    "id": "rag-009",
+    "question": "Khi corpus tăng tới hàng trăm nghìn hoặc hàng triệu chunk, hướng dẫn đề xuất thay exact vector scan bằng gì?",
+    "options": [
+      "ANN index như HNSW hoặc FAISS",
+      "Đọc lại mọi PDF bằng tay",
+      "Chỉ tăng context window vô hạn",
+      "Bỏ embedding và trả source ngẫu nhiên"
+    ],
+    "answerIndex": 0,
+    "explanation": "Exact scan chấm mọi vector đủ điều kiện nên phù hợp dữ liệu nhỏ đến trung bình. Ở quy mô lớn, ANN backend như Qdrant/pgvector HNSW hoặc FAISS giảm chi phí truy xuất.",
+    "difficulty": "Nâng cao",
+    "source": "RAG/RAG_GUIDE_v2.md"
+  },
+  {
+    "id": "rag-010",
+    "question": "Vì sao cache key của câu trả lời cần chứa index fingerprint và các selected chunk?",
+    "options": [
+      "Để bỏ luôn bước authorization",
+      "Để tránh trả answer cũ khi tài liệu hoặc context evidence đã thay đổi",
+      "Để mọi câu hỏi nhận cùng một câu trả lời",
+      "Để tăng số lượng chunk không giới hạn"
+    ],
+    "answerIndex": 1,
+    "explanation": "Index fingerprint và selected chunks gắn cache với phiên bản tri thức/evidence thực tế. Khi tài liệu hoặc lựa chọn context đổi, key đổi và answer cũ không bị tái dùng sai.",
+    "difficulty": "Nâng cao",
+    "source": "RAG/RAG_GUIDE_v2.md"
+  },
+  {
+    "id": "rag-011",
+    "question": "Một production agent loop an toàn cần đặc tính nào?",
+    "options": [
+      "Cho model gọi mọi tên tool tùy ý",
+      "Dừng ngay khi model tự nói đã hoàn thành",
+      "Có allowlist, validation, step/time/cost budget và stop condition rõ",
+      "Lặp vô hạn để tăng cơ hội thành công"
+    ],
+    "answerIndex": 2,
+    "explanation": "Controller phải giới hạn tool và ngân sách, validate argument/quyền, lưu observation và có điều kiện dừng. Lời model nói đã xong không thay thế verifier hoặc trạng thái hệ thống.",
+    "difficulty": "Trung cấp",
+    "source": "AIEngineer/Lessions/30-tool-calling-agent-loop-workflows/README.md"
+  },
+  {
+    "id": "rag-012",
+    "question": "Trong vòng Plan–Execute–Reflect–Verify, thành phần nào nên quyết định artifact cuối có đạt yêu cầu bằng test, schema hoặc invariant?",
+    "options": [
+      "Router chỉ dựa vào tên task",
+      "Critic chỉ đưa nhận xét mềm",
+      "Planner trước khi có observation",
+      "Verifier"
+    ],
+    "answerIndex": 3,
+    "explanation": "Critic có thể phát hiện thiếu sót nhưng cũng có thể sai. Verifier dùng bằng chứng máy đọc được như test, schema, checksum hoặc invariant để làm gate hoàn thành.",
+    "difficulty": "Cơ bản",
+    "source": "AIEngineer/Lessions/31-planning-reflection-verification/README.md"
+  },
+  {
+    "id": "rag-013",
+    "question": "Trong hệ agent, 'state' được mô tả đúng nhất là gì?",
+    "options": [
+      "Dữ liệu có thẩm quyền của workflow, như task đã chạy và artifact version đang xét",
+      "Mọi đoạn hội thoại từng tồn tại, luôn đúng vĩnh viễn",
+      "Chỉ các token hiện đang nằm trong prompt",
+      "Một summary không cần provenance"
+    ],
+    "answerIndex": 0,
+    "explanation": "State là dữ liệu có thẩm quyền về tiến trình và artifact. Context là phần dữ liệu đưa vào một lượt model, còn memory là thông tin lưu để có thể truy xuất và không tự động đúng hoặc còn mới.",
+    "difficulty": "Trung cấp",
+    "source": "AIEngineer/Lessions/33-memory-state-compaction-metis/README.md"
+  },
+  {
+    "id": "rag-014",
+    "question": "Pre-planning consultant nên làm gì trước khi planner lập kế hoạch?",
+    "options": [
+      "Âm thầm chạy tool ghi dữ liệu để tiết kiệm thời gian",
+      "Truy xuất memory chỉ-đọc và nêu ràng buộc, rủi ro, câu hỏi còn thiếu",
+      "Thay planner chốt mọi quyết định",
+      "Xóa provenance để context ngắn nhất"
+    ],
+    "answerIndex": 1,
+    "explanation": "Consultant là bước chỉ-đọc cung cấp advice từ memory liên quan. Planner vẫn sở hữu kế hoạch; consultant không được tự thực thi tool hoặc sửa state.",
+    "difficulty": "Nâng cao",
+    "source": "AIEngineer/Lessions/33-memory-state-compaction-metis/README.md"
+  },
+  {
+    "id": "rag-015",
+    "question": "Trong multi-agent orchestration, loại task nào có thể chạy song song an toàn nhất?",
+    "options": [
+      "Hai task liên tục ghi cùng một artifact không có owner",
+      "Hai task tạo cycle và chờ nhau",
+      "Các task độc lập, có contract và artifact được cô lập",
+      "Task phụ thuộc chạy trước khi input được kiểm chứng"
+    ],
+    "answerIndex": 2,
+    "explanation": "Task độc lập với input/output contract, ownership và artifact riêng là ứng viên song song tốt. Task có dependency phải đợi artifact hợp lệ; shared mutable state dễ gây race và khó audit.",
+    "difficulty": "Trung cấp",
+    "source": "AIEngineer/Lessions/34-multi-agent-orchestration/README.md"
+  },
+  {
+    "id": "rag-016",
+    "question": "Trong MCP hoặc hệ connector, discovery một tool chứng minh điều gì?",
+    "options": [
+      "Caller đã được cấp mọi quyền đối với hệ thống ngoài",
+      "Kết quả tool luôn đáng tin như system instruction",
+      "Protocol đã tự xử lý prompt injection và secrets",
+      "Capability tồn tại; authorization vẫn phải được thực thi riêng"
+    ],
+    "answerIndex": 3,
+    "explanation": "Discovery chỉ cho biết capability được công bố. Client/server vẫn phải validate schema, policy/approval, authentication và authorization; output cũng phải được coi là dữ liệu không đáng tin kèm provenance.",
+    "difficulty": "Nâng cao",
+    "source": "AIEngineer/Lessions/35-mcp-skills-connectors-protocols/README.md"
+  }
+]

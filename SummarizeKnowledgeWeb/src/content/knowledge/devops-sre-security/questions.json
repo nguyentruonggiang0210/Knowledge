@@ -1,0 +1,226 @@
+[
+  {
+    "id": "devops-001",
+    "question": "DevOps được mô tả đúng nhất là gì?",
+    "options": [
+      "Tên mới của đội vận hành chịu trách nhiệm deploy hộ",
+      "Cách tổ chức flow, feedback và ownership để đưa giá trị an toàn",
+      "Một bộ công cụ CI/CD cố định",
+      "Quy trình loại bỏ hoàn toàn vai trò developer"
+    ],
+    "answerIndex": 1,
+    "explanation": "DevOps tập trung vào luồng giá trị, vòng phản hồi và ownership chung. Chỉ đổi tên team hoặc mua tool mà giữ nguyên silo/handoff không tạo ra kết quả DevOps.",
+    "difficulty": "Cơ bản",
+    "source": "Terraform/Devops/Quiz/answers/01-foundation-answers.md"
+  },
+  {
+    "id": "devops-002",
+    "question": "Khi cần dừng một service để nó có cơ hội cleanup và đóng kết nối, signal nào thường nên thử trước?",
+    "options": [
+      "SIGKILL ngay lập tức",
+      "SIGHUP lặp vô hạn",
+      "SIGTERM với graceful timeout theo runbook",
+      "Không gửi signal, chỉ xóa PID file"
+    ],
+    "answerIndex": 2,
+    "explanation": "Process có thể bắt SIGTERM để shutdown có trật tự. SIGKILL không thể bị bắt để cleanup và thường chỉ dùng khi graceful timeout hết hoặc runbook yêu cầu.",
+    "difficulty": "Cơ bản",
+    "source": "Terraform/Devops/Quiz/answers/01-foundation-answers.md"
+  },
+  {
+    "id": "devops-003",
+    "question": "DNS TTL có ý nghĩa chính nào?",
+    "options": [
+      "Định hướng thời gian cache record, nhưng resolver vẫn có policy và propagation riêng",
+      "Bảo đảm mọi resolver cập nhật chính xác cùng một giây",
+      "Mã hóa truy vấn DNS",
+      "Chọn route mạng cho packet"
+    ],
+    "answerIndex": 0,
+    "explanation": "TTL hướng dẫn caching chứ không tạo một đồng hồ propagation tuyệt đối. Resolver, negative cache và record TTL cũ khiến thời gian quan sát thay đổi khác nhau.",
+    "difficulty": "Cơ bản",
+    "source": "Terraform/Devops/Quiz/answers/01-foundation-answers.md"
+  },
+  {
+    "id": "devops-004",
+    "question": "Vì sao script CI in chữ 'error' nhưng kết thúc với exit code 0 là nguy hiểm?",
+    "options": [
+      "Nó làm log không thể lưu",
+      "Nó tự động xóa artifact",
+      "Nó luôn làm runner reboot",
+      "Shell/CI thường coi exit code 0 là thành công và có thể tiếp tục pipeline"
+    ],
+    "answerIndex": 3,
+    "explanation": "Exit code là contract máy đọc của command. Chỉ in thông báo lỗi không đủ; script phải propagate non-zero exit code để pipeline dừng hoặc xử lý đúng.",
+    "difficulty": "Cơ bản",
+    "source": "Terraform/Devops/Quiz/answers/01-foundation-answers.md"
+  },
+  {
+    "id": "devops-005",
+    "question": "Nguyên tắc nào giúp artifact staging đã kiểm thử giống đúng bytes được triển khai lên production?",
+    "options": [
+      "Build một lần rồi promote cùng immutable digest qua các môi trường",
+      "Rebuild từ branch mới nhất ở từng môi trường",
+      "Dùng tag latest và cho registry tự chọn image",
+      "Copy source trực tiếp vào production host"
+    ],
+    "answerIndex": 0,
+    "explanation": "Build once/promote exact digest giữ identity và provenance của artifact xuyên suốt pipeline. Rebuild theo môi trường có thể tạo bytes khác dù source trông giống nhau.",
+    "difficulty": "Trung cấp",
+    "source": "Terraform/Devops/Quiz/answers/02-core-answers.md"
+  },
+  {
+    "id": "devops-006",
+    "question": "Trong container, trách nhiệm quan trọng của process PID 1 là gì?",
+    "options": [
+      "Tự động tăng memory limit",
+      "Mã hóa mọi file trong image",
+      "Forward/handle signal và reap child process",
+      "Thay thế container runtime"
+    ],
+    "answerIndex": 2,
+    "explanation": "PID 1 cần xử lý/forward signal để shutdown đúng và reap child để tránh zombie. Nếu không, orchestrator có thể phải force-kill khi hết termination grace period.",
+    "difficulty": "Trung cấp",
+    "source": "Terraform/Devops/Quiz/answers/02-core-answers.md"
+  },
+  {
+    "id": "devops-007",
+    "question": "Kubernetes probe nào quyết định Pod có được đưa vào tập endpoint nhận traffic hay không?",
+    "options": [
+      "Liveness probe",
+      "Readiness probe",
+      "Startup probe sau khi app đã chạy ổn định",
+      "Node heartbeat"
+    ],
+    "answerIndex": 1,
+    "explanation": "Readiness điều khiển việc Pod có sẵn sàng nhận traffic. Liveness quyết định restart process mắc kẹt, còn startup probe bảo vệ ứng dụng khởi động chậm khỏi các probe khác.",
+    "difficulty": "Cơ bản",
+    "source": "Terraform/Devops/Quiz/answers/03-cloud-native-answers.md"
+  },
+  {
+    "id": "devops-008",
+    "question": "Kubernetes scheduler chủ yếu dùng giá trị nào để quyết định Pod có vừa một node hay không?",
+    "options": [
+      "Usage trung bình của cluster trong 24 giờ",
+      "Memory limit của toàn namespace",
+      "Số request HTTP hiện tại",
+      "Resource requests của Pod so với allocatable và constraint của từng node"
+    ],
+    "answerIndex": 3,
+    "explanation": "Scheduler đặt Pod dựa trên requests và constraint cụ thể của node như taint, affinity, zone và quota. Cluster average có thể che fragmentation hoặc thiếu capacity trên từng node.",
+    "difficulty": "Trung cấp",
+    "source": "Terraform/Devops/Quiz/answers/03-cloud-native-answers.md"
+  },
+  {
+    "id": "devops-009",
+    "question": "Nhận định nào đúng về dữ liệu Secret trong manifest Kubernetes?",
+    "options": [
+      "Base64 là encryption mạnh và đủ để public manifest",
+      "Secret luôn không thể xuất hiện trong log hoặc mount",
+      "Base64 chỉ là encoding; vẫn cần RBAC, encryption at rest, rotation và secret management phù hợp",
+      "Secret không cần kiểm soát access nếu namespace riêng"
+    ],
+    "answerIndex": 2,
+    "explanation": "Base64 có thể giải mã dễ dàng và không tạo confidentiality. Secret cần quyền tối thiểu, encryption/KMS hoặc external store, rotation và tránh bị lộ qua Git, log hay mount thừa.",
+    "difficulty": "Trung cấp",
+    "source": "Terraform/Devops/Quiz/answers/03-cloud-native-answers.md"
+  },
+  {
+    "id": "devops-010",
+    "question": "Để một distributed trace nối được request qua HTTP và message queue, điều gì phải được truyền qua boundary?",
+    "options": [
+      "Trace/span context được inject và extract đúng",
+      "Toàn bộ log file của service trước",
+      "CPU usage của từng host trong baggage",
+      "Secret của người dùng trong metric label"
+    ],
+    "answerIndex": 0,
+    "explanation": "Instrumentation phải inject/extract trace context qua các boundary đồng bộ và bất đồng bộ. Baggage không nên chứa secret hay dữ liệu cardinality không giới hạn.",
+    "difficulty": "Trung cấp",
+    "source": "Terraform/Devops/Quiz/answers/03-cloud-native-answers.md"
+  },
+  {
+    "id": "devops-011",
+    "question": "Phân biệt đúng giữa SLI, SLO và SLA là gì?",
+    "options": [
+      "SLI là hợp đồng, SLO là log, SLA là dashboard",
+      "SLI và SLO đều chỉ là CPU threshold",
+      "SLA là phép đo nội bộ còn SLI là tiền phạt",
+      "SLI là phép đo, SLO là mục tiêu trên phép đo, SLA là cam kết có điều khoản/hậu quả"
+    ],
+    "answerIndex": 3,
+    "explanation": "SLI định nghĩa signal đo được; SLO đặt reliability target cho signal đó; SLA là cam kết với bên nhận dịch vụ và thường gắn phương pháp đo cùng hậu quả.",
+    "difficulty": "Cơ bản",
+    "source": "Terraform/Devops/Quiz/answers/04-production-answers.md"
+  },
+  {
+    "id": "devops-012",
+    "question": "RPO và RTO lần lượt trả lời hai câu hỏi nào?",
+    "options": [
+      "Bao nhiêu CPU và bao nhiêu RAM cần cấp",
+      "Chấp nhận mất bao nhiêu dữ liệu theo thời gian và cần phục hồi dịch vụ trong bao lâu",
+      "Bao nhiêu replica và bao nhiêu shard",
+      "Bao nhiêu alert và bao nhiêu dashboard"
+    ],
+    "answerIndex": 1,
+    "explanation": "RPO là mức mất dữ liệu chấp nhận được, thường biểu diễn theo thời gian. RTO là mục tiêu thời gian đưa dịch vụ trở lại sau sự cố.",
+    "difficulty": "Cơ bản",
+    "source": "Terraform/Devops/Quiz/answers/04-production-answers.md"
+  },
+  {
+    "id": "devops-013",
+    "question": "Retry policy an toàn cho dependency đang lỗi nên có đặc điểm nào?",
+    "options": [
+      "Chỉ retry lỗi transient của operation idempotent, trong deadline/budget, có backoff và jitter",
+      "Retry vô hạn ở mọi tầng để tăng xác suất thành công",
+      "Không cần timeout nếu có autoscaling",
+      "Mỗi service tự retry độc lập mà không có owner chung"
+    ],
+    "answerIndex": 0,
+    "explanation": "Retry không giới hạn hoặc lồng ở nhiều tầng khuếch đại tải và kéo dài recovery. Cần một retry owner, giới hạn attempts/deadline, idempotency, exponential backoff và jitter.",
+    "difficulty": "Nâng cao",
+    "source": "Terraform/Devops/Quiz/answers/05-senior-answers.md"
+  },
+  {
+    "id": "devops-014",
+    "question": "Trong một incident lớn, Incident Commander có trách nhiệm chính nào?",
+    "options": [
+      "Tự mình thực hiện mọi thay đổi kỹ thuật",
+      "Chỉ viết postmortem sau khi sự cố kết thúc",
+      "Điều phối mitigation/recovery, phân vai, quyết định và communication cadence",
+      "Tắt mọi monitoring để giảm nhiễu"
+    ],
+    "answerIndex": 2,
+    "explanation": "IC giữ đội hướng tới giảm impact và phục hồi, tổ chức workstream, source of truth và comms. Subject-matter experts điều tra/thao tác trong các workstream thay vì IC ôm mọi việc.",
+    "difficulty": "Trung cấp",
+    "source": "Terraform/Devops/Quiz/answers/04-production-answers.md"
+  },
+  {
+    "id": "devops-015",
+    "question": "Vì sao trạng thái 'backup job thành công' chưa đủ chứng minh khả năng phục hồi?",
+    "options": [
+      "Vì backup luôn chậm hơn replication",
+      "Vì phải restore, kiểm tra dữ liệu/dependency và đo RTO/RPO end-to-end",
+      "Vì backup không bao giờ chứa dữ liệu",
+      "Vì chỉ snapshot VM mới được gọi là backup"
+    ],
+    "answerIndex": 1,
+    "explanation": "Job success chỉ chứng minh output đã được tạo theo kiểm tra giới hạn. Restore drill mới phát hiện backup hỏng, thiếu key/config/WAL, thiếu capacity hoặc application không khởi động được.",
+    "difficulty": "Nâng cao",
+    "source": "Terraform/Devops/Quiz/answers/04-production-answers.md"
+  },
+  {
+    "id": "devops-016",
+    "question": "Chuỗi triển khai database schema theo expand-contract an toàn thường là gì?",
+    "options": [
+      "Drop cột cũ trước rồi mới deploy code mới",
+      "Đổi schema destructive và dựa hoàn toàn vào binary rollback",
+      "Dừng mọi telemetry trong giai đoạn migration",
+      "Thêm thay đổi tương thích, deploy code hỗ trợ hai phiên bản, backfill/verify, chuyển consumer rồi mới contract"
+    ],
+    "answerIndex": 3,
+    "explanation": "Expand trước để code cũ/mới cùng chạy, backfill idempotent và quan sát consistency, sau đó chuyển traffic/read-write. Chỉ contract khi consumer cũ đã hết và rollback window được xử lý.",
+    "difficulty": "Nâng cao",
+    "source": "Terraform/Devops/Quiz/answers/04-production-answers.md"
+  }
+]

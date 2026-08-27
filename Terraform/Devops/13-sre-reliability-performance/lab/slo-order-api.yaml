@@ -1,0 +1,25 @@
+apiVersion: openslo/v1
+kind: SLO
+metadata:
+  name: order-api-availability
+  displayName: Order API availability
+spec:
+  description: Valid order requests should complete successfully within 300 ms.
+  service: order-api
+  budgetingMethod: Occurrences
+  objectives:
+    - ratioMetrics:
+        good:
+          metricSource:
+            metricSourceRef: prometheus
+            type: Prometheus
+          metricQuery: sum(rate(http_requests_total{service="order-api",outcome="success"}[5m]))
+        total:
+          metricSource:
+            metricSourceRef: prometheus
+            type: Prometheus
+          metricQuery: sum(rate(http_requests_total{service="order-api"}[5m]))
+      target: 0.999
+  timeWindow:
+    - duration: 30d
+      isRolling: true

@@ -1,0 +1,32 @@
+# Terraform runtime and state
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.plan
+crash.log
+crash.*.log
+
+# Keep dependency lock files in version control
+!.terraform.lock.hcl
+
+# Local values and credentials
+*.auto.tfvars
+*.auto.tfvars.json
+terraform.tfvars
+terraform.tfvars.json
+*.pem
+*.key
+*.pfx
+.env
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Generated reports
+reports/
+coverage/
+

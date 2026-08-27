@@ -1,0 +1,226 @@
+[
+  {
+    "id": "dotnet-api-containers-01",
+    "question": "Trong C#, phát biểu nào mô tả đúng cách truyền tham số mặc định của value type và reference type?",
+    "options": [
+      "Cả hai đều được truyền by-value; với reference type, giá trị được sao chép là tham chiếu",
+      "Value type luôn truyền by-value, còn reference type luôn truyền by-reference",
+      "Cả hai đều truyền by-reference nhưng value type được sao chép trước",
+      "Cách truyền phụ thuộc việc dữ liệu nằm trên stack hay heap"
+    ],
+    "answerIndex": 0,
+    "explanation": "Mặc định, C# truyền cả value type lẫn reference type by-value. Value type sao chép giá trị, còn reference type sao chép tham chiếu nên hai biến có thể cùng trỏ tới một object; chỉ các cơ chế như ref mới alias trực tiếp biến của bên gọi.",
+    "difficulty": "Cơ bản",
+    "source": "Interview/Anwsers/c_sharp.md"
+  },
+  {
+    "id": "dotnet-api-containers-02",
+    "question": "Điều gì xảy ra khi một giá trị int được boxing sang object rồi unboxing?",
+    "options": [
+      "Boxing chỉ tạo một con trỏ, còn unboxing chấp nhận mọi kiểu số tương thích",
+      "Boxing không cấp phát và unboxing luôn dùng chuyển đổi ngầm định",
+      "Boxing thường cấp phát object và sao chép giá trị; unboxing phải kiểm tra đúng kiểu đã được boxing",
+      "Boxing chỉ xảy ra với nullable reference type"
+    ],
+    "answerIndex": 2,
+    "explanation": "Boxing đóng gói value type vào object hoặc interface tương thích, thường gây cấp phát và copy. Unboxing yêu cầu đúng boxed type; dùng generic như List<int> thường giúp tránh boxing không cần thiết.",
+    "difficulty": "Cơ bản",
+    "source": "Interview/Anwsers/c_sharp.md"
+  },
+  {
+    "id": "dotnet-api-containers-03",
+    "question": "Toán tử null-forgiving ! trong hệ thống nullable reference types có tác dụng gì?",
+    "options": [
+      "Chèn kiểm tra null và ném NullReferenceException ngay tại biểu thức",
+      "Chỉ dập cảnh báo nullable của compiler, không thêm kiểm tra an toàn ở runtime",
+      "Biến reference type thành value type không thể null",
+      "Tự động thay null bằng giá trị mặc định"
+    ],
+    "answerIndex": 1,
+    "explanation": "Nullable reference types dựa trên annotation và flow analysis ở compile time. Toán tử ! chỉ thay đổi đánh giá của compiler; dữ liệu từ reflection, deserialization hoặc code cũ vẫn có thể là null ở runtime nên boundary vẫn cần guard phù hợp.",
+    "difficulty": "Cơ bản",
+    "source": "Interview/Anwsers/c_sharp.md"
+  },
+  {
+    "id": "dotnet-api-containers-04",
+    "question": "Vì sao một giá trị public const có thể gây vấn đề versioning giữa các assembly?",
+    "options": [
+      "const được đọc lại từ assembly cung cấp ở mỗi lần truy cập",
+      "const luôn cần khóa khi đọc từ nhiều thread",
+      "const bị thay đổi ngẫu nhiên khi JIT tối ưu",
+      "Giá trị const được inline vào assembly gọi nên consumer chưa build lại có thể giữ giá trị cũ"
+    ],
+    "answerIndex": 3,
+    "explanation": "Compile-time constant được inline vào mã của consumer. Nếu thư viện đổi public const mà consumer không được build lại, consumer có thể tiếp tục dùng giá trị cũ; static readonly thường phù hợp hơn cho giá trị có thể đổi giữa phiên bản.",
+    "difficulty": "Trung cấp",
+    "source": "Interview/Anwsers/c_sharp.md"
+  },
+  {
+    "id": "dotnet-api-containers-05",
+    "question": "Vì sao IEnumerable<string> có thể dùng ở nơi cần IEnumerable<object>, nhưng List<string> không thể dùng như List<object>?",
+    "options": [
+      "IEnumerable<T> chỉ sản xuất T nên hỗ trợ covariance; List<T> vừa đọc vừa ghi nên phải invariant",
+      "List<T> không triển khai generic interface",
+      "IEnumerable<T> thực hiện boxing mọi phần tử",
+      "CLR chỉ cho phép variance với value type"
+    ],
+    "answerIndex": 0,
+    "explanation": "IEnumerable<out T> chỉ đưa T ra ngoài nên chuyển từ chuỗi sang object là type-safe. List<T> cho phép thêm phần tử; nếu List<string> được xem là List<object>, caller có thể thêm một object không phải chuỗi và phá vỡ type safety.",
+    "difficulty": "Trung cấp",
+    "source": "Interview/Anwsers/c_sharp.md"
+  },
+  {
+    "id": "dotnet-api-containers-06",
+    "question": "Một truy vấn LINQ-to-Objects dùng deferred execution thường có hành vi nào khi được enumerate hai lần?",
+    "options": [
+      "Nó luôn dùng snapshot được tạo ở lần gọi operator đầu tiên",
+      "Lần enumerate thứ hai luôn ném lỗi vì pipeline chỉ dùng được một lần",
+      "Pipeline thường chạy lại và có thể quan sát trạng thái source mới nhất",
+      "Compiler tự động chuyển toàn bộ kết quả thành mảng"
+    ],
+    "answerIndex": 2,
+    "explanation": "Phần lớn operator LINQ tạo pipeline chưa thực thi; enumeration mới đọc source. Mỗi lần enumerate thường thực thi lại, nên nên materialize bằng ToList/ToArray khi cần snapshot, cần đóng resource trước boundary hoặc muốn tránh truy vấn lặp lại.",
+    "difficulty": "Cơ bản",
+    "source": "Interview/Anwsers/c_sharp.md"
+  },
+  {
+    "id": "dotnet-api-containers-07",
+    "question": "Khi gọi một phương thức async, phần code trước await đầu tiên chưa hoàn tất chạy như thế nào?",
+    "options": [
+      "Luôn chạy trên một thread mới do runtime tạo",
+      "Chạy đồng bộ trên thread gọi cho tới await đầu tiên chưa hoàn tất",
+      "Không chạy cho tới khi caller await Task trả về",
+      "Luôn được đưa vào ThreadPool trước câu lệnh đầu tiên"
+    ],
+    "answerIndex": 1,
+    "explanation": "Async method bắt đầu chạy đồng bộ trên thread gọi. Khi gặp một awaitable chưa hoàn tất, nó đăng ký continuation và trả Task/ValueTask; vì vậy gọi async không đồng nghĩa tự động tạo background thread.",
+    "difficulty": "Trung cấp",
+    "source": "Interview/Anwsers/c_sharp.md"
+  },
+  {
+    "id": "dotnet-api-containers-08",
+    "question": "Nếu chỉ cần biết có phần tử thỏa predicate hay không, lựa chọn LINQ nào thường phù hợp nhất?",
+    "options": [
+      "Where(predicate).ToList().Count > 0",
+      "Where(predicate).Count() >= 0",
+      "OrderBy(predicate).First()",
+      "Any(predicate), vì có thể dừng ở kết quả đầu và thường dịch thành EXISTS với IQueryable"
+    ],
+    "answerIndex": 3,
+    "explanation": "Any(predicate) thể hiện đúng ý định tồn tại và short-circuit với LINQ-to-Objects. Với IQueryable, provider thường dịch thành EXISTS thay vì đếm toàn bộ, dù SQL và query plan thực tế vẫn nên được kiểm tra.",
+    "difficulty": "Cơ bản",
+    "source": "Interview/Anwsers/c_sharp.md"
+  },
+  {
+    "id": "dotnet-api-containers-09",
+    "question": "Lifetime nào phù hợp nhất cho DbContext trong phần lớn request hoặc command của ASP.NET Core?",
+    "options": [
+      "Singleton dùng chung cho toàn ứng dụng để tái sử dụng change tracker",
+      "Một static instance cho mỗi entity type",
+      "Unit-of-work ngắn, thường scoped theo request/command và được dispose sau đó",
+      "Một instance dùng song song bởi mọi worker trong background service"
+    ],
+    "answerIndex": 2,
+    "explanation": "DbContext là unit-of-work ngắn và không thread-safe. Dùng singleton dễ làm change tracker phình, giữ entity cũ, trộn thay đổi giữa request và tạo race; công việc song song cần scope/context riêng.",
+    "difficulty": "Cơ bản",
+    "source": "Interview/Anwsers/dotnet_aspnet.md"
+  },
+  {
+    "id": "dotnet-api-containers-10",
+    "question": "Cách xử lý nào trực tiếp nhắm vào lỗi N+1 khi code lấy danh sách cha rồi truy cập navigation trong vòng lặp?",
+    "options": [
+      "Đo số command rồi dùng projection đúng shape, eager loading có chọn lọc hoặc batch key",
+      "Đổi mọi DbContext thành singleton",
+      "Bọc vòng lặp trong Task.Run",
+      "Gọi SaveChanges sau mỗi phần tử"
+    ],
+    "answerIndex": 0,
+    "explanation": "N+1 tạo một query lấy parents rồi thêm query cho từng parent. Có thể phát hiện bằng log/tracing, command count hoặc query-budget test; cách sửa gồm projection, include có chọn lọc, batch hoặc explicit load một lần, đồng thời tránh include tràn lan gây cartesian explosion.",
+    "difficulty": "Trung cấp",
+    "source": "Interview/Anwsers/dotnet_aspnet.md"
+  },
+  {
+    "id": "dotnet-api-containers-11",
+    "question": "EF Core phát hiện xung đột optimistic concurrency bằng concurrency token như thế nào?",
+    "options": [
+      "Khóa toàn bộ bảng ngay khi entity được đọc",
+      "Đưa token gốc vào WHERE; nếu không có row bị ảnh hưởng thì ném DbUpdateConcurrencyException",
+      "Luôn ghi đè dữ liệu mới nhất rồi ghi log cảnh báo",
+      "So sánh object reference trong change tracker sau khi commit"
+    ],
+    "answerIndex": 1,
+    "explanation": "Token gốc tham gia điều kiện update/delete. Khi affected rows bằng 0, EF báo DbUpdateConcurrencyException; ứng dụng cần đọc giá trị phù hợp và giải quyết theo quy tắc nghiệp vụ như merge, store-wins, client-wins hoặc retry có giới hạn, không retry mù.",
+    "difficulty": "Nâng cao",
+    "source": "Interview/Anwsers/dotnet_aspnet.md"
+  },
+  {
+    "id": "dotnet-api-containers-12",
+    "question": "Khi dùng execution strategy có retry cùng một transaction EF Core do ứng dụng tự quản lý, nguyên tắc đúng là gì?",
+    "options": [
+      "Chỉ retry lệnh SQL cuối cùng dù transaction gồm nhiều bước",
+      "Mở transaction ngoài execution strategy rồi retry từng SaveChanges riêng",
+      "Coi transaction database là đủ để bao trùm cả HTTP và message broker",
+      "Để execution strategy thực thi lại toàn bộ transaction delegate như một đơn vị"
+    ],
+    "answerIndex": 3,
+    "explanation": "Retry phải bao trùm toàn transaction delegate để giữ atomic boundary của các bước trong database. Transaction DB không bao trùm message hoặc HTTP; các biên phân tán thường cần outbox/saga và idempotency, nhất là khi kết quả commit không rõ.",
+    "difficulty": "Nâng cao",
+    "source": "Interview/Anwsers/dotnet_aspnet.md"
+  },
+  {
+    "id": "dotnet-api-containers-13",
+    "question": "Vì sao EF Core InMemory provider không đủ để xác nhận một truy vấn quan trọng sẽ chạy đúng trên production database?",
+    "options": [
+      "Nó không phải relational nên khác về SQL translation, constraint, transaction, collation và null semantics",
+      "Nó luôn chậm hơn database container",
+      "Nó không hỗ trợ lưu bất kỳ object nào",
+      "Nó chỉ chạy được trên Windows"
+    ],
+    "answerIndex": 0,
+    "explanation": "InMemory có semantics khác database quan hệ nên test có thể pass trong khi production fail. SQLite gần relational hơn nhưng vẫn khác dialect; container chạy đúng engine phù hợp hơn cho query, migration và concurrency có yêu cầu fidelity cao.",
+    "difficulty": "Trung cấp",
+    "source": "Interview/Anwsers/dotnet_aspnet.md"
+  },
+  {
+    "id": "dotnet-api-containers-14",
+    "question": "Thiết kế health probe nào giúp tránh restart storm khi database tạm thời bị lỗi?",
+    "options": [
+      "Cho cả liveness và readiness phụ thuộc mọi dịch vụ ngoài",
+      "Bỏ toàn bộ probe và chỉ dựa vào log",
+      "Giữ liveness ít phụ thuộc, còn readiness chỉ xét dependency thiết yếu để quyết định nhận traffic",
+      "Cho liveness chạy truy vấn database nặng ở tần suất cao"
+    ],
+    "answerIndex": 2,
+    "explanation": "Liveness trả lời process có mắc kẹt đến mức cần restart hay không nên không nên phụ thuộc database. Readiness quyết định instance có nhận traffic mới được không và có thể kiểm tra dependency thiết yếu; gắn database vào liveness có thể khiến mọi pod restart cùng lúc khi DB outage.",
+    "difficulty": "Trung cấp",
+    "source": "Interview/Anwsers/dotnet_aspnet.md"
+  },
+  {
+    "id": "dotnet-api-containers-15",
+    "question": "Chuỗi hành động nào phù hợp với graceful shutdown của một ASP.NET Core service có background worker?",
+    "options": [
+      "Kill process ngay rồi hy vọng broker gửi lại mọi việc",
+      "Chuyển not-ready, ngừng nhận việc, drain trong deadline, tôn trọng cancellation và checkpoint/requeue phần dở",
+      "Giữ readiness true cho tới khi process bị kill",
+      "Bỏ qua stopping token để hoàn thành mọi công việc vô thời hạn"
+    ],
+    "answerIndex": 1,
+    "explanation": "Khi termination bắt đầu, instance nên ngừng nhận traffic/work mới rồi hoàn tất phần đang chạy trong shutdown timeout. Worker phải tôn trọng token và lưu trạng thái hoặc requeue phần chưa xong; timeout hạ tầng phải đủ cho drain nhưng process cuối cùng vẫn có thể bị cưỡng chế dừng.",
+    "difficulty": "Nâng cao",
+    "source": "Interview/Anwsers/dotnet_aspnet.md"
+  },
+  {
+    "id": "dotnet-api-containers-16",
+    "question": "Phát biểu nào đúng về CORS trong một API ASP.NET Core?",
+    "options": [
+      "CORS thay thế authentication cho mọi client",
+      "CORS là firewall chặn được mọi request không phải trình duyệt",
+      "AllowAnyOrigin luôn an toàn khi bật credentials",
+      "CORS là cơ chế của trình duyệt; với credentials phải trả origin cụ thể được phép, không dùng wildcard *"
+    ],
+    "answerIndex": 3,
+    "explanation": "CORS kiểm soát việc script ở origin khác tương tác theo quy tắc trình duyệt; nó không phải authentication hay firewall và không bảo vệ non-browser clients. Credentialed requests cần allowlist origin cụ thể, không được kết hợp với wildcard origin.",
+    "difficulty": "Trung cấp",
+    "source": "Interview/Anwsers/dotnet_aspnet.md"
+  }
+]

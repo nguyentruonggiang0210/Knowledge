@@ -1,0 +1,39 @@
+{
+  "id": "software-engineering-quality",
+  "title": "Software Engineering & Quality",
+  "navTitle": "Engineering & Quality",
+  "eyebrow": "Thiết kế thay đổi được • Kiểm chứng • Bằng chứng vận hành",
+  "description": "Các nguyên tắc biến code chạy được thành hệ thống dễ đổi, dễ kiểm thử và có thể vận hành: modeling, boundaries, contracts, testing, delivery và tài liệu quyết định.",
+  "order": 12,
+  "icon": "flask",
+  "accent": "mint",
+  "level": "Thực chiến",
+  "estimatedMinutes": 19,
+  "tags": [
+    "software engineering",
+    "clean architecture",
+    "testing",
+    "quality",
+    "API design",
+    "ADR",
+    "production readiness"
+  ],
+  "sourceFolders": [
+    "AIEngineer/Lessions/03-professional-python-testing-typing",
+    "Interview/Anwsers/software_engineering.md",
+    "Interview/software_engineering.md",
+    "JavaAdvanceMapCsharp/Lessions/02-oop-domain-modeling.md",
+    "JavaAdvanceMapCsharp/Lessions/09-testing-build-tooling.md",
+    "Terraform/Devops/Templates/ADR.md",
+    "Terraform/Devops/Templates/PRODUCTION-READINESS.md",
+    "Terraform/Devops/Templates/RUNBOOK.md",
+    "Terraform/Devops/Templates/THREAT-MODEL.md"
+  ],
+  "outcomes": [
+    "Đặt dependency boundary để business rules không phụ thuộc framework",
+    "Thiết kế contract, error model và thay đổi tương thích",
+    "Chọn đúng mức unit, integration, contract và end-to-end test",
+    "Biến CI, review, observability và rollback thành quality gates",
+    "Ghi ADR/runbook và tạo portfolio bằng bằng chứng chạy được"
+  ]
+}

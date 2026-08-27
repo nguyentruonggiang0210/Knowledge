@@ -1,0 +1,226 @@
+[
+  {
+    "id": "aiml-001",
+    "question": "Khi tính cosine similarity giữa hai embedding, trường hợp nào làm công thức không xác định?",
+    "options": [
+      "Ít nhất một vector có norm bằng 0",
+      "Hai vector có cùng số chiều",
+      "Tích vô hướng của hai vector âm",
+      "Hai vector đã được chuẩn hóa L2"
+    ],
+    "answerIndex": 0,
+    "explanation": "Cosine similarity chia tích vô hướng cho tích hai norm. Nếu một vector có norm bằng 0 thì mẫu số bằng 0, nên kết quả không xác định.",
+    "difficulty": "Cơ bản",
+    "source": "AIEngineer/Lessions/06-linear-algebra/README.md"
+  },
+  {
+    "id": "aiml-002",
+    "question": "Dữ liệu có nhiều bản ghi của cùng một bệnh nhân. Cách chia tập nào phù hợp nhất để tránh cùng một bệnh nhân xuất hiện ở cả train và validation?",
+    "options": [
+      "Chia ngẫu nhiên từng dòng",
+      "Chia theo group bệnh nhân",
+      "Dùng toàn bộ dữ liệu cho cả hai tập",
+      "Chỉ xáo trộn nhãn trước khi chia"
+    ],
+    "answerIndex": 1,
+    "explanation": "Group split giữ toàn bộ bản ghi của một bệnh nhân trong cùng một tập, ngăn rò rỉ do các mẫu liên quan xuất hiện ở cả train và validation.",
+    "difficulty": "Trung cấp",
+    "source": "AIEngineer/Lessions/11-ml-workflow-validation-leakage/README.md"
+  },
+  {
+    "id": "aiml-003",
+    "question": "Với bài toán phát hiện gian lận mà lớp dương rất hiếm, nhóm metric nào thường cung cấp nhiều thông tin hơn accuracy?",
+    "options": [
+      "MSE và MAE",
+      "R-squared và RMSE",
+      "Precision, recall và đường PR",
+      "Chỉ số lượng mẫu huấn luyện"
+    ],
+    "answerIndex": 2,
+    "explanation": "Accuracy có thể rất cao chỉ vì dự đoán lớp âm trong dữ liệu mất cân bằng. Precision, recall và PR phản ánh trực tiếp chất lượng phát hiện lớp dương hiếm.",
+    "difficulty": "Cơ bản",
+    "source": "AIEngineer/Lessions/13-classification-metrics-imbalance/README.md"
+  },
+  {
+    "id": "aiml-004",
+    "question": "Ngưỡng phân loại nên được chọn trên tập nào để test vẫn là phép đánh giá cuối độc lập?",
+    "options": [
+      "Toàn bộ dữ liệu trước khi chia",
+      "Tập test sau khi xem mọi kết quả",
+      "Chỉ tập train và không cần metric",
+      "Tập validation"
+    ],
+    "answerIndex": 3,
+    "explanation": "Ngưỡng là một siêu tham số vận hành và nên được chọn bằng validation. Tập test được giữ lại cho đánh giá cuối sau khi mọi lựa chọn đã chốt.",
+    "difficulty": "Trung cấp",
+    "source": "AIEngineer/Lessions/13-classification-metrics-imbalance/README.md"
+  },
+  {
+    "id": "aiml-005",
+    "question": "Backpropagation tính gradient qua computational graph theo hướng nào?",
+    "options": [
+      "Đi ngược từ đầu ra về các tham số bằng chain rule",
+      "Đi xuôi từ input và bỏ qua loss",
+      "Thử ngẫu nhiên từng tham số",
+      "Chỉ dùng sai phân hữu hạn"
+    ],
+    "answerIndex": 0,
+    "explanation": "Backpropagation duyệt graph theo chiều ngược, truyền gradient từ loss về các node và tham số bằng quy tắc dây chuyền.",
+    "difficulty": "Cơ bản",
+    "source": "AIEngineer/Lessions/20-neural-networks-backprop-autodiff/README.md"
+  },
+  {
+    "id": "aiml-006",
+    "question": "Trong self-attention sinh văn bản, causal mask có tác dụng chính gì?",
+    "options": [
+      "Loại mọi token lặp lại khỏi đầu vào",
+      "Ngăn một token nhìn thấy các token ở tương lai",
+      "Thay softmax bằng hàm tuyến tính",
+      "Giảm số layer của Transformer"
+    ],
+    "answerIndex": 1,
+    "explanation": "Causal mask che các vị trí tương lai trước softmax, bảo đảm dự đoán tại một vị trí chỉ dựa trên token đã có.",
+    "difficulty": "Cơ bản",
+    "source": "AIEngineer/Lessions/24-attention-transformers/README.md"
+  },
+  {
+    "id": "aiml-007",
+    "question": "Độ phức tạp theo chiều dài chuỗi của full attention tiêu chuẩn là gì?",
+    "options": [
+      "O(log n)",
+      "O(n)",
+      "O(n²)",
+      "O(1)"
+    ],
+    "answerIndex": 2,
+    "explanation": "Full attention so sánh mọi vị trí với mọi vị trí, tạo ma trận attention n×n nên chi phí tăng bậc hai theo chiều dài chuỗi.",
+    "difficulty": "Trung cấp",
+    "source": "AIEngineer/Lessions/24-attention-transformers/README.md"
+  },
+  {
+    "id": "aiml-008",
+    "question": "Một hệ thống cần trả lời từ tài liệu thường xuyên thay đổi và phải kèm citation. Lựa chọn phù hợp nhất là gì?",
+    "options": [
+      "Chỉ tăng temperature",
+      "Chỉ đổi tokenizer",
+      "Fine-tune để ghi nhớ mọi phiên bản tài liệu",
+      "Dùng RAG để đưa tài liệu hiện hành vào context"
+    ],
+    "answerIndex": 3,
+    "explanation": "RAG phù hợp với tri thức thay đổi và nhu cầu dẫn nguồn vì hệ thống truy xuất evidence ở thời điểm hỏi. Fine-tuning phù hợp hơn để dạy hành vi, phong cách hoặc schema lặp lại.",
+    "difficulty": "Trung cấp",
+    "source": "AIEngineer/Lessions/39-fine-tuning-lora-quantization/README.md"
+  },
+  {
+    "id": "aiml-009",
+    "question": "LoRA cập nhật một lớp tuyến tính theo cách nào?",
+    "options": [
+      "Giữ trọng số gốc và học một cập nhật hạng thấp dạng B×A có hệ số scale",
+      "Xóa trọng số gốc rồi huấn luyện lại toàn bộ",
+      "Chỉ thay đổi dữ liệu validation",
+      "Chuyển mọi phép toán thành luật thủ công"
+    ],
+    "answerIndex": 0,
+    "explanation": "LoRA đóng băng ma trận trọng số gốc W và học phần cập nhật hạng thấp ΔW = scale × B × A, nhờ đó giảm số tham số cần huấn luyện.",
+    "difficulty": "Trung cấp",
+    "source": "AIEngineer/Lessions/39-fine-tuning-lora-quantization/README.md"
+  },
+  {
+    "id": "aiml-010",
+    "question": "Nhận định nào đúng về quantization mô hình?",
+    "options": [
+      "Luôn tăng chất lượng và không phụ thuộc phần cứng",
+      "Có thể giảm bộ nhớ/tính toán nhưng chất lượng và tốc độ còn phụ thuộc kernel, phần cứng",
+      "Đảm bảo toàn bộ quá trình QLoRA chỉ dùng số nguyên",
+      "Chỉ áp dụng được cho dữ liệu ảnh"
+    ],
+    "answerIndex": 1,
+    "explanation": "Quantization biểu diễn trọng số hoặc phép tính ở độ chính xác thấp hơn để giảm tài nguyên. Mức lợi và suy giảm chất lượng phụ thuộc định dạng, kernel và phần cứng; QLoRA không đồng nghĩa huấn luyện integer-only.",
+    "difficulty": "Trung cấp",
+    "source": "AIEngineer/Lessions/39-fine-tuning-lora-quantization/README.md"
+  },
+  {
+    "id": "aiml-011",
+    "question": "Vì sao tăng thời gian chờ của batcher inference có thể làm throughput tăng nhưng latency xấu đi?",
+    "options": [
+      "Vì model tự động tăng số layer",
+      "Vì request bị gửi sang tập test",
+      "Vì chờ lâu giúp gom batch lớn hơn nhưng từng request phải nằm trong hàng đợi lâu hơn",
+      "Vì tokenizer bị vô hiệu hóa"
+    ],
+    "answerIndex": 2,
+    "explanation": "Batch lớn tận dụng thiết bị tốt hơn và tăng throughput, nhưng khoảng chờ để gom batch cộng trực tiếp vào latency của request.",
+    "difficulty": "Trung cấp",
+    "source": "AIEngineer/Lessions/43-serving-inference-optimization/README.md"
+  },
+  {
+    "id": "aiml-012",
+    "question": "Streaming token thường cải thiện chỉ số trải nghiệm nào rõ nhất?",
+    "options": [
+      "Kích thước tập train",
+      "Độ chính xác của embedding",
+      "Tổng số FLOP của model",
+      "Time to first token (TTFT)"
+    ],
+    "answerIndex": 3,
+    "explanation": "Streaming cho phép hiển thị token đầu sớm hơn nên cải thiện TTFT cảm nhận được, nhưng không nhất thiết giảm tổng thời gian sinh xong toàn bộ câu trả lời.",
+    "difficulty": "Cơ bản",
+    "source": "AIEngineer/Lessions/43-serving-inference-optimization/README.md"
+  },
+  {
+    "id": "aiml-013",
+    "question": "Khi hệ inference đã bão hòa, cơ chế nào giúp tránh hàng đợi tăng vô hạn?",
+    "options": [
+      "Hàng đợi có giới hạn kèm backpressure hoặc từ chối có kiểm soát",
+      "Cho mọi request chờ vô thời hạn",
+      "Tắt toàn bộ telemetry",
+      "Chỉ báo cáo latency trung bình"
+    ],
+    "answerIndex": 0,
+    "explanation": "Bounded queue giới hạn lượng công việc đang chờ; backpressure hoặc load shedding giúp hệ thống suy giảm có kiểm soát thay vì cạn tài nguyên.",
+    "difficulty": "Nâng cao",
+    "source": "AIEngineer/Lessions/43-serving-inference-optimization/README.md"
+  },
+  {
+    "id": "aiml-014",
+    "question": "Trong LLMOps, release unit nên bao gồm thành phần nào ngoài model?",
+    "options": [
+      "Chỉ tên branch Git",
+      "Prompt, parser/schema, retriever/index, tool/policy và cấu hình eval liên quan",
+      "Chỉ số lượng GPU",
+      "Chỉ dữ liệu test thủ công"
+    ],
+    "answerIndex": 1,
+    "explanation": "Hành vi hệ LLM phụ thuộc cả prompt, parser, retrieval index, tool/policy và cấu hình. Rollout hoặc rollback chỉ model có thể tạo một tổ hợp không tương thích.",
+    "difficulty": "Nâng cao",
+    "source": "AIEngineer/Lessions/44-mlops-llmops-lifecycle/README.md"
+  },
+  {
+    "id": "aiml-015",
+    "question": "Ngoài trọng số, thành phần nào thường là phần đáng kể trong bộ nhớ inference LLM?",
+    "options": [
+      "Nhãn của tập validation",
+      "Optimizer state bắt buộc cho mọi request",
+      "KV cache, activation/workspace, batching và fragmentation",
+      "Chỉ file README"
+    ],
+    "answerIndex": 2,
+    "explanation": "Bộ nhớ inference không chỉ là weights; KV cache tăng theo sequence/concurrency, cùng activation, workspace, batch và fragmentation đều phải được tính vào capacity.",
+    "difficulty": "Nâng cao",
+    "source": "AIEngineer/Lessions/45-distributed-gpu-cloud-systems/README.md"
+  },
+  {
+    "id": "aiml-016",
+    "question": "Mô tả nào đúng về data parallelism?",
+    "options": [
+      "Chia từng phép nhân ma trận qua nhiều GPU nhưng không nhân bản model",
+      "Chia các layer thành stage nối tiếp",
+      "Chỉ định mỗi token cho một expert duy nhất trong mọi trường hợp",
+      "Nhân bản model trên các worker và chia batch dữ liệu giữa chúng"
+    ],
+    "answerIndex": 3,
+    "explanation": "Data parallelism đặt một bản model trên mỗi worker, chia batch và đồng bộ gradient khi huấn luyện. Tensor parallelism và pipeline parallelism chia model theo cách khác.",
+    "difficulty": "Nâng cao",
+    "source": "AIEngineer/Lessions/45-distributed-gpu-cloud-systems/README.md"
+  }
+]

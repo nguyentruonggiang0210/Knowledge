@@ -1,0 +1,226 @@
+[
+  {
+    "id": "system-design-interview-01",
+    "question": "Ở đầu một vòng system design, hành động nào nên được ưu tiên trước khi vẽ các service?",
+    "options": [
+      "Làm rõ actor, use case, scope, non-goal, constraint và SLO ưu tiên",
+      "Chọn ngay Kafka, Redis và Kubernetes",
+      "Thiết kế multi-region active-active cho mọi bài",
+      "Liệt kê càng nhiều design pattern càng tốt"
+    ],
+    "answerIndex": 0,
+    "explanation": "Một thiết kế tốt bắt đầu bằng việc biến ambiguity thành functional requirements, non-functional requirements và priority rõ ràng. Assumption nên được nói ra để interviewer sửa; component chỉ được chọn sau khi đã hiểu constraint.",
+    "difficulty": "Cơ bản",
+    "source": "JavaAdvanceMapCsharp/Lessions/25-system-design-interview.md"
+  },
+  {
+    "id": "system-design-interview-02",
+    "question": "Công thức nào ước lượng average QPS từ tổng số operation mỗi ngày?",
+    "options": [
+      "Daily operations × 86.400",
+      "Daily operations ÷ peak factor",
+      "Daily operations ÷ 86.400",
+      "Daily operations × payload bytes"
+    ],
+    "answerIndex": 2,
+    "explanation": "Một ngày có 86.400 giây nên average QPS bằng daily operations chia 86.400. Peak QPS cần nhân thêm hệ số dựa trên workload hoặc giả định được công khai, không mặc định một con số thiếu căn cứ.",
+    "difficulty": "Cơ bản",
+    "source": "JavaAdvanceMapCsharp/Lessions/25-system-design-interview.md"
+  },
+  {
+    "id": "system-design-interview-03",
+    "question": "Theo Little's Law ở trạng thái ổn định, cách ước lượng số request đồng thời gần đúng là gì?",
+    "options": [
+      "Throughput ÷ latency",
+      "Throughput × latency",
+      "Storage × replication factor",
+      "Peak QPS ÷ payload size"
+    ],
+    "answerIndex": 1,
+    "explanation": "Số công việc trong hệ thống xấp xỉ tốc độ đến nhân thời gian lưu lại: concurrency ≈ throughput × latency, với đơn vị nhất quán. Estimate dùng để tìm dominant constraint chứ không nhằm tạo độ chính xác giả.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/25-system-design-interview.md"
+  },
+  {
+    "id": "system-design-interview-04",
+    "question": "Một ước lượng storage hữu ích cần tính thêm yếu tố nào ngoài số record và kích thước mỗi record?",
+    "options": [
+      "Chỉ số lượng API endpoint",
+      "Số box trong sơ đồ kiến trúc",
+      "Số ngôn ngữ lập trình của team",
+      "Retention cùng overhead của replication, index và lưu trữ; đồng thời tách hot/cold nếu cần"
+    ],
+    "answerIndex": 3,
+    "explanation": "Storage gần đúng bằng records × bytes × retention rồi điều chỉnh theo replication, index và overhead. Tách dữ liệu hot/cold giúp nhìn đúng cost và access pattern thay vì chỉ lấy kích thước payload thô.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/25-system-design-interview.md"
+  },
+  {
+    "id": "system-design-interview-05",
+    "question": "Khi nào nên thêm cache, queue, search index hoặc materialized view vào thiết kế?",
+    "options": [
+      "Khi một requirement hoặc bottleneck cụ thể chứng minh component đó cần thiết",
+      "Trong mọi sơ đồ để thể hiện hệ thống hiện đại",
+      "Trước khi biết read/write ratio và access pattern",
+      "Chỉ vì công nghệ đó phổ biến trong công ty khác"
+    ],
+    "answerIndex": 0,
+    "explanation": "Các building block không phải icon bắt buộc. Chúng cần được dẫn xuất từ access pattern, bottleneck, failure model, consistency, operational maturity và cost, đồng thời phải giải thích trade-off mới tạo ra.",
+    "difficulty": "Cơ bản",
+    "source": "JavaAdvanceMapCsharp/Lessions/25-system-design-interview.md"
+  },
+  {
+    "id": "system-design-interview-06",
+    "question": "Một queue có làm overload biến mất không?",
+    "options": [
+      "Có, queue luôn tạo thêm capacity xử lý",
+      "Có, miễn là queue không giới hạn kích thước",
+      "Không; queue buffer/decouple burst nhưng backlog vẫn cần drain rate, admission và freshness SLO",
+      "Không, vì queue không thể chứa dữ liệu"
+    ],
+    "answerIndex": 2,
+    "explanation": "Queue dời công việc theo thời gian và hấp thụ burst, nhưng không làm tăng năng lực downstream một cách tự động. Backlog là khoản nợ; thiết kế phải ước lượng tốc độ drain, tuổi backlog, backpressure và load shedding.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/25-system-design-interview.md"
+  },
+  {
+    "id": "system-design-interview-07",
+    "question": "Trong failure-first deep dive, timeout xảy ra sau khi server có thể đã commit đòi hỏi câu hỏi nào quan trọng nhất?",
+    "options": [
+      "Có nên đổi toàn bộ service sang cùng ngôn ngữ không?",
+      "Caller biết kết quả tới đâu và retry có gây duplicate hay cần idempotency/reconciliation không?",
+      "Sơ đồ có đủ màu sắc và biểu tượng không?",
+      "Có thể bỏ metric để giảm chi phí không?"
+    ],
+    "answerIndex": 1,
+    "explanation": "Timeout chỉ cho biết response chưa tới trước deadline, không chứng minh operation chưa commit. Thiết kế phải nói rõ result-unknown, idempotency key, duplicate handling, retry budget và cách query/reconcile kết quả.",
+    "difficulty": "Nâng cao",
+    "source": "JavaAdvanceMapCsharp/Lessions/25-system-design-interview.md"
+  },
+  {
+    "id": "system-design-interview-08",
+    "question": "Khi đề bài chưa yêu cầu multi-region, cách tiếp cận nào giúp kiểm soát complexity trong case study?",
+    "options": [
+      "Luôn bắt đầu bằng active-active toàn cầu",
+      "Bỏ qua data model và chỉ nói routing liên vùng",
+      "Giả định mọi dependency đã có consensus",
+      "Thiết kế phiên bản single-region trước, rồi mở rộng khi interviewer thêm constraint"
+    ],
+    "answerIndex": 3,
+    "explanation": "Bắt đầu với phạm vi nhỏ nhất đáp ứng requirement giúp reasoning rõ và tránh complexity không được yêu cầu. Multi-region nên được thêm có chủ đích cùng các vấn đề routing, replication, conflict, failover, RPO/RTO và cost.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/25-system-design-interview.md"
+  },
+  {
+    "id": "system-design-interview-09",
+    "question": "Một phần trình bày API và data model đủ mạnh trong system design nên nêu điều gì?",
+    "options": [
+      "Auth, idempotency, pagination/error/version; cùng invariant, access pattern, index và transaction boundary",
+      "Chỉ tên framework web và ORM",
+      "Chỉ danh sách bảng mà không có access pattern",
+      "Chỉ số lượng microservice dự kiến"
+    ],
+    "answerIndex": 0,
+    "explanation": "API contract cần nói cách gọi an toàn và semantics lỗi/retry. Data model phải gắn với invariant, query/index, ownership, transaction và retention; đây là dữ liệu để chọn store chứ không chọn database theo thói quen.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/25-system-design-interview.md"
+  },
+  {
+    "id": "system-design-interview-10",
+    "question": "Cách dùng design pattern nào thể hiện tư duy LLD đúng theo tài liệu?",
+    "options": [
+      "Dùng càng nhiều pattern càng chứng minh seniority",
+      "Bắt buộc mọi class phải kế thừa một abstract base",
+      "Xem pattern là vocabulary và chỉ tạo extension point cho variation thực sự",
+      "Dùng Singleton global mutable để đơn giản mọi lifecycle"
+    ],
+    "answerIndex": 2,
+    "explanation": "Pattern là công cụ diễn đạt, không phải mục tiêu. Strategy, State, Adapter hay Decorator chỉ nên xuất hiện khi pressure thật đòi hỏi; thiết kế ưu tiên composition, invariant, ownership và khả năng walk qua happy/invalid/recovery path.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/25-system-design-interview.md"
+  },
+  {
+    "id": "system-design-interview-11",
+    "question": "CAP theorem nói gì khi một distributed data system thực sự gặp network partition?",
+    "options": [
+      "Luôn có thể đạt consistency và availability đầy đủ nếu thêm replica",
+      "Phải đánh đổi giữa tiếp tục trả lời có thể không nhất quán và từ chối/chờ để giữ consistency",
+      "Chỉ được chọn hai thuộc tính cố định trong mọi trạng thái vận hành",
+      "Partition tolerance có thể bỏ qua vì mạng hiện đại không lỗi"
+    ],
+    "answerIndex": 1,
+    "explanation": "Trong lúc partition, hệ thống phải chọn availability cho request ở các phía hoặc giữ một nghĩa consistency như linearizability bằng cách từ chối/chờ. CAP không phải khẩu hiệu chọn hai trong ba ở mọi thời điểm; PACELC còn nhắc trade-off latency/consistency khi không partition.",
+    "difficulty": "Nâng cao",
+    "source": "Interview/Anwsers/system_design.md"
+  },
+  {
+    "id": "system-design-interview-12",
+    "question": "Trade-off chính của replication bất đồng bộ so với replication đồng bộ là gì?",
+    "options": [
+      "Async luôn không có replica lag",
+      "Async bắt buộc chờ quorum nên latency cao hơn",
+      "Async ngăn hoàn toàn stale read sau failover",
+      "Async thường giảm write latency/tăng availability nhưng failover có thể mất acknowledged write và gây stale read"
+    ],
+    "answerIndex": 3,
+    "explanation": "Async replication trả lời sau primary write nên nhanh và chịu replica chậm tốt hơn, nhưng dữ liệu chưa truyền xong có thể mất khi failover. Replica lag còn gây stale read hoặc vi phạm read-your-writes; cần routing/version wait/bounded staleness tùy invariant.",
+    "difficulty": "Nâng cao",
+    "source": "Interview/Anwsers/system_design.md"
+  },
+  {
+    "id": "system-design-interview-13",
+    "question": "Theo lesson 50, khi luyện vòng Coding/Python/SQL/DSA, bộ hành vi nào được yêu cầu?",
+    "options": [
+      "Viết code rõ ràng, kiểm thử edge case và phân tích độ phức tạp",
+      "Chỉ học thuộc lời giải tối ưu và bỏ qua phần kiểm thử",
+      "Ưu tiên framework phức tạp hơn tính dễ đọc của lời giải",
+      "Chỉ mô tả ý tưởng, không cần viết hoặc phân tích code"
+    ],
+    "answerIndex": 0,
+    "explanation": "Lesson 50 nêu trực tiếp ba yêu cầu cho vòng Coding/Python/SQL/DSA: viết rõ, test edge case và phân tích complexity. Các bước chi tiết hơn không nên được gán cho nguồn này nếu lesson không phát biểu chúng.",
+    "difficulty": "Cơ bản",
+    "source": "AIEngineer/Lessions/50-career-portfolio-interview-system-design/README.md"
+  },
+  {
+    "id": "system-design-interview-14",
+    "question": "Cách nào chứng minh một kế hoạch Disaster Recovery thực sự đạt RPO và RTO đã cam kết?",
+    "options": [
+      "Chỉ kiểm tra dashboard báo backup success",
+      "Chỉ viết RPO/RTO vào tài liệu kiến trúc",
+      "Chạy restore/failover drill định kỳ và đo mất dữ liệu cùng thời gian khôi phục end-to-end",
+      "Tăng số replica nhưng không thử quy trình failover"
+    ],
+    "answerIndex": 2,
+    "explanation": "Backup tồn tại chưa chứng minh có thể khôi phục đúng hạn. Cần diễn tập restore/failover từ backup bất biến, đo lượng dữ liệu mất và thời gian end-to-end, đồng thời kiểm tra quyền, DNS, secret, runbook và failback.",
+    "difficulty": "Trung cấp",
+    "source": "Interview/Anwsers/system_design.md"
+  },
+  {
+    "id": "system-design-interview-15",
+    "question": "Trong một câu chuyện STAR(R) ở cấp senior, phần Action nên tập trung vào nội dung nào?",
+    "options": [
+      "Chỉ mô tả thành tích chung của team",
+      "Quyết định cá nhân, alternatives, dữ liệu, stakeholder, disagreement, execution và course correction",
+      "Kể Situation thật dài để tránh nói contribution",
+      "Bịa metric tuyệt đối nếu không còn số liệu"
+    ],
+    "answerIndex": 1,
+    "explanation": "Action thường chiếm phần lớn câu chuyện và phải làm rõ phần mình chịu trách nhiệm nhưng vẫn ghi nhận contribution của team. Result cần evidence trung thực; Reflection nêu điều học và thay đổi hệ thống hoặc cách làm lần sau.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/26-behavioral-leadership-interview.md"
+  },
+  {
+    "id": "system-design-interview-16",
+    "question": "Khi gặp một điểm chưa biết trong technical interview, phản ứng nào thể hiện communication tốt?",
+    "options": [
+      "Bluff một API cụ thể để giữ nhịp",
+      "Im lặng cho tới khi nhớ chính xác",
+      "Bảo vệ solution cũ dù interviewer đã chỉ ra lỗi",
+      "Nói rõ boundary kiến thức, suy luận từ nguyên lý và đề xuất cách kiểm chứng"
+    ],
+    "answerIndex": 3,
+    "explanation": "Tài liệu khuyến nghị state assumptions, think aloud ở decision points và tích hợp hint rồi verify. Khi không biết, minh bạch ranh giới kiến thức và đưa ra cách kiểm chứng đáng tin cậy tốt hơn việc bluff.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/26-behavioral-leadership-interview.md"
+  }
+]

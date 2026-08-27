@@ -1,0 +1,18 @@
+groups:
+  - name: api_alerts
+    rules:
+      - alert: HighLatencyP95
+        expr: histogram_quantile(0.95, sum(rate(app_request_latency_seconds_bucket[5m])) by (le)) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Latency p95 > 500ms"
+
+      - alert: HighErrorRate
+        expr: sum(rate(app_request_count{status=~"5.."}[5m])) / sum(rate(app_request_count[5m])) > 0.05
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Error rate > 5%"

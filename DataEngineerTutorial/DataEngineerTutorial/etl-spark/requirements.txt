@@ -1,0 +1,6 @@
+pyspark==3.5.1
+psycopg2-binary==2.9.10
+py4j==0.10.9.7
+prometheus-client==0.20.0
+chispa==0.10.1
+pytest==8.2.0

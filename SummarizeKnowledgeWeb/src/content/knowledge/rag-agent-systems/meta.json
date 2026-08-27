@@ -1,0 +1,47 @@
+{
+  "id": "rag-agent-systems",
+  "title": "RAG & Agent Systems: retrieval, tools và orchestration",
+  "navTitle": "RAG & Agent Systems",
+  "eyebrow": "LLM application architecture",
+  "description": "Từ indexing và hybrid retrieval đến agent loop, tool/MCP, context, multi-agent, đánh giá và hàng rào production; D1–D5 là các đơn vị học chuẩn, còn ALL_DOMAINS chỉ là bản đọc gộp, không phải kiến thức bổ sung.",
+  "order": 2,
+  "icon": "bot",
+  "accent": "violet",
+  "level": "Nâng cao",
+  "estimatedMinutes": 46,
+  "tags": [
+    "RAG",
+    "Agents",
+    "MCP",
+    "Hybrid Search",
+    "Context Management"
+  ],
+  "sourceFolders": [
+    "AIEngineer/Lessions/27-vector-search-local-inference",
+    "AIEngineer/Lessions/28-rag-fundamentals",
+    "AIEngineer/Lessions/29-advanced-rag-document-parsers-graphrag",
+    "AIEngineer/Lessions/30-tool-calling-agent-loop-workflows",
+    "AIEngineer/Lessions/31-planning-reflection-verification",
+    "AIEngineer/Lessions/32-agent-harness-runtime",
+    "AIEngineer/Lessions/33-memory-state-compaction-metis",
+    "AIEngineer/Lessions/34-multi-agent-orchestration",
+    "AIEngineer/Lessions/35-mcp-skills-connectors-protocols",
+    "AIEngineer/Lessions/36-evals-benchmarks-experiment-design",
+    "AIEngineer/Lessions/37-observability-latency-cost",
+    "AIEngineer/Lessions/38-safety-security-red-teaming",
+    "AIEngineer/Lessions/47-coding-agents-comparison",
+    "AIEngineer/Lessions/48-capstone-production-rag-agent",
+    "AIEngineer/Lessions/49-capstone-coding-agent-harness",
+    "AIEngineer/Quiz/checkpoints/04-rag-agents.md",
+    "ClaudeArchitectFoundation/Tool1",
+    "ClaudeArchitectFoundation/Tool2",
+    "ClaudeArchitectFoundation/web",
+    "RAG"
+  ],
+  "outcomes": [
+    "Thiết kế được pipeline RAG tách ingestion offline và retrieval online",
+    "Hiểu vai trò của sparse, dense, RRF, reranking, MMR và context budget",
+    "Xây agent loop có tool contract, giới hạn, trạng thái kết thúc và escalation rõ ràng",
+    "Đánh giá được độ tin cậy, bảo mật và giới hạn scale của một RAG agent"
+  ]
+}

@@ -1,0 +1,60 @@
+# Điều phối toàn bộ service của GitHub Trending Analytics Platform.
+# etl-spark KHÔNG chạy thường trực — nó là batch job, chạy on-demand.
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: gtp_postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-gtp}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-gtp}
+      POSTGRES_DB: ${POSTGRES_DB:-github_trending}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/migrations:/docker-entrypoint-initdb.d:ro
+
+  fastapi:
+    build: ./backend-api
+    container_name: gtp_fastapi
+    env_file: .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: gtp_prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/prometheus/alert_rules.yml:/etc/prometheus/alert_rules.yml:ro
+    depends_on:
+      - fastapi
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: gtp_grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on:
+      - prometheus
+
+  angular:
+    build: ./frontend-angular
+    container_name: gtp_angular
+    ports:
+      - "4200:4200"
+    depends_on:
+      - fastapi
+
+volumes:
+  postgres_data:

@@ -1,0 +1,8 @@
+# The production image only needs the pre-built React bundle and nginx config.
+**
+!Dockerfile
+!deploy/
+!deploy/nginx.conf
+!dist/
+!dist/**
+

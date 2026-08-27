@@ -1,0 +1,16 @@
+# Template review-only. Tra policy reference và thay group/compartment trước khi dùng.
+variable "network_operator_group_name" {
+  type = string
+}
+
+resource "oci_identity_policy" "network_operator" {
+  provider = oci.home
+
+  compartment_id = var.parent_compartment_id
+  name           = "${var.name_prefix}-network-operator"
+  description    = "Least-privilege learning policy"
+  statements = [
+    "Allow group ${var.network_operator_group_name} to manage virtual-network-family in compartment id ${var.parent_compartment_id}"
+  ]
+}
+

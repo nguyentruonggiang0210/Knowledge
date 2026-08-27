@@ -1,0 +1,37 @@
+{
+  "id": "dotnet-api-containers",
+  "title": "C#/.NET, APIs & Containers",
+  "navTitle": "C#/.NET & APIs",
+  "eyebrow": "C# · CLR · ASP.NET Core · Data · Docker · GraphQL",
+  "description": "Bản đồ C#/.NET từ type system, CLR, ASP.NET Core và EF Core đến hai biến thể container Linux/Windows, kèm phân tích đúng trạng thái GraphQL draft.",
+  "order": 7,
+  "icon": "server",
+  "accent": "sky",
+  "level": "Thực chiến",
+  "estimatedMinutes": 45,
+  "tags": [
+    "C#",
+    ".NET 8",
+    "CLR",
+    "ASP.NET Core",
+    "EF Core",
+    "Docker",
+    "GraphQL",
+    "Hot Chocolate"
+  ],
+  "sourceFolders": [
+    "Interview/Anwsers/c_sharp.md",
+    "Interview/Anwsers/dotnet_aspnet.md",
+    "Interview/c_sharp.md",
+    "Interview/dotnet_aspnet.md"
+  ],
+  "outcomes": [
+    "Giải thích type/value semantics, CLR/GC và abstraction quan trọng của C#",
+    "Đọc được composition root, DI và request pipeline của ASP.NET Core",
+    "Thiết kế data access/transaction EF Core theo resource boundary",
+    "Giải thích multi-stage Docker build và khác biệt giữa Linux với Windows container",
+    "Phân biệt port ứng dụng, port container và profile Visual Studio",
+    "Nhận diện đúng ý định tích hợp Hot Chocolate với EF Core",
+    "Biết các phần còn thiếu trước khi coi GraphQL draft là ứng dụng chạy được"
+  ]
+}

@@ -1,0 +1,26 @@
+groups:
+  - name: order-api-slo
+    interval: 30s
+    rules:
+      - record: order_api:error_ratio_rate5m
+        expr: |
+          sum(rate(http_requests_total{service="order-api",outcome!="success"}[5m]))
+          /
+          sum(rate(http_requests_total{service="order-api"}[5m]))
+      - record: order_api:error_ratio_rate1h
+        expr: |
+          sum(rate(http_requests_total{service="order-api",outcome!="success"}[1h]))
+          /
+          sum(rate(http_requests_total{service="order-api"}[1h]))
+      - alert: OrderApiFastErrorBudgetBurn
+        expr: |
+          (order_api:error_ratio_rate5m / 0.001 > 14.4)
+          and
+          (order_api:error_ratio_rate1h / 0.001 > 14.4)
+        for: 2m
+        labels:
+          severity: page
+          service: order-api
+        annotations:
+          summary: Order API is consuming its error budget quickly
+          runbook: Templates/runbook-template.md

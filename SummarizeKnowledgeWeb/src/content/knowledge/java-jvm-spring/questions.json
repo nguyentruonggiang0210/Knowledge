@@ -1,0 +1,226 @@
+[
+  {
+    "id": "java-jvm-spring-01",
+    "question": "Java truyền một object vào method theo cơ chế nào?",
+    "options": [
+      "Pass-by-value; giá trị được copy có thể là một reference tới object",
+      "Pass-by-reference nên method có thể gán lại biến của caller",
+      "Pass-by-name và chỉ resolve khi field được đọc",
+      "Tùy object mutable hay immutable mà đổi cơ chế"
+    ],
+    "answerIndex": 0,
+    "explanation": "Java luôn pass-by-value. Với object, bản sao của reference được truyền vào; method có thể mutate object được tham chiếu nhưng không thể gán lại biến reference của caller.",
+    "difficulty": "Cơ bản",
+    "source": "JavaAdvanceMapCsharp/Lessions/01-runtime-va-type-system.md"
+  },
+  {
+    "id": "java-jvm-spring-02",
+    "question": "Vì sao không nên thay đổi field tham gia hash khi object đang là key của HashMap?",
+    "options": [
+      "HashMap sẽ tự chuyển key thành String",
+      "JVM sẽ khóa object vĩnh viễn",
+      "Hash/bucket có thể đổi khiến lookup tìm sai bucket",
+      "equals sẽ luôn trả false với chính object đó"
+    ],
+    "answerIndex": 2,
+    "explanation": "HashMap chọn bucket từ hash. Nếu state dùng bởi equals/hashCode đổi sau insertion, key có thể nằm ở bucket cũ nhưng lookup tìm theo bucket mới.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/01-runtime-va-type-system.md"
+  },
+  {
+    "id": "java-jvm-spring-03",
+    "question": "Theo quy tắc PECS, tham số List<? extends T> phù hợp với vai trò nào?",
+    "options": [
+      "Consumer để thêm mọi subtype của T",
+      "Producer để đọc giá trị như T nhưng không thêm một T cụ thể",
+      "Danh sách vừa đọc vừa ghi hoàn toàn tự do",
+      "Danh sách chỉ chứa primitive"
+    ],
+    "answerIndex": 1,
+    "explanation": "PECS là Producer Extends, Consumer Super. Với ? extends T, concrete subtype có thể hẹp hơn T nên đọc được như T nhưng không thể add một T cụ thể ngoài null.",
+    "difficulty": "Cơ bản",
+    "source": "JavaAdvanceMapCsharp/Lessions/03-generics-collections.md"
+  },
+  {
+    "id": "java-jvm-spring-04",
+    "question": "Khác biệt quan trọng giữa Collections.unmodifiableList và List.copyOf là gì?",
+    "options": [
+      "Hai API luôn tạo deep copy giống nhau",
+      "unmodifiableList cho phép add còn copyOf không cho đọc",
+      "copyOf chỉ là view còn unmodifiableList luôn clone dữ liệu",
+      "unmodifiableList là view có thể phản ánh thay đổi của list gốc, còn copyOf tạo snapshot bất biến nông"
+    ],
+    "answerIndex": 3,
+    "explanation": "Unmodifiable view chặn mutation qua view nhưng underlying list vẫn có thể đổi. List.copyOf tạo snapshot bất biến nông tại thời điểm gọi.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/03-generics-collections.md"
+  },
+  {
+    "id": "java-jvm-spring-05",
+    "question": "Sau khi một terminal operation đã chạy, Java Stream có thể được consume lần thứ hai không?",
+    "options": [
+      "Không; stream đã consumed và cần tạo stream mới",
+      "Có, nếu terminal operation đầu tiên là count",
+      "Có, miễn source là List",
+      "Chỉ có thể consume lại khi stream là parallel"
+    ],
+    "answerIndex": 0,
+    "explanation": "Khác với một số IEnumerable có thể enumerate lại, Java Stream là pipeline dùng một lần. Terminal operation kết thúc lifecycle của stream đó.",
+    "difficulty": "Cơ bản",
+    "source": "JavaAdvanceMapCsharp/Lessions/04-functional-streams.md"
+  },
+  {
+    "id": "java-jvm-spring-06",
+    "question": "Trường hợp nào phù hợp nhất để cân nhắc parallelStream()?",
+    "options": [
+      "Mọi pipeline có nhiều hơn mười phần tử",
+      "Blocking I/O chạy trên common pool dùng chung",
+      "Workload CPU-bound đủ lớn, operation độc lập và benchmark chứng minh lợi ích",
+      "Pipeline mutate một list dùng chung trong map"
+    ],
+    "answerIndex": 2,
+    "explanation": "Parallel stream không phải tối ưu mặc định. Common pool và chi phí split/combine chỉ đáng khi workload CPU-bound đủ lớn, stateless và được đo trên workload thật.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/04-functional-streams.md"
+  },
+  {
+    "id": "java-jvm-spring-07",
+    "question": "Nếu body của try-with-resources và close() cùng ném lỗi, Java giữ lỗi như thế nào?",
+    "options": [
+      "Lỗi close luôn thay thế lỗi body",
+      "Lỗi body là primary, còn lỗi close nằm trong getSuppressed()",
+      "Cả hai lỗi bị bỏ qua sau finally",
+      "JVM gộp chúng thành một checked exception mới"
+    ],
+    "answerIndex": 1,
+    "explanation": "Try-with-resources đóng tài nguyên theo thứ tự ngược khai báo. Khi cả body và cleanup lỗi, lỗi body được giữ làm primary và lỗi cleanup là suppressed exception.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/05-exceptions-resources.md"
+  },
+  {
+    "id": "java-jvm-spring-08",
+    "question": "Khi catch InterruptedException nhưng không propagate tiếp, thread nên làm gì?",
+    "options": [
+      "Bỏ qua vì exception đã được catch",
+      "Chuyển thành null để caller xử lý",
+      "Gọi System.gc() trước khi tiếp tục",
+      "Khôi phục interrupt flag bằng Thread.currentThread().interrupt() và kết thúc theo contract"
+    ],
+    "answerIndex": 3,
+    "explanation": "Catching InterruptedException làm clear interrupt status. Nếu không throw tiếp, cần restore flag để tầng gọi hoặc loop điều phối vẫn thấy yêu cầu hủy.",
+    "difficulty": "Nâng cao",
+    "source": "JavaAdvanceMapCsharp/Lessions/05-exceptions-resources.md"
+  },
+  {
+    "id": "java-jvm-spring-09",
+    "question": "Một Java process bị OOMKilled trong khi heap còn khoảng trống. Nên kiểm tra gì ngoài heap?",
+    "options": [
+      "Chỉ số lượng record trong source code",
+      "Chỉ cache Integer boxing",
+      "Direct memory, native thread stacks, metaspace, code cache và container RSS limit",
+      "Chỉ số method public trong application"
+    ],
+    "answerIndex": 2,
+    "explanation": "Process memory còn gồm metaspace, direct buffer, native thread stack, JIT code cache và native libraries. Container có thể kill theo RSS/limit dù Java heap chưa OOM.",
+    "difficulty": "Nâng cao",
+    "source": "JavaAdvanceMapCsharp/Lessions/07-jvm-memory-performance.md"
+  },
+  {
+    "id": "java-jvm-spring-10",
+    "question": "Bằng chứng nào giúp phân biệt memory leak với allocation churn cao?",
+    "options": [
+      "Theo dõi live set sau GC và xu hướng retention, kết hợp allocation rate",
+      "Chỉ nhìn heap usage tại một thời điểm",
+      "Gọi System.gc() rồi coi vấn đề đã được sửa",
+      "Đếm số class trong JAR"
+    ],
+    "answerIndex": 0,
+    "explanation": "Leak liên quan object còn reachable và live set tăng; churn là tốc độ cấp phát cao nhưng object có thể được thu hồi. Cần GC log/JFR/metrics và heap dump khi nghi retention.",
+    "difficulty": "Nâng cao",
+    "source": "JavaAdvanceMapCsharp/Lessions/07-jvm-memory-performance.md"
+  },
+  {
+    "id": "java-jvm-spring-11",
+    "question": "Trong MyBatis, khác biệt an toàn quan trọng giữa #{value} và ${fragment} là gì?",
+    "options": [
+      "Cả hai đều luôn tạo JDBC bind parameter",
+      "#{} bind value qua PreparedStatement; ${} thay text thô và chỉ nên nhận fragment đã whitelist",
+      "${} an toàn hơn cho input trực tiếp vì tự escape identifier",
+      "#{} chỉ dùng được với table name"
+    ],
+    "answerIndex": 1,
+    "explanation": "#{} đại diện value parameterized. ${} là raw text substitution trước khi prepare, không được escape; sort column/direction phải map từ enum sang fragment cố định.",
+    "difficulty": "Cơ bản",
+    "source": "JavaAdvanceMapCsharp/Lessions/27-mybatis-dapper-sql-mapper.md"
+  },
+  {
+    "id": "java-jvm-spring-12",
+    "question": "Lifecycle/thread-safety đúng của MyBatis core là gì?",
+    "options": [
+      "Tạo SqlSessionFactory cho từng query và share SqlSession toàn app",
+      "Mọi SqlSession đều thread-safe nếu DataSource có pool",
+      "Giữ SqlSession mở khi gọi remote HTTP để tái sử dụng connection",
+      "Share SqlSessionFactory, nhưng mở SqlSession theo request/unit of work rồi commit/rollback và đóng"
+    ],
+    "answerIndex": 3,
+    "explanation": "SqlSessionFactory được xây một lần và dùng chung. DefaultSqlSession không thread-safe; session/connection phải có boundary ngắn, rõ transaction và được đóng deterministic.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/27-mybatis-dapper-sql-mapper.md"
+  },
+  {
+    "id": "java-jvm-spring-13",
+    "question": "mapper.insert(row) của MyBatis thường trả về gì?",
+    "options": [
+      "Số row bị ảnh hưởng; generated key được gán qua keyProperty hoặc lấy bằng cơ chế riêng",
+      "Luôn trả generated primary key",
+      "Một JPA managed entity đã dirty-track",
+      "SqlSession mới dùng cho lần insert tiếp theo"
+    ],
+    "answerIndex": 0,
+    "explanation": "Return value của insert thường là affected-row count. Generated key có thể được driver/MyBatis gán vào parameter object bằng useGeneratedKeys/keyProperty hoặc lấy qua RETURNING/selectKey.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/27-mybatis-dapper-sql-mapper.md"
+  },
+  {
+    "id": "java-jvm-spring-14",
+    "question": "Vì sao lazy loading không tự giải quyết N+1 do nested select trong MyBatis?",
+    "options": [
+      "Vì lazy loading luôn tải toàn database ngay lập tức",
+      "Vì MyBatis tự chuyển nested select thành stored procedure",
+      "Vì khi iterate toàn bộ parent, mỗi child select vẫn có thể chạy và tổng số query vẫn là N+1",
+      "Vì resultMap không hỗ trợ relationship"
+    ],
+    "answerIndex": 2,
+    "explanation": "Lazy loading chỉ trì hoãn query. Nếu use case cuối cùng đọc child của mọi parent, các nested select vẫn chạy; nên cân nhắc join mapping, bulk-load hoặc projection.",
+    "difficulty": "Nâng cao",
+    "source": "JavaAdvanceMapCsharp/Lessions/27-mybatis-dapper-sql-mapper.md"
+  },
+  {
+    "id": "java-jvm-spring-15",
+    "question": "Spring bean mặc định scope singleton có đảm bảo thread safety không?",
+    "options": [
+      "Có, vì Spring tự serialize mọi request",
+      "Không; bean cần stateless hoặc tự bảo đảm thread safety",
+      "Có, miễn class có annotation @Service",
+      "Chỉ an toàn khi dùng field injection"
+    ],
+    "answerIndex": 1,
+    "explanation": "Singleton scope chỉ quản lý một instance, không tự đồng bộ truy cập. Service dùng chung phải tránh mutable request state hoặc thiết kế synchronization đúng.",
+    "difficulty": "Cơ bản",
+    "source": "JavaAdvanceMapCsharp/Lessions/11-architecture-spring.md"
+  },
+  {
+    "id": "java-jvm-spring-16",
+    "question": "Vì sao @Transactional trên private method hoặc method được gọi bằng self-invocation có thể không chạy transaction advice?",
+    "options": [
+      "Vì transaction chỉ hoạt động với static method",
+      "Vì database không hỗ trợ nested method call",
+      "Vì @Transactional chỉ dùng cho read-only query",
+      "Vì lời gọi có thể không đi qua Spring proxy nên interceptor không được kích hoạt"
+    ],
+    "answerIndex": 3,
+    "explanation": "Spring thường áp transaction qua proxy. Private method hoặc lời gọi nội bộ trên chính instance không đi qua proxy, nên advice có thể không intercept.",
+    "difficulty": "Nâng cao",
+    "source": "JavaAdvanceMapCsharp/Lessions/11-architecture-spring.md"
+  }
+]

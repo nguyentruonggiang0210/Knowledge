@@ -1,0 +1,7 @@
+.m2/
+**/target/
+**/bin/
+**/obj/
+.idea/
+.vscode/
+*.iml

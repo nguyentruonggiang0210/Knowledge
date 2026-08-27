@@ -1,0 +1,7 @@
+environment    = "dev"
+region         = "ap-singapore-1"
+compartment_id = "ocid1.compartment.oc1..replace_me"
+vcn_cidr       = "10.70.0.0/16"
+owner          = "platform-team"
+cost_center    = "learning"
+

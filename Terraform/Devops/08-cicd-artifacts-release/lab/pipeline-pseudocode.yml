@@ -1,0 +1,51 @@
+# Vendor-neutral teaching specification. Translate it to your CI engine.
+pipeline:
+  invariants:
+    - pull_requests_never_receive_production_credentials
+    - artifact_is_built_once_and_promoted_by_digest
+    - deploy_jobs_are_serialized_per_environment
+    - every_production_rollout_has_abort_signals
+
+  pull_request:
+    permissions: read-only
+    steps:
+      - checkout_pinned_revision
+      - format_and_lint
+      - unit_and_contract_tests
+      - secret_sast_sca_iac_scans
+      - build_without_publishing
+
+  main:
+    permissions: publish-artifact
+    steps:
+      - checkout_exact_commit
+      - build_reproducible_artifact
+      - generate_sbom_and_provenance
+      - scan_sign_and_publish
+      - output_immutable_digest
+
+  environments:
+    dev:
+      artifact: output.main.immutable_digest
+      steps: [deploy, smoke_test, verify_telemetry]
+    staging:
+      needs: dev
+      artifact: output.main.immutable_digest
+      steps: [deploy, integration_test, load_test, migration_rehearsal]
+    production:
+      needs: staging
+      artifact: output.main.immutable_digest
+      concurrency_key: production
+      permissions: short-lived-production-deploy
+      steps:
+        - verify_signature_and_provenance
+        - capture_change_and_recovery_plan
+        - require_environment_authorization
+        - deploy_canary
+        - evaluate_slo_guardrails
+        - expand_or_abort
+
+  always:
+    - revoke_temporary_credentials
+    - remove_ephemeral_sandbox
+    - publish_sanitized_evidence

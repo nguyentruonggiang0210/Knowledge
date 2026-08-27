@@ -1,0 +1,1 @@
+# Output Parquet sau khi Spark xử lý, partition theo date. KHÔNG commit dữ liệu thật.

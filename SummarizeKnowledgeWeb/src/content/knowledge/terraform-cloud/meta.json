@@ -1,0 +1,32 @@
+{
+  "id": "terraform-cloud",
+  "title": "Terraform & Cloud Engineering",
+  "navTitle": "Terraform & Cloud",
+  "eyebrow": "IaC · OCI · Multi-cloud",
+  "description": "Terraform từ HCL và state đến module, CI/CD, OCI production và tư duy chuyển đổi có kiểm soát sang AWS/Azure.",
+  "order": 9,
+  "icon": "cloud",
+  "accent": "violet",
+  "level": "Thực chiến",
+  "estimatedMinutes": 105,
+  "tags": [
+    "Terraform",
+    "Infrastructure as Code",
+    "OCI",
+    "AWS",
+    "Azure",
+    "HCL"
+  ],
+  "sourceFolders": [
+    "Terraform/Lessions",
+    "Terraform/Quiz",
+    "Terraform/README.md",
+    "Terraform/Refer"
+  ],
+  "outcomes": [
+    "Viết HCL có type, validation và module contract ổn định",
+    "Quản lý state, backend, import và refactor mà không phá hạ tầng",
+    "Thiết kế foundation OCI an toàn và vận hành Terraform qua CI/CD",
+    "Đánh giá migration hoặc multi-cloud theo semantics thay vì đổi tên resource"
+  ]
+}

@@ -1,0 +1,11 @@
+# Đây là template, không phải file .tf nên terraform validate bỏ qua.
+# Bootstrap bucket riêng, thay placeholder rồi đổi tên file thành backend.tf.
+terraform {
+  backend "s3" {
+    bucket       = "REPLACE_WITH_STATE_BUCKET"
+    key          = "labs/aws-minimal/terraform.tfstate"
+    region       = "ap-southeast-1"
+    encrypt      = true
+    use_lockfile = true
+  }
+}

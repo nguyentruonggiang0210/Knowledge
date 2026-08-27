@@ -1,0 +1,22 @@
+# null: AzureRM dùng subscription hiện tại của Azure CLI/environment.
+subscription_id = null
+location        = "southeastasia"
+project_name    = "tf-oci-bridge"
+environment     = "lab"
+
+vnet_cidr  = "10.30.0.0/16"
+subnet_cidr = "10.30.1.0/24"
+
+# false nếu platform team đã đăng ký Microsoft.Network/Compute và identity không có quyền register.
+register_resource_providers = true
+
+# Giữ false cho network-only. Khi bật true, VM, managed disk và public IP có thể tính phí.
+create_compute = false
+
+# Chỉ dùng khi create_compute=true.
+vm_size           = "Standard_B1s"
+admin_username    = "azureadmin"
+allowed_http_cidr = "0.0.0.0/0"
+
+# Chỉ dán PUBLIC key một dòng, tuyệt đối không dán private key. Không commit terraform.tfvars.
+# ssh_public_key = "ssh-ed25519 AAAA... terraform-lab"

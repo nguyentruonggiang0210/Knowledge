@@ -1,0 +1,33 @@
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:26.3
+    container_name: clickhouse-lab
+    environment:
+      CLICKHOUSE_DB: ecommerce
+      CLICKHOUSE_USER: student
+      CLICKHOUSE_PASSWORD: student_pass
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: "1"
+    ports:
+      - "8123:8123"   # HTTP API
+      - "9000:9000"   # Native protocol
+      - "9363:9363"   # Prometheus metrics (lab only)
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+      - clickhouse_logs:/var/log/clickhouse-server
+      - ./sql:/docker-entrypoint-initdb.d:ro
+      - ./config.d/ops.xml:/etc/clickhouse-server/config.d/ops.xml:ro
+      - clickhouse_backups:/var/lib/clickhouse/backups
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    healthcheck:
+      test: ["CMD-SHELL", "clickhouse-client --user student --password student_pass --query 'SELECT 1'"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  clickhouse_data:
+  clickhouse_logs:
+  clickhouse_backups:

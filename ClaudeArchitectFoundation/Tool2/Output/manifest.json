@@ -1,0 +1,48 @@
+{
+  "source": "https://www.nvnhan.wiki/#/ccarf/docs",
+  "domains": [
+    {
+      "code": "D1",
+      "title": "Agentic Architecture & Orchestration",
+      "file": "D1-agentic-architecture-orchestration.md",
+      "expected_sections": 10,
+      "exported_sections": 10,
+      "status": "ok"
+    },
+    {
+      "code": "D2",
+      "title": "Tool Design & MCP Integration",
+      "file": "D2-tool-design-mcp-integration.md",
+      "expected_sections": 13,
+      "exported_sections": 13,
+      "status": "ok"
+    },
+    {
+      "code": "D3",
+      "title": "Claude Code Configuration & Workflows",
+      "file": "D3-claude-code-configuration-workflows.md",
+      "expected_sections": 18,
+      "exported_sections": 18,
+      "status": "ok"
+    },
+    {
+      "code": "D4",
+      "title": "Prompt Engineering & Structured Output",
+      "file": "D4-prompt-engineering-structured-output.md",
+      "expected_sections": 11,
+      "exported_sections": 11,
+      "status": "ok"
+    },
+    {
+      "code": "D5",
+      "title": "Context Management & Reliability",
+      "file": "D5-context-management-reliability.md",
+      "expected_sections": 12,
+      "exported_sections": 12,
+      "status": "ok"
+    }
+  ],
+  "combined_file": "ALL_DOMAINS.md",
+  "total_exported_sections": 64,
+  "failures": []
+}

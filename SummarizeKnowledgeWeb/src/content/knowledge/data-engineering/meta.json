@@ -1,0 +1,33 @@
+{
+  "id": "data-engineering",
+  "title": "Data Engineering: pipeline phân tích end-to-end",
+  "navTitle": "Data Engineering",
+  "eyebrow": "GitHub Trending Analytics capstone",
+  "description": "Kiến trúc thực chiến từ EDA, feature engineering theo thời điểm và PySpark ETL đến PostgreSQL, FastAPI, observability và dashboard Angular.",
+  "order": 3,
+  "icon": "workflow",
+  "accent": "sky",
+  "level": "Thực chiến",
+  "estimatedMinutes": 43,
+  "tags": [
+    "Data Engineering",
+    "PySpark",
+    "Feature Engineering",
+    "PostgreSQL",
+    "FastAPI",
+    "Observability"
+  ],
+  "sourceFolders": [
+    "AIEngineer/Lessions/09-data-engineering-sql-etl-quality",
+    "AIEngineer/Lessions/10-data-analysis-feature-engineering",
+    "AIEngineer/Lessions/15-http-apis-concurrency-streaming",
+    "DataEngineerTutorial"
+  ],
+  "outcomes": [
+    "Mô tả được luồng dữ liệu từ CSV lớn đến API và dashboard",
+    "Áp dụng cleaning, partition, window function, cache và JDBC batch trong Spark",
+    "Thiết kế feature theo observation cutoff và kiểm chứng parity giữa batch với online",
+    "Thiết kế schema, index, API async và monitoring theo nhu cầu truy vấn",
+    "Phân biệt kiến trúc mục tiêu với những phần source hiện vẫn là skeleton"
+  ]
+}

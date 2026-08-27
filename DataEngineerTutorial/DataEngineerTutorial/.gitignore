@@ -1,0 +1,35 @@
+# ==== Env ====
+.env
+*.local
+
+# ==== Data (không commit dữ liệu lớn) ====
+data/raw/*.csv
+data/processed/**/*.parquet
+data/processed/**/*.crc
+data/processed/**/_SUCCESS
+
+# ==== Python ====
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+
+# ==== Spark ====
+spark-warehouse/
+metastore_db/
+derby.log
+
+# ==== Node / Angular ====
+node_modules/
+frontend-angular/dist/
+frontend-angular/.angular/
+npm-debug.log*
+
+# ==== IDE / OS ====
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

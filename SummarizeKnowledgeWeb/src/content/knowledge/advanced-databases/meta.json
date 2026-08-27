@@ -1,0 +1,31 @@
+{
+  "id": "advanced-databases",
+  "title": "Cơ sở dữ liệu nâng cao",
+  "navTitle": "Database nâng cao",
+  "eyebrow": "PostgreSQL · ClickHouse · Production",
+  "description": "Tư duy thiết kế, tối ưu và vận hành PostgreSQL OLTP cùng ClickHouse OLAP, từ transaction và execution plan đến CDC, HA và schema evolution.",
+  "order": 5,
+  "icon": "database",
+  "accent": "mint",
+  "level": "Nâng cao",
+  "estimatedMinutes": 110,
+  "tags": [
+    "PostgreSQL",
+    "ClickHouse",
+    "SQL",
+    "Transactions",
+    "Performance",
+    "CDC"
+  ],
+  "sourceFolders": [
+    "DatabaseAdvance",
+    "Interview/database.md",
+    "Interview/Anwsers/database.md"
+  ],
+  "outcomes": [
+    "Chọn đúng mô hình OLTP PostgreSQL hoặc OLAP ClickHouse theo workload",
+    "Đọc execution plan và chứng minh thay đổi tối ưu bằng số đo",
+    "Thiết kế transaction, index, schema, partition và migration an toàn",
+    "Vận hành backup, replication, observability, CDC và failure drill ở mức production"
+  ]
+}

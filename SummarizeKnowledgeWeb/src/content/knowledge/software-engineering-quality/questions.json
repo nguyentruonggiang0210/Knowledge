@@ -1,0 +1,226 @@
+[
+  {
+    "id": "software-quality-01",
+    "question": "Trong Python, type hints đảm bảo điều gì theo tài liệu nguồn?",
+    "options": [
+      "Tự động từ chối mọi input sai kiểu ở runtime",
+      "Cung cấp metadata để IDE và static checker phát hiện lỗi trước runtime",
+      "Thay thế hoàn toàn validation ở biên API",
+      "Tự động sinh unit test cho các hàm public"
+    ],
+    "answerIndex": 1,
+    "explanation": "Type hints hỗ trợ IDE và công cụ kiểm tra tĩnh; chúng không tự thực hiện runtime validation và không thay thế validation bảo mật ở biên hệ thống.",
+    "difficulty": "Cơ bản",
+    "source": "AIEngineer/Lessions/03-professional-python-testing-typing/README.md"
+  },
+  {
+    "id": "software-quality-02",
+    "question": "Python Protocol hữu ích nhất khi nào?",
+    "options": [
+      "Khi mọi adapter bắt buộc phải kế thừa cùng một base class",
+      "Khi cần kiểm tra dữ liệu đầu vào ở runtime",
+      "Khi nhiều adapter cần thỏa cùng một hành vi mà không bị buộc kế thừa trực tiếp",
+      "Khi muốn tạo singleton dùng chung cho toàn ứng dụng"
+    ],
+    "answerIndex": 2,
+    "explanation": "Protocol mô tả capability theo hành vi. Một implementation có thể thỏa hợp đồng mà không cần kế thừa trực tiếp, giúp lõi ứng dụng ít phụ thuộc chi tiết hạ tầng.",
+    "difficulty": "Cơ bản",
+    "source": "AIEngineer/Lessions/03-professional-python-testing-typing/README.md"
+  },
+  {
+    "id": "software-quality-03",
+    "question": "Đặc điểm nào phù hợp nhất với một unit test tốt cho business rule?",
+    "options": [
+      "Kiểm tra hành vi quan sát được ở happy path, boundary và failure path mà không phụ thuộc mạng hay thời gian thực",
+      "Mock mọi method nội bộ để xác minh đúng thứ tự gọi",
+      "Luôn dùng database production để tăng độ tin cậy",
+      "Phụ thuộc thứ tự chạy để tái sử dụng dữ liệu từ test trước"
+    ],
+    "answerIndex": 0,
+    "explanation": "Nguồn nhấn mạnh test hành vi quan sát được, deterministic và bao phủ đường thành công, biên, lỗi. Database/API thật thuộc phạm vi integration test phù hợp hơn.",
+    "difficulty": "Cơ bản",
+    "source": "AIEngineer/Lessions/03-professional-python-testing-typing/README.md"
+  },
+  {
+    "id": "software-quality-04",
+    "question": "Vì sao một Java record chứa List vẫn chưa chắc bất biến sâu?",
+    "options": [
+      "Vì Java record có thể bị kế thừa",
+      "Vì component của record luôn là public field mutable",
+      "Vì record không tạo accessor cho component",
+      "Vì reference là final nhưng object List được tham chiếu vẫn có thể mutable"
+    ],
+    "answerIndex": 3,
+    "explanation": "Java record chỉ shallow immutable. Với component mutable như List, cần defensive copy, chẳng hạn List.copyOf trong compact constructor, để bảo vệ invariant.",
+    "difficulty": "Cơ bản",
+    "source": "JavaAdvanceMapCsharp/Lessions/02-oop-domain-modeling.md"
+  },
+  {
+    "id": "software-quality-05",
+    "question": "Khi nào inheritance là lựa chọn mô hình hợp lý thay vì chỉ dùng để tái sử dụng code?",
+    "options": [
+      "Khi subclass cần truy cập càng nhiều state nội bộ của base class càng tốt",
+      "Khi muốn tránh viết một vài dòng delegation",
+      "Khi có quan hệ is-a thật và subtype giữ đầy đủ behavioral contract của base type",
+      "Khi mọi class trong package đều cần cùng hậu tố tên"
+    ],
+    "answerIndex": 2,
+    "explanation": "Inheritance phù hợp khi subtype thực sự thay thế được base type theo LSP và hierarchy ổn định. Kế thừa chỉ để reuse code làm tăng coupling với contract và implementation của base.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/02-oop-domain-modeling.md"
+  },
+  {
+    "id": "software-quality-06",
+    "question": "Cách kiểm thử nào đáng tin hơn cho query phụ thuộc dialect, lock hoặc query plan của PostgreSQL?",
+    "options": [
+      "Chỉ mock repository và xác minh method được gọi",
+      "Integration test với engine hoặc container gần production và migration thật",
+      "Chạy LINQ/in-memory collection thay cho database",
+      "Chỉ dùng snapshot của chuỗi SQL"
+    ],
+    "answerIndex": 1,
+    "explanation": "Fake hoặc database in-memory không chứng minh SQL translation, dialect, lock hay query plan. Query quan trọng cần integration test với engine/version gần production.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/09-testing-build-tooling.md"
+  },
+  {
+    "id": "software-quality-07",
+    "question": "Nên thay Thread.sleep bằng cơ chế nào khi test xử lý bất đồng bộ?",
+    "options": [
+      "Tăng thời gian sleep cho đến khi test ít fail",
+      "Retry vô hạn toàn bộ test suite",
+      "Bỏ assertion về kết quả async",
+      "Future, latch hoặc eventually có timeout rõ ràng"
+    ],
+    "answerIndex": 3,
+    "explanation": "Sleep dựa vào timing làm test chậm và flaky. Đồng bộ bằng future/latch/eventually với deadline giúp chờ đúng condition và thất bại có giới hạn.",
+    "difficulty": "Trung cấp",
+    "source": "JavaAdvanceMapCsharp/Lessions/09-testing-build-tooling.md"
+  },
+  {
+    "id": "software-quality-08",
+    "question": "Trong kiến trúc ports-and-adapters được mô tả, dependency nên hướng theo chiều nào?",
+    "options": [
+      "Từ inbound/outbound adapter vào application và domain",
+      "Từ domain trực tiếp ra controller và database driver",
+      "Từ application vào framework để framework sở hữu business rule",
+      "Hai chiều giữa mọi layer để giảm mapping"
+    ],
+    "answerIndex": 0,
+    "explanation": "HTTP/message adapter gọi application use case; application dùng domain và outbound ports; adapter hạ tầng implement port. Dependency hướng vào domain/application, không để framework nuốt business rules.",
+    "difficulty": "Trung cấp",
+    "source": "Interview/Anwsers/software_engineering.md"
+  },
+  {
+    "id": "software-quality-09",
+    "question": "Một Spring bean scope singleton có mặc nhiên thread-safe không?",
+    "options": [
+      "Có, vì IoC container tự khóa mọi method",
+      "Không; bean phải stateless hoặc tự bảo đảm thread safety",
+      "Có, nếu dùng constructor injection",
+      "Chỉ không an toàn khi dùng interface"
+    ],
+    "answerIndex": 1,
+    "explanation": "Singleton chỉ nói về số instance trong container, không tạo synchronization. State dùng chung vẫn có race; service singleton nên stateless hoặc quản lý đồng bộ đúng cách.",
+    "difficulty": "Trung cấp",
+    "source": "Interview/Anwsers/software_engineering.md"
+  },
+  {
+    "id": "software-quality-10",
+    "question": "Thay đổi API nào thường an toàn hơn trong chiến lược backward compatibility?",
+    "options": [
+      "Xóa field cũ ngay khi server không còn dùng",
+      "Siết validation của field hiện có mà không có migration window",
+      "Thêm optional field và giữ ổn định ý nghĩa field/error contract hiện hữu",
+      "Luôn trả HTTP 200 rồi đưa mọi lỗi vào body"
+    ],
+    "answerIndex": 2,
+    "explanation": "Thêm optional field thường tương thích hơn. Không nên xóa/đổi nghĩa field, siết validation đột ngột hoặc phá stable machine-readable error contract khi consumer chưa migrate.",
+    "difficulty": "Trung cấp",
+    "source": "Interview/Anwsers/software_engineering.md"
+  },
+  {
+    "id": "software-quality-11",
+    "question": "Thứ tự đúng của expand–migrate–contract cho thay đổi schema không downtime là gì?",
+    "options": [
+      "Thêm cấu trúc tương thích, migrate/backfill có kiểm soát, rồi chỉ xóa cấu trúc cũ sau compatibility và rollback window",
+      "Xóa schema cũ, deploy code mới, sau đó mới backup",
+      "Dual-write vĩnh viễn và không xác định source of truth",
+      "Contract trước để buộc mọi consumer nâng cấp đồng thời"
+    ],
+    "answerIndex": 0,
+    "explanation": "Expand tạo schema/field mới tương thích; migrate/backfill theo batch và đối soát; contract là bước phá hủy cuối cùng sau khi consumer đã chuyển và rollback window kết thúc.",
+    "difficulty": "Nâng cao",
+    "source": "Interview/Anwsers/software_engineering.md"
+  },
+  {
+    "id": "software-quality-12",
+    "question": "Một code review hiệu quả nên ưu tiên nhóm vấn đề nào trước góp ý style?",
+    "options": [
+      "Sở thích đặt tên cá nhân và số dòng mỗi method",
+      "Correctness, security, data loss, concurrency, compatibility và khả năng kiểm thử/bảo trì",
+      "Đổi mọi implementation sang pattern reviewer quen dùng",
+      "Chỉ kiểm tra formatter đã chạy"
+    ],
+    "answerIndex": 1,
+    "explanation": "Review nên chặn lỗi có tác động thực như correctness, security, mất dữ liệu, concurrency hay breaking contract. Style nên được tự động hóa và không biến sở thích tương đương thành blocker.",
+    "difficulty": "Nâng cao",
+    "source": "Interview/Anwsers/software_engineering.md"
+  },
+  {
+    "id": "software-quality-13",
+    "question": "Khi context của một ADR đã thay đổi, cách duy trì lịch sử quyết định phù hợp là gì?",
+    "options": [
+      "Xóa ADR cũ để tránh gây nhầm lẫn",
+      "Sửa nội dung ADR cũ như thể quyết định ban đầu chưa từng tồn tại",
+      "Chỉ ghi quyết định mới trong chat của đội",
+      "Tạo ADR mới đánh dấu supersedes ADR cũ và giữ liên kết evidence/trade-off"
+    ],
+    "answerIndex": 3,
+    "explanation": "ADR là lịch sử quyết định. Khi context đổi, tạo bản mới supersede bản cũ giúp bảo toàn lý do, constraint và trade-off của cả hai thời điểm.",
+    "difficulty": "Nâng cao",
+    "source": "Terraform/Devops/Templates/ADR.md"
+  },
+  {
+    "id": "software-quality-14",
+    "question": "Một exception trong Production Readiness Review hợp lệ cần gì?",
+    "options": [
+      "Chỉ cần developer ghi chú đã biết rủi ro",
+      "Tự động chuyển thành Ready sau ngày go-live",
+      "Risk owner có thẩm quyền, compensating control, expiry và tracking/evidence",
+      "Không cần owner nếu service có monitoring"
+    ],
+    "answerIndex": 2,
+    "explanation": "Template phân biệt BLOCKER, EXCEPTION và N/A. Exception phải có authorized risk owner, biện pháp bù, hạn hết hiệu lực và theo dõi; trạng thái Conditional không tự thành Ready.",
+    "difficulty": "Nâng cao",
+    "source": "Terraform/Devops/Templates/PRODUCTION-READINESS.md"
+  },
+  {
+    "id": "software-quality-15",
+    "question": "Khi nào một runbook mới được gắn trạng thái VERIFIED?",
+    "options": [
+      "Sau khi đã diễn tập bằng quyền và môi trường tương đương, có kết quả và lịch sử kiểm thử",
+      "Ngay khi nội dung được một người viết xong",
+      "Khi command trong runbook chạy được trên máy cá nhân",
+      "Khi runbook có ít nhất ba bước mitigation"
+    ],
+    "answerIndex": 0,
+    "explanation": "Runbook chỉ VERIFIED sau diễn tập thực tế với quyền và môi trường tương đương. Metadata và test history phải lưu thời điểm, kết quả, khoảng trống và reviewer.",
+    "difficulty": "Cơ bản",
+    "source": "Terraform/Devops/Templates/RUNBOOK.md"
+  },
+  {
+    "id": "software-quality-16",
+    "question": "Trong threat model, nên xử lý một assumption chưa có evidence như thế nào?",
+    "options": [
+      "Coi là fact để không làm chậm review",
+      "Loại khỏi scope vĩnh viễn",
+      "Giao cho người triển khai tự accept mọi residual risk",
+      "Ghi nhận là risk cần test, có owner và review trigger phù hợp"
+    ],
+    "answerIndex": 3,
+    "explanation": "Template nêu rõ assumption không có evidence là risk, không phải fact. Threat/control cần test hoặc evidence; residual risk cao phải do vai trò có thẩm quyền chấp nhận và có expiry/review trigger.",
+    "difficulty": "Nâng cao",
+    "source": "Terraform/Devops/Templates/THREAT-MODEL.md"
+  }
+]

@@ -1,6 +1,3 @@
-[submodule "GraphQLFromConsole"]
-	path = GraphQLFromConsole
-	url = https://github.com/nguyentruonggiang210/GraphQLFromConsole.git
 [submodule "MultiThreadDotnet"]
 	path = MultiThreadDotnet
 	url = https://github.com/nguyentruonggiang0210/DotNetMultithread.git
