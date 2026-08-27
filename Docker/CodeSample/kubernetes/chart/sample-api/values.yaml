@@ -1,0 +1,59 @@
+# replicaCount is the baseline replica count when no HPA manages the Deployment.
+replicaCount: 2
+
+image:
+  # image.repository is the immutable application image repository.
+  repository: sample-api
+  # image.tag is for this local lab; production should prefer a digest or signed immutable reference.
+  tag: dev
+  # image.pullPolicy avoids a registry pull for an image loaded into kind.
+  pullPolicy: IfNotPresent
+
+service:
+  # service.type controls how the Service is exposed.
+  type: ClusterIP
+  # service.port is the stable Service port.
+  port: 80
+
+app:
+  # app.message is returned by GET / and demonstrates runtime configuration.
+  message: hello-from-helm
+  # app.version is returned by GET / and should match the promoted artifact metadata.
+  version: dev
+
+resources:
+  requests:
+    cpu: 25m
+    memory: 32Mi
+    ephemeral-storage: 16Mi
+  limits:
+    cpu: 250m
+    memory: 64Mi
+    ephemeral-storage: 64Mi
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 65532
+  runAsGroup: 65532
+  fsGroup: 65532
+  seccompProfile:
+    type: RuntimeDefault
+
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
+
+pdb:
+  # pdb.enabled protects voluntary disruption in the Helm example.
+  enabled: true
+  # pdb.maxUnavailable should be reviewed together with replica count and maintenance needs.
+  maxUnavailable: 1
+
+testImage:
+  # testImage.repository supplies curl for the Helm test Pod.
+  repository: curlimages/curl
+  # testImage.tag is pinned for repeatable labs.
+  tag: 8.11.1

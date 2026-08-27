@@ -1,0 +1,15 @@
+# Cố ý bị Pod Security Admission "restricted" từ chối. Không dùng workload này.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: intentionally-insecure
+  namespace: deep-k8s
+spec:
+  containers:
+    - name: insecure
+      image: busybox:1.36.1
+      command:
+        - sleep
+        - "3600"
+      securityContext:
+        privileged: true

@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+replicas:
+  - name: sample-api
+    count: 1
+configMapGenerator:
+  - name: sample-api-config
+    namespace: deep-k8s
+    behavior: merge
+    literals:
+      - APP_MESSAGE=hello-from-dev
+patches:
+  - target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: sample-api
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env/1/value
+        value: dev

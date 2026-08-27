@@ -1,0 +1,13 @@
+name: docker-debugging
+
+services:
+  app:
+    container_name: docker-debugging-app
+    image: deep-docker/debugging-app:dev
+    build:
+      context: .
+    environment:
+      BIND_HOST: 127.0.0.1
+    ports:
+      - "127.0.0.1:8086:8080"
+    restart: unless-stopped

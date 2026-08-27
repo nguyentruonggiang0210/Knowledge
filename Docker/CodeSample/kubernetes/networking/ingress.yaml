@@ -1,0 +1,19 @@
+# Cần một Ingress controller có IngressClass "nginx"; đổi class/annotations theo controller thực tế.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sample-api
+  namespace: deep-k8s
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: sample.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sample-api
+                port:
+                  name: http

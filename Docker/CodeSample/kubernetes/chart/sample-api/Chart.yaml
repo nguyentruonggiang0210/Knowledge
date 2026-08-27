@@ -1,0 +1,7 @@
+apiVersion: v2
+name: sample-api
+description: Hardened sample API chart for the deep Kubernetes curriculum
+type: application
+version: 0.1.0
+appVersion: "dev"
+kubeVersion: ">=1.25.0-0"

@@ -1,0 +1,20 @@
+.git
+README.md
+compose*.yaml
+*** Add File: CodeSample/docker/01-first-container/site/index.html
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Docker first container</title>
+    <style>
+      body { max-width: 48rem; margin: 4rem auto; padding: 0 1rem; font: 1.1rem/1.6 system-ui; }
+      code { background: #eef2ff; padding: .15rem .35rem; }
+    </style>
+  </head>
+  <body>
+    <h1>Container đầu tiên đang chạy</h1>
+    <p>Host port <code>8080</code> đang được ánh xạ tới Nginx port <code>80</code> trong container.</p>
+  </body>
+</html>

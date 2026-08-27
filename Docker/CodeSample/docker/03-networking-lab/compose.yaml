@@ -1,0 +1,50 @@
+name: docker-networking
+
+services:
+  gateway:
+    image: nginx:alpine
+    ports:
+      - "127.0.0.1:8081:80"
+    volumes:
+      - ./gateway.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - api
+    networks:
+      - front
+      - backend
+
+  api:
+    image: nginx:alpine
+    volumes:
+      - ./api.html:/usr/share/nginx/html/index.html:ro
+    networks:
+      - backend
+      - data
+
+  db:
+    image: redis:alpine
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    networks:
+      - data
+
+  client:
+    image: busybox:1.37
+    command: ["sleep", "3600"]
+    profiles: [tools]
+    networks:
+      - front
+
+  toolbox:
+    image: busybox:1.37
+    command: ["sleep", "3600"]
+    profiles: [tools]
+    networks:
+      - backend
+      - data
+
+networks:
+  front:
+  backend:
+    internal: true
+  data:
+    internal: true

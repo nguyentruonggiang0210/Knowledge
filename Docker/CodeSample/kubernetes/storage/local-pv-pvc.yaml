@@ -1,0 +1,46 @@
+# Chỉ dùng local kind lab. hostPath không phải storage production và dữ liệu mất khi xóa node/cluster.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: storage-lab
+  labels:
+    pod-security.kubernetes.io/enforce: baseline
+    pod-security.kubernetes.io/enforce-version: v1.36
+    pod-security.kubernetes.io/warn: baseline
+    pod-security.kubernetes.io/warn-version: v1.36
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: deep-k8s-local-pv
+spec:
+  capacity:
+    storage: 256Mi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: deep-k8s-local
+  local:
+    path: /tmp/deep-k8s-local-pv
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - deep-k8s-worker
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: lab-data
+  namespace: storage-lab
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: deep-k8s-local
+  resources:
+    requests:
+      storage: 128Mi

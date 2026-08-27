@@ -1,0 +1,40 @@
+# Local-volume bootstrap cho kind lab. Pod đặc quyền này là lý do không dùng pattern này ở production.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: prepare-local-volume
+  namespace: storage-lab
+spec:
+  nodeName: deep-k8s-worker
+  restartPolicy: Never
+  automountServiceAccountToken: false
+  containers:
+    - name: prepare
+      image: busybox:1.36.1
+      command:
+        - sh
+        - -c
+        - 'mkdir -p /node/tmp/deep-k8s-local-pv; chmod 0770 /node/tmp/deep-k8s-local-pv; chown 65532:65532 /node/tmp/deep-k8s-local-pv'
+      resources:
+        requests:
+          cpu: 5m
+          memory: 4Mi
+        limits:
+          cpu: 50m
+          memory: 16Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+        runAsUser: 0
+        seccompProfile:
+          type: RuntimeDefault
+      volumeMounts:
+        - name: node-tmp
+          mountPath: /node/tmp
+  volumes:
+    - name: node-tmp
+      hostPath:
+        path: /tmp
+        type: Directory

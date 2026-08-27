@@ -1,0 +1,29 @@
+name: docker-security
+
+services:
+  app:
+    container_name: docker-security-app
+    image: deep-docker/security-app:dev
+    build:
+      context: .
+    ports:
+      - "127.0.0.1:8084:8080"
+    user: "10001:10001"
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=32m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    init: true
+    pids_limit: 64
+    mem_limit: 128m
+    cpus: 0.50
+    restart: unless-stopped
+    stop_grace_period: 15s
+    logging:
+      driver: local
+      options:
+        max-size: "5m"
+        max-file: "2"

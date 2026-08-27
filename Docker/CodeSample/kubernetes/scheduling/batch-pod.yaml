@@ -1,0 +1,46 @@
+# Lab yêu cầu taint deep-k8s-worker2 với workload=batch:NoSchedule trước khi apply.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: batch-demo
+  namespace: deep-k8s
+spec:
+  automountServiceAccountToken: false
+  restartPolicy: Never
+  tolerations:
+    - key: workload
+      operator: Equal
+      value: batch
+      effect: NoSchedule
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                  - deep-k8s-worker2
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 65532
+    runAsGroup: 65532
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+    - name: pause
+      image: registry.k8s.io/pause:3.10
+      imagePullPolicy: IfNotPresent
+      resources:
+        requests:
+          cpu: 5m
+          memory: 4Mi
+        limits:
+          cpu: 20m
+          memory: 16Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        capabilities:
+          drop:
+            - ALL

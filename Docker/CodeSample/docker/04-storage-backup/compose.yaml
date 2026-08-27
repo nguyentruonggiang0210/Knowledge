@@ -1,0 +1,26 @@
+name: docker-storage-lab
+
+services:
+  writer:
+    image: alpine:3.23
+    command:
+      - sh
+      - -c
+      - |
+        trap 'exit 0' TERM INT
+        touch /data/events.log
+        while true; do
+          date -Iseconds >> /data/events.log
+          sleep 5 & wait $${!}
+        done
+    volumes:
+      - app-data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "test -s /data/events.log"]
+      interval: 5s
+      timeout: 2s
+      retries: 3
+    stop_grace_period: 10s
+
+volumes:
+  app-data:

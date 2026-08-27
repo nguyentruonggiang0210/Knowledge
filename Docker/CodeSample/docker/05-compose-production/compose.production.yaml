@@ -1,0 +1,12 @@
+services:
+  db:
+    pull_policy: always
+
+  migrate:
+    pull_policy: always
+
+  api:
+    pull_policy: always
+
+  proxy:
+    pull_policy: always

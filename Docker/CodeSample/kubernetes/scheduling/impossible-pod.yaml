@@ -1,0 +1,32 @@
+# Pod này cố ý Pending vì request 100 CPU lớn hơn node kind thông thường.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: impossible
+  namespace: deep-k8s
+spec:
+  automountServiceAccountToken: false
+  restartPolicy: Never
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 65532
+    runAsGroup: 65532
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+    - name: api
+      image: sample-api:dev
+      imagePullPolicy: IfNotPresent
+      resources:
+        requests:
+          cpu: "100"
+          memory: 32Mi
+        limits:
+          cpu: "100"
+          memory: 64Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        capabilities:
+          drop:
+            - ALL
