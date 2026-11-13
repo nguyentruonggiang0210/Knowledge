@@ -9,6 +9,7 @@ import {
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import type { KnowledgeTopic } from '../../domain/knowledge/KnowledgeTopic'
+import { useI18n } from '../i18n/I18nProvider'
 import { getMarkdownHeadingData, markdownSlugBase } from './markdownHeadings'
 
 function textFromChildren(node: ReactNode): string {
@@ -29,6 +30,7 @@ function decodeHash(value: string) {
 }
 
 function CopyButton({ value }: { readonly value: string }) {
+  const { t } = useI18n()
   const [copied, setCopied] = useState(false)
 
   const copy = async () => {
@@ -44,7 +46,7 @@ function CopyButton({ value }: { readonly value: string }) {
 
   return (
     <button type="button" onClick={copy} className="copy-button">
-      <Copy size={14} /> {copied ? 'Đã chép' : 'Sao chép'}
+      <Copy size={14} /> {copied ? t('article.copied') : t('article.copy')}
     </button>
   )
 }
@@ -54,6 +56,7 @@ interface KnowledgeArticleProps {
 }
 
 export function KnowledgeArticle({ topic }: KnowledgeArticleProps) {
+  const { t } = useI18n()
   const headingData = useMemo(
     () => getMarkdownHeadingData(topic.content),
     [topic.content],
@@ -137,9 +140,9 @@ export function KnowledgeArticle({ topic }: KnowledgeArticleProps) {
         </ReactMarkdown>
       </article>
 
-      <aside className="article-outline" aria-label="Mục lục bài viết">
+      <aside className="article-outline" aria-label={t('article.outlineLabel')}>
         <div className="article-outline__title">
-          <ListTree size={16} /> Trong bài này
+          <ListTree size={16} /> {t('article.outline')}
         </div>
         <nav>
           {headingData.outline.map((item) => (

@@ -1,8 +1,8 @@
 {
-  "totalSourceFiles": 376,
-  "totalUniqueDocuments": 376,
-  "totalWords": 633759,
-  "totalRawWords": 699575,
+  "totalSourceFiles": 453,
+  "totalUniqueDocuments": 453,
+  "totalWords": 710915,
+  "totalRawWords": 776731,
   "topics": [
     {
       "topicId": "advanced-databases",
@@ -45,6 +45,13 @@
       "sourceFileCount": 71,
       "wordCount": 89009,
       "rawWordCount": 89009
+    },
+    {
+      "topicId": "docker-kubernetes",
+      "documentCount": 77,
+      "sourceFileCount": 77,
+      "wordCount": 77156,
+      "rawWordCount": 77156
     },
     {
       "topicId": "dotnet-api-containers",
@@ -2896,6 +2903,930 @@
         "Terraform/Devops/Templates/SLO.md"
       ],
       "assetPath": "knowledge-sources/devops-sre-security/devops-sre-security-0b99543fa196-ffcfc868d3b4.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-f8d920ab0f78",
+      "topicId": "docker-kubernetes",
+      "title": "Capstone: Visits API từ Compose đến Kubernetes",
+      "wordCount": 1663,
+      "lineCount": 285,
+      "sourcePaths": [
+        "Docker/CodeSample/capstone/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-f8d920ab0f78-345278967358.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-c51fcd0293cb",
+      "topicId": "docker-kubernetes",
+      "title": "01 — First container",
+      "wordCount": 210,
+      "lineCount": 49,
+      "sourcePaths": [
+        "Docker/CodeSample/docker/01-first-container/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-c51fcd0293cb-19be047efac4.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-3ff8bce7ea4f",
+      "topicId": "docker-kubernetes",
+      "title": "02 — BuildKit + Go multi-stage",
+      "wordCount": 314,
+      "lineCount": 57,
+      "sourcePaths": [
+        "Docker/CodeSample/docker/02-buildkit-go/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-3ff8bce7ea4f-b6921938e63c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-076c347d9a13",
+      "topicId": "docker-kubernetes",
+      "title": "03 — Networking segmentation lab",
+      "wordCount": 242,
+      "lineCount": 67,
+      "sourcePaths": [
+        "Docker/CodeSample/docker/03-networking-lab/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-076c347d9a13-edc112b9d86b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-a923afea2cfa",
+      "topicId": "docker-kubernetes",
+      "title": "04 — Named volume, backup và restore",
+      "wordCount": 217,
+      "lineCount": 62,
+      "sourcePaths": [
+        "Docker/CodeSample/docker/04-storage-backup/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-a923afea2cfa-849df23b5ff4.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-1b8dc73ad063",
+      "topicId": "docker-kubernetes",
+      "title": "05 — Compose production baseline",
+      "wordCount": 532,
+      "lineCount": 114,
+      "sourcePaths": [
+        "Docker/CodeSample/docker/05-compose-production/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-1b8dc73ad063-66c7e68902ee.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-d64dc9feb595",
+      "topicId": "docker-kubernetes",
+      "title": "06 — Runtime security hardening",
+      "wordCount": 220,
+      "lineCount": 40,
+      "sourcePaths": [
+        "Docker/CodeSample/docker/06-security-hardening/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-d64dc9feb595-a37f53be9431.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-c2715b47c6f9",
+      "topicId": "docker-kubernetes",
+      "title": "07 — Observability: structured logs + Prometheus",
+      "wordCount": 223,
+      "lineCount": 50,
+      "sourcePaths": [
+        "Docker/CodeSample/docker/07-observability/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-c2715b47c6f9-bc9b3adced47.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-5c71f581958a",
+      "topicId": "docker-kubernetes",
+      "title": "08 — BuildKit secret mount",
+      "wordCount": 216,
+      "lineCount": 43,
+      "sourcePaths": [
+        "Docker/CodeSample/docker/08-build-secret/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-5c71f581958a-96ec3a3ed468.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-d48ce513e037",
+      "topicId": "docker-kubernetes",
+      "title": "09 — Debugging lab: healthy nhưng host không gọi được",
+      "wordCount": 287,
+      "lineCount": 49,
+      "sourcePaths": [
+        "Docker/CodeSample/docker/09-debugging-lab/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-d48ce513e037-6fa843a2e69c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-f0eeb5f24384",
+      "topicId": "docker-kubernetes",
+      "title": "Docker code samples",
+      "wordCount": 253,
+      "lineCount": 26,
+      "sourcePaths": [
+        "Docker/CodeSample/docker/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-f0eeb5f24384-649e01f46227.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-842d2c9e70c6",
+      "topicId": "docker-kubernetes",
+      "title": "Incident runbook — sample-api",
+      "wordCount": 349,
+      "lineCount": 71,
+      "sourcePaths": [
+        "Docker/CodeSample/kubernetes/observability/incident-runbook.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-842d2c9e70c6-3e2f6707cc2d.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-6bb4b354e5a0",
+      "topicId": "docker-kubernetes",
+      "title": "Disaster recovery game day",
+      "wordCount": 208,
+      "lineCount": 46,
+      "sourcePaths": [
+        "Docker/CodeSample/kubernetes/operations/dr-game-day.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-6bb4b354e5a0-3df2a05b8f2f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-995e669fed2a",
+      "topicId": "docker-kubernetes",
+      "title": "Kubernetes upgrade checklist",
+      "wordCount": 311,
+      "lineCount": 36,
+      "sourcePaths": [
+        "Docker/CodeSample/kubernetes/operations/upgrade-checklist.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-995e669fed2a-98367a479dc6.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-6105b1e303d6",
+      "topicId": "docker-kubernetes",
+      "title": "Kubernetes project mẫu: sample-api",
+      "wordCount": 1035,
+      "lineCount": 185,
+      "sourcePaths": [
+        "Docker/CodeSample/kubernetes/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-6105b1e303d6-6651f75e2c55.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-82c6a20de3e9",
+      "topicId": "docker-kubernetes",
+      "title": "Code samples và lab",
+      "wordCount": 136,
+      "lineCount": 17,
+      "sourcePaths": [
+        "Docker/CodeSample/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-82c6a20de3e9-c01a83ef1259.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-46df8c5626be",
+      "topicId": "docker-kubernetes",
+      "title": "Junior question bank",
+      "wordCount": 895,
+      "lineCount": 188,
+      "sourcePaths": [
+        "Docker/Interview/01-junior-question-bank.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-46df8c5626be-cac1c1d0d3d4.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-071a2a65060a",
+      "topicId": "docker-kubernetes",
+      "title": "Mid-level question bank",
+      "wordCount": 1098,
+      "lineCount": 200,
+      "sourcePaths": [
+        "Docker/Interview/02-mid-question-bank.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-071a2a65060a-f079cc97ac8e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-9b094611b1dd",
+      "topicId": "docker-kubernetes",
+      "title": "Senior/Staff question bank",
+      "wordCount": 1044,
+      "lineCount": 164,
+      "sourcePaths": [
+        "Docker/Interview/03-senior-question-bank.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-9b094611b1dd-a4a43ed41668.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-60bbb194f1eb",
+      "topicId": "docker-kubernetes",
+      "title": "System design exercises",
+      "wordCount": 843,
+      "lineCount": 95,
+      "sourcePaths": [
+        "Docker/Interview/04-system-design-exercises.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-60bbb194f1eb-51d2225668de.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-7fd34f7b6ce5",
+      "topicId": "docker-kubernetes",
+      "title": "Troubleshooting drills",
+      "wordCount": 939,
+      "lineCount": 144,
+      "sourcePaths": [
+        "Docker/Interview/05-troubleshooting-drills.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-7fd34f7b6ce5-f840652e8b85.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-5622f2780562",
+      "topicId": "docker-kubernetes",
+      "title": "Model answers — câu hỏi theo level",
+      "wordCount": 4112,
+      "lineCount": 374,
+      "sourcePaths": [
+        "Docker/Interview/90-model-answers.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-5622f2780562-4ca347204492.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-f70183a212f1",
+      "topicId": "docker-kubernetes",
+      "title": "System design — model outlines và rubric",
+      "wordCount": 1300,
+      "lineCount": 134,
+      "sourcePaths": [
+        "Docker/Interview/91-system-design-models.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-f70183a212f1-09044a1fe8fd.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-59461d1261ae",
+      "topicId": "docker-kubernetes",
+      "title": "Troubleshooting drill — model reasoning",
+      "wordCount": 929,
+      "lineCount": 84,
+      "sourcePaths": [
+        "Docker/Interview/92-troubleshooting-models.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-59461d1261ae-2f35a3b6d866.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-471d1266d87e",
+      "topicId": "docker-kubernetes",
+      "title": "Interview scorecard, red flags và calibration",
+      "wordCount": 1008,
+      "lineCount": 106,
+      "sourcePaths": [
+        "Docker/Interview/93-red-flags-evaluation.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-471d1266d87e-f5690feaf128.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-d017da7ff6c1",
+      "topicId": "docker-kubernetes",
+      "title": "Checklist ôn interview Docker & Kubernetes",
+      "wordCount": 1242,
+      "lineCount": 148,
+      "sourcePaths": [
+        "Docker/Interview/94-study-checklist.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-d017da7ff6c1-aceb4ae02fd1.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-bd999ca0d0e1",
+      "topicId": "docker-kubernetes",
+      "title": "Interview Kit — Docker & Kubernetes",
+      "wordCount": 577,
+      "lineCount": 51,
+      "sourcePaths": [
+        "Docker/Interview/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-bd999ca0d0e1-cdcc713a138b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-cefcaba4f80a",
+      "topicId": "docker-kubernetes",
+      "title": "Coverage ledger: Docker & Kubernetes",
+      "wordCount": 3221,
+      "lineCount": 318,
+      "sourcePaths": [
+        "Docker/KNOWLEDGE-CHECKLIST.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-cefcaba4f80a-4730d06d4ebb.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-4014be58e232",
+      "topicId": "docker-kubernetes",
+      "title": "00 — Roadmap và cách đánh giá năng lực",
+      "wordCount": 647,
+      "lineCount": 74,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/00-roadmap.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-4014be58e232-3b662b1909a0.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-a64cb1da054f",
+      "topicId": "docker-kubernetes",
+      "title": "01 — Mental model và kiến trúc Docker",
+      "wordCount": 721,
+      "lineCount": 97,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/01-mental-model-va-kien-truc.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-a64cb1da054f-b49aa1d33581.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-03a7f36d5d24",
+      "topicId": "docker-kubernetes",
+      "title": "02 — CLI và vòng đời container",
+      "wordCount": 693,
+      "lineCount": 121,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/02-cli-va-vong-doi-container.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-03a7f36d5d24-2d9aa64cccf8.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-3c1b34421725",
+      "topicId": "docker-kubernetes",
+      "title": "03 — Image, layer và registry",
+      "wordCount": 732,
+      "lineCount": 108,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/03-image-layer-registry.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-3c1b34421725-6aa71007384a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-ba141ab1df5a",
+      "topicId": "docker-kubernetes",
+      "title": "04 — Dockerfile thực chiến",
+      "wordCount": 745,
+      "lineCount": 107,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/04-dockerfile-thuc-chien.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-ba141ab1df5a-5a56cfe7147f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-47d484db5258",
+      "topicId": "docker-kubernetes",
+      "title": "05 — BuildKit, buildx và supply chain",
+      "wordCount": 904,
+      "lineCount": 156,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/05-buildkit-buildx.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-47d484db5258-1c6113a23214.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-184fd63044ee",
+      "topicId": "docker-kubernetes",
+      "title": "06 — Networking chuyên sâu",
+      "wordCount": 862,
+      "lineCount": 118,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/06-networking-chuyen-sau.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-184fd63044ee-ec46486aa5e9.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-ca7048ae8971",
+      "topicId": "docker-kubernetes",
+      "title": "07 — Storage và dữ liệu",
+      "wordCount": 848,
+      "lineCount": 105,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/07-storage-va-du-lieu.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-ca7048ae8971-72c0ed9f8a0d.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-bea905ce4035",
+      "topicId": "docker-kubernetes",
+      "title": "08 — Docker Compose từ dev đến production",
+      "wordCount": 807,
+      "lineCount": 151,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/08-compose-tu-dev-den-prod.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-bea905ce4035-81c0c82a7c7e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-420721c9932c",
+      "topicId": "docker-kubernetes",
+      "title": "09 — Security và hardening",
+      "wordCount": 892,
+      "lineCount": 123,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/09-security-hardening.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-420721c9932c-cf52706de912.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-cf053a67efac",
+      "topicId": "docker-kubernetes",
+      "title": "10 — Reliability và quản lý tài nguyên",
+      "wordCount": 811,
+      "lineCount": 112,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/10-reliability-va-tai-nguyen.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-cf053a67efac-73ec00a85a39.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-c38be8c6019c",
+      "topicId": "docker-kubernetes",
+      "title": "11 — Observability: log, metric, event và health",
+      "wordCount": 668,
+      "lineCount": 102,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/11-observability.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-c38be8c6019c-cad8a6fa0cd7.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-392bd8cb7b01",
+      "topicId": "docker-kubernetes",
+      "title": "12 — Debugging Docker theo runbook",
+      "wordCount": 792,
+      "lineCount": 115,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/12-debugging-runbook.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-392bd8cb7b01-4abcd4ad0d83.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-630857e437c3",
+      "topicId": "docker-kubernetes",
+      "title": "13 — Production patterns",
+      "wordCount": 816,
+      "lineCount": 115,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/13-production-patterns.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-630857e437c3-225678bcddbd.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-b07c0c35511c",
+      "topicId": "docker-kubernetes",
+      "title": "14 — Internals Linux và OCI",
+      "wordCount": 872,
+      "lineCount": 104,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/14-internals-linux-oci.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-b07c0c35511c-7fa78f66f6b5.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-05b0d5ab95a8",
+      "topicId": "docker-kubernetes",
+      "title": "15 — Vận hành daemon, context, registry và Swarm",
+      "wordCount": 841,
+      "lineCount": 123,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/15-van-hanh-daemon-registry.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-05b0d5ab95a8-1d1a5ab2febe.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-7a39eb0c7d44",
+      "topicId": "docker-kubernetes",
+      "title": "16 — Capstone: đưa một dự án thật lên Docker",
+      "wordCount": 731,
+      "lineCount": 108,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/16-capstone-du-an-that.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-7a39eb0c7d44-fd73660b2f53.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-2a267e029316",
+      "topicId": "docker-kubernetes",
+      "title": "17 — Cheat sheet và ma trận quyết định",
+      "wordCount": 786,
+      "lineCount": 172,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/17-cheat-sheet.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-2a267e029316-7deff27eb351.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-7364744dab51",
+      "topicId": "docker-kubernetes",
+      "title": "Docker chuyên sâu — mục lục và bản đồ kiến thức",
+      "wordCount": 1418,
+      "lineCount": 119,
+      "sourcePaths": [
+        "Docker/Lessions/Docker/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-7364744dab51-f631ce3cc468.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-c0c731c5a7da",
+      "topicId": "docker-kubernetes",
+      "title": "00 — Roadmap, tiền đề và môi trường lab",
+      "wordCount": 839,
+      "lineCount": 111,
+      "sourcePaths": [
+        "Docker/Lessions/Kubernetes/00-roadmap-prerequisites.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-c0c731c5a7da-0290500d980b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-92b7cda53a75",
+      "topicId": "docker-kubernetes",
+      "title": "01 — Kiến trúc, Kubernetes API và reconciliation",
+      "wordCount": 1222,
+      "lineCount": 169,
+      "sourcePaths": [
+        "Docker/Lessions/Kubernetes/01-architecture-api-objects.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-92b7cda53a75-fa97ded40378.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-682c5e1131d0",
+      "topicId": "docker-kubernetes",
+      "title": "02 — Pod, workload controller và vòng đời ứng dụng",
+      "wordCount": 1261,
+      "lineCount": 160,
+      "sourcePaths": [
+        "Docker/Lessions/Kubernetes/02-workloads-lifecycle.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-682c5e1131d0-93e1411149aa.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-0551796ffac1",
+      "topicId": "docker-kubernetes",
+      "title": "03 — Scheduling, resource management và disruption",
+      "wordCount": 1241,
+      "lineCount": 151,
+      "sourcePaths": [
+        "Docker/Lessions/Kubernetes/03-scheduling-resources.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-0551796ffac1-d8720cc2f69e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-7d6fe8f3b25b",
+      "topicId": "docker-kubernetes",
+      "title": "04 — Networking, Service, DNS, Ingress và Gateway API",
+      "wordCount": 1337,
+      "lineCount": 205,
+      "sourcePaths": [
+        "Docker/Lessions/Kubernetes/04-networking-services-gateway.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-7d6fe8f3b25b-cfc40865e822.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-014518b40196",
+      "topicId": "docker-kubernetes",
+      "title": "05 — Storage, PV/PVC/CSI và workload có trạng thái",
+      "wordCount": 1168,
+      "lineCount": 155,
+      "sourcePaths": [
+        "Docker/Lessions/Kubernetes/05-storage-stateful.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-014518b40196-5bf2d052d8e6.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-dc41101f416d",
+      "topicId": "docker-kubernetes",
+      "title": "06 — ConfigMap, Secret, probes và lifecycle hooks",
+      "wordCount": 1056,
+      "lineCount": 122,
+      "sourcePaths": [
+        "Docker/Lessions/Kubernetes/06-config-secrets-probes.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-dc41101f416d-816a1c53ca5e.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-e50732776cb8",
+      "topicId": "docker-kubernetes",
+      "title": "07 — Autoscaling, resilience và capacity",
+      "wordCount": 1052,
+      "lineCount": 135,
+      "sourcePaths": [
+        "Docker/Lessions/Kubernetes/07-autoscaling-resilience.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-e50732776cb8-8d0ca1fba78c.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-d6272e01ee4c",
+      "topicId": "docker-kubernetes",
+      "title": "08 — Security, RBAC, Pod Security và policy",
+      "wordCount": 1220,
+      "lineCount": 163,
+      "sourcePaths": [
+        "Docker/Lessions/Kubernetes/08-security-rbac-policies.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-d6272e01ee4c-f63e84754884.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-9dbb98471fe7",
+      "topicId": "docker-kubernetes",
+      "title": "09 — Kustomize, Helm, CI/CD và GitOps",
+      "wordCount": 1236,
+      "lineCount": 182,
+      "sourcePaths": [
+        "Docker/Lessions/Kubernetes/09-packaging-delivery-gitops.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-9dbb98471fe7-54444f5a175a.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-ec66a1537f28",
+      "topicId": "docker-kubernetes",
+      "title": "10 — Observability, SLO và debugging có phương pháp",
+      "wordCount": 1156,
+      "lineCount": 169,
+      "sourcePaths": [
+        "Docker/Lessions/Kubernetes/10-observability-debugging.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-ec66a1537f28-2f120fba5188.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-4e0d37484fc2",
+      "topicId": "docker-kubernetes",
+      "title": "11 — Cluster operations, HA, upgrade và disaster recovery",
+      "wordCount": 1204,
+      "lineCount": 169,
+      "sourcePaths": [
+        "Docker/Lessions/Kubernetes/11-cluster-operations-ha-upgrade-dr.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-4e0d37484fc2-37553fa0bd2d.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-fee4df8a6696",
+      "topicId": "docker-kubernetes",
+      "title": "12 — Capstone production và anti-patterns",
+      "wordCount": 1335,
+      "lineCount": 208,
+      "sourcePaths": [
+        "Docker/Lessions/Kubernetes/12-production-project-antipatterns.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-fee4df8a6696-8b2e0bb80a95.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-f0046b904c07",
+      "topicId": "docker-kubernetes",
+      "title": "13 — Checklist bao phủ Kubernetes chuyên sâu",
+      "wordCount": 1443,
+      "lineCount": 176,
+      "sourcePaths": [
+        "Docker/Lessions/Kubernetes/13-coverage-checklist.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-f0046b904c07-0ba00b23f4bd.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-5f17e9104289",
+      "topicId": "docker-kubernetes",
+      "title": "Kubernetes chuyên sâu: lộ trình và chỉ mục",
+      "wordCount": 1062,
+      "lineCount": 96,
+      "sourcePaths": [
+        "Docker/Lessions/Kubernetes/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-5f17e9104289-0e2870d56c96.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-b9ef4d2ff436",
+      "topicId": "docker-kubernetes",
+      "title": "Mục lục bài học",
+      "wordCount": 135,
+      "lineCount": 19,
+      "sourcePaths": [
+        "Docker/Lessions/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-b9ef4d2ff436-5d62530e89d4.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-839ce36c8c41",
+      "topicId": "docker-kubernetes",
+      "title": "Diagnostic — Docker & Kubernetes",
+      "wordCount": 1310,
+      "lineCount": 156,
+      "sourcePaths": [
+        "Docker/QA/01-diagnostic.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-839ce36c8c41-f9319948c563.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-caa9df90c61c",
+      "topicId": "docker-kubernetes",
+      "title": "Quiz theo module — Docker",
+      "wordCount": 1167,
+      "lineCount": 104,
+      "sourcePaths": [
+        "Docker/QA/02-docker-module-quiz.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-caa9df90c61c-514978c4d5fd.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-5dfdf2bc74e7",
+      "topicId": "docker-kubernetes",
+      "title": "Quiz theo module — Kubernetes",
+      "wordCount": 1475,
+      "lineCount": 104,
+      "sourcePaths": [
+        "Docker/QA/03-kubernetes-module-quiz.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-5dfdf2bc74e7-de5182f079de.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-c96d19fc7352",
+      "topicId": "docker-kubernetes",
+      "title": "Tình huống và troubleshooting",
+      "wordCount": 1238,
+      "lineCount": 121,
+      "sourcePaths": [
+        "Docker/QA/04-scenarios-troubleshooting.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-c96d19fc7352-680f651ff35d.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-32a426881dd9",
+      "topicId": "docker-kubernetes",
+      "title": "Bài đánh giá thực hành",
+      "wordCount": 1794,
+      "lineCount": 261,
+      "sourcePaths": [
+        "Docker/QA/05-practical-assessments.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-32a426881dd9-4f1adc9cc58f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-a21af18c2081",
+      "topicId": "docker-kubernetes",
+      "title": "Đáp án Diagnostic",
+      "wordCount": 1392,
+      "lineCount": 76,
+      "sourcePaths": [
+        "Docker/QA/90-answer-key.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-a21af18c2081-bfe1a7a1992f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-26350e295618",
+      "topicId": "docker-kubernetes",
+      "title": "Đáp án Quiz Docker",
+      "wordCount": 2274,
+      "lineCount": 190,
+      "sourcePaths": [
+        "Docker/QA/91-docker-answer-key.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-26350e295618-7e9a1f60f053.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-4ee3d44fd66b",
+      "topicId": "docker-kubernetes",
+      "title": "Đáp án Quiz Kubernetes",
+      "wordCount": 3484,
+      "lineCount": 189,
+      "sourcePaths": [
+        "Docker/QA/92-kubernetes-answer-key.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-4ee3d44fd66b-b628cb7cde79.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-0797c3f2dac5",
+      "topicId": "docker-kubernetes",
+      "title": "Gợi ý chấm tình huống/troubleshooting",
+      "wordCount": 2037,
+      "lineCount": 179,
+      "sourcePaths": [
+        "Docker/QA/93-scenario-answer-key.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-0797c3f2dac5-1d8f3e0cd010.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-c47ef0ff47d5",
+      "topicId": "docker-kubernetes",
+      "title": "Ma trận chấm điểm và năng lực",
+      "wordCount": 764,
+      "lineCount": 99,
+      "sourcePaths": [
+        "Docker/QA/99-scoring-competency-matrix.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-c47ef0ff47d5-826dd45f4765.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-57bcd238f4e1",
+      "topicId": "docker-kubernetes",
+      "title": "Bộ đánh giá Docker & Kubernetes",
+      "wordCount": 728,
+      "lineCount": 63,
+      "sourcePaths": [
+        "Docker/QA/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-57bcd238f4e1-2c3d560f242d.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-b6ce619255b7",
+      "topicId": "docker-kubernetes",
+      "title": "Docker & Kubernetes Deep-Dive",
+      "wordCount": 840,
+      "lineCount": 82,
+      "sourcePaths": [
+        "Docker/README.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-b6ce619255b7-f8143621b75b.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-277c5250a9a7",
+      "topicId": "docker-kubernetes",
+      "title": "Nguồn chính thức và chính sách cập nhật",
+      "wordCount": 406,
+      "lineCount": 51,
+      "sourcePaths": [
+        "Docker/REFERENCES.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-277c5250a9a7-9a5511fb0f1f.md",
+      "isAggregate": false
+    },
+    {
+      "id": "docker-kubernetes-8e65bd202cda",
+      "topicId": "docker-kubernetes",
+      "title": "Roadmap 24 tuần: Docker → Kubernetes production",
+      "wordCount": 1070,
+      "lineCount": 109,
+      "sourcePaths": [
+        "Docker/ROADMAP.md"
+      ],
+      "assetPath": "knowledge-sources/docker-kubernetes/docker-kubernetes-8e65bd202cda-432b60f7ad93.md",
       "isAggregate": false
     },
     {

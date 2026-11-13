@@ -1,0 +1,12 @@
+# Ke hoach khac phuc va mo rong kiem thu
+
+Hien tai khong co regression xac nhan trong 11 case Playwright. Chi sua ma ung dung khi co loi tai hien; nhung muc duoi day la rui ro va cach kiem chung truoc khi sua.
+
+1. **P1 - Phat iframe va nguon thay the:** Chon it nhat mot phim iframe va tung server. Thu cong kiem tra play, pause, tua, am thanh va fullscreen tren trinh duyet that. Neu iframe khong cho tuong tac, cung cap thong bao loi va nut doi server. Them fixture va test smoke co ket qua "khong quan sat duoc" thay vi tinh la pass.
+	- Rieng `dieu-goi-nho-ve-anh`: kiem tra crawler/cap nhat link `vietsub-op` (DNS loi) va `vietsub-pa` (playlist/segment tai duoc nhung player khong giai ma duoc). Chay lai tren trinh duyet va mang deploy; chi danh dau phim phat duoc khi `playing` va `currentTime` tang. UI da hien loi va nut doi nguon sau 12 giay, khong tu dong chuyen sang nguon cung loi.
+2. **P1 - Link HLS het han / loi CDN:** Lap bang mau nhieu tap (dau, giua, cuoi) va server; ghi HTTP playlist/segment, `video.error`, `waiting`, `playing`, CORS va timeout. Neu link het han, refresh nguon qua crawler va cho phep doi server; khi xu ly loi media hien thi trang thai de hieu. Chay lai smoke tren mang deploy.
+3. **P2 - Hieu nang phim lon:** Do 20+ lan tren cold cache va warm cache, desktop/mobile, luu p50/p95 document, metadata, Play-to-playing va seek recovery. Dat SLO sau khi co baseline; neu HTML cham, kiem tra truy van episodes/index; neu media cham, xem CDN/playlist/preload. Khong danh dong toc do HTML voi video.
+4. **P2 - UI va logic chua bao phu:** Them fixture phim khong co nguon, danh muc nhieu trang, phim le, nhieu the loai va server. Test pagination, empty state, keyboard focus, touch/seek, xoay man hinh, fullscreen va tinh kha dung tai 320/375/768/1440/TV.
+5. **P3 - Lap lai va bao cao:** Chay `npm test` trong `tests/playwright` tren CI voi database fixture co dinh; luu HTML report/artifacts khi fail. Chay matrix Chromium/Firefox/WebKit khi media support duoc xac nhan; bao cao skip/ngoai pham vi tach khoi pass, khong chot "khong loi" neu thieu fixture.
+
+Sau moi lan fix: chay case lien quan truoc, sau do chay full suite, doi chieu [TEST-REPORT.md](TEST-REPORT.md) va cap nhat so do moi. Khong can sua logic player khi test phat/tua tren fixture hien tai da pass.

@@ -1,0 +1,147 @@
+{
+  "schema_version": "1.0",
+  "id": "bmad-epic",
+  "intent": "bmad-epic-multi-session",
+  "owner": "kb-orchestrator",
+  "completion_contract": {"terminal_node": "record-retrospective", "verdict_source_node": "integrated-verify", "verdict_field": "verdict", "accepted_values": ["PASS"]},
+  "budget": {"max_concurrency": 3, "max_retries_per_node": 1},
+  "nodes": [
+    {
+      "id": "establish-context", "skill": "bmad-adapter",
+      "objective": "Confirm one coherent epic outcome, project context, owners, and why the quick path is insufficient.",
+      "depends_on": [], "execution": "manager", "parallel_group": null,
+      "read_set": ["AGENTS.md", "kb/projects/<project>/**", "<target>/**"], "write_set": [],
+      "output": "epic path contract", "acceptance": ["outcome, boundary, size, risk, and owners are explicit"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "decision-research", "skill": "study",
+      "objective": "Research external or domain decisions the epic cannot safely assume.",
+      "depends_on": ["establish-context"], "execution": "read-only", "parallel_group": "discovery-wave",
+      "read_set": ["kb/**", "<external-sources>"], "write_set": [],
+      "output": "cited decision evidence or explicit no-research-needed result", "acceptance": ["facts, inference, and unresolved uncertainty are separated"],
+      "risk": "low", "approval": "none", "effects": {"resources": ["web"], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "codebase-research", "skill": "study",
+      "objective": "Map current implementation, contracts, integration boundaries, and historical constraints relevant to the epic.",
+      "depends_on": ["establish-context"], "execution": "read-only", "parallel_group": "discovery-wave",
+      "read_set": ["<target>/**", "kb/projects/<project>/**"], "write_set": [],
+      "output": "cited codebase evidence", "acceptance": ["claims point to live code, contracts, or decisions"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "epic-spec", "skill": "change-request",
+      "objective": "Create the epic outcome, stable requirement coverage, boundaries, dependencies, integrated acceptance, rollout, and rollback.",
+      "depends_on": ["decision-research", "codebase-research"], "execution": "shared-workspace", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/**", "<target>/**"], "write_set": ["kb/projects/<project>/delivery/<epic-id>/**"],
+      "output": "epic contract", "acceptance": ["every requirement has a stable ID and observable integrated done-when"],
+      "risk": "medium", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "architecture-lens", "skill": "bmad-adapter",
+      "objective": "Identify shared architecture, interface, data, migration, and operational decisions all stories must preserve.",
+      "depends_on": ["epic-spec"], "execution": "read-only", "parallel_group": "planning-lenses",
+      "read_set": ["kb/projects/<project>/**", "<target>/**"], "write_set": [],
+      "output": "architecture constraints and ADR candidates", "acceptance": ["cross-story decisions and unresolved owners are explicit"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "verification-lens", "skill": "verify-delivery",
+      "objective": "Design requirement coverage, negative paths, integration checks, observability, and evidence needed at story and epic levels.",
+      "depends_on": ["epic-spec"], "execution": "read-only", "parallel_group": "planning-lenses",
+      "read_set": ["kb/projects/<project>/**", "<target>/**"], "write_set": [],
+      "output": "verification strategy", "acceptance": ["every parent requirement maps to a feasible check"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "integrate-plan", "skill": "bmad-adapter",
+      "objective": "Integrate accepted planning decisions into the epic, architecture/ADR, and verification artifacts without hiding conflicts.",
+      "depends_on": ["architecture-lens", "verification-lens"], "execution": "shared-workspace", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/**", "<target>/**"], "write_set": ["kb/projects/<project>/delivery/<epic-id>/**", "kb/projects/<project>/architecture/epics/<epic-id>/**", "kb/projects/<project>/decisions/epics/<epic-id>/**"],
+      "output": "consistent planning artifact set", "acceptance": ["product, architecture, and verification decisions agree or conflicts remain explicit"],
+      "risk": "medium", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "slice-stories", "skill": "bmad-adapter",
+      "objective": "Create ordered, bounded stories with requirement coverage, dependencies, write scopes, acceptance, and verification.",
+      "depends_on": ["integrate-plan"], "execution": "shared-workspace", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/**", "<target>/**"], "write_set": ["kb/projects/<project>/delivery/<epic-id>/**"],
+      "output": "epic and story inventory", "acceptance": ["no requirement is orphaned and every story fits one implementation session"],
+      "risk": "medium", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": ["epic-plan:<epic-id>"]},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "readiness", "skill": "verify-delivery",
+      "objective": "Assess artifact consistency, requirement/story coverage, dependencies, risk, and implementation evidence as PASS, CONCERNS, or FAIL.",
+      "depends_on": ["slice-stories"], "execution": "read-only", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/**", "<target>/**"], "write_set": [],
+      "output": "readiness verdict and evidence", "acceptance": ["orphan requirements, blocking decisions, and allowed next action are explicit"],
+      "risk": "medium", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "approve-epic", "skill": "bmad-adapter",
+      "objective": "Record human approval of the epic plan or explicit disposition of bounded concerns.",
+      "depends_on": ["readiness"], "execution": "approval-gate", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/delivery/<epic-id>/**"], "write_set": [],
+      "output": "approved, revision requested, or rejected", "acceptance": ["approval covers exact artifact versions and allowed story set"],
+      "risk": "high", "approval": "human", "required_authorities": ["epic-owner", "architecture-or-security-owner-when-required"], "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "execute-stories", "skill": "kb-orchestrator",
+      "objective": "Fan out one bmad-story subworkflow per dependency-ready story and wait for every story instance to reach an accepted terminal state.",
+      "depends_on": ["approve-epic"], "execution": "manager", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/delivery/**", "<target>/**"], "write_set": [],
+      "output": "per-story terminal status, worktree reference, and verification evidence", "acceptance": ["all story instances are accepted; failed, blocked, or unfinished items stop the join"],
+      "risk": "high", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "fanout": {"source": "kb/projects/<project>/delivery/<epic-id>/story-inventory.json", "inventory_kind": "story-inventory", "items_field": "items", "item_id_field": "story_id", "dependency_field": "depends_on", "subworkflow": "bmad-story", "completion": "all-accepted", "max_concurrency": 3, "instance_write_set_field": "write_set", "required_parameter_fields": ["epic-id", "story-artifact", "story-worktree", "story-build-artifacts"], "write_scope_parameter": "story-approved-write-scope", "allowed_locked_shared_write_set": ["kb/projects/<project>/delivery/<epic-id>/**"]},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "integrate-stories", "skill": "gen-code",
+      "objective": "Sequentially merge accepted story worktrees, resolve conflicts within approved scope, and run cross-story integration checks.",
+      "depends_on": ["execute-stories"], "execution": "isolated-worktree", "parallel_group": null,
+      "read_set": ["<accepted-story-worktrees>/**", "kb/projects/<project>/**"], "write_set": ["<epic-worktree>/**"],
+      "output": "integrated epic state and merge evidence", "acceptance": ["every accepted story is merged exactly once and integration checks run on the combined state"],
+      "risk": "high", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": ["epic-integration:<epic-id>"]},
+      "join": {"fanout_node": "execute-stories", "require": "all-accepted", "allow_partial": false},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "integrated-verify", "skill": "verify-delivery",
+      "objective": "After all runtime-expanded stories finish, verify their integrated result against the parent epic.",
+      "depends_on": ["integrate-stories"], "execution": "read-only", "parallel_group": null,
+      "read_set": ["<epic-worktree>/**", "kb/projects/<project>/**"], "write_set": [],
+      "output": "epic acceptance envelope with verdict PASS|FAIL and evidence", "acceptance": ["combined behavior, migrations, interfaces, and parent requirements have final-state evidence"],
+      "risk": "high", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "retrospective-assessment", "skill": "verify-delivery",
+      "objective": "Assess completed, unfinished, deviated, and superseded work without writing the retrospective.",
+      "depends_on": ["integrated-verify"], "execution": "read-only", "parallel_group": null,
+      "read_set": ["<epic-worktree>/**", "kb/projects/<project>/delivery/<epic-id>/**"], "write_set": [],
+      "output": "retrospective evidence and verdict", "acceptance": ["unfinished stories cannot be silently accepted"],
+      "risk": "medium", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "record-retrospective", "skill": "bmad-adapter",
+      "objective": "Record the evidence-backed retrospective, follow-ups, and unpromoted lesson candidates.",
+      "depends_on": ["retrospective-assessment"], "execution": "shared-workspace", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/delivery/<epic-id>/**", "kb/memory/episodic/<project>/<epic-id>/**"], "write_set": ["kb/memory/episodic/<project>/<epic-id>/**"],
+      "output": "episodic retrospective artifact", "acceptance": ["follow-ups have owners and lesson candidates remain episodic until curated"],
+      "risk": "medium", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": ["epic-status:<epic-id>"]},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    }
+  ]
+}

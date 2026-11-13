@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hiểu trust boundary, prompt injection, ACL, evaluation, promotion, canary và rollback của KB.">
+  <title>Bài 05 — Governance, Security & Evals</title><link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><span class="brand-mark">KB</span> Learning Lab</a><button class="nav-toggle" data-nav-toggle aria-expanded="false">Menu</button><nav class="nav-links" data-nav></nav></div></header>
+  <main id="main" class="page-shell">
+    <section class="hero lesson-hero"><div><span class="eyebrow">Bài 05 · Assurance</span><h1>Governance, security & evals</h1><p class="lead">Một KB đáng tin phải chứng minh ba việc: evidence đúng và được phép dùng, workflow không vượt authority, và kỹ thuật mới thắng baseline trên tập đánh giá độc lập.</p></div><aside class="hero-console"><div class="console-top"><i></i><i></i><i></i></div><div class="console-line"><span>T</span><b>trust boundaries</b></div><div class="console-line"><span>E</span><b>eval before promote</b></div><div class="console-line"><span>R</span><b>rollback ready</b></div></aside></section>
+    <div class="lesson-layout"><article class="lesson-content">
+      <section id="boundaries"><span class="eyebrow">01. Trust model</span><h2>Nội dung được retrieve là dữ liệu, không phải instruction.</h2>
+        <p>Một page có thể chứa câu “ignore previous instructions” do attacker chèn vào tài liệu. Retrieval thành công về mặt relevance nhưng vẫn thất bại về security nếu model trao authority cho câu đó.</p>
+        <div class="flow"><div class="flow-step"><strong>User intent</strong><small>authorized request</small></div><div class="flow-step guard"><strong>Trusted context</strong><small>scope + sensitivity</small></div><div class="flow-step"><strong>Retrieved data</strong><small>untrusted evidence</small></div><div class="flow-step guard"><strong>Policy/tool gate</strong><small>never delegated</small></div><div class="flow-step output"><strong>Answer/action</strong><small>citation + audit</small></div></div>
+        <div class="callout danger"><strong>Boundary rule:</strong> document text không được thay đổi access scope, tool permission, approval authority hay system policy.</div>
+      </section>
+
+      <section id="retrieval-security"><span class="eyebrow">02. Retrieval security</span><h2>Pre-filter và post-filter cùng cần thiết.</h2>
+        <table><thead><tr><th>Control</th><th>Ngăn gì?</th><th>Evidence</th></tr></thead><tbody>
+          <tr><td>Scope/ACL pre-filter</td><td>Không đưa unauthorized item vào candidate set</td><td>Caller-derived filter trace</td></tr>
+          <tr><td>Sensitivity/status/time filter</td><td>Restricted, draft, expired hoặc future fact</td><td>Metadata decision per hit</td></tr>
+          <tr><td>Post-filter</td><td>Backend/vector-store filter sai hoặc thiếu</td><td>Final evidence allowlist</td></tr>
+          <tr><td>Evidence envelope</td><td>Instruction injection từ chunk</td><td>Explicit data boundary + stable locator</td></tr>
+          <tr><td>Tool approval gate</td><td>Text kích hoạt side effect</td><td>Authority + approval record</td></tr>
+        </tbody></table>
+        <p>Security filter phải áp dụng trước cả sparse lẫn dense retrieval. Không thể retrieve mọi thứ rồi hy vọng prompt nói “đừng leak”.</p>
+      </section>
+
+      <section id="eval-layers"><span class="eyebrow">03. Evaluation stack</span><h2>Đo từng lớp để biết lỗi nằm ở đâu.</h2>
+        <div class="grid-2">
+          <div class="card"><h3>Retrieval</h3><p>Recall@k, MRR/nDCG, ACL leak rate, citation locator validity, evidence diversity.</p></div>
+          <div class="card"><h3>Answer</h3><p>Faithfulness, claim coverage, citation correctness, abstention quality.</p></div>
+          <div class="card"><h3>Workflow</h3><p>Correct skill route, DAG validity, completion contract, retry/budget behavior.</p></div>
+          <div class="card"><h3>Governance</h3><p>Prompt-injection resistance, unauthorized tool attempt, secret/PII leakage, audit completeness.</p></div>
+        </div>
+        <p>Nếu answer sai vì top-k không có evidence, sửa prompt answerer thường không giúp. Layered metrics giữ root cause rõ.</p>
+      </section>
+
+      <section id="datasets"><span class="eyebrow">04. Dataset discipline</span><h2>Golden, holdout và adversarial có vai trò khác nhau.</h2>
+        <table><thead><tr><th>Tập</th><th>Mục đích</th><th>Rule</th></tr></thead><tbody>
+          <tr><td><strong>Golden</strong></td><td>Regression cases đã biết, expected evidence/behavior</td><td>Version cùng rubric</td></tr>
+          <tr><td><strong>Holdout</strong></td><td>Ước lượng generalization</td><td>Không dùng để prompt-tune hằng ngày</td></tr>
+          <tr><td><strong>Adversarial</strong></td><td>Injection, poisoning, ACL bypass, malformed workflow</td><td>Fail security gate dù average quality cao</td></tr>
+          <tr><td><strong>Production trace sample</strong></td><td>Drift và case mới</td><td>Redact, classify, review trước khi thành eval</td></tr>
+        </tbody></table>
+      </section>
+
+      <section id="graders"><span class="eyebrow">05. Graders</span><h2>Deterministic first, model judgment có calibration.</h2>
+        <ol><li>Schema, link, test, citation locator, ACL và command result được chấm bằng code.</li><li>Semantic faithfulness/clarity mới dùng rubric + LLM judge.</li><li>Judge được so với human labels; lưu model/prompt/version và disagreement.</li><li>Low-confidence hoặc high-risk disagreement chuyển human review.</li></ol>
+        <div class="callout warning"><strong>Không dùng “LLM tự tin” làm proof.</strong> Self-critique có thể lặp lại cùng blind spot. Judge phải độc lập đủ mức cần thiết và được calibration.</div>
+      </section>
+
+      <section id="promotion"><span class="eyebrow">06. Evaluation-driven promotion</span><h2>Kỹ thuật mới đi qua staged rollout.</h2>
+        <div class="flow"><div class="flow-step"><strong>Candidate</strong><small>versioned change</small></div><div class="flow-step"><strong>Offline eval</strong><small>golden + holdout</small></div><div class="flow-step guard"><strong>Red team</strong><small>hard security gates</small></div><div class="flow-step"><strong>Canary</strong><small>bounded traffic/scope</small></div><div class="flow-step output"><strong>Promote</strong><small>monitor + rollback</small></div></div>
+        <p>So sánh với baseline trên quality, latency, cost và safety. Một dense retriever tăng recall nhưng làm ACL leak rate khác 0 phải bị reject. Rollback artifact/version phải chuẩn bị trước canary.</p>
+      </section>
+
+      <section id="failure"><span class="eyebrow">07. Failure walkthrough</span><h2>Page độc hại cố mở rộng quyền.</h2>
+        <ol><li>Attacker chèn instruction vào tài liệu public.</li><li>Query liên quan retrieve đúng chunk đó.</li><li>Evidence envelope gắn nó là untrusted text; access context vẫn lấy từ caller.</li><li>Answerer trích fact hữu ích nhưng không làm theo instruction.</li><li>Nếu chunk yêu cầu tool side effect, tool gate từ chối vì không có approval.</li><li>Trace ghi detection; case được thêm vào adversarial dataset qua review.</li></ol>
+        <p class="source-note">Source: governance/threat-model.md · governance/red-team-cases.jsonl · evals/ · kb/shared/standards/evaluation-and-promotion.md</p>
+      </section>
+
+      <section id="quiz" class="quiz"><span class="eyebrow">Self-check</span><h2>Ba câu kiểm tra</h2>
+        <p><strong>1.</strong> Post-filter thôi có đủ chống leak?</p><details><summary>Xem đáp án</summary><p>Không. Unauthorized content có thể đã vào embedding/reranking/context path; dùng pre-filter và post-filter defense-in-depth.</p></details>
+        <p><strong>2.</strong> Candidate thắng golden set thì promote production?</p><details><summary>Xem đáp án</summary><p>Chưa. Cần holdout, adversarial/security gates, cost/latency, canary và rollback.</p></details>
+        <p><strong>3.</strong> Vì sao deterministic graders chạy trước?</p><details><summary>Xem đáp án</summary><p>Chúng rẻ, ổn định, audit được và không cần LLM phán những điều code có thể chứng minh.</p></details>
+      </section>
+      <div class="complete-bar"><div><strong>Hoàn thành bài 05</strong><br><small>Tiếp theo: ghép truth, retrieval, agents và assurance vào ba flow end-to-end.</small></div><button class="button complete-button" data-complete-lesson type="button"></button></div>
+    </article><aside class="toc"><strong>Trong bài này</strong><a href="#boundaries">Trust model</a><a href="#retrieval-security">Retrieval security</a><a href="#eval-layers">Evaluation stack</a><a href="#datasets">Datasets</a><a href="#graders">Graders</a><a href="#promotion">Promotion</a><a href="#failure">Failure flow</a><a href="#quiz">Self-check</a></aside></div>
+  </main>
+  <footer class="site-footer"><div class="footer-grid"><a href="04-bmad-delivery.html">← Bài 04</a><a href="06-end-to-end.html">Bài 06: End-to-end flows →</a></div></footer>
+  <script src="assets/techniques-data.js"></script><script src="assets/app.js"></script>
+</body></html>

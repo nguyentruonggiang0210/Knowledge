@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Hiểu sâu chunking, BM25, dense search, RRF, RAG, GraphRAG và evidence packing trong KB."><title>Bài 02 — Retrieval & RAG</title><link rel="stylesheet" href="assets/styles.css"></head>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a><header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><span class="brand-mark">KB</span> Learning Lab</a><button class="nav-toggle" data-nav-toggle aria-expanded="false">Menu</button><nav class="nav-links" data-nav></nav></div></header>
+  <main id="main" class="page-shell">
+    <section class="hero lesson-hero"><div><span class="eyebrow">Bài 02 · Retrieval</span><h1>RAG: từ query đến evidence</h1><p class="lead">Retrieval không phải “ném mọi tài liệu vào prompt”. Nó là chuỗi quyết định có filter, nhiều retriever, fusion, provenance và quyền từ chối.</p></div><aside class="hero-console"><div class="console-top"><i></i><i></i><i></i></div><div class="console-line"><span>Q</span><b>query + trusted access</b></div><div class="console-line"><span>F</span><b>filter before search</b></div><div class="console-line"><span>R</span><b>BM25 ∪ dense → RRF</b></div><div class="console-line"><span>E</span><b>evidence → cite / abstain</b></div></aside></section>
+    <div class="lesson-layout"><article class="lesson-content">
+      <section id="why-rag"><span class="eyebrow">01. Why RAG</span><h2>Model không phải database của dự án.</h2>
+        <p>LLM có context hữu hạn và knowledge tại thời điểm train. RAG lấy evidence bên ngoài tại query time. Trong KB này, RAG còn phải giải thêm ba bài toán: <strong>đúng scope</strong>, <strong>đúng phiên bản</strong>, <strong>truy ngược được nguồn</strong>.</p>
+        <div class="flow"><div class="flow-step"><strong>Query</strong><small>“Khi nào agents chạy song song?”</small></div><div class="flow-step guard"><strong>ACL + as-of</strong><small>shared/internal/current</small></div><div class="flow-step"><strong>Retrieve</strong><small>candidate chunks</small></div><div class="flow-step"><strong>Pack</strong><small>ID + path + source</small></div><div class="flow-step output"><strong>Answer</strong><small>claim + citation</small></div></div>
+      </section>
+
+      <section id="chunking"><span class="eyebrow">02. Chunking</span><h2>Chunk nhỏ để tìm, parent lớn để hiểu.</h2>
+        <div class="grid-2">
+          <div class="card"><h3>Structure-aware chunk</h3><p>Cắt theo heading/blank block; fenced code và bảng không bị xé mù. Mỗi chunk giữ <code>page_id</code>, heading, path, source, scope, sensitivity và valid time.</p></div>
+          <div class="card"><h3>Chunk ID ổn định theo content</h3><p><code>page-id::hash</code> giúp dedupe/fusion/citation. Nếu nội dung thay đổi, chunk ID đổi; page ID vẫn ổn định.</p></div>
+        </div>
+        <div class="callout warning"><strong>Anti-pattern:</strong> chunk text rồi bỏ metadata. Vector search có thể tìm đúng nội dung nhưng không còn biết có quyền dùng hay nguồn nào chứng minh.</div>
+        <p class="source-note">Implementation: integrations/langchain_rag/canonical.py</p>
+      </section>
+
+      <section id="retrievers"><span class="eyebrow">03. Sparse + dense</span><h2>Hai retriever nhìn query theo hai cách.</h2>
+        <div class="concept-pair">
+          <div class="card"><span class="pill">BM25</span><h3>Exact lexical signal</h3><p>Mạnh với ID, tên API, thuật ngữ hiếm, error code. Minh bạch và chạy offline.</p><p><strong>Yếu:</strong> paraphrase khác từ.</p></div>
+          <div class="versus">+</div>
+          <div class="card"><span class="pill blue">Dense</span><h3>Semantic similarity</h3><p>Mạnh khi câu hỏi và tài liệu dùng từ khác nhưng cùng nghĩa.</p><p><strong>Yếu:</strong> exact identifiers và phụ thuộc embedding/index.</p></div>
+        </div>
+        <h3>Use case</h3><p>Query “chống xử lý webhook hai lần”: dense có thể tìm “idempotent webhook”; BM25 đảm bảo query chứa <code>ADR-014</code> tìm đúng exact artifact. Hybrid giữ cả hai.</p>
+      </section>
+
+      <section id="rrf"><span class="eyebrow">04. Fusion</span><h2>RRF hợp nhất thứ hạng mà không cần đồng nhất score.</h2>
+        <p>BM25 score và cosine similarity không cùng thang đo. Reciprocal Rank Fusion chỉ dùng vị trí:</p>
+        <pre><code>RRF(chunk) = Σ 1 / (k + rank_in_retriever)
+
+BM25:  A #1, B #2, C #3
+Dense: B #1, D #2, A #3
+
+→ A và B được tăng vì xuất hiện ở cả hai ranking.</code></pre>
+        <div class="callout"><strong>Tại sao hợp lý?</strong> Một chunk được hai retriever độc lập đồng ý thường đáng tin hơn một chunk có score cao bất thường ở một hệ.</div>
+      </section>
+
+      <section id="security"><span class="eyebrow">05. Retrieval security</span><h2>Filter trước, post-filter lần nữa.</h2>
+        <div class="flow"><div class="flow-step guard"><strong>Trusted access</strong><small>Caller cấp scope/sensitivity/as-of</small></div><div class="flow-step guard"><strong>Pre-filter</strong><small>Giảm candidate trái quyền</small></div><div class="flow-step"><strong>Vector/BM25</strong><small>Search</small></div><div class="flow-step guard"><strong>Post-filter</strong><small>Defense in depth</small></div><div class="flow-step output"><strong>Evidence</strong><small>Chỉ authorized chunks</small></div></div>
+        <p>Agent chỉ được chọn <em>query</em>; không được tự chọn scope rộng hơn. Trong agentic RAG, retrieval tool đóng băng <code>AccessContext</code> do trusted caller cấp.</p>
+        <div class="callout danger"><strong>Critical failure:</strong> query với <code>--scopes unauthorized-project</code> mà vẫn trả internal page.</div>
+      </section>
+
+      <section id="architectures"><span class="eyebrow">06. RAG architectures</span><h2>Dùng process nhỏ nhất đủ tin cậy.</h2>
+        <table><thead><tr><th>Kiểu</th><th>Flow</th><th>Khi dùng</th></tr></thead><tbody>
+          <tr><td>2-Step RAG</td><td>Retrieve → generate → verify</td><td>Docs Q&A, predictable latency, dễ test</td></tr>
+          <tr><td>Agentic RAG</td><td>Agent quyết định khi nào/cách retrieve</td><td>Research nhiều nguồn, query cần decomposition</td></tr>
+          <tr><td>Hybrid/self-correcting</td><td>Retrieve → grade → retry/rewrite → answer</td><td>Evidence hay thiếu nhưng có controller/eval đáng tin</td></tr>
+        </tbody></table>
+        <p>Adapter hiện có graph 2-step và agentic retrieval tool. Model/vector provider được để ngoài core để KB không bị vendor lock-in.</p>
+      </section>
+
+      <section id="conditional"><span class="eyebrow">07. Conditional techniques</span><h2>GraphRAG, RAPTOR, HyDE không phải default.</h2>
+        <div class="grid-2">
+          <div class="card"><h3>GraphRAG</h3><p>Dùng cho dependency/impact/multi-hop/global question. Chi phí: entity resolution, graph freshness.</p></div>
+          <div class="card"><h3>RAPTOR</h3><p>Summary tree cho tài liệu dài và câu hỏi tổng hợp nhiều mức. Summary phải trỏ về leaf evidence.</p></div>
+          <div class="card"><h3>HyDE / multi-query</h3><p>Tạo query bổ sung để tăng recall. Rủi ro: query drift do hypothetical content.</p></div>
+          <div class="card"><h3>Self-RAG / CRAG</h3><p>Controller grade evidence và correct/retry/abstain. Self-critique không phải proof.</p></div>
+        </div>
+      </section>
+
+      <section id="lab" class="quiz"><span class="eyebrow">Mini lab</span><h2>Quan sát retrieval đang chạy</h2>
+        <pre><code>python -m integrations.langchain_rag.cli search \
+  "GraphRAG multi-hop retrieval" \
+  --scopes shared \
+  --as-of 2026-11-13 \
+  --json</code></pre>
+        <p>Tự kiểm tra: top hit có đúng page retrieval? Metadata có <code>page_id</code>, path, sources, sensitivity? Sau đó đổi scope thành <code>unauthorized-project</code>; kết quả phải rỗng.</p>
+      </section>
+      <div class="complete-bar"><div><strong>Hoàn thành bài 02</strong><br><small>Tiếp theo: ai quyết định agent nào chạy, chạy song song hay tuần tự?</small></div><button class="button complete-button" data-complete-lesson type="button"></button></div>
+    </article>
+    <aside class="toc"><strong>Trong bài này</strong><a href="#why-rag">Why RAG</a><a href="#chunking">Chunking</a><a href="#retrievers">Sparse + dense</a><a href="#rrf">RRF</a><a href="#security">Security</a><a href="#architectures">Architectures</a><a href="#conditional">Conditional</a><a href="#lab">Mini lab</a></aside></div>
+  </main>
+  <footer class="site-footer"><div class="footer-grid"><a href="01-foundations.html">← Bài 01</a><a href="03-agent-orchestration.html">Bài 03: Agent orchestration →</a></div></footer>
+  <script src="assets/techniques-data.js"></script><script src="assets/app.js"></script>
+</body></html>

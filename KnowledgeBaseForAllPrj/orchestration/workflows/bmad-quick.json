@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0",
+  "id": "bmad-quick",
+  "intent": "bmad-quick-one-session",
+  "owner": "kb-orchestrator",
+  "budget": {"max_concurrency": 3, "max_retries_per_node": 1},
+  "nodes": [
+    {
+      "id": "triage-context", "skill": "bmad-adapter",
+      "objective": "Confirm project context and that one clear outcome safely fits one implementation session.",
+      "depends_on": [], "execution": "manager", "parallel_group": null,
+      "read_set": ["AGENTS.md", "kb/projects/<project>/**", "<target>/**"], "write_set": [],
+      "output": "quick-path decision or escalation", "acceptance": ["intent, boundaries, size, risk, and escalation triggers are explicit"],
+      "risk": "low", "approval": "none",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "intent-contract", "skill": "change-request",
+      "objective": "Freeze the desired state, non-goals, write scope, acceptance, tests, rollout, and rollback needed for the change.",
+      "depends_on": ["triage-context"], "execution": "shared-workspace", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/**", "<target>/**"], "write_set": ["kb/projects/<project>/changes/**"],
+      "output": "approved-ready bounded change contract", "acceptance": ["implementation need not invent a material product or technical decision"],
+      "risk": "medium", "approval": "before-run",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "readiness", "skill": "verify-delivery",
+      "objective": "Assess the final contract and context as PASS, CONCERNS, or FAIL without editing them.",
+      "depends_on": ["intent-contract"], "execution": "read-only", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/**", "<target>/**"], "write_set": [],
+      "output": "readiness verdict and evidence", "acceptance": ["blocking gaps, concerns, owner, and allowed next action are explicit"],
+      "risk": "medium", "approval": "none",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "approve-build", "skill": "bmad-adapter",
+      "objective": "Record human acceptance of PASS or explicit disposition of bounded CONCERNS before implementation.",
+      "depends_on": ["readiness"], "execution": "approval-gate", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/changes/**"], "write_set": [],
+      "output": "approved, revision requested, or rejected", "acceptance": ["approval identity and exact implementation scope are recorded"],
+      "risk": "high", "approval": "human", "required_authorities": ["change-owner"],
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "implement", "skill": "gen-code",
+      "objective": "Implement the approved bounded change and focused tests.",
+      "depends_on": ["approve-build"], "execution": "shared-workspace", "parallel_group": null,
+      "read_set": ["<target>/**", "kb/projects/<project>/**"], "write_set": ["<approved-write-scope>/**"],
+      "output": "integrated change and evidence", "acceptance": ["approved behavior is implemented and unrelated changes are preserved"],
+      "risk": "medium", "approval": "before-run",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 2, "transient_only": true}
+    },
+    {
+      "id": "tests", "skill": "gen-code",
+      "objective": "Run targeted and applicable broader deterministic checks.",
+      "depends_on": ["implement"], "execution": "shared-workspace", "parallel_group": "quality-wave",
+      "read_set": ["<target>/**"], "write_set": ["<build-artifacts>/**"],
+      "output": "observed test evidence", "acceptance": ["failures and skipped checks remain visible"],
+      "risk": "low", "approval": "none",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 2, "transient_only": true}
+    },
+    {
+      "id": "code-review", "skill": "review-code",
+      "objective": "Independently review correctness, security, compatibility, and test adequacy.",
+      "depends_on": ["implement"], "execution": "read-only", "parallel_group": "quality-wave",
+      "read_set": ["<target>/**"], "write_set": [],
+      "output": "ranked findings", "acceptance": ["every finding has trigger, impact, evidence, and remediation"],
+      "risk": "low", "approval": "none",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "doc-impact", "skill": "review-doc",
+      "objective": "Check documentation and knowledge impact against implementation and contracts.",
+      "depends_on": ["implement"], "execution": "read-only", "parallel_group": "quality-wave",
+      "read_set": ["<target>/**", "kb/projects/<project>/**"], "write_set": [],
+      "output": "documentation findings", "acceptance": ["behavioral and source-of-truth gaps are explicit"],
+      "risk": "low", "approval": "none",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "repair", "skill": "gen-code",
+      "objective": "Apply only accepted in-scope findings; make no change when all findings are rejected or absent.",
+      "depends_on": ["tests", "code-review", "doc-impact"], "execution": "shared-workspace", "parallel_group": null,
+      "read_set": ["<target>/**", "kb/projects/<project>/**"], "write_set": ["<approved-write-scope>/**", "kb/projects/<project>/**"],
+      "output": "final integrated state and finding disposition", "acceptance": ["every blocking finding is fixed or explicitly unresolved"],
+      "risk": "medium", "approval": "before-run",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 2, "transient_only": true}
+    },
+    {
+      "id": "final-verify", "skill": "verify-delivery",
+      "objective": "Verify the final integrated state against the approved contract and all blocking evidence.",
+      "depends_on": ["repair"], "execution": "read-only", "parallel_group": null,
+      "read_set": ["<target>/**", "kb/projects/<project>/**"], "write_set": [],
+      "output": "accept, accept-with-known-risk, or reject", "acceptance": ["every blocking criterion has final-state evidence"],
+      "risk": "medium", "approval": "none",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    }
+  ]
+}

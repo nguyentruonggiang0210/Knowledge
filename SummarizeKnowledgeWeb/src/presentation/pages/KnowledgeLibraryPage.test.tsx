@@ -1,7 +1,8 @@
 import { StrictMode } from 'react'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { KnowledgeTopic } from '../../domain/knowledge/KnowledgeTopic'
+import { I18nProvider } from '../i18n/I18nProvider'
 import { KnowledgeLibraryPage } from './KnowledgeLibraryPage'
 
 const topic: KnowledgeTopic = {
@@ -63,17 +64,39 @@ const coverageWithSource = {
 
 const emptySourceLoader = async () => ''
 
+function renderPage(
+  coverage = sourceCoverage as typeof sourceCoverage | typeof coverageWithSource,
+  sourceLoader = emptySourceLoader,
+) {
+  return render(
+    <I18nProvider>
+      <KnowledgeLibraryPage
+        topics={[topic]}
+        sourceCoverage={coverage}
+        loadSourceContent={sourceLoader}
+      />
+    </I18nProvider>,
+  )
+}
+
 describe('KnowledgeLibraryPage', () => {
+  beforeEach(() => {
+    localStorage.clear()
+    window.history.replaceState(null, '', '/?lang=vi')
+  })
+
   it('render nội dung, anchor duy nhất và search dùng được bằng bàn phím', async () => {
     Object.defineProperty(window, 'scrollTo', { value: vi.fn(), writable: true })
     window.history.replaceState(null, '', '/#%E0%A4%A')
     render(
       <StrictMode>
-        <KnowledgeLibraryPage
-          topics={[topic]}
-          sourceCoverage={sourceCoverage}
-          loadSourceContent={emptySourceLoader}
-        />
+        <I18nProvider>
+          <KnowledgeLibraryPage
+            topics={[topic]}
+            sourceCoverage={sourceCoverage}
+            loadSourceContent={emptySourceLoader}
+          />
+        </I18nProvider>
       </StrictMode>,
     )
 
@@ -101,13 +124,7 @@ describe('KnowledgeLibraryPage', () => {
 
   it('cho phép làm bài Q&A và xem giải thích', () => {
     window.history.replaceState(null, '', '/')
-    render(
-      <KnowledgeLibraryPage
-        topics={[topic]}
-        sourceCoverage={sourceCoverage}
-        loadSourceContent={emptySourceLoader}
-      />,
-    )
+    renderPage()
 
     fireEvent.click(screen.getByRole('tab', { name: /Kiểm tra Q&A/i }))
     fireEvent.click(screen.getByRole('radio', { name: /Đúng/i }))
@@ -118,13 +135,7 @@ describe('KnowledgeLibraryPage', () => {
   })
 
   it('đổi chế độ học bằng phím mũi tên theo chuẩn tablist', () => {
-    render(
-      <KnowledgeLibraryPage
-        topics={[topic]}
-        sourceCoverage={sourceCoverage}
-        loadSourceContent={emptySourceLoader}
-      />,
-    )
+    renderPage()
     const summaryTab = screen.getByRole('tab', { name: 'Tóm tắt' })
     const sourceTab = screen.getByRole('tab', {
       name: /Tài liệu chi tiết/i,
@@ -149,13 +160,7 @@ describe('KnowledgeLibraryPage', () => {
   })
 
   it('giữ nguyên tiến độ Q&A khi chuyển qua lại giữa các chế độ học', () => {
-    render(
-      <KnowledgeLibraryPage
-        topics={[topic]}
-        sourceCoverage={sourceCoverage}
-        loadSourceContent={emptySourceLoader}
-      />,
-    )
+    renderPage()
 
     const quizTab = screen.getByRole('tab', { name: /Kiểm tra Q&A/i })
     expect(quizTab).toHaveAttribute(
@@ -185,13 +190,7 @@ describe('KnowledgeLibraryPage', () => {
       .mockResolvedValue(
         '# Chi tiết nguồn\n\n[Đi tới heading](#chi-tiết-nguồn)\n\nNội dung Markdown nguyên bản.',
       )
-    render(
-      <KnowledgeLibraryPage
-        topics={[topic]}
-        sourceCoverage={coverageWithSource}
-        loadSourceContent={sourceLoader}
-      />,
-    )
+    renderPage(coverageWithSource, sourceLoader)
 
     expect(sourceLoader).not.toHaveBeenCalled()
     fireEvent.click(screen.getByRole('tab', { name: /Tài liệu chi tiết/i }))
@@ -215,5 +214,16 @@ describe('KnowledgeLibraryPage', () => {
     fireEvent.click(screen.getByRole('tab', { name: /Tài liệu chi tiết/i }))
     expect(sourceSearch).toHaveValue('README')
     expect(sourceLoader).toHaveBeenCalledTimes(1)
+  })
+
+  it('đổi giao diện sang tiếng Anh và cập nhật ngôn ngữ tài liệu', () => {
+    renderPage()
+
+    fireEvent.click(screen.getByRole('button', { name: 'EN' }))
+
+    expect(document.documentElement).toHaveAttribute('lang', 'en')
+    expect(screen.getByRole('tab', { name: 'Summary' })).toBeVisible()
+    expect(screen.getByText(/preserve the author’s original language/i)).toBeVisible()
+    expect(new URL(window.location.href).searchParams.get('lang')).toBe('en')
   })
 })

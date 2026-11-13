@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "owner": "root-manager",
+  "defaults": {
+    "max_concurrency": 3,
+    "max_retries_per_node": 2,
+    "require_independent_verifier_for_risk": ["high"],
+    "specialists_are_read_only_in_shared_workspace": true
+  },
+  "approval_authorities": {
+    "allowed": [
+      "change-owner",
+      "risk-owner-when-applicable",
+      "knowledge-owner",
+      "epic-owner",
+      "architecture-or-security-owner-when-required",
+      "product-owner",
+      "architecture-owner",
+      "security-owner-when-applicable",
+      "privacy-or-compliance-owner-when-applicable",
+      "operations-owner-when-applicable"
+    ],
+    "forbidden_generic": ["human", "person", "owner", "approver"]
+  },
+  "parallel_gate": {
+    "all_required": [
+      "no_dependency_path",
+      "frozen_or_versioned_inputs",
+      "disjoint_write_sets_or_read_only",
+      "no_shared_non_idempotent_side_effect",
+      "independently_verifiable_output",
+      "work_exceeds_coordination_overhead"
+    ]
+  },
+  "sequential_gates": [
+    "approval",
+    "shared_file_or_schema_edit",
+    "migration",
+    "external_side_effect",
+    "merge_or_integration",
+    "repair_after_review",
+    "final_verification"
+  ],
+  "states": [
+    "pending",
+    "ready",
+    "running",
+    "produced",
+    "verified",
+    "accepted",
+    "failed",
+    "blocked",
+    "superseded"
+  ],
+  "retry": {
+    "allowed_for": ["transient", "rate_limit", "interrupted_unfinished"],
+    "required_before_retry": ["inspect_outputs", "reconcile_side_effects", "narrow_to_unfinished_work"],
+    "never_blindly_replay_successful_side_effect": true
+  },
+  "stop_conditions": [
+    "acceptance_met",
+    "new_authority_required",
+    "budget_exhausted",
+    "no_evidence_of_progress"
+  ]
+}

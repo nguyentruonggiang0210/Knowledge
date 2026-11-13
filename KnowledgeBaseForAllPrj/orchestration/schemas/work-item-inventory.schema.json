@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/work-item-inventory.schema.json",
+  "title": "Fan-out work item inventory",
+  "type": "object",
+  "required": ["schema_version", "kind", "items"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "kind": {"enum": ["story-inventory", "epic-map"]},
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["depends_on", "write_set", "parameters"],
+        "properties": {
+          "story_id": {"type": "string"},
+          "epic_id": {"type": "string"},
+          "depends_on": {"type": "array", "items": {"type": "string"}},
+          "write_set": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "parameters": {"type": "object"}
+        }
+      }
+    }
+  }
+}

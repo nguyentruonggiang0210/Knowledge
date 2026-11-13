@@ -1,0 +1,35 @@
+﻿@model (List<TvWeb.Models.Film> Hero, List<TvWeb.Models.Film> Films)
+@{ ViewData["Title"] = "Trang chủ"; }
+@if (Model.Hero.Count > 0)
+{
+<div id="hero" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    @for (int i = 0; i < Model.Hero.Count; i++)
+    {
+      var f = Model.Hero[i];
+      <div class="carousel-item @(i == 0 ? "active" : "")">
+        <a href="@f.FilmLink">
+          <img src="@f.Poster" data-artwork="landscape" data-alternative="@f.Backdrop" class="d-block w-100 hero-img" alt="@f.TitleVi" />
+          <div class="carousel-caption text-start hero-cap">
+            <h2>@f.TitleVi</h2>
+            <p class="d-none d-md-block">@f.TitleEn @f.Year • IMDb @(f.Imdb?.ToString() ?? "-") • @f.Quality</p>
+            <span class="btn btn-danger">Xem ngay</span>
+          </div>
+        </a>
+      </div>
+    }
+  </div>
+  <button class="carousel-control-prev" data-bs-target="#hero" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+  <button class="carousel-control-next" data-bs-target="#hero" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+</div>
+}
+<div class="container-fluid px-3 px-lg-4 mt-4">
+  <h4 class="row-title">Mới cập nhật</h4>
+  <div class="film-row">
+    @foreach (var f in Model.Films) { <partial name="_FilmCard" model="f" /> }
+  </div>
+  @if (Model.Films.Count == 0)
+  {
+    <div class="alert alert-dark">Chưa có dữ liệu. Chạy <code>python tool/scheduler.py --once --limit 10</code> để cào thử.</div>
+  }
+</div>

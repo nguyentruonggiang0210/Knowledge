@@ -1,21 +1,24 @@
 import { ArrowUpRight, Target } from 'lucide-react'
 import type { KnowledgeTopic } from '../../domain/knowledge/KnowledgeTopic'
+import { useI18n } from '../i18n/I18nProvider'
 
 interface TopicOverviewProps {
   readonly topic: KnowledgeTopic
 }
 
 export function TopicOverview({ topic }: TopicOverviewProps) {
+  const { t } = useI18n()
+
   return (
-    <section className="topic-overview" aria-label="Mục tiêu và nguồn kiến thức">
+    <section className="topic-overview" aria-label={t('overview.label')}>
       <div className="outcomes-card">
         <div className="section-title">
           <span className="section-title__icon">
             <Target size={18} />
           </span>
           <div>
-            <small>Sau tab này</small>
-            <h2>Bạn sẽ nắm được</h2>
+            <small>{t('overview.after')}</small>
+            <h2>{t('overview.outcomes')}</h2>
           </div>
         </div>
         <ul className="outcomes-list">
@@ -31,8 +34,8 @@ export function TopicOverview({ topic }: TopicOverviewProps) {
             <ArrowUpRight size={18} />
           </span>
           <div>
-            <small>Đã khử trùng lặp</small>
-            <h2>Nguồn được hợp nhất</h2>
+            <small>{t('overview.deduplicated')}</small>
+            <h2>{t('overview.sources')}</h2>
           </div>
         </div>
         <div className="source-chips">

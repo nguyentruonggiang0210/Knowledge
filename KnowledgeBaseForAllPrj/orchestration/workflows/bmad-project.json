@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0",
+  "id": "bmad-project",
+  "intent": "bmad-project-multi-epic",
+  "owner": "kb-orchestrator",
+  "budget": {"max_concurrency": 3, "max_retries_per_node": 1},
+  "nodes": [
+    {
+      "id": "project-context", "skill": "bmad-adapter",
+      "objective": "Confirm project boundary, governance, owners, existing context, and why a multi-epic path is required.",
+      "depends_on": [], "execution": "manager", "parallel_group": null,
+      "read_set": ["AGENTS.md", "kb/projects/<project>/**", "<target>/**"], "write_set": [],
+      "output": "project path contract", "acceptance": ["shared decision scope, owner map, risk, and non-goals are explicit"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "user-product-evidence", "skill": "study",
+      "objective": "Research users, domain, product assumptions, outcomes, and external evidence needed for shared product decisions.",
+      "depends_on": ["project-context"], "execution": "read-only", "parallel_group": "project-discovery",
+      "read_set": ["kb/**", "<external-sources>"], "write_set": [],
+      "output": "cited product evidence", "acceptance": ["facts, assumptions, and validation gaps are separated"],
+      "risk": "low", "approval": "none", "effects": {"resources": ["web"], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "technical-evidence", "skill": "study",
+      "objective": "Map the current codebase or greenfield constraints, integrations, data, deployment, and reusable capabilities.",
+      "depends_on": ["project-context"], "execution": "read-only", "parallel_group": "project-discovery",
+      "read_set": ["<target>/**", "kb/projects/<project>/**"], "write_set": [],
+      "output": "cited technical evidence", "acceptance": ["cross-system constraints and unknowns are evidence-backed"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "risk-compliance-evidence", "skill": "study",
+      "objective": "Identify security, privacy, regulatory, operational, migration, and organizational constraints.",
+      "depends_on": ["project-context"], "execution": "read-only", "parallel_group": "project-discovery",
+      "read_set": ["governance/**", "kb/**", "<target>/**", "<external-sources>"], "write_set": [],
+      "output": "risk and compliance evidence", "acceptance": ["high-impact constraints have owners and authoritative sources"],
+      "risk": "low", "approval": "none", "effects": {"resources": ["web"], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "product-contract", "skill": "change-request",
+      "objective": "Create or update the shared product intent/PRD only to the depth required for multiple epics and approvers.",
+      "depends_on": ["user-product-evidence", "technical-evidence", "risk-compliance-evidence"],
+      "execution": "shared-workspace", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/**", "<target>/**"], "write_set": ["kb/projects/<project>/overview.md", "kb/projects/<project>/requirements/**"],
+      "output": "shared product contract with stable requirements", "acceptance": ["outcomes, non-goals, requirements, metrics, risk, dependencies, and owners are explicit"],
+      "risk": "medium", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "product-signoff", "skill": "bmad-adapter",
+      "objective": "Record organizational approval of the shared product contract and exact artifact versions.",
+      "depends_on": ["product-contract"], "execution": "approval-gate", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/overview.md", "kb/projects/<project>/requirements/**"], "write_set": [],
+      "output": "approved, revision requested, or rejected", "acceptance": ["approver identity, scope, and version are recorded"],
+      "risk": "high", "approval": "human", "required_authorities": ["product-owner"], "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "experience-lens", "skill": "bmad-adapter",
+      "objective": "Define shared user journeys, states, accessibility, and experience decisions only where multiple epics depend on them.",
+      "depends_on": ["product-signoff"], "execution": "read-only", "parallel_group": "solution-lenses",
+      "read_set": ["kb/projects/<project>/**"], "write_set": [],
+      "output": "experience decisions and open issues", "acceptance": ["cross-epic experience constraints and owners are explicit"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "architecture-lens", "skill": "bmad-adapter",
+      "objective": "Define the architecture spine, shared interfaces, state ownership, deployment, compatibility, and migration constraints.",
+      "depends_on": ["product-signoff"], "execution": "read-only", "parallel_group": "solution-lenses",
+      "read_set": ["kb/projects/<project>/**", "<target>/**"], "write_set": [],
+      "output": "architecture decisions and ADR candidates", "acceptance": ["decisions that prevent epic divergence are explicit"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "assurance-lens", "skill": "verify-delivery",
+      "objective": "Design cross-epic security, test, observability, integration, rollout, and system acceptance evidence.",
+      "depends_on": ["product-signoff"], "execution": "read-only", "parallel_group": "solution-lenses",
+      "read_set": ["governance/**", "kb/projects/<project>/**", "<target>/**"], "write_set": [],
+      "output": "assurance strategy", "acceptance": ["every shared risk and requirement maps to an owner and feasible evidence"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "integrate-spine", "skill": "bmad-adapter",
+      "objective": "Sequentially integrate accepted experience, architecture, assurance, ADR, and operational decisions.",
+      "depends_on": ["experience-lens", "architecture-lens", "assurance-lens"], "execution": "shared-workspace", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/**", "<target>/**"],
+      "write_set": ["kb/projects/<project>/design/**", "kb/projects/<project>/architecture/**", "kb/projects/<project>/interfaces/**", "kb/projects/<project>/operations/**", "kb/projects/<project>/decisions/**"],
+      "output": "approved-ready shared solution spine", "acceptance": ["artifacts agree or unresolved conflicts block readiness"],
+      "risk": "medium", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": ["project-spine:<project>"]},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "slice-epics", "skill": "bmad-adapter",
+      "objective": "Create owned epic contracts with requirement coverage, dependencies, integration boundaries, and ordered delivery intent.",
+      "depends_on": ["integrate-spine"], "execution": "shared-workspace", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/**"], "write_set": ["kb/projects/<project>/delivery/**"],
+      "output": "epic map and per-epic entry contracts", "acceptance": ["all parent requirements are covered and cross-epic dependencies are explicit"],
+      "risk": "medium", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": ["project-plan:<project>"]},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "project-readiness", "skill": "verify-delivery",
+      "objective": "Assess product, solution spine, epic coverage, ownership, dependencies, risk, and assurance as PASS, CONCERNS, or FAIL.",
+      "depends_on": ["slice-epics"], "execution": "read-only", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/**", "<target>/**"], "write_set": [],
+      "output": "project readiness verdict", "acceptance": ["orphan requirements, blocking conflicts, and allowed epic streams are explicit"],
+      "risk": "high", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "approve-project", "skill": "bmad-adapter",
+      "objective": "Record human approval of project readiness and exact epic streams allowed to start.",
+      "depends_on": ["project-readiness"], "execution": "approval-gate", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/**"], "write_set": [],
+      "output": "approved, revision requested, or rejected", "acceptance": ["approval identity, artifacts, concerns, and allowed scope are recorded"],
+      "risk": "high", "approval": "human", "required_authorities": ["product-owner", "architecture-owner", "security-owner-when-applicable", "privacy-or-compliance-owner-when-applicable", "operations-owner-when-applicable"], "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "execute-epics", "skill": "kb-orchestrator",
+      "objective": "Fan out one bmad-epic subworkflow per dependency-ready epic and wait for every epic instance to reach an accepted terminal state.",
+      "depends_on": ["approve-project"], "execution": "manager", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/**", "<target>/**"], "write_set": [],
+      "output": "per-epic terminal status, integration candidate, and evidence", "acceptance": ["all epic instances pass readiness, story, integration, and retrospective gates; failed or unfinished epics stop the join"],
+      "risk": "high", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "fanout": {"source": "kb/projects/<project>/delivery/epic-map.json", "inventory_kind": "epic-map", "items_field": "items", "item_id_field": "epic_id", "dependency_field": "depends_on", "subworkflow": "bmad-epic", "completion": "all-accepted", "max_concurrency": 3, "instance_write_set_field": "write_set", "required_parameter_fields": ["epic-id", "epic-artifact", "epic-worktree"], "write_scope_parameter": "epic-approved-write-scope", "allowed_locked_shared_write_set": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "integrate-epics", "skill": "gen-code",
+      "objective": "Sequentially integrate accepted epic outputs and run cross-epic migration, interface, and system checks.",
+      "depends_on": ["execute-epics"], "execution": "shared-workspace", "parallel_group": null,
+      "read_set": ["<accepted-epic-outputs>/**", "kb/projects/<project>/**"], "write_set": ["<integrated-target>/**"],
+      "output": "integrated project state and cross-epic evidence", "acceptance": ["every accepted epic is integrated exactly once and shared contracts are verified on the combined state"],
+      "risk": "high", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": ["integration-target:<target>"]},
+      "join": {"fanout_node": "execute-epics", "require": "all-accepted", "allow_partial": false},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "system-acceptance", "skill": "verify-delivery",
+      "objective": "Verify cross-epic integration and the final system against shared product, architecture, risk, and operational contracts.",
+      "depends_on": ["integrate-epics"], "execution": "read-only", "parallel_group": null,
+      "read_set": ["<integrated-target>/**", "kb/projects/<project>/**"], "write_set": [],
+      "output": "system acceptance verdict", "acceptance": ["shared requirements and cross-epic behavior have final-state evidence"],
+      "risk": "high", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "project-retrospective-assessment", "skill": "verify-delivery",
+      "objective": "Assess epic outcomes, unfinished work, deviations, systemic lessons, and follow-up evidence without writing canonical knowledge.",
+      "depends_on": ["system-acceptance"], "execution": "read-only", "parallel_group": null,
+      "read_set": ["<integrated-target>/**", "kb/projects/<project>/**"], "write_set": [],
+      "output": "project retrospective evidence and verdict", "acceptance": ["unfinished or rejected epics remain visible"],
+      "risk": "medium", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "record-project-retrospective", "skill": "bmad-adapter",
+      "objective": "Record the approved retrospective, follow-ups, and unpromoted lesson candidates.",
+      "depends_on": ["project-retrospective-assessment"], "execution": "shared-workspace", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/**", "kb/memory/episodic/**"], "write_set": ["kb/memory/episodic/**"],
+      "output": "episodic project retrospective artifact", "acceptance": ["actions have owners and lesson candidates remain episodic until curated"],
+      "risk": "medium", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": ["project-status:<project>"]},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    }
+  ]
+}

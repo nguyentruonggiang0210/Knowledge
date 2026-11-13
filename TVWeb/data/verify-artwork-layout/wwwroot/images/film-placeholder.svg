@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" role="img" aria-label="TvWeb">
+  <rect width="800" height="1200" fill="#161b26"/>
+  <path d="M0 925 800 500v700H0Z" fill="#202838"/>
+  <path d="M0 1040 800 615v585H0Z" fill="#121722"/>
+  <rect x="116" y="454" width="568" height="292" rx="18" fill="#10141d" stroke="#364051" stroke-width="3"/>
+  <path d="m346 527 130 73-130 73Z" fill="#e50914"/>
+  <text x="400" y="822" text-anchor="middle" fill="#e50914" font-family="Arial,sans-serif" font-size="88" font-weight="800">TV<tspan fill="#e8ecf3">WEB</tspan></text>
+</svg>

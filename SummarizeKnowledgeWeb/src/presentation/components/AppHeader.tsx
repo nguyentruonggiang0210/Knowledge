@@ -6,6 +6,7 @@ import {
   type KeyboardEvent as ReactKeyboardEvent,
 } from 'react'
 import type { KnowledgeSearchResult } from '../../domain/knowledge/KnowledgeTopic'
+import { useI18n } from '../i18n/I18nProvider'
 import { TopicIcon } from './TopicIcon'
 
 interface AppHeaderProps {
@@ -24,13 +25,14 @@ interface ThemeButtonProps {
 }
 
 function ThemeButton({ className, theme, onToggle }: ThemeButtonProps) {
+  const { t } = useI18n()
   return (
     <button
       className={className}
       type="button"
       onClick={onToggle}
-      aria-label={theme === 'light' ? 'Bật giao diện tối' : 'Bật giao diện sáng'}
-      title={theme === 'light' ? 'Giao diện tối' : 'Giao diện sáng'}
+      aria-label={theme === 'light' ? t('theme.enableDark') : t('theme.enableLight')}
+      title={theme === 'light' ? t('theme.dark') : t('theme.light')}
     >
       {theme === 'light' ? (
         <Moon size={19} aria-hidden="true" />
@@ -38,6 +40,33 @@ function ThemeButton({ className, theme, onToggle }: ThemeButtonProps) {
         <Sun size={19} aria-hidden="true" />
       )}
     </button>
+  )
+}
+
+function LanguageSwitcher() {
+  const { locale, setLocale, t } = useI18n()
+
+  return (
+    <div className="language-switcher" role="group" aria-label={t('language.label')}>
+      <button
+        type="button"
+        data-active={locale === 'vi'}
+        aria-pressed={locale === 'vi'}
+        title={t('language.vietnamese')}
+        onClick={() => setLocale('vi')}
+      >
+        VI
+      </button>
+      <button
+        type="button"
+        data-active={locale === 'en'}
+        aria-pressed={locale === 'en'}
+        title={t('language.english')}
+        onClick={() => setLocale('en')}
+      >
+        EN
+      </button>
+    </div>
   )
 }
 
@@ -49,6 +78,7 @@ export function AppHeader({
   onSelectTopic,
   onToggleTheme,
 }: AppHeaderProps) {
+  const { t } = useI18n()
   const hasQuery = query.trim().length > 0
   const searchInput = useRef<HTMLInputElement>(null)
   const [isSearchFocused, setIsSearchFocused] = useState(false)
@@ -61,7 +91,9 @@ export function AppHeader({
   const selectResult = (topicId: string) => {
     const topicTitle = results.find((result) => result.topic.id === topicId)?.topic.title
     onSelectTopic(topicId)
-    setAnnouncement(topicTitle ? `Đã mở chủ đề ${topicTitle}` : 'Đã mở chủ đề')
+    setAnnouncement(
+      topicTitle ? t('search.openedTopic', { title: topicTitle }) : t('search.opened'),
+    )
     window.requestAnimationFrame(() => searchInput.current?.focus())
   }
 
@@ -109,27 +141,21 @@ export function AppHeader({
 
   return (
     <header className="app-header">
-      <a className="brand" href="#top" aria-label="Knowledge Atlas - Trang đầu">
+      <a className="brand" href="#top" aria-label={t('brand.home')}>
         <span className="brand__mark">
           <BookOpen size={19} strokeWidth={1.9} aria-hidden="true" />
         </span>
         <span>
           <strong>Knowledge Atlas</strong>
-          <small>Workspace learning hub</small>
+          <small>{t('brand.subtitle')}</small>
         </span>
       </a>
-
-      <ThemeButton
-        className="icon-button icon-button--mobile"
-        theme={theme}
-        onToggle={onToggleTheme}
-      />
 
       <div className="search-box" role="search">
         <Search size={18} strokeWidth={1.8} aria-hidden="true" />
         <input
           ref={searchInput}
-          aria-label="Tìm trong toàn bộ kiến thức"
+          aria-label={t('search.label')}
           role="combobox"
           aria-autocomplete="list"
           aria-expanded={isSearchOpen}
@@ -141,7 +167,7 @@ export function AppHeader({
           }
           type="search"
           value={query}
-          placeholder="Tìm thuật toán, RAG, Terraform…"
+          placeholder={t('search.placeholder')}
           onChange={(event) => {
             onQueryChange(event.target.value)
             setActiveResultIndex(0)
@@ -157,7 +183,7 @@ export function AppHeader({
             id="knowledge-search-results"
             className="search-results"
             role="listbox"
-            aria-label="Kết quả tìm kiếm"
+            aria-label={t('search.results')}
           >
             {results.length > 0 ? (
               results.map((result, index) => (
@@ -185,7 +211,7 @@ export function AppHeader({
               ))
             ) : (
               <div className="search-results__empty">
-                Không tìm thấy nội dung phù hợp với “{query}”.
+                {t('search.noResults', { query })}
               </div>
             )}
           </div>
@@ -196,11 +222,14 @@ export function AppHeader({
         {announcement}
       </span>
 
-      <ThemeButton
-        className="icon-button icon-button--desktop"
-        theme={theme}
-        onToggle={onToggleTheme}
-      />
+      <div className="header-actions">
+        <LanguageSwitcher />
+        <ThemeButton
+          className="icon-button"
+          theme={theme}
+          onToggle={onToggleTheme}
+        />
+      </div>
     </header>
   )
 }

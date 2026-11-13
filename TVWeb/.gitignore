@@ -1,0 +1,10 @@
+.venv/
+data/*.db*
+data/*.html
+**/bin/
+**/obj/
+tool/logs/
+tool/__pycache__/
+tests/playwright/node_modules/
+tests/playwright/reports/artifacts/
+tests/playwright/reports/html/

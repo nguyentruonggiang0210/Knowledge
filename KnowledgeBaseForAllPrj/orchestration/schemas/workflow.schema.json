@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/workflow.schema.json",
+  "title": "Dependency-aware agent workflow",
+  "type": "object",
+  "required": ["schema_version", "id", "intent", "owner", "budget", "nodes"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "intent": {"type": "string"},
+    "owner": {"type": "string"},
+    "completion_contract": {
+      "type": "object",
+      "required": ["terminal_node", "verdict_source_node", "verdict_field", "accepted_values"],
+      "properties": {
+        "terminal_node": {"type": "string"},
+        "verdict_source_node": {"type": "string"},
+        "verdict_field": {"type": "string"},
+        "accepted_values": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      }
+    },
+    "budget": {
+      "type": "object",
+      "required": ["max_concurrency", "max_retries_per_node"],
+      "properties": {
+        "max_concurrency": {"type": "integer", "minimum": 1},
+        "max_retries_per_node": {"type": "integer", "minimum": 0}
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "skill", "objective", "depends_on", "execution", "parallel_group", "read_set", "write_set", "output", "acceptance", "risk", "approval", "effects", "retry"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "skill": {"type": "string"},
+          "objective": {"type": "string"},
+          "depends_on": {"type": "array", "items": {"type": "string"}},
+          "execution": {"enum": ["manager", "read-only", "shared-workspace", "isolated-worktree", "approval-gate"]},
+          "parallel_group": {"type": ["string", "null"]},
+          "read_set": {"type": "array", "items": {"type": "string"}},
+          "write_set": {"type": "array", "items": {"type": "string"}},
+          "output": {"type": "string"},
+          "acceptance": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "risk": {"enum": ["low", "medium", "high"]},
+          "approval": {"enum": ["none", "before-run", "before-side-effect", "human"]},
+          "required_authorities": {"type": "array", "items": {"type": "string"}},
+          "fanout": {
+            "type": "object",
+            "required": ["source", "inventory_kind", "items_field", "item_id_field", "dependency_field", "subworkflow", "completion", "max_concurrency", "instance_write_set_field", "required_parameter_fields", "write_scope_parameter", "allowed_locked_shared_write_set"],
+            "properties": {
+              "source": {"type": "string"},
+              "inventory_kind": {"enum": ["story-inventory", "epic-map"]},
+              "items_field": {"type": "string"},
+              "item_id_field": {"type": "string"},
+              "dependency_field": {"type": "string"},
+              "subworkflow": {"type": "string"},
+              "completion": {"enum": ["all-accepted", "all-terminal"]},
+              "max_concurrency": {"type": "integer", "minimum": 1},
+              "instance_write_set_field": {"type": "string"},
+              "required_parameter_fields": {"type": "array", "items": {"type": "string"}},
+              "write_scope_parameter": {"type": "string"},
+              "allowed_locked_shared_write_set": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "join": {
+            "type": "object",
+            "required": ["fanout_node", "require", "allow_partial"],
+            "properties": {
+              "fanout_node": {"type": "string"},
+              "require": {"enum": ["all-accepted", "all-terminal"]},
+              "allow_partial": {"type": "boolean"}
+            }
+          },
+          "effects": {
+            "type": "object",
+            "required": ["resources", "side_effects", "idempotency_key", "exclusive_locks"],
+            "properties": {
+              "resources": {"type": "array", "items": {"type": "string"}},
+              "side_effects": {"type": "array", "items": {"type": "string"}},
+              "idempotency_key": {"type": ["string", "null"]},
+              "exclusive_locks": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "retry": {
+            "type": "object",
+            "required": ["max_attempts", "transient_only"],
+            "properties": {
+              "max_attempts": {"type": "integer", "minimum": 1},
+              "transient_only": {"type": "boolean"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

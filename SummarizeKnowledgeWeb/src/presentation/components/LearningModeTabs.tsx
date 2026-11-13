@@ -1,5 +1,6 @@
 import { BookOpenText, BrainCircuit, LibraryBig } from 'lucide-react'
 import type { KeyboardEvent } from 'react'
+import { useI18n } from '../i18n/I18nProvider'
 
 export type LearningMode = 'summary' | 'sources' | 'quiz'
 
@@ -11,9 +12,9 @@ interface LearningModeTabsProps {
 }
 
 const modes = [
-  { id: 'summary', label: 'Tóm tắt', icon: BookOpenText },
-  { id: 'sources', label: 'Tài liệu chi tiết', icon: LibraryBig },
-  { id: 'quiz', label: 'Kiểm tra Q&A', icon: BrainCircuit },
+  { id: 'summary', labelKey: 'mode.summary', icon: BookOpenText },
+  { id: 'sources', labelKey: 'mode.sources', icon: LibraryBig },
+  { id: 'quiz', labelKey: 'mode.quiz', icon: BrainCircuit },
 ] as const
 
 export function LearningModeTabs({
@@ -22,6 +23,8 @@ export function LearningModeTabs({
   questionCount,
   onChange,
 }: LearningModeTabsProps) {
+  const { t } = useI18n()
+
   const changeWithKeyboard = (
     event: KeyboardEvent<HTMLButtonElement>,
     index: number,
@@ -43,7 +46,7 @@ export function LearningModeTabs({
   }
 
   return (
-    <div className="learning-modes" role="tablist" aria-label="Chế độ học tập">
+    <div className="learning-modes" role="tablist" aria-label={t('mode.label')}>
       {modes.map((mode, index) => {
         const Icon = mode.icon
         const count =
@@ -65,7 +68,7 @@ export function LearningModeTabs({
             onKeyDown={(event) => changeWithKeyboard(event, index)}
           >
             <Icon size={17} aria-hidden="true" />
-            <span>{mode.label}</span>
+            <span>{t(mode.labelKey)}</span>
             {count !== undefined && <strong>{count}</strong>}
           </button>
         )

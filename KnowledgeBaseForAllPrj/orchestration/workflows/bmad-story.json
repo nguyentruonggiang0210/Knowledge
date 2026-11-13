@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "id": "bmad-story",
+  "intent": "bmad-story-one-session-worker",
+  "owner": "kb-orchestrator",
+  "completion_contract": {"terminal_node": "record-story-status", "verdict_source_node": "verify-story", "verdict_field": "verdict", "accepted_values": ["PASS"]},
+  "budget": {"max_concurrency": 3, "max_retries_per_node": 1},
+  "nodes": [
+    {
+      "id": "load-story", "skill": "bmad-adapter",
+      "objective": "Load one approved story, parent constraints, dependency evidence, write scope, and acceptance contract.",
+      "depends_on": [], "execution": "manager", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/delivery/**", "<target>/**"], "write_set": [],
+      "output": "frozen story execution contract", "acceptance": ["story is dependency-ready, bounded, approved, and fits one session"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "implement-story", "skill": "gen-code",
+      "objective": "Implement the story in its isolated worktree and approved write scope.",
+      "depends_on": ["load-story"], "execution": "isolated-worktree", "parallel_group": null,
+      "read_set": ["<story-worktree>/**", "kb/projects/<project>/**"], "write_set": ["<story-approved-write-scope>/**"],
+      "output": "story change and focused tests", "acceptance": ["story behavior is implemented without violating parent constraints"],
+      "risk": "medium", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 2, "transient_only": true}
+    },
+    {
+      "id": "story-tests", "skill": "gen-code",
+      "objective": "Run deterministic story checks and preserve observed failures.",
+      "depends_on": ["implement-story"], "execution": "isolated-worktree", "parallel_group": "story-quality",
+      "read_set": ["<story-worktree>/**"], "write_set": ["<story-build-artifacts>/**"],
+      "output": "story test evidence", "acceptance": ["blocking checks pass or failures remain visible"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 2, "transient_only": true}
+    },
+    {
+      "id": "story-code-review", "skill": "review-code",
+      "objective": "Review the story change for correctness, security, compatibility, and missing tests.",
+      "depends_on": ["implement-story"], "execution": "read-only", "parallel_group": "story-quality",
+      "read_set": ["<story-worktree>/**", "kb/projects/<project>/**"], "write_set": [],
+      "output": "ranked story code findings", "acceptance": ["blocking findings have evidence and remediation"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "story-doc-review", "skill": "review-doc",
+      "objective": "Review story documentation and canonical knowledge impact.",
+      "depends_on": ["implement-story"], "execution": "read-only", "parallel_group": "story-quality",
+      "read_set": ["<story-worktree>/**", "kb/projects/<project>/**"], "write_set": [],
+      "output": "story documentation findings", "acceptance": ["required source-of-truth updates are explicit"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "repair-story", "skill": "gen-code",
+      "objective": "Apply accepted in-scope findings in the story worktree; no-op only when all findings are absent or rejected with evidence.",
+      "depends_on": ["story-tests", "story-code-review", "story-doc-review"], "execution": "isolated-worktree", "parallel_group": null,
+      "read_set": ["<story-worktree>/**", "kb/projects/<project>/**"], "write_set": ["<story-approved-write-scope>/**"],
+      "output": "repaired story and finding disposition", "acceptance": ["every blocking finding is fixed or explicitly unresolved"],
+      "risk": "medium", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 2, "transient_only": true}
+    },
+    {
+      "id": "verify-story", "skill": "verify-delivery",
+      "objective": "Verify the final story worktree against parent requirements and story acceptance.",
+      "depends_on": ["repair-story"], "execution": "read-only", "parallel_group": null,
+      "read_set": ["<story-worktree>/**", "kb/projects/<project>/**"], "write_set": [],
+      "output": "story acceptance envelope with verdict PASS|FAIL and evidence", "acceptance": ["all blocking criteria have final-worktree evidence"],
+      "risk": "medium", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "record-story-status", "skill": "bmad-adapter",
+      "objective": "Sequentially record the story verdict and evidence without merging or claiming epic acceptance.",
+      "depends_on": ["verify-story"], "execution": "shared-workspace", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/delivery/<epic-id>/**"], "write_set": ["kb/projects/<project>/delivery/<epic-id>/**"],
+      "output": "updated story inventory and merge candidate reference", "acceptance": ["status transition is evidence-backed and unfinished work stays visible"],
+      "risk": "medium", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": ["epic-status:<epic-id>"]},
+      "retry": {"max_attempts": 1, "transient_only": true}
+    }
+  ]
+}

@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: prepare-local-volume
-  namespace: storage-lab
+  namespace: kube-system
 spec:
   nodeName: deep-k8s-worker
   restartPolicy: Never

@@ -5,7 +5,7 @@ describe('fileKnowledgeRepository', () => {
   const topics = fileKnowledgeRepository.getAll()
 
   it('tự phát hiện toàn bộ thư mục kiến thức', () => {
-    expect(topics.length).toBeGreaterThanOrEqual(12)
+    expect(topics.length).toBeGreaterThanOrEqual(13)
     expect(
       topics.every(
         (topic) =>

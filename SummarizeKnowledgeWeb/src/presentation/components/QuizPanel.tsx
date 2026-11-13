@@ -1,6 +1,7 @@
 import { ArrowRight, Check, RotateCcw, Trophy, X } from 'lucide-react'
 import { useMemo, useRef, useState } from 'react'
 import type { QuizQuestion } from '../../domain/knowledge/QuizQuestion'
+import { useI18n } from '../i18n/I18nProvider'
 
 interface QuizPanelProps {
   readonly topicId: string
@@ -73,6 +74,7 @@ function saveStats(topicId: string, bankVersion: string, stats: QuizStats) {
 }
 
 export function QuizPanel({ topicId, questions }: QuizPanelProps) {
+  const { t } = useI18n()
   const questionHeadingRef = useRef<HTMLLegendElement>(null)
   const resultHeadingRef = useRef<HTMLHeadingElement>(null)
   const bankVersion = useMemo(() => questionBankVersion(questions), [questions])
@@ -140,8 +142,8 @@ export function QuizPanel({ topicId, questions }: QuizPanelProps) {
   if (questions.length === 0 || !currentQuestion) {
     return (
       <section className="quiz-panel quiz-panel--empty">
-        <h2>Chưa có câu hỏi</h2>
-        <p>Thêm questions.json vào folder kiến thức để bắt đầu kiểm tra.</p>
+        <h2>{t('quiz.emptyTitle')}</h2>
+        <p>{t('quiz.emptyBody')}</p>
       </section>
     )
   }
@@ -154,21 +156,28 @@ export function QuizPanel({ topicId, questions }: QuizPanelProps) {
       <section className="quiz-panel quiz-results" aria-labelledby="quiz-result-title">
         <div className="quiz-results__hero">
           <Trophy size={36} aria-hidden="true" />
-          <span>{reviewSession ? 'Hoàn thành lượt ôn câu sai' : 'Hoàn thành bài kiểm tra'}</span>
+          <span>
+            {reviewSession ? t('quiz.reviewComplete') : t('quiz.complete')}
+          </span>
           <h2 ref={resultHeadingRef} id="quiz-result-title" tabIndex={-1}>
             {percent}%
           </h2>
           <p>
-            Bạn trả lời đúng {correctCount}/{session.length} câu. Điểm tốt nhất:{' '}
-            <strong>{stats.bestPercent}%</strong> sau {stats.attempts} lượt.
+            {t('quiz.score', {
+              correct: correctCount,
+              total: session.length,
+              best: stats.bestPercent,
+              attempts: stats.attempts,
+            })}
           </p>
           <div className="quiz-results__actions">
             <button type="button" onClick={() => restart(false)}>
-              <RotateCcw size={16} /> Làm lại toàn bộ
+              <RotateCcw size={16} /> {t('quiz.restart')}
             </button>
             {incorrect.length > 0 && (
               <button type="button" onClick={() => restart(true)}>
-                Ôn {incorrect.length} câu sai <ArrowRight size={16} />
+                {t('quiz.reviewIncorrect', { count: incorrect.length })}{' '}
+                <ArrowRight size={16} />
               </button>
             )}
           </div>
@@ -176,7 +185,7 @@ export function QuizPanel({ topicId, questions }: QuizPanelProps) {
 
         {incorrect.length > 0 && (
           <div className="quiz-review">
-            <h3>Cần ôn lại</h3>
+            <h3>{t('quiz.reviewTitle')}</h3>
             {incorrect.map((question) => (
               <article key={question.id}>
                 <strong>{question.question}</strong>
@@ -195,14 +204,17 @@ export function QuizPanel({ topicId, questions }: QuizPanelProps) {
       <header className="quiz-progress">
         <div>
           <span>
-            Câu {currentIndex + 1}/{session.length}
+            {t('quiz.question', {
+              current: currentIndex + 1,
+              total: session.length,
+            })}
           </span>
-          <strong>{currentQuestion.difficulty}</strong>
+          <strong>{t(`difficulty.${currentQuestion.difficulty}`)}</strong>
         </div>
         <div
           className="quiz-progress__track"
           role="progressbar"
-          aria-label="Tiến độ bài kiểm tra"
+          aria-label={t('quiz.progress')}
           aria-valuemin={0}
           aria-valuemax={session.length}
           aria-valuenow={currentIndex + (answered ? 1 : 0)}
@@ -247,9 +259,11 @@ export function QuizPanel({ topicId, questions }: QuizPanelProps) {
                   {String.fromCharCode(65 + optionIndex)}
                 </span>
                 <span>{option}</span>
-                {answered && isCorrect && <Check size={18} aria-label="Đáp án đúng" />}
+                {answered && isCorrect && (
+                  <Check size={18} aria-label={t('quiz.correctAnswer')} />
+                )}
                 {answered && isSelected && !isCorrect && (
-                  <X size={18} aria-label="Đáp án sai" />
+                  <X size={18} aria-label={t('quiz.wrongAnswer')} />
                 )}
               </label>
             )
@@ -265,20 +279,25 @@ export function QuizPanel({ topicId, questions }: QuizPanelProps) {
         >
           <strong>
             {selectedIndex === currentQuestion.answerIndex
-              ? 'Chính xác'
-              : 'Chưa chính xác'}
+              ? t('quiz.correct')
+              : t('quiz.incorrect')}
           </strong>
           <p>{currentQuestion.explanation}</p>
-          <code>Nguồn: {currentQuestion.source}</code>
+          <code>{t('quiz.source', { source: currentQuestion.source })}</code>
         </div>
       )}
 
       <footer className="quiz-panel__footer">
         <span>
-          Đúng hiện tại: {correctCount}/{Object.keys(answers).length}
+          {t('quiz.currentScore', {
+            correct: correctCount,
+            answered: Object.keys(answers).length,
+          })}
         </span>
         <button type="button" disabled={!answered} onClick={goNext}>
-          {currentIndex === session.length - 1 ? 'Xem kết quả' : 'Câu tiếp theo'}
+          {currentIndex === session.length - 1
+            ? t('quiz.showResults')
+            : t('quiz.next')}
           <ArrowRight size={16} />
         </button>
       </footer>

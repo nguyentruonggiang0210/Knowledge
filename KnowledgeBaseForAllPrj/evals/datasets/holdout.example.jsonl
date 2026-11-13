@@ -1,0 +1,1 @@
+{"id":"H-EXAMPLE","note":"Không dùng file ví dụ này làm holdout thật. Giữ holdout thật ngoài prompt/tuning surface và version hóa quyền truy cập.","query":"<hidden representative query>","expected":"<human-labeled evidence and answer contract>"}

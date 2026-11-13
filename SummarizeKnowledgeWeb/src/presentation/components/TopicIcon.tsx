@@ -1,6 +1,7 @@
 import {
   Binary,
   Bot,
+  Boxes,
   BrainCircuit,
   Braces,
   CloudCog,
@@ -20,6 +21,7 @@ import {
 const icons: Record<string, LucideIcon> = {
   binary: Binary,
   bot: Bot,
+  boxes: Boxes,
   brain: BrainCircuit,
   braces: Braces,
   cloud: CloudCog,

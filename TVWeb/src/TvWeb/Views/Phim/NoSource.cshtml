@@ -1,0 +1,3 @@
+@model TvWeb.Models.Film
+@{ ViewData["Title"] = Model.TitleVi; }
+<div class="container mt-5 text-center"><h3>@Model.TitleVi</h3><div class="alert alert-warning">Chưa có nguồn phát. Vui lòng quay lại sau khi crawler cập nhật.</div><a class="btn btn-danger" href="/phim/@Model.Slug">← Chi tiết</a></div>

@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.kb/runs/
+.kb/vector/
+.kb/checkpoints/
+.venv/
+kb/indexes/catalog.json
+kb/indexes/catalog.md
+evals/reports/*.json
+evals/reports/*.md
+!evals/reports/README.md

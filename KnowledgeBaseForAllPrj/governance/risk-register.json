@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "review_by": "2027-01-12",
+  "risks": [
+    {"id": "R-001", "risk": "Indirect prompt injection in retrieved content", "severity": "high", "controls": ["data/instruction boundary", "source quarantine", "structured handoffs", "tool approvals"], "owner": "security"},
+    {"id": "R-002", "risk": "Cross-project or tenant information leakage", "severity": "critical", "controls": ["pre-retrieval ACL filter", "sensitivity inheritance", "adversarial eval"], "owner": "security"},
+    {"id": "R-003", "risk": "Stale or superseded knowledge used as current", "severity": "high", "controls": ["bitemporal metadata", "review_by audit", "supersession relations"], "owner": "kb-maintainers"},
+    {"id": "R-004", "risk": "Unsupported answer despite citations", "severity": "high", "controls": ["claim-level support", "citation precision/recall", "abstention"], "owner": "kb-maintainers"},
+    {"id": "R-005", "risk": "Parallel agents overwrite or invalidate each other", "severity": "high", "controls": ["read/write sets", "shared workspace read-only default", "isolated worktrees", "sequential integration"], "owner": "engineering"},
+    {"id": "R-006", "risk": "Blind retry duplicates a side effect", "severity": "high", "controls": ["reconciliation before retry", "idempotency", "bounded attempts", "audit"], "owner": "engineering"},
+    {"id": "R-007", "risk": "Eval overfitting and self-approved improvement", "severity": "medium", "controls": ["sealed holdout", "human labels", "independent verification", "canary rollback"], "owner": "kb-maintainers"},
+    {"id": "R-008", "risk": "Graph or generated summary distorts source meaning", "severity": "medium", "controls": ["derived artifact labels", "leaf provenance", "baseline comparison", "rebuildability"], "owner": "kb-maintainers"}
+  ]
+}

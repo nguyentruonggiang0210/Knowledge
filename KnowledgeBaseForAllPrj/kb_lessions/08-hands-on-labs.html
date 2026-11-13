@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hands-on labs để validate, search, thử RAG security, compile fan-out và hiểu kết quả KB.">
+  <title>Bài 07 — Hands-on Labs</title><link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><span class="brand-mark">KB</span> Learning Lab</a><button class="nav-toggle" data-nav-toggle aria-expanded="false">Menu</button><nav class="nav-links" data-nav></nav></div></header>
+  <main id="main" class="page-shell">
+    <section class="hero lesson-hero"><div><span class="eyebrow">Bài 07 · Practice</span><h1>Hands-on labs</h1><p class="lead">Bạn sẽ chạy các đường sống quan trọng của KB: validate truth, test code, search baseline, RAG có quyền, negative security case và compile agent fan-out plan.</p></div><aside class="hero-console"><div class="console-top"><i></i><i></i><i></i></div><div class="console-line"><span>V</span><b>validate invariants</b></div><div class="console-line"><span>S</span><b>search with evidence</b></div><div class="console-line"><span>P</span><b>plan safe waves</b></div></aside></section>
+    <div class="lesson-layout"><article class="lesson-content">
+      <section id="setup"><span class="eyebrow">Setup</span><h2>Chạy từ root repository.</h2>
+        <pre><code>Set-Location E:\KnowledgeBaseForAllPrj
+python --version</code></pre>
+        <p>Core tool chỉ cần Python 3.10+ và standard library. Mỗi lab có ba phần: command, dấu hiệu pass, và câu hỏi để bạn không chỉ “chạy cho xanh”.</p>
+      </section>
+
+      <section id="lab1"><span class="eyebrow">Lab 01 · Knowledge contract</span><h2>Validate toàn bộ KB và workflow.</h2>
+        <pre><code>python scripts/kb.py validate --json</code></pre>
+        <p><strong>Pass:</strong> exit code 0, JSON summary không có error. Validator kiểm metadata/date/ID/source/link, workflow DAG/state/skill/authority, fan-out inventory và governance datasets.</p>
+        <details><summary>Thử negative case an toàn</summary><p>Copy một template ra file tạm ngoài canonical tree, xóa một field rồi đọc schema để dự đoán lỗi. Không cố sửa generated file trong <code>kb/indexes/</code>.</p></details>
+        <div class="callout warning"><strong>Hiểu đúng:</strong> validator xanh chứng minh invariants đã mã hóa, không chứng minh mọi statement trong tài liệu là đúng về domain.</div>
+      </section>
+
+      <section id="lab2"><span class="eyebrow">Lab 02 · Regression suite</span><h2>Chạy deterministic tests.</h2>
+        <pre><code>python -m unittest discover -s tests -v</code></pre>
+        <p><strong>Pass:</strong> mọi test <code>ok</code>, cuối output là <code>OK</code>. Đọc tên test để nhận ra contract nào đang được bảo vệ: workflow conflict, BMAD gates, retrieval filter hay evidence envelope.</p>
+        <p><strong>Nếu fail:</strong> sửa nguyên nhân, không xóa test. Phân biệt failure do fixture stale với behavioral regression bằng cách chạy riêng module/test case được báo.</p>
+      </section>
+
+      <section id="lab3"><span class="eyebrow">Lab 03 · Lexical baseline</span><h2>Tìm knowledge không cần vector database.</h2>
+        <pre><code>python scripts/kb.py build-index
+python scripts/kb.py search "multi-agent write conflict"</code></pre>
+        <p><strong>Quan sát:</strong> kết quả có page ID/path/score và trỏ đến orchestration hoặc agent coordination. Đổi query sang “bitemporal valid recorded time” rồi so top hits.</p>
+        <p><strong>Tại sao cần baseline?</strong> Nó rẻ, deterministic và giải thích được. Dense/hybrid chỉ đáng promote nếu eval chứng minh cải thiện so với baseline này.</p>
+      </section>
+
+      <section id="lab4"><span class="eyebrow">Lab 04 · Permission-aware RAG</span><h2>Nhìn evidence envelope và provenance.</h2>
+        <pre><code>python -m integrations.langchain_rag.cli search `
+  "GraphRAG multi-hop retrieval" `
+  --scopes shared `
+  --as-of 2026-11-13 `
+  --json</code></pre>
+        <p><strong>Kiểm tra bằng mắt:</strong> mỗi hit có stable page/chunk identity, source/path/heading, status/sensitivity và score. Nội dung phải được biểu diễn như evidence, không như system instruction.</p>
+        <p>Tiếp tục với scope không tồn tại:</p>
+        <pre><code>python -m integrations.langchain_rag.cli search `
+  "GraphRAG multi-hop retrieval" `
+  --scopes unauthorized-project `
+  --json</code></pre>
+        <p><strong>Expected:</strong> không trả chunk shared/project trái policy của adapter. Đây là negative test; “không có kết quả” là behavior đúng.</p>
+      </section>
+
+      <section id="lab5"><span class="eyebrow">Lab 05 · Fan-out planner</span><h2>Compile story inventory thành execution waves.</h2>
+        <pre><code>python scripts/kb.py compile-fanout `
+  --workflow bmad-epic `
+  --node execute-stories `
+  --inventory kb/projects/_template/delivery/story-inventory.template.json</code></pre>
+        <p><strong>Quan sát:</strong> wave order tuân dependency; item cùng wave có write scope không xung đột; parameter và completion contract được giữ. Hỏi: story nào có thể song song, và bằng evidence nào?</p>
+      </section>
+
+      <section id="lab6"><span class="eyebrow">Lab 06 · Optional LangChain runtime</span><h2>Kiểm adapter mà không làm canonical phụ thuộc framework.</h2>
+        <pre><code>python -m integrations.langchain_rag.cli check</code></pre>
+        <p>Core mode cho biết capability nào sẵn sàng. Khi cần LangChain/LangGraph thật, tạo môi trường riêng:</p>
+        <pre><code>python -m venv .venv
+.venv\Scripts\python -m pip install -r integrations/langchain_rag/requirements.txt
+.venv\Scripts\python -m integrations.langchain_rag.cli check</code></pre>
+        <p>Vector index/checkpoint là derived data. Xóa và rebuild được; không được biến nó thành source of truth.</p>
+      </section>
+
+      <section id="lab7"><span class="eyebrow">Lab 07 · Learning site integrity</span><h2>Rebuild atlas và kiểm local links.</h2>
+        <pre><code>python scripts/build_lessons.py
+python scripts/build_lessons.py --check
+python -m http.server 8000 --directory kb_lessions</code></pre>
+        <p>Mở <code>http://localhost:8000</code>, thử menu mobile, tìm “RRF” trong Technique Atlas, filter Blueprint/Experimental và đánh dấu hoàn thành bài học. Atlas phải phản ánh đủ danh mục hiện tại trong <code>TECHNIQUES.md</code>.</p>
+      </section>
+
+      <section id="diagnose"><span class="eyebrow">Đọc lỗi</span><h2>Lỗi nào thuộc lớp nào?</h2>
+        <table><thead><tr><th>Triệu chứng</th><th>Lớp khả dĩ</th><th>Điểm kiểm đầu tiên</th></tr></thead><tbody>
+          <tr><td>Broken source ID/link</td><td>Truth</td><td>Frontmatter + source registry</td></tr>
+          <tr><td>Top hit lệch dù page đúng</td><td>Retrieval</td><td>Chunk/query/filter/ranker trace</td></tr>
+          <tr><td>Hai agent đè file</td><td>Execution</td><td>write_set + wave conflict</td></tr>
+          <tr><td>Answer có citation nhưng claim sai</td><td>Assurance</td><td>Entailment/claim-level verifier</td></tr>
+          <tr><td>Lesson sai được dùng như policy</td><td>Memory/governance</td><td>Promotion state + owner approval</td></tr>
+        </tbody></table>
+      </section>
+
+      <section id="done" class="quiz"><span class="eyebrow">Definition of understanding</span><h2>Bạn đã “hiểu sâu” khi làm được gì?</h2>
+        <ul><li>Giải thích canonical, episodic, procedural và derived bằng ví dụ của dự án.</li><li>Dự đoán query cần filter/graph/tree/agentic retrieval nào và failure behavior.</li><li>Tự vẽ DAG, chỉ ra node nào được song song bằng dependency + write evidence.</li><li>Chọn Direct/Quick/Epic/Project và giải thích why.</li><li>Thiết kế golden + holdout + adversarial gate cho một kỹ thuật mới.</li><li>Truy ngược một answer/change từ outcome về source, workflow và verification.</li></ul>
+        <p><a class="button primary" href="techniques.html">Mở Technique Atlas</a></p>
+      </section>
+      <div class="complete-bar"><div><strong>Hoàn thành Learning Lab</strong><br><small>Dùng Atlas như bản đồ tra cứu; quay về source links để đọc contract gốc.</small></div><button class="button complete-button" data-complete-lesson type="button"></button></div>
+    </article><aside class="toc"><strong>Trong bài này</strong><a href="#setup">Setup</a><a href="#lab1">Validate</a><a href="#lab2">Tests</a><a href="#lab3">Search</a><a href="#lab4">RAG security</a><a href="#lab5">Fan-out</a><a href="#lab6">LangChain</a><a href="#lab7">Site check</a><a href="#diagnose">Diagnose</a><a href="#done">Definition of understanding</a></aside></div>
+  </main>
+  <footer class="site-footer"><div class="footer-grid"><a href="06-end-to-end.html">← Bài 06</a><a href="techniques.html">Technique Atlas →</a></div></footer>
+  <script src="assets/techniques-data.js"></script><script src="assets/app.js"></script>
+</body></html>

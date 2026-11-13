@@ -1,0 +1,4 @@
+interface:
+  display_name: "Change Request"
+  short_description: "Turn a change request into an impact-aware delivery plan."
+  default_prompt: "Use $change-request to analyze this request and prepare an approval-ready plan."

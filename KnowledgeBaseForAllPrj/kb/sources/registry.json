@@ -1,0 +1,382 @@
+{
+  "schema_version": "1.0",
+  "checked_at": "2026-11-13",
+  "sources": [
+    {
+      "id": "openai-skills",
+      "title": "OpenAI Skills",
+      "uri": "https://developers.openai.com/api/docs/guides/tools-skills",
+      "kind": "official-doc",
+      "authority_tier": 1,
+      "topics": ["skills", "progressive-disclosure", "safety"]
+    },
+    {
+      "id": "openai-skill-guidance",
+      "title": "Rethinking skills and prompts for GPT-6 Astra",
+      "uri": "https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra",
+      "kind": "official-guidance",
+      "authority_tier": 1,
+      "topics": ["skills", "agents-md", "context"]
+    },
+    {
+      "id": "openai-multi-agent",
+      "title": "OpenAI Agents API multi-agent guide",
+      "uri": "https://developers.openai.com/api/docs/guides/agents-api/multi-agent",
+      "kind": "official-doc",
+      "authority_tier": 1,
+      "topics": ["agents", "parallelism", "delegation"]
+    },
+    {
+      "id": "openai-orchestration",
+      "title": "OpenAI orchestration and handoffs",
+      "uri": "https://developers.openai.com/api/docs/guides/agents/orchestration",
+      "kind": "official-doc",
+      "authority_tier": 1,
+      "topics": ["agents-as-tools", "handoffs", "manager"]
+    },
+    {
+      "id": "openai-agent-evals",
+      "title": "Evaluate agent workflows",
+      "uri": "https://developers.openai.com/api/docs/guides/agent-evals",
+      "kind": "official-doc",
+      "authority_tier": 1,
+      "topics": ["evals", "agents", "datasets"]
+    },
+    {
+      "id": "openai-trace-grading",
+      "title": "OpenAI trace grading",
+      "uri": "https://developers.openai.com/api/docs/guides/trace-grading",
+      "kind": "official-doc",
+      "authority_tier": 1,
+      "topics": ["tracing", "graders", "workflow-eval"]
+    },
+    {
+      "id": "openai-agent-safety",
+      "title": "Safety in building agents",
+      "uri": "https://developers.openai.com/api/docs/guides/agent-builder-safety",
+      "kind": "official-doc",
+      "authority_tier": 1,
+      "topics": ["prompt-injection", "guardrails", "approvals"]
+    },
+    {
+      "id": "openai-skill-safety",
+      "title": "OpenAI Skills safety guidance",
+      "uri": "https://developers.openai.com/api/docs/guides/tools-skills#risks-and-safety",
+      "kind": "official-doc",
+      "authority_tier": 1,
+      "topics": ["skills", "prompt-injection", "approval"]
+    },
+    {
+      "id": "w3c-prov",
+      "title": "W3C PROV-O: The PROV Ontology",
+      "uri": "https://www.w3.org/TR/prov-o/",
+      "kind": "standard",
+      "authority_tier": 1,
+      "topics": ["provenance", "lineage"]
+    },
+    {
+      "id": "nist-ai-600-1",
+      "title": "NIST AI 600-1 Generative AI Profile",
+      "uri": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence",
+      "kind": "standard",
+      "authority_tier": 1,
+      "topics": ["governance", "risk", "red-team"]
+    },
+    {
+      "id": "rag-paper",
+      "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "uri": "https://arxiv.org/abs/2005.11401",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["rag", "retrieval"]
+    },
+    {
+      "id": "contextual-retrieval",
+      "title": "Anthropic Contextual Retrieval",
+      "uri": "https://www.anthropic.com/research/contextual-retrieval",
+      "kind": "primary-research",
+      "authority_tier": 2,
+      "topics": ["chunking", "hybrid-retrieval", "reranking"]
+    },
+    {
+      "id": "rrf-paper",
+      "title": "Reciprocal Rank Fusion outperforms Condorcet and individual Rank Learning Methods",
+      "uri": "https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["rank-fusion", "retrieval"]
+    },
+    {
+      "id": "colbertv2",
+      "title": "ColBERTv2: Effective and Efficient Retrieval via Lightweight Late Interaction",
+      "uri": "https://arxiv.org/abs/2112.01488",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["late-interaction", "retrieval"]
+    },
+    {
+      "id": "splade",
+      "title": "SPLADE: Sparse Lexical and Expansion Model for First Stage Ranking",
+      "uri": "https://arxiv.org/abs/2107.05720",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["learned-sparse", "retrieval"]
+    },
+    {
+      "id": "raptor",
+      "title": "RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval",
+      "uri": "https://arxiv.org/abs/2401.18059",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["hierarchical-retrieval", "long-documents"]
+    },
+    {
+      "id": "graphrag",
+      "title": "Microsoft GraphRAG",
+      "uri": "https://microsoft.github.io/graphrag/",
+      "kind": "primary-doc",
+      "authority_tier": 2,
+      "topics": ["graph-retrieval", "global-search"]
+    },
+    {
+      "id": "self-rag",
+      "title": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection",
+      "uri": "https://arxiv.org/abs/2310.11511",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["adaptive-retrieval", "self-critique"]
+    },
+    {
+      "id": "crag",
+      "title": "Corrective Retrieval Augmented Generation",
+      "uri": "https://arxiv.org/abs/2401.15884",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["corrective-retrieval", "retrieval-evaluation"]
+    },
+    {
+      "id": "ragas",
+      "title": "RAGAS: Automated Evaluation of Retrieval Augmented Generation",
+      "uri": "https://arxiv.org/abs/2309.15217",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["rag-evaluation", "faithfulness"]
+    },
+    {
+      "id": "ares",
+      "title": "ARES: An Automated Evaluation Framework for Retrieval-Augmented Generation Systems",
+      "uri": "https://arxiv.org/abs/2311.09476",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["rag-evaluation", "calibration"]
+    },
+    {
+      "id": "llm-judge",
+      "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena",
+      "uri": "https://arxiv.org/abs/2306.05685",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["llm-as-judge", "evaluation-bias"]
+    },
+    {
+      "id": "bmad-docs",
+      "title": "BMad Method documentation",
+      "uri": "https://docs.bmad-method.org/",
+      "kind": "official-doc",
+      "authority_tier": 1,
+      "topics": ["bmad", "agile-ai-development", "delivery"]
+    },
+    {
+      "id": "bmad-planning-paths",
+      "title": "BMad Method: Choose a Planning Path",
+      "uri": "https://docs.bmad-method.org/plan/choose-a-planning-path/",
+      "kind": "official-doc",
+      "authority_tier": 1,
+      "topics": ["bmad", "planning", "epics", "stories", "readiness"]
+    },
+    {
+      "id": "bmad-install-guide",
+      "title": "BMad Method: Install BMad",
+      "uri": "https://docs.bmad-method.org/start/install-bmad/",
+      "kind": "official-doc",
+      "authority_tier": 1,
+      "topics": ["bmad", "installation", "stable", "preview"]
+    },
+    {
+      "id": "bmad-github",
+      "title": "BMad Method official repository",
+      "uri": "https://github.com/bmad-code-org/BMAD-METHOD",
+      "kind": "primary-source",
+      "authority_tier": 1,
+      "topics": ["bmad", "skills", "agents", "workflows"]
+    },
+    {
+      "id": "langchain-retrieval",
+      "title": "LangChain Retrieval documentation",
+      "uri": "https://docs.langchain.com/oss/python/langchain/retrieval",
+      "kind": "official-doc",
+      "authority_tier": 1,
+      "topics": ["langchain", "rag", "retrieval", "vector-store"]
+    },
+    {
+      "id": "langchain-multi-agent",
+      "title": "LangChain Multi-agent documentation",
+      "uri": "https://docs.langchain.com/oss/python/langchain/multi-agent",
+      "kind": "official-doc",
+      "authority_tier": 1,
+      "topics": ["langchain", "multi-agent", "context-engineering", "skills"]
+    },
+    {
+      "id": "langgraph-graph-api",
+      "title": "LangGraph Graph API documentation",
+      "uri": "https://docs.langchain.com/oss/python/langgraph/graph-api",
+      "kind": "official-doc",
+      "authority_tier": 1,
+      "topics": ["langgraph", "shared-state", "reducers", "fan-out"]
+    },
+    {
+      "id": "mcp-spec-2026-07",
+      "title": "Model Context Protocol specification 2026-07-28",
+      "uri": "https://modelcontextprotocol.io/specification/2026-07-28",
+      "kind": "standard",
+      "authority_tier": 1,
+      "topics": ["mcp", "tool-interoperability", "resources", "authorization"]
+    },
+    {
+      "id": "a2a-spec-v1",
+      "title": "Agent2Agent Protocol specification v1.0",
+      "uri": "https://a2a-protocol.org/v1.0.0/",
+      "kind": "standard",
+      "authority_tier": 1,
+      "topics": ["a2a", "agent-interoperability", "remote-agents", "task-lifecycle"]
+    },
+    {
+      "id": "temporal-durable-ai",
+      "title": "Temporal Durable AI documentation",
+      "uri": "https://docs.temporal.io/ai",
+      "kind": "official-doc",
+      "authority_tier": 1,
+      "topics": ["durable-execution", "event-history", "agents", "human-approval"]
+    },
+    {
+      "id": "otel-genai-semconv",
+      "title": "OpenTelemetry semantic conventions for GenAI agents",
+      "uri": "https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-agent-spans.md",
+      "kind": "standard-draft",
+      "authority_tier": 1,
+      "topics": ["opentelemetry", "tracing", "agents", "tools", "redaction"]
+    },
+    {
+      "id": "opa-policy-as-code",
+      "title": "Open Policy Agent documentation",
+      "uri": "https://www.openpolicyagent.org/docs",
+      "kind": "official-doc",
+      "authority_tier": 1,
+      "topics": ["policy-as-code", "authorization", "rego", "enforcement"]
+    },
+    {
+      "id": "jsonschemabench",
+      "title": "Generating Structured Outputs from Language Models: Benchmark and Studies",
+      "uri": "https://arxiv.org/abs/2501.10868",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["constrained-decoding", "json-schema", "structured-output"]
+    },
+    {
+      "id": "late-chunking",
+      "title": "Late Chunking: Contextual Chunk Embeddings Using Long-Context Embedding Models",
+      "uri": "https://arxiv.org/abs/2409.04701",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["late-chunking", "contextual-embeddings", "retrieval"]
+    },
+    {
+      "id": "colpali",
+      "title": "ColPali: Efficient Document Retrieval with Vision Language Models",
+      "uri": "https://arxiv.org/abs/2407.01449",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["visual-rag", "multimodal-retrieval", "late-interaction"]
+    },
+    {
+      "id": "hipporag2",
+      "title": "From RAG to Memory: Non-Parametric Continual Learning for Large Language Models",
+      "uri": "https://arxiv.org/abs/2502.14802",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["hipporag", "graph-retrieval", "continual-memory"]
+    },
+    {
+      "id": "lightrag",
+      "title": "LightRAG: Simple and Fast Retrieval-Augmented Generation",
+      "uri": "https://aclanthology.org/2025.findings-emnlp.568/",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["lightrag", "graph-retrieval", "incremental-index"]
+    },
+    {
+      "id": "literag",
+      "title": "LiteRAG: Cost-Efficient Graph-Based Retrieval-Augmented Generation",
+      "uri": "https://arxiv.org/abs/2609.10239",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["literag", "graph-retrieval", "cost-efficiency"]
+    },
+    {
+      "id": "matryoshka-representation",
+      "title": "Matryoshka Representation Learning",
+      "uri": "https://arxiv.org/abs/2205.13147",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["matryoshka", "embeddings", "retrieval-efficiency"]
+    },
+    {
+      "id": "w3c-shacl",
+      "title": "W3C Shapes Constraint Language",
+      "uri": "https://www.w3.org/TR/shacl-core/",
+      "kind": "standard",
+      "authority_tier": 1,
+      "topics": ["shacl", "rdf", "knowledge-graph", "validation"]
+    },
+    {
+      "id": "lightfoot-deletion",
+      "title": "Lightfoot: Graph Retrieval-Augmented Generation with Exact, Model-Free Document Deletion",
+      "uri": "https://arxiv.org/abs/2611.11010",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["deletion", "graphrag", "tombstone", "erasure"]
+    },
+    {
+      "id": "metamorphic-llm-testing",
+      "title": "Bidirectional Empowerment of Metamorphic Testing and Large Language Models",
+      "uri": "https://arxiv.org/abs/2605.13898",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["metamorphic-testing", "evaluation", "agents", "rag"]
+    },
+    {
+      "id": "gepa",
+      "title": "GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning",
+      "uri": "https://arxiv.org/abs/2507.19457",
+      "kind": "paper",
+      "authority_tier": 2,
+      "topics": ["prompt-optimization", "trajectory-reflection", "self-improvement"]
+    },
+    {
+      "id": "slsa-1.2",
+      "title": "SLSA specification v1.2",
+      "uri": "https://slsa.dev/spec/v1.2/",
+      "kind": "standard",
+      "authority_tier": 1,
+      "topics": ["attestation", "provenance", "supply-chain", "signature"]
+    },
+    {
+      "id": "c2pa-2.4",
+      "title": "C2PA Content Credentials 2.4",
+      "uri": "https://spec.c2pa.org/specifications/specifications/2.4/specs/ContentCredentials.html",
+      "kind": "standard",
+      "authority_tier": 1,
+      "topics": ["content-credentials", "provenance", "media", "signature"]
+    }
+  ]
+}

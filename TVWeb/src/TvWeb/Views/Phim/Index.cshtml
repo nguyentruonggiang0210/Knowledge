@@ -1,0 +1,16 @@
+@model List<TvWeb.Models.Film>
+@{ ViewData["Title"] = "Khám phá"; var total = (int)ViewBag.Total; var page = (int)ViewBag.Page; var size = (int)ViewBag.Size; var pages = (int)Math.Ceiling(total / (double)size); var genres = (List<string>)ViewBag.Genres; }
+<div class="container-fluid px-3 px-lg-4 mt-3">
+  <form class="row g-2 mb-3" method="get">
+    <div class="col-12 col-md-4"><input class="form-control" name="q" value="@ViewBag.Query" placeholder="Tên phim..." /></div>
+    <div class="col-6 col-md-3"><select class="form-select" name="genre"><option value="">Tất cả thể loại</option>@foreach (var g in genres) { <option selected="@(ViewBag.Genre == g)" value="@g">@g</option> }</select></div>
+    <div class="col-6 col-md-3"><select class="form-select" name="status"><option value="">Lẻ + Bộ</option><option selected="@(ViewBag.Status=="phim-le")" value="phim-le">Phim lẻ</option><option selected="@(ViewBag.Status=="phim-bo")" value="phim-bo">Phim bộ</option></select></div>
+    <div class="col-12 col-md-2"><button class="btn btn-danger w-100">Lọc</button></div>
+  </form>
+  <div class="film-grid">
+    @foreach (var f in Model) { <partial name="_FilmCard" model="f" /> }
+  </div>
+  @if (pages > 1) { <nav class="mt-3"><ul class="pagination justify-content-center">
+    @for (int i = 1; i <= Math.Min(pages, 20); i++) { <li class="page-item @(i==page?"active":"")"><a class="page-link" href="/phim?q=@ViewBag.Query&genre=@ViewBag.Genre&status=@ViewBag.Status&page=@i">@i</a></li> }
+  </ul></nav> }
+</div>

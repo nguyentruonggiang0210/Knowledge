@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import type { KnowledgeTopic } from '../../domain/knowledge/KnowledgeTopic'
+import { useI18n } from '../i18n/I18nProvider'
 
 interface TopicPagerProps {
   readonly previous?: KnowledgeTopic
@@ -14,13 +15,15 @@ export function TopicPager({
   onPrevious,
   onNext,
 }: TopicPagerProps) {
+  const { t } = useI18n()
+
   return (
-    <nav className="topic-pager" aria-label="Chuyển chủ đề">
+    <nav className="topic-pager" aria-label={t('pager.label')}>
       {previous ? (
         <button type="button" onClick={onPrevious}>
           <ArrowLeft size={18} />
           <span>
-            <small>Chủ đề trước</small>
+            <small>{t('pager.previous')}</small>
             <strong>{previous.navTitle}</strong>
           </span>
         </button>
@@ -30,7 +33,7 @@ export function TopicPager({
       {next && (
         <button type="button" onClick={onNext} className="topic-pager__next">
           <span>
-            <small>Tiếp theo</small>
+            <small>{t('pager.next')}</small>
             <strong>{next.navTitle}</strong>
           </span>
           <ArrowRight size={18} />

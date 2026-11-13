@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lộ trình học sâu KnowledgeBaseForAllPrj: kiến trúc knowledge, RAG, agents, BMAD, security và evaluation.">
+  <title>KB Learning Lab — Hiểu sâu KnowledgeBaseForAllPrj</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html"><span class="brand-mark">KB</span> Learning Lab</a>
+      <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-label="Mở menu">Menu</button>
+      <nav class="nav-links" data-nav aria-label="Điều hướng bài học"></nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-shell">
+      <section class="hero">
+        <div>
+          <span class="eyebrow">Knowledge system, not a folder of notes</span>
+          <h1>Hiểu KB từ <em>source</em> đến <em>decision</em>.</h1>
+          <p class="lead">Một lộ trình thực hành để hiểu vì sao KB này tách canonical knowledge, memory, retrieval, agent workflows và governance — rồi ghép chúng thành một hệ thống có thể kiểm chứng.</p>
+          <div class="button-row">
+            <a class="button primary" href="01-foundations.html">Bắt đầu bài 01 →</a>
+            <a class="button" href="techniques.html">Mở technique atlas</a>
+          </div>
+        </div>
+        <aside class="hero-console" aria-label="Tóm tắt pipeline KB">
+          <div class="console-top"><i></i><i></i><i></i></div>
+          <div class="console-line"><span>01</span><b>source → provenance</b></div>
+          <div class="console-line"><span>02</span><b>canonical → validate</b></div>
+          <div class="console-line"><span>03</span><b>chunk → retrieve → cite</b></div>
+          <div class="console-line"><span>04</span><b>route → agents → integrate</b></div>
+          <div class="console-line"><span>05</span><b>verify → promote / rollback</b></div>
+        </aside>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div><span class="eyebrow">Mental model</span><h2>KB có năm lớp, mỗi lớp trả lời một câu hỏi khác nhau.</h2></div>
+          <p>Nếu trộn các lớp này, model output dễ bị xem nhầm là sự thật, agent dễ sửa cùng file, retrieval dễ làm lộ dữ liệu, và evaluation không còn biết đang đo phần nào.</p>
+        </div>
+        <div class="layer-stack">
+          <div class="layer"><b>01 — Truth</b><span>Điều gì đã được owner chấp thuận và còn hiệu lực?</span><code>kb/shared · kb/projects</code></div>
+          <div class="layer"><b>02 — Memory</b><span>Điều gì vừa xảy ra, nhưng chưa đủ chuẩn để trở thành fact?</span><code>kb/memory</code></div>
+          <div class="layer"><b>03 — Retrieval</b><span>Làm sao tìm đúng evidence, đúng scope, đúng thời điểm?</span><code>scripts/kb.py · integrations</code></div>
+          <div class="layer"><b>04 — Execution</b><span>Ai làm gì, song song hay tuần tự, khi nào được coi là xong?</span><code>.agents · orchestration</code></div>
+          <div class="layer"><b>05 — Assurance</b><span>Làm sao biết thay đổi tốt hơn mà không phá security?</span><code>evals · governance · tests</code></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div><span class="eyebrow">Whole-system flow</span><h2>Một câu hỏi đi qua KB như thế nào?</h2></div>
+          <p>Flow dưới đây là “xương sống” của hệ thống. Mỗi bài sau sẽ zoom vào một đoạn và giải thích kỹ thuật nằm ở đó.</p>
+        </div>
+        <div class="flow" aria-label="Flow câu hỏi qua KB">
+          <div class="flow-step"><strong>Intent</strong><small>Phân loại query/task/risk</small></div>
+          <div class="flow-step guard"><strong>Authority filter</strong><small>Project, ACL, sensitivity, as-of</small></div>
+          <div class="flow-step"><strong>Retrieve</strong><small>BM25 + dense + RRF</small></div>
+          <div class="flow-step"><strong>Reason / Act</strong><small>Skill hoặc agent workflow</small></div>
+          <div class="flow-step guard"><strong>Verify</strong><small>Evidence, tests, approvals</small></div>
+          <div class="flow-step output"><strong>Answer / Change</strong><small>Citation hoặc abstain</small></div>
+        </div>
+        <div class="callout warning"><strong>Điểm quan trọng:</strong> “Tìm thấy” không đồng nghĩa “được phép dùng”, “agent đã làm” không đồng nghĩa “đã hoàn thành”, và “model nói đúng” không đồng nghĩa “được promote vào canonical KB”.</div>
+      </section>
+
+      <section class="section lesson-map">
+        <div class="section-heading">
+          <div><span class="eyebrow">Learning path</span><h2>7 bài, từ nền tảng đến vận hành.</h2></div>
+          <div>
+            <div class="progress-track" aria-label="Tiến độ học"><span data-progress-fill></span></div>
+            <p data-progress-text style="margin-top:.55rem"></p>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="card lesson-card"><span class="pill">Foundation</span><h3>Truth, metadata & memory</h3><p>Canonical là gì, vì sao cần stable ID, provenance, bitemporal và promotion queue?</p><a data-lesson-link="01-foundations.html" href="01-foundations.html">Học bài 01 →</a></article>
+          <article class="card lesson-card"><span class="pill blue">Retrieval</span><h3>RAG, hybrid search & evidence</h3><p>BM25, dense, RRF, chunking, GraphRAG và evidence packing hoạt động ra sao?</p><a data-lesson-link="02-retrieval-rag.html" href="02-retrieval-rag.html">Học bài 02 →</a></article>
+          <article class="card lesson-card"><span class="pill amber">Execution</span><h3>Skills & agent orchestration</h3><p>DAG, read/write sets, fan-out/join, shared context và integration gates.</p><a data-lesson-link="03-agent-orchestration.html" href="03-agent-orchestration.html">Học bài 03 →</a></article>
+          <article class="card lesson-card"><span class="pill">Delivery</span><h3>BMAD right-sized planning</h3><p>Direct, Quick, Epic, Project và story lifecycle không biến thành ceremony.</p><a data-lesson-link="04-bmad-delivery.html" href="04-bmad-delivery.html">Học bài 04 →</a></article>
+          <article class="card lesson-card"><span class="pill red">Assurance</span><h3>Security, evals & governance</h3><p>Prompt injection, ACL leakage, deterministic graders, holdout và promotion gates.</p><a data-lesson-link="05-governance-evals.html" href="05-governance-evals.html">Học bài 05 →</a></article>
+          <article class="card lesson-card"><span class="pill blue">Synthesis</span><h3>Ba flow end-to-end</h3><p>Hỏi đáp tài liệu, change request và research-to-promotion đi qua toàn hệ thống.</p><a data-lesson-link="06-end-to-end.html" href="06-end-to-end.html">Học bài 06 →</a></article>
+          <article class="card lesson-card"><span class="pill amber">Practice</span><h3>Hands-on labs</h3><p>Chạy validator, retrieval, negative security tests, BMAD compiler và LangGraph.</p><a data-lesson-link="07-hands-on-labs.html" href="07-hands-on-labs.html">Học bài 07 →</a></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div><span class="eyebrow">How to read the atlas</span><h2>Maturity không phải điểm số chất lượng.</h2></div>
+          <p>“Experimental” có thể rất mạnh nhưng chưa thắng baseline. “Implemented” nghĩa là có code/artifact local, không có nghĩa phù hợp cho mọi query.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card"><span class="pill">Implemented</span><h3>Đã có đường chạy</h3><p>Tìm source locator, chạy test và xem evidence trước khi dùng.</p></div>
+          <div class="card"><span class="pill amber">Blueprint</span><h3>Đã có contract</h3><p>Biết chỗ gắn vào hệ thống nhưng còn thiếu backend/model hoặc production runtime.</p></div>
+          <div class="card"><span class="pill red">Experimental</span><h3>Chỉ bật sau eval</h3><p>Phải chứng minh lợi ích trên golden + holdout và không gây security regression.</p></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="footer-grid"><div><strong>KB Learning Lab</strong><br><small>Derived learning material — canonical truth vẫn nằm trong <code>kb/</code>.</small></div><div><a href="techniques.html">Technique atlas</a> · Build <span data-build-date>local</span></div></div></footer>
+  <script src="assets/techniques-data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

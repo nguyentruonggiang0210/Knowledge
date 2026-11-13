@@ -1,0 +1,4 @@
+interface:
+  display_name: "Curate Knowledge"
+  short_description: "Ingest, normalize, validate, and promote KB knowledge."
+  default_prompt: "Use $kb-curator to ingest and curate this material into the knowledge base."

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hiểu BMAD-compatible right-sized planning, artifact contracts, epic/story, readiness và retrospective trong KB.">
+  <title>Bài 04 — BMAD-compatible Delivery</title><link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><span class="brand-mark">KB</span> Learning Lab</a><button class="nav-toggle" data-nav-toggle aria-expanded="false">Menu</button><nav class="nav-links" data-nav></nav></div></header>
+  <main id="main" class="page-shell">
+    <section class="hero lesson-hero"><div><span class="eyebrow">Bài 04 · Delivery</span><h1>BMAD-compatible planning</h1><p class="lead">Adapter BMAD trong repo chọn lượng planning vừa đủ, giữ liên kết từ problem đến evidence và giao implementation cho các skill chuyên biệt. Đây là compatibility layer, không phải official BMAD runtime.</p></div><aside class="hero-console"><div class="console-top"><i></i><i></i><i></i></div><div class="console-line"><span>D</span><b>Direct</b></div><div class="console-line"><span>Q</span><b>Quick flow</b></div><div class="console-line"><span>E</span><b>Epic / Project</b></div></aside></section>
+    <div class="lesson-layout"><article class="lesson-content">
+      <section id="why"><span class="eyebrow">01. Why</span><h2>Không phải change nào cũng cần một bộ ceremony giống nhau.</h2>
+        <p>Thiếu planning làm change rủi ro mất dependency và acceptance. Quá nhiều planning cho typo fix lại gây latency, stale artifact và chi phí review. Right-sizing chọn đường đi theo blast radius, uncertainty, dependency, migration và approval.</p>
+        <table><thead><tr><th>Path</th><th>Khi dùng</th><th>Artifact tối thiểu</th></tr></thead><tbody>
+          <tr><td><strong>Direct</strong></td><td>Nhỏ, cục bộ, reversible, acceptance rõ</td><td>Task + evidence; vẫn phải test</td></tr>
+          <tr><td><strong>Quick</strong></td><td>Một feature/change vừa, ít dependency</td><td>Tech spec + acceptance + risk</td></tr>
+          <tr><td><strong>Epic</strong></td><td>Nhiều story/workstream có dependency</td><td>Epic map + story inventory + readiness</td></tr>
+          <tr><td><strong>Project</strong></td><td>Multi-domain, architecture/migration/governance lớn</td><td>Problem/requirements/architecture + phased delivery</td></tr>
+        </tbody></table>
+      </section>
+
+      <section id="classify"><span class="eyebrow">02. Classification</span><h2>Planning path là quyết định có evidence.</h2>
+        <div class="flow"><div class="flow-step"><strong>Intent</strong><small>Outcome + constraints</small></div><div class="flow-step"><strong>Assess</strong><small>risk, scope, uncertainty</small></div><div class="flow-step guard"><strong>Choose path</strong><small>Direct/Quick/Epic/Project</small></div><div class="flow-step"><strong>Artifacts</strong><small>minimum sufficient</small></div><div class="flow-step output"><strong>Readiness</strong><small>PASS/CONCERNS/FAIL</small></div></div>
+        <h3>Ví dụ</h3><div class="grid-2"><div class="card"><span class="pill">Direct</span><h3>Sửa broken link</h3><p>Một file docs, không đổi behavior, validator là acceptance evidence.</p></div><div class="card"><span class="pill amber">Epic</span><h3>Webhook idempotency</h3><p>Schema, API, worker, migration, observability và rollback tạo nhiều story phụ thuộc.</p></div></div>
+        <div class="callout warning"><strong>Reclassify khi fact đổi.</strong> Một “small change” phát hiện cần data migration phải quay lại classification; không cố giữ Direct chỉ vì đã bắt đầu.</div>
+      </section>
+
+      <section id="artifacts"><span class="eyebrow">03. Artifact contracts</span><h2>Traceability nối “vì sao” với “đã chứng minh thế nào”.</h2>
+        <pre><code>Problem / goal
+  → requirement IDs + acceptance criteria
+  → architecture decisions + risks
+  → epic / story IDs + dependencies
+  → implementation commits + tests
+  → verification evidence + retrospective</code></pre>
+        <p>Artifact có stable ID và version. Story không chỉ là một đoạn văn: nó khai báo dependency, read/write scope, acceptance, test evidence và owner. Khi requirement đổi, impact analysis lần theo relation thay vì đoán bằng filename.</p>
+      </section>
+
+      <section id="readiness"><span class="eyebrow">04. Readiness gate</span><h2>Gate không chấm văn hay; gate tìm thiếu sót gây delivery thất bại.</h2>
+        <table><thead><tr><th>Result</th><th>Ý nghĩa</th><th>Hành động</th></tr></thead><tbody>
+          <tr><td><span class="pill">PASS</span></td><td>Coverage, dependency, acceptance, ownership đủ</td><td>Được compile execution plan</td></tr>
+          <tr><td><span class="pill amber">CONCERNS</span></td><td>Có gap đã biết, có disposition/owner rõ</td><td>Owner chấp nhận hoặc sửa trước build</td></tr>
+          <tr><td><span class="pill red">FAIL</span></td><td>Missing critical input, contradiction hoặc unsafe migration</td><td>Dừng; không fan-out implementation</td></tr>
+        </tbody></table>
+        <p>Các check deterministic chạy trước: schema/version, ID uniqueness, dependency cycle, story coverage, write conflict, completion contract. Model review chỉ bổ sung semantic nuance.</p>
+      </section>
+
+      <section id="story"><span class="eyebrow">05. Story lifecycle</span><h2>Story đi qua state có điều kiện, không nhảy thẳng từ draft sang done.</h2>
+        <div class="flow"><div class="flow-step"><strong>Draft</strong><small>goal + scope</small></div><div class="flow-step guard"><strong>Ready</strong><small>acceptance + dependencies</small></div><div class="flow-step"><strong>In progress</strong><small>bounded write scope</small></div><div class="flow-step guard"><strong>Review</strong><small>tests + findings</small></div><div class="flow-step output"><strong>Accepted</strong><small>verification evidence</small></div></div>
+        <p>Parent epic chỉ complete khi child completion contract thỏa, integration đã chạy và verifier độc lập chấp nhận. “Các agent đều finished” không đủ.</p>
+      </section>
+
+      <section id="scenario"><span class="eyebrow">06. Flow thực tế</span><h2>Thêm idempotent webhook processing.</h2>
+        <ol><li><strong>Classify Epic:</strong> đổi schema + worker + API + metrics + rollback.</li><li><strong>Artifacts:</strong> requirement định nghĩa duplicate semantics; ADR chọn idempotency key; epic map nêu dependencies.</li><li><strong>Slice stories:</strong> database constraint trước repository; repository trước worker; docs/observability có thể song song khi contract đã freeze.</li><li><strong>Readiness:</strong> phát hiện thiếu retention policy → <code>CONCERNS</code>; owner disposition trước build.</li><li><strong>Execute waves:</strong> mỗi story gọi <code>$gen-code</code>; review read-only chạy sau từng implementation artifact.</li><li><strong>Join:</strong> integration test replay cùng event, migration rehearsal và rollback evidence.</li><li><strong>Retro:</strong> lesson nằm ở episodic memory; reusable rule vào promotion queue.</li></ol>
+      </section>
+
+      <section id="retro"><span class="eyebrow">07. Evidence-backed retrospective</span><h2>Học từ trace, không viết lore.</h2>
+        <p>Retrospective liên kết planned vs actual, test/incident trace, decision và outcome. Nó phân loại process issue, knowledge gap hay one-off event. Chỉ claim tái sử dụng có provenance mới thành promotion candidate.</p>
+        <div class="callout danger"><strong>Anti-pattern:</strong> tự động biến mọi “what went well” thành shared standard. Survivorship bias và bối cảnh dự án có thể tạo policy sai cho toàn KB.</div>
+        <p class="source-note">Source: .agents/skills/bmad-adapter/ · orchestration/workflows/bmad-*.json · kb/projects/_template/delivery/</p>
+      </section>
+
+      <section id="quiz" class="quiz"><span class="eyebrow">Self-check</span><h2>Ba câu kiểm tra</h2>
+        <p><strong>1.</strong> Direct path có được bỏ test?</p><details><summary>Xem đáp án</summary><p>Không. Nó giảm artifact/ceremony, không giảm acceptance và evidence.</p></details>
+        <p><strong>2.</strong> Readiness <code>CONCERNS</code> có nghĩa là auto-pass?</p><details><summary>Xem đáp án</summary><p>Không. Concern phải có disposition và authority chấp nhận; critical gap vẫn là FAIL.</p></details>
+        <p><strong>3.</strong> BMAD adapter có thay thế gen-code/review-code?</p><details><summary>Xem đáp án</summary><p>Không. Nó route planning/delivery; skill chuyên biệt vẫn sở hữu implementation và review.</p></details>
+      </section>
+      <div class="complete-bar"><div><strong>Hoàn thành bài 04</strong><br><small>Tiếp theo: đánh giá, bảo mật và promotion gate giữ hệ thống đáng tin.</small></div><button class="button complete-button" data-complete-lesson type="button"></button></div>
+    </article><aside class="toc"><strong>Trong bài này</strong><a href="#why">Why right-size</a><a href="#classify">Classification</a><a href="#artifacts">Artifacts</a><a href="#readiness">Readiness</a><a href="#story">Story lifecycle</a><a href="#scenario">Scenario</a><a href="#retro">Retrospective</a><a href="#quiz">Self-check</a></aside></div>
+  </main>
+  <footer class="site-footer"><div class="footer-grid"><a href="03-agent-orchestration.html">← Bài 03</a><a href="05-governance-evals.html">Bài 05: Governance & evals →</a></div></footer>
+  <script src="assets/techniques-data.js"></script><script src="assets/app.js"></script>
+</body></html>

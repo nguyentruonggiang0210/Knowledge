@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Code"
+  short_description: "Review code for defects, risks, and missing tests."
+  default_prompt: "Use $review-code to review this change and rank actionable findings."

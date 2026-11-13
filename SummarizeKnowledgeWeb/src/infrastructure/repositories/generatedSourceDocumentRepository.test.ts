@@ -13,8 +13,8 @@ describe('generatedSourceDocumentRepository', () => {
     expect(new Set(sourcePaths).size).toBe(sourcePaths.length)
   })
 
-  it('giữ tài liệu theo đủ 12 canonical topic và không nhét Markdown vào JS', () => {
-    expect(new Set(coverage.documents.map((document) => document.topicId)).size).toBe(12)
+  it('giữ tài liệu theo đủ 13 canonical topic và không nhét Markdown vào JS', () => {
+    expect(new Set(coverage.documents.map((document) => document.topicId)).size).toBe(13)
     expect(coverage.totalWords).toBeGreaterThan(600_000)
     expect(
       coverage.documents.every(

@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "kind": "epic-map",
+  "items": [
+    {
+      "epic_id": "EPIC-001",
+      "depends_on": [],
+      "write_set": [
+        "kb/projects/<project>/delivery/EPIC-001/**",
+        "kb/projects/<project>/architecture/epics/EPIC-001/**",
+        "kb/projects/<project>/decisions/epics/EPIC-001/**",
+        "kb/memory/episodic/<project>/EPIC-001/**",
+        "<isolated-epic-worktree>/**"
+      ],
+      "parameters": {
+        "epic-id": "EPIC-001",
+        "epic-artifact": "kb/projects/<project>/delivery/EPIC-001.md",
+        "epic-worktree": "<isolated-epic-worktree>"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+# Project convention layered on top of OKF v0.2.
+# Only `type` is mandatory for OKF conformance.
+
+type: Concept
+title: Example
+description: Example concept
+tags: [example]
+status: active
+generated:
+  by: human:maintainer
+  at: 2026-09-07T00:00:00Z
+sources:
+  - id: source-1
+    title: Example Source
+    uri: https://example.com
+    retrieved_at: 2026-09-07T00:00:00Z
+verified:
+  - by: human:maintainer
+    at: 2026-09-07T00:00:00Z
+    note: Reviewed against the source.

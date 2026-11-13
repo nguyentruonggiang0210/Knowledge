@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/source-registry.schema.json",
+  "title": "KB source registry",
+  "type": "object",
+  "required": ["schema_version", "checked_at", "sources"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "checked_at": {"type": "string", "format": "date"},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "uri", "kind", "authority_tier", "topics"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "title": {"type": "string"},
+          "uri": {"type": "string", "format": "uri"},
+          "kind": {"type": "string"},
+          "authority_tier": {"type": "integer", "minimum": 1, "maximum": 4},
+          "topics": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+}

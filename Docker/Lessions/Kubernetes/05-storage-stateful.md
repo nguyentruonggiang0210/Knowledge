@@ -127,9 +127,9 @@ Kiểm tra kind cluster có default StorageClass; kind mặc định có thể k
 
 ```powershell
 kubectl apply -f CodeSample/kubernetes/storage/local-pv-pvc.yaml
-# Bootstrap directory chỉ cho kind lab; manifest này cố ý dùng hostPath/root trong namespace baseline.
+# Bootstrap directory chỉ cho kind lab; Pod hostPath/root chạy trong kube-system, không phải pattern app.
 kubectl apply -f CodeSample/kubernetes/storage/prepare-local-volume.yaml
-kubectl wait --for=jsonpath='{.status.phase}'=Succeeded pod/prepare-local-volume -n storage-lab --timeout=60s
+kubectl wait --for=jsonpath='{.status.phase}'=Succeeded pod/prepare-local-volume -n kube-system --timeout=60s
 kubectl get pv
 kubectl get pvc -n storage-lab
 kubectl apply -f CodeSample/kubernetes/storage/pvc-consumer.yaml

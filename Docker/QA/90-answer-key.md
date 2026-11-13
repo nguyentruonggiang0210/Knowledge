@@ -23,7 +23,7 @@ Không xem file này trước khi hoàn thành `01-diagnostic.md`. Mỗi câu 1 
 | DG-D15 | **A, C, D.** `privileged` phá nhiều lớp isolation, chỉ dành ngoại lệ đã threat-model. |
 | DG-D16 | Docker socket thường tương đương quyền điều khiển daemon/host: tạo privileged container, mount host filesystem, lấy secret; compromise container có thể thành host compromise. |
 | DG-D17 | **B.** `128+9=137`, thường SIGKILL; phải xác minh `OOMKilled`, daemon/kernel logs hoặc tác nhân kill, không khẳng định OOM chỉ từ code. |
-| DG-D18 | `ps -a/inspect` (state, exit, OOM, health, restart count) → current/previous logs → events → config/env/mount/entrypoint → resources/kernel/daemon → reproduce với cùng image/config; xác nhận fix bằng ổn định và health. |
+| DG-D18 | `ps -a/inspect` (state, exit, OOM, health, restart count) → `docker logs` (các lần restart trước nếu logging driver còn giữ) → events → config/env/mount/entrypoint → resources/kernel/daemon → reproduce với cùng image/config; xác nhận fix bằng ổn định và health. |
 | DG-D19 | **A.** `docker compose config` render merge/interpolation để bắt config thực tế. |
 | DG-D20 | Ví dụ: scan OS/app CVE + policy; verify signature/provenance/digest; SBOM/license; pin immutable digest; registry access/promotion. Hai ý hợp lệ được điểm. |
 

@@ -1,6 +1,7 @@
 import { Check, LibraryBig } from 'lucide-react'
 import type { KeyboardEvent } from 'react'
 import type { KnowledgeTopic } from '../../domain/knowledge/KnowledgeTopic'
+import { useI18n } from '../i18n/I18nProvider'
 import { TopicIcon } from './TopicIcon'
 
 interface TopicNavigationProps {
@@ -20,6 +21,8 @@ export function TopicNavigation({
   completionPercent,
   onSelect,
 }: TopicNavigationProps) {
+  const { t } = useI18n()
+
   const moveWithKeyboard = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     let nextIndex: number | undefined
     if (event.key === 'ArrowDown') nextIndex = (index + 1) % topics.length
@@ -37,11 +40,11 @@ export function TopicNavigation({
   }
 
   return (
-    <aside className="topic-sidebar" aria-label="Danh mục kiến thức">
+    <aside className="topic-sidebar" aria-label={t('navigation.label')}>
       <div className="progress-card">
         <div className="progress-card__topline">
           <span>
-            <LibraryBig size={16} aria-hidden="true" /> Lộ trình của bạn
+            <LibraryBig size={16} aria-hidden="true" /> {t('navigation.journey')}
           </span>
           <strong>{completionPercent}%</strong>
         </div>
@@ -51,16 +54,19 @@ export function TopicNavigation({
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={completionPercent}
-          aria-label="Tiến độ học"
+          aria-label={t('navigation.progress')}
         >
           <span style={{ width: `${completionPercent}%` }} />
         </div>
         <small>
-          Đã hoàn thành {completedCount}/{topics.length} chủ đề
+          {t('navigation.completed', {
+            completed: completedCount,
+            total: topics.length,
+          })}
         </small>
       </div>
 
-      <div className="topic-sidebar__label">Thư viện kiến thức</div>
+      <div className="topic-sidebar__label">{t('navigation.library')}</div>
       <nav className="topic-list" role="tablist" aria-orientation="vertical">
         {topics.map((topic, index) => {
           const isActive = topic.id === activeTopicId
@@ -88,7 +94,7 @@ export function TopicNavigation({
               </span>
               <span className="topic-tab__copy">
                 <strong>{topic.navTitle}</strong>
-                <small>{topic.estimatedMinutes} phút học</small>
+                <small>{t('topic.minutes', { minutes: topic.estimatedMinutes })}</small>
               </span>
             </button>
           )

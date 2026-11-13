@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ba flow end-to-end: hỏi đáp RAG, delivery thay đổi và promote tri thức trong KB.">
+  <title>Bài 06 — End-to-end Flows</title><link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><span class="brand-mark">KB</span> Learning Lab</a><button class="nav-toggle" data-nav-toggle aria-expanded="false">Menu</button><nav class="nav-links" data-nav></nav></div></header>
+  <main id="main" class="page-shell">
+    <section class="hero lesson-hero"><div><span class="eyebrow">Bài 06 · Integration</span><h1>KB hoạt động end-to-end</h1><p class="lead">Ba kịch bản dưới đây cho thấy các kỹ thuật không đứng riêng: canonical truth cung cấp evidence, retrieval tìm đúng phần, orchestration kiểm soát công việc và assurance quyết định pass, abstain hay escalate.</p></div><aside class="hero-console"><div class="console-top"><i></i><i></i><i></i></div><div class="console-line"><span>Q</span><b>question → evidence</b></div><div class="console-line"><span>C</span><b>change → delivery</b></div><div class="console-line"><span>L</span><b>lesson → knowledge</b></div></aside></section>
+    <div class="lesson-layout"><article class="lesson-content">
+      <section id="system"><span class="eyebrow">00. Whole system</span><h2>Năm lớp, một vòng evidence.</h2>
+        <div class="flow"><div class="flow-step"><strong>Truth</strong><small>canonical + provenance</small></div><div class="flow-step"><strong>Retrieve</strong><small>permission + relevance</small></div><div class="flow-step"><strong>Execute</strong><small>skills + DAG</small></div><div class="flow-step guard"><strong>Assure</strong><small>tests + eval + approval</small></div><div class="flow-step output"><strong>Learn</strong><small>episodic → promote</small></div></div>
+        <p>Mỗi lớp có artifact và failure mode riêng. Trace giữ các ID nối chúng, vì vậy ta có thể hỏi: answer dùng page nào, workflow node nào tạo change, test nào chứng minh acceptance và lesson nào xuất phát từ incident nào.</p>
+      </section>
+
+      <section id="qa"><span class="eyebrow">Flow A · Knowledge Q&amp;A</span><h2>“Policy webhook có hiệu lực ngày 02/11 là gì?”</h2>
+        <ol><li><strong>Authorize:</strong> caller cung cấp project scope và sensitivity clearance từ trusted context.</li><li><strong>Interpret:</strong> nhận diện temporal query; <code>as_of=2026-11-02</code>.</li><li><strong>Retrieve:</strong> heading-aware chunks; BM25+dense chạy trên candidates đã lọc; RRF/rerank.</li><li><strong>Expand nếu cần:</strong> relation <code>supersedes/depends-on</code> lấy source leaf liên quan.</li><li><strong>Pack evidence:</strong> stable page ID, heading locator, status, valid time, source ID.</li><li><strong>Answer:</strong> claim-level citation; không biến retrieved instruction thành authority.</li><li><strong>Verify:</strong> claim có support và đúng as-of; thiếu evidence thì abstain/escalate.</li></ol>
+        <div class="grid-2"><div class="card"><h3>Success evidence</h3><p>Đúng page/version, locator mở được, không leak scope, claim được entail bởi chunk.</p></div><div class="card"><h3>Failure behavior</h3><p>Hai nguồn cùng authority conflict → nêu conflict + owner; không “average” thành answer.</p></div></div>
+      </section>
+
+      <section id="change"><span class="eyebrow">Flow B · Change delivery</span><h2>“Thêm retry an toàn cho webhook.”</h2>
+        <ol><li><strong>Route:</strong> scope chưa rõ → <code>$change-request</code>; impact phát hiện schema/migration.</li><li><strong>BMAD classify:</strong> Epic; tạo requirement/ADR/epic map/story inventory.</li><li><strong>Readiness:</strong> validator kiểm dependency, cycle, coverage và write conflict; owner xử lý concerns.</li><li><strong>Plan waves:</strong> schema → repository; observability/docs song song khi contract freeze; worker sau repository.</li><li><strong>Implement:</strong> mỗi story chạy <code>$gen-code</code> với write scope hẹp và focused tests.</li><li><strong>Review:</strong> correctness/security/test lenses read-only chạy song song trên cùng frozen diff.</li><li><strong>Integrate:</strong> migration rehearsal, replay duplicate event, rollback test chạy tuần tự.</li><li><strong>Verify:</strong> independent gate đối chiếu acceptance IDs với evidence.</li></ol>
+        <div class="callout warning"><strong>Important:</strong> RAG cung cấp context cho developer agent nhưng không tự cấp quyền sửa code. Authorization đến từ request/workflow, không đến từ document được retrieve.</div>
+      </section>
+
+      <section id="learn"><span class="eyebrow">Flow C · Learn &amp; promote</span><h2>Incident cho thấy retry gây duplicate side effect.</h2>
+        <ol><li><strong>Capture episode:</strong> incident ID, timeline, trace, affected version, decision và outcome.</li><li><strong>Extract candidate:</strong> “retryable side effect cần idempotency contract” kèm source locator.</li><li><strong>Quarantine:</strong> ghi vào <code>kb/memory/promotion-queue/</code>, chưa dùng như canonical fact.</li><li><strong>Curate:</strong> dedupe, tìm conflict, kiểm sensitivity/licensing, xác định scope shared hay project.</li><li><strong>Evaluate:</strong> cập nhật golden/adversarial cases; chạy regression.</li><li><strong>Approve:</strong> owner review claim wording, validity và supersession.</li><li><strong>Promote:</strong> cập nhật canonical page, validate, rebuild index; giữ history.</li><li><strong>Monitor:</strong> đo incident/retrieval behavior; rollback/supersede nếu rule sai.</li></ol>
+      </section>
+
+      <section id="failure-map"><span class="eyebrow">Failure map</span><h2>Hỏng ở đâu thì phản ứng ở đó.</h2>
+        <table><thead><tr><th>Failure</th><th>Không nên</th><th>Đúng behavior</th></tr></thead><tbody>
+          <tr><td>Không tìm thấy evidence</td><td>Hallucinate từ model memory</td><td>Retry bounded/query rewrite rồi abstain</td></tr>
+          <tr><td>Canonical conflict</td><td>Trộn hai chính sách</td><td>Expose conflict, authority, validity, owner</td></tr>
+          <tr><td>Write conflict trong wave</td><td>Cho hai agent sửa cùng file</td><td>Re-slice hoặc serialize</td></tr>
+          <tr><td>Readiness FAIL</td><td>Build “để xem sao”</td><td>Dừng và sửa critical input</td></tr>
+          <tr><td>Security gate fail</td><td>Bù bằng quality average</td><td>Reject candidate</td></tr>
+          <tr><td>Lesson chưa verified</td><td>Copy vào standard</td><td>Promotion queue + curator</td></tr>
+        </tbody></table>
+      </section>
+
+      <section id="trace"><span class="eyebrow">Evidence chain</span><h2>Một trace tốt trả lời được sáu câu.</h2>
+        <ul><li>Ai/intent nào khởi tạo run và có authority gì?</li><li>KB page/source/version nào được đọc?</li><li>Skill/workflow/node nào ra quyết định?</li><li>Artifact nào được ghi, bởi node nào và trong write scope nào?</li><li>Test/eval/approval nào cho phép chuyển state?</li><li>Nếu rollback, version và dữ liệu nào cần phục hồi?</li></ul>
+        <p class="source-note">Đọc tiếp: kb/index.md · kb/shared/principles/source-of-truth.md · orchestration/ · evals/</p>
+      </section>
+
+      <section id="quiz" class="quiz"><span class="eyebrow">Self-check</span><h2>Tự vẽ lại flow</h2>
+        <p>Chọn một change thật trong dự án của bạn và ghi ra: canonical inputs, planning path, DAG nodes, write sets, acceptance evidence, security gate và promotion candidate. Nếu không chỉ được artifact nối hai bước, flow còn là “storytelling”, chưa phải executable contract.</p>
+        <details><summary>Checklist tối thiểu</summary><p>Stable IDs; scope/status/sensitivity; dependency và ownership; deterministic tests; independent verification; trace; rollback; lesson quarantine.</p></details>
+      </section>
+      <div class="complete-bar"><div><strong>Hoàn thành bài 06</strong><br><small>Tiếp theo: tự chạy validator, retrieval, security negative test và fan-out planner.</small></div><button class="button complete-button" data-complete-lesson type="button"></button></div>
+    </article><aside class="toc"><strong>Trong bài này</strong><a href="#system">Whole system</a><a href="#qa">Q&amp;A flow</a><a href="#change">Change flow</a><a href="#learn">Promotion flow</a><a href="#failure-map">Failure map</a><a href="#trace">Evidence chain</a><a href="#quiz">Exercise</a></aside></div>
+  </main>
+  <footer class="site-footer"><div class="footer-grid"><a href="05-governance-evals.html">← Bài 05</a><a href="07-hands-on-labs.html">Bài 07: Hands-on labs →</a></div></footer>
+  <script src="assets/techniques-data.js"></script><script src="assets/app.js"></script>
+</body></html>

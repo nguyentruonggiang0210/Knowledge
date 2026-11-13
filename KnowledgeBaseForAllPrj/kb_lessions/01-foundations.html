@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hiểu canonical knowledge, metadata, bitemporal, provenance và memory lifecycle trong KB.">
+  <title>Bài 01 — Truth, Metadata & Memory</title><link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><span class="brand-mark">KB</span> Learning Lab</a><button class="nav-toggle" data-nav-toggle aria-expanded="false">Menu</button><nav class="nav-links" data-nav></nav></div></header>
+  <main id="main" class="page-shell">
+    <section class="hero lesson-hero"><div><span class="eyebrow">Bài 01 · Foundation</span><h1>Truth, metadata & memory</h1><p class="lead">KB tốt không chỉ “chứa nhiều tài liệu”. Nó phải nói rõ cái gì là sự thật đã duyệt, đúng trong khoảng thời gian nào, đến từ đâu và được phép dùng ở scope nào.</p></div><aside class="hero-console"><div class="console-top"><i></i><i></i><i></i></div><div class="console-line"><span>A</span><b>canonical ≠ generated</b></div><div class="console-line"><span>B</span><b>valid time ≠ recorded time</b></div><div class="console-line"><span>C</span><b>memory → review → promote</b></div></aside></section>
+    <div class="lesson-layout">
+      <article class="lesson-content">
+        <section id="mental-model"><span class="eyebrow">01. Mental model</span><h2>Bốn loại “thứ được biết”</h2>
+          <div class="grid-2">
+            <div class="card"><span class="pill">Canonical</span><h3>Semantic knowledge</h3><p>Fact, standard, architecture, requirement đã được owner duyệt trong <code>kb/shared/</code> hoặc project pack.</p><p><strong>Được dùng để:</strong> trả lời và ràng buộc implementation.</p></div>
+            <div class="card"><span class="pill amber">Episodic</span><h3>Run memory</h3><p>Điều đã xảy ra trong một run: trace, retrospective, kết quả tạm. Có ích để học, chưa phải fact bền vững.</p><p><strong>Được dùng để:</strong> debug và tạo promotion candidate.</p></div>
+            <div class="card"><span class="pill blue">Procedural</span><h3>Skills</h3><p>Biết “làm thế nào”: gen-code, review-code, study, curator, orchestrator… nằm trong <code>.agents/skills/</code>.</p></div>
+            <div class="card"><span class="pill red">Derived</span><h3>Indexes & summaries</h3><p>Catalog, chunk, vector, graph edge, summary tree. Xóa được và rebuild từ canonical mà không mất truth.</p></div>
+          </div>
+          <div class="callout warning" style="margin-top:1rem"><strong>Rule:</strong> model output hay retrieved chunk không được nâng cấp thành canonical chỉ vì nghe hợp lý. Promotion cần provenance, conflict check, owner và validation.</div>
+        </section>
+
+        <section id="contract"><span class="eyebrow">02. Knowledge contract</span><h2>Mỗi page là một hợp đồng, không phải note tự do.</h2>
+          <p>Frontmatter giúp cả người, validator và retriever cùng hiểu một trang. Các field quan trọng nhất:</p>
+          <table><thead><tr><th>Field</th><th>Ý nghĩa</th><th>Sai thì hậu quả gì?</th></tr></thead><tbody>
+            <tr><td><code>id</code></td><td>Danh tính ngữ nghĩa ổn định</td><td>Rename file làm đứt link, graph, citation</td></tr>
+            <tr><td><code>status</code></td><td>Draft/proposed/approved/deprecated/superseded</td><td>Model dùng nhầm đề xuất như policy hiện hành</td></tr>
+            <tr><td><code>scope</code></td><td>Shared hay project cụ thể</td><td>Rò tri thức project hoặc áp shared sai chỗ</td></tr>
+            <tr><td><code>sensitivity</code></td><td>Public/internal/confidential/restricted</td><td>Derivative hạ quyền và gây data leak</td></tr>
+            <tr><td><code>sources</code></td><td>Stable IDs trong source registry</td><td>Không thể kiểm chứng claim</td></tr>
+            <tr><td><code>relations</code></td><td>depends-on, supersedes, validates…</td><td>Mất impact analysis và navigation</td></tr>
+          </tbody></table>
+          <pre><code>id: payments.architecture.webhook-processing
+status: approved
+scope: payments
+sensitivity: internal
+sources: [payments-adr-014]
+relations: [supersedes:payments.architecture.webhook-v1]</code></pre>
+          <p class="source-note">Source: kb/shared/standards/knowledge-contract.md · kb/schemas/knowledge.schema.json</p>
+        </section>
+
+        <section id="bitemporal"><span class="eyebrow">03. Bitemporal</span><h2>Một fact có hai đồng hồ.</h2>
+          <div class="concept-pair">
+            <div class="card"><h3>Valid time</h3><p>Khi fact thật sự có hiệu lực trong domain.</p><code>valid_from / valid_to</code></div>
+            <div class="versus">≠</div>
+            <div class="card"><h3>Recorded time</h3><p>Khi KB biết hoặc ghi nhận fact đó.</p><code>recorded_at</code></div>
+          </div>
+          <h3>Ví dụ thực tế</h3>
+          <p>Policy phí mới có hiệu lực ngày 01/11 nhưng KB được cập nhật ngày 05/11. Khi trả lời “policy ngày 02/11 là gì?”, hệ thống phải dùng <em>valid time</em>; khi audit “tại sao agent ngày 03/11 trả lời sai?”, phải nhìn <em>recorded time</em>.</p>
+          <div class="flow"><div class="flow-step"><strong>01/11</strong><small>Policy có hiệu lực</small></div><div class="flow-step guard"><strong>03/11</strong><small>Agent chưa biết</small></div><div class="flow-step"><strong>05/11</strong><small>KB ghi nhận</small></div><div class="flow-step output"><strong>As-of query</strong><small>Chọn đúng phiên bản</small></div></div>
+        </section>
+
+        <section id="precedence"><span class="eyebrow">04. Precedence</span><h2>Khi hai trang nói khác nhau, không “average” chúng.</h2>
+          <ol>
+            <li>Yêu cầu user hiện tại trong phạm vi được phép.</li>
+            <li>Project-specific, approved và còn hiệu lực.</li>
+            <li>Shared approved/current standard.</li>
+            <li>Draft/proposed chỉ là phương án chưa duyệt.</li>
+            <li>Episodic/external material chỉ là lead.</li>
+          </ol>
+          <div class="callout danger"><strong>Hai nguồn cùng authority mâu thuẫn:</strong> nêu conflict, affected claims, validity và owner cần quyết định. Không tự trộn thành “một đáp án ở giữa”.</div>
+        </section>
+
+        <section id="promotion"><span class="eyebrow">05. Promotion lifecycle</span><h2>Từ một quan sát đến canonical knowledge.</h2>
+          <div class="flow"><div class="flow-step"><strong>Episode</strong><small>Trace / retro / feedback</small></div><div class="flow-step"><strong>Candidate</strong><small>Claim + provenance</small></div><div class="flow-step guard"><strong>Curator checks</strong><small>Dedupe, conflict, security</small></div><div class="flow-step guard"><strong>Owner review</strong><small>Approve/reject</small></div><div class="flow-step output"><strong>Canonical</strong><small>Validate + rebuild index</small></div></div>
+          <h3>Use case: học từ một incident webhook</h3>
+          <p>Retrospective phát hiện retry có thể tạo duplicate. Lesson candidate đề xuất “mọi side effect retry phải có idempotency key”. Curator tìm standard hiện có, kiểm tra trùng/mâu thuẫn, owner duyệt, rồi mới cập nhật canonical pattern. Nếu chỉ auto-copy retrospective, KB có thể biến một kết luận vội thành policy toàn hệ thống.</p>
+        </section>
+
+        <section id="quiz" class="quiz"><span class="eyebrow">Self-check</span><h2>Bạn đã hiểu chưa?</h2>
+          <p><strong>1.</strong> Vector index có phải source of truth không?</p><details><summary>Xem đáp án</summary><p>Không. Nó là derived artifact, phải rebuild được từ canonical pages.</p></details>
+          <p><strong>2.</strong> Project page và shared page mâu thuẫn thì luôn chọn project?</p><details><summary>Xem đáp án</summary><p>Chỉ khi project page approved, current và thật sự override shared contract. Nếu hai nguồn cùng authority mâu thuẫn, escalate owner.</p></details>
+          <p><strong>3.</strong> Retrospective tốt có được ghi thẳng vào lessons canonical?</p><details><summary>Xem đáp án</summary><p>Không. Nó bắt đầu ở episodic memory; reusable claim đi qua promotion queue và curator.</p></details>
+        </section>
+        <div class="complete-bar"><div><strong>Hoàn thành bài 01</strong><br><small>Tiếp theo: retrieval biến canonical pages thành evidence như thế nào.</small></div><button class="button complete-button" data-complete-lesson type="button"></button></div>
+      </article>
+      <aside class="toc"><strong>Trong bài này</strong><a href="#mental-model">4 loại knowledge</a><a href="#contract">Knowledge contract</a><a href="#bitemporal">Bitemporal</a><a href="#precedence">Precedence</a><a href="#promotion">Promotion</a><a href="#quiz">Self-check</a></aside>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="footer-grid"><a href="index.html">← Tổng quan</a><a href="02-retrieval-rag.html">Bài 02: Retrieval & RAG →</a></div></footer>
+  <script src="assets/techniques-data.js"></script><script src="assets/app.js"></script>
+</body></html>

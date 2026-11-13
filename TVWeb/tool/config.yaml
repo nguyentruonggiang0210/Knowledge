@@ -1,0 +1,21 @@
+base_url: "https://onflix.lat"
+interval_hours: 3
+request_delay_min: 1.0
+request_delay_max: 3.0
+timeout: 30
+max_retries: 3
+pages_per_run: 5          # incremental: only first N pages of /kham-pha
+max_films_per_run: 60     # safety cap per run
+supplemental_sources:
+  - "https://motchillv.xyz/"
+  - "https://tophim.top/"
+supplemental_films_per_run: 100  # resume sitemap across 3-hour runs; Motchill needs many watch requests
+db_path: "/app/data/tvweb.db"   # override with DB_PATH env for local run
+user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+ad_blocklist:
+  - "154.82.109.157"
+  - "cm8806.com"
+  - "c168n.biz"
+  - "popunder"
+  - "doubleclick.net"
+  - "googlesyndication.com"

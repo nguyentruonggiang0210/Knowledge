@@ -1,0 +1,23 @@
+@model (TvWeb.Models.Film Film, List<TvWeb.Models.Episode> Eps)
+@{ ViewData["Title"] = Model.Film.TitleVi; var servers = Model.Eps.Select(e => e.ServerSlug).Distinct().ToList(); }
+<div class="container-fluid px-3 px-lg-4 mt-3">
+  <div class="row g-4">
+    <div class="col-12 col-md-3"><img class="detail-poster" src="@Model.Film.Poster" data-artwork="portrait" data-alternative="@Model.Film.Backdrop" alt="@Model.Film.TitleVi" /></div>
+    <div class="col-12 col-md-9">
+      <h2>@Model.Film.TitleVi</h2>
+      <p class="text-secondary">@Model.Film.TitleEn (@Model.Film.Year) • IMDb @(Model.Film.Imdb?.ToString() ?? "-") • @Model.Film.Quality • @Model.Film.Lang • @Model.Film.Country</p>
+      <p>@foreach (var g in Model.Film.GenreList) { <a class="badge bg-secondary me-1" href="/phim?genre=@g">@g</a> }</p>
+      <div class="desc">@Model.Film.DescriptionText</div>
+      @if (Model.Eps.Count > 0) {
+        <a class="btn btn-danger btn-lg" href="/xem-phim/@Model.Film.Slug">▶ Xem ngay</a>
+        <h5 class="mt-4">Máy chủ & tập phim</h5>
+        @foreach (var s in servers) {
+          <div class="mb-2"><span class="badge bg-dark me-2">@s</span>
+          @foreach (var e in Model.Eps.Where(x => x.ServerSlug == s).Take(60)) {
+            <a class="btn btn-outline-light btn-sm m-1 ep-btn" href="/xem-phim/@Model.Film.Slug?server=@s&ep=@e.EpIndex">@e.EpIndex</a>
+          }</div>
+        }
+      } else { <div class="alert alert-warning mt-3">Chưa có nguồn phát — chờ crawler cập nhật.</div> }
+    </div>
+  </div>
+</div>

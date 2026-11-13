@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "change-request-default",
+  "intent": "change-request",
+  "owner": "kb-orchestrator",
+  "budget": {"max_concurrency": 3, "max_retries_per_node": 1},
+  "nodes": [
+    {
+      "id": "normalize",
+      "skill": "change-request", "objective": "Normalize current state, outcome, non-goals, constraints, and acceptance criteria.",
+      "depends_on": [], "execution": "manager", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/**", "<target>/**"], "write_set": [], "output": "normalized request",
+      "acceptance": ["outcome and non-goals are observable"], "risk": "low", "approval": "none",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "impact",
+      "skill": "change-request", "objective": "Map affected components, data, contracts, consumers, and documentation.",
+      "depends_on": ["normalize"], "execution": "read-only", "parallel_group": "analysis-wave",
+      "read_set": ["kb/projects/<project>/**", "<target>/**"], "write_set": [], "output": "impact map",
+      "acceptance": ["affected components are backed by evidence"], "risk": "low", "approval": "none",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "risk",
+      "skill": "change-request", "objective": "Analyze security, privacy, migration, failure, rollout, and rollback risk.",
+      "depends_on": ["normalize"], "execution": "read-only", "parallel_group": "analysis-wave",
+      "read_set": ["kb/projects/<project>/**", "governance/**", "<target>/**"], "write_set": [], "output": "risk analysis",
+      "acceptance": ["high-impact side effects and approvals are explicit"], "risk": "low", "approval": "none",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "verification-impact",
+      "skill": "verify-delivery", "objective": "Define tests, observability, acceptance evidence, and documentation verification.",
+      "depends_on": ["normalize"], "execution": "read-only", "parallel_group": "analysis-wave",
+      "read_set": ["kb/projects/<project>/**", "<target>/**"], "write_set": [], "output": "verification plan",
+      "acceptance": ["every acceptance criterion maps to an observable check"], "risk": "low", "approval": "none",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "proposal",
+      "skill": "change-request", "objective": "Reconcile analysis into an approval-ready implementation, rollout, rollback, and verification plan.",
+      "depends_on": ["impact", "risk", "verification-impact"], "execution": "manager", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/**", "<target>/**"], "write_set": ["kb/projects/<project>/changes/**"],
+      "output": "change request document", "acceptance": ["scope, unknowns, approval gates, and evidence are complete"],
+      "risk": "medium", "approval": "before-run", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "approval",
+      "skill": "change-request", "objective": "Obtain the authority required before implementation or high-impact side effects.",
+      "depends_on": ["proposal"], "execution": "approval-gate", "parallel_group": null,
+      "read_set": ["kb/projects/<project>/changes/**"], "write_set": [], "output": "approved, rejected, or revision requested",
+      "acceptance": ["approval identity and scope are recorded"], "risk": "high", "approval": "human", "required_authorities": ["change-owner", "risk-owner-when-applicable"],
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    }
+  ]
+}

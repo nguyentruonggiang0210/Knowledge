@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "id": "review-code-default",
+  "intent": "review-code",
+  "owner": "kb-orchestrator",
+  "budget": {"max_concurrency": 3, "max_retries_per_node": 1},
+  "nodes": [
+    {
+      "id": "scope",
+      "skill": "review-code",
+      "objective": "Identify intended behavior, diff, contracts, call sites, and available evidence.",
+      "depends_on": [], "execution": "manager", "parallel_group": null,
+      "read_set": ["<target>/**", "kb/projects/<project>/**"], "write_set": [],
+      "output": "review scope", "acceptance": ["changed behavior and affected boundaries are mapped"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "correctness",
+      "skill": "review-code",
+      "objective": "Review correctness, state, error paths, compatibility, and data integrity.",
+      "depends_on": ["scope"], "execution": "read-only", "parallel_group": "review-lenses",
+      "read_set": ["<target>/**"], "write_set": [], "output": "correctness findings",
+      "acceptance": ["each finding is evidence-backed and reproducible"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "security",
+      "skill": "review-code",
+      "objective": "Review authorization, injection, secrets, data exposure, and side effects.",
+      "depends_on": ["scope"], "execution": "read-only", "parallel_group": "review-lenses",
+      "read_set": ["<target>/**"], "write_set": [], "output": "security findings",
+      "acceptance": ["trust boundaries and negative paths are covered"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "tests-api-docs",
+      "skill": "review-code",
+      "objective": "Review test adequacy, public contracts, observability, and documentation impact.",
+      "depends_on": ["scope"], "execution": "read-only", "parallel_group": "review-lenses",
+      "read_set": ["<target>/**", "kb/projects/<project>/**"], "write_set": [], "output": "coverage and contract findings",
+      "acceptance": ["missing coverage is tied to a concrete risk"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "synthesize",
+      "skill": "review-code",
+      "objective": "Deduplicate, verify, rank, and report actionable findings.",
+      "depends_on": ["correctness", "security", "tests-api-docs"], "execution": "manager", "parallel_group": null,
+      "read_set": ["<target>/**"], "write_set": [], "output": "final review report",
+      "acceptance": ["severity reflects impact and likelihood", "residual risk is explicit"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    }
+  ]
+}

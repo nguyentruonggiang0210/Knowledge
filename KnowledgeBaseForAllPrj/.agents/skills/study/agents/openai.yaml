@@ -1,0 +1,4 @@
+interface:
+  display_name: "Study and Research"
+  short_description: "Research a topic and produce a sourced study note."
+  default_prompt: "Use $study to research this topic and create a source-backed study note."

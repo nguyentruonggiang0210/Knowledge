@@ -530,6 +530,7 @@
 }
 
 .quiz-explanation code {
+  overflow-wrap: anywhere;
   color: var(--ink-faint);
   font-size: 9px;
 }
@@ -648,11 +649,12 @@
 }
 
 .quiz-review code {
+  overflow-wrap: anywhere;
   color: var(--ink-faint);
   font-size: 9px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1240px) {
   .source-browser {
     grid-template-columns: 1fr;
   }

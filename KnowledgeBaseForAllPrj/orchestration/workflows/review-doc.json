@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "review-doc-default",
+  "intent": "review-doc",
+  "owner": "kb-orchestrator",
+  "budget": {"max_concurrency": 3, "max_retries_per_node": 1},
+  "nodes": [
+    {
+      "id": "inventory",
+      "skill": "review-doc", "objective": "Map audience, pages, claims, authoritative sources, and promised scope.",
+      "depends_on": [], "execution": "manager", "parallel_group": null,
+      "read_set": ["<docs>/**", "<source-of-truth>/**"], "write_set": [], "output": "document inventory",
+      "acceptance": ["sources of truth and review coverage are explicit"], "risk": "low", "approval": "none",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "technical-accuracy",
+      "skill": "review-doc", "objective": "Check claims, examples, interfaces, prerequisites, and unsafe guidance.",
+      "depends_on": ["inventory"], "execution": "read-only", "parallel_group": "doc-lenses",
+      "read_set": ["<docs>/**", "<source-of-truth>/**"], "write_set": [], "output": "accuracy findings",
+      "acceptance": ["each factual defect cites authoritative evidence"], "risk": "low", "approval": "none",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "consistency-freshness",
+      "skill": "review-doc", "objective": "Check terminology, cross-page contradictions, ownership, versions, and freshness.",
+      "depends_on": ["inventory"], "execution": "read-only", "parallel_group": "doc-lenses",
+      "read_set": ["<docs>/**", "kb/sources/**"], "write_set": [], "output": "consistency and freshness findings",
+      "acceptance": ["stale and conflicting claims are located"], "risk": "low", "approval": "none",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "navigation-readability",
+      "skill": "review-doc", "objective": "Check links, information scent, audience fit, and accessibility.",
+      "depends_on": ["inventory"], "execution": "read-only", "parallel_group": "doc-lenses",
+      "read_set": ["<docs>/**"], "write_set": [], "output": "navigation and readability findings",
+      "acceptance": ["defects are separated from optional editorial suggestions"], "risk": "low", "approval": "none",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "synthesize",
+      "skill": "review-doc", "objective": "Reconcile findings and report coverage, limitations, and prioritized corrections.",
+      "depends_on": ["technical-accuracy", "consistency-freshness", "navigation-readability"],
+      "execution": "manager", "parallel_group": null, "read_set": ["<docs>/**"], "write_set": [],
+      "output": "final documentation review", "acceptance": ["all findings have page/section and correction source"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    }
+  ]
+}

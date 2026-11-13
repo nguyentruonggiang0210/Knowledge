@@ -1,0 +1,4 @@
+interface:
+  display_name: "Verify Delivery"
+  short_description: "Independently verify acceptance criteria and evidence."
+  default_prompt: "Use $verify-delivery to verify this delivery against its acceptance criteria."

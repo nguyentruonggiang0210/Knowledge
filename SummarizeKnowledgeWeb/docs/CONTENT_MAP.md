@@ -1,6 +1,6 @@
 # Content map và coverage
 
-Ứng dụng không di chuyển hay xóa source gốc. Toàn bộ 376 file Markdown trong phạm vi source (kể cả answer key, draft và bản tổng hợp) được gán duy nhất vào một trong 12 chủ đề chuẩn. `node_modules`, `.git`, `.vs`, `.m2`, `.venv`, `bin`, `obj`, `target`, `.terraform`, `dist`, cache và binary artifact không thuộc phạm vi kiến thức.
+Ứng dụng không di chuyển hay xóa source gốc. Toàn bộ 453 file Markdown trong phạm vi source (kể cả answer key, draft và bản tổng hợp) được gán duy nhất vào một trong 13 chủ đề chuẩn. `node_modules`, `.git`, `.vs`, `.m2`, `.venv`, `bin`, `obj`, `target`, `.terraform`, `dist`, cache và binary artifact không thuộc phạm vi kiến thức.
 
 ## Coverage hiện tại
 
@@ -16,11 +16,14 @@
 | Concurrency & Messaging | 11 | 15.893 | `MultiThreadDotnet`, Java concurrency/distributed/messaging |
 | Terraform & Cloud | 52 | 41.673 | `Terraform/Lessions`, `Terraform/Refer`, quiz và capstone |
 | DevOps, SRE & Security | 71 | 89.009 | `Terraform/Devops`, Interview infra/security, deploy guide |
+| Docker & Kubernetes | 77 | 77.156 | Docker/Kubernetes lessons, labs, interview, QA và runbook |
 | System Design & Interview | 23 | 73.993 | Interview hub, Java/AI interview và system-design lessons |
 | Software Engineering & Quality | 9 | 11.591 | Testing/modeling, clean architecture, ADR/readiness/runbook |
-| **Tổng không tính lại bản tổng hợp** | **376** | **633.759** | Mỗi file có đúng một owner |
+| **Tổng không tính lại bản tổng hợp** | **453** | **710.915** | Mỗi file có đúng một owner |
 
-Các con số được sinh lại bằng `npm run sync:sources`; catalog máy đọc nằm tại `src/content/generated/sourceCatalog.json`. Tổng thô của mọi file là 699.575 từ. `ALL_DOMAINS.md` (65.816 từ) vẫn đọc được trong thư viện nhưng được đánh dấu là bản tổng hợp và không cộng lại vì đã chứa D1–D5.
+Các con số được sinh lại bằng `npm run sync:sources`; catalog máy đọc nằm tại `src/content/generated/sourceCatalog.json`. Tổng thô của mọi file là 776.731 từ. `ALL_DOMAINS.md` (65.816 từ) vẫn đọc được trong thư viện nhưng được đánh dấu là bản tổng hợp và không cộng lại vì đã chứa D1–D5.
+
+Catalog nội dung chi tiết chỉ sao chép Markdown. Các file code/config được tài liệu Docker tham chiếu vẫn mở được qua link GitHub từ source reader, nên người học có thể đi từ phần giải thích tới manifest hoặc sample chạy thật mà không đưa toàn bộ source code vào static bundle.
 
 ## Quy tắc xử lý trùng
 

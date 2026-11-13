@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hiểu skill routing, task contract, dependency DAG, parallel safety, fan-out/join và shared context của KB.">
+  <title>Bài 03 — Skill & Agent Orchestration</title><link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><span class="brand-mark">KB</span> Learning Lab</a><button class="nav-toggle" data-nav-toggle aria-expanded="false">Menu</button><nav class="nav-links" data-nav></nav></div></header>
+  <main id="main" class="page-shell">
+    <section class="hero lesson-hero"><div><span class="eyebrow">Bài 03 · Execution</span><h1>Skill & agent orchestration</h1><p class="lead">Multi-agent không có nghĩa “gọi càng nhiều agent càng tốt”. KB biến một intent thành task contract, dependency DAG và các work item có ranh giới; chỉ node độc lập mới được chạy song song.</p></div><aside class="hero-console"><div class="console-top"><i></i><i></i><i></i></div><div class="console-line"><span>1</span><b>route → right skill</b></div><div class="console-line"><span>2</span><b>DAG → safe waves</b></div><div class="console-line"><span>3</span><b>join → verify</b></div></aside></section>
+    <div class="lesson-layout"><article class="lesson-content">
+      <section id="skills"><span class="eyebrow">01. Progressive disclosure</span><h2>Skill là “procedure có scope”, không phải persona trang trí.</h2>
+        <p>Router chọn skill hẹp nhất phù hợp với intent. Mỗi <code>SKILL.md</code> chỉ nạp workflow và reference cần thiết, nhờ vậy context nhỏ hơn, instruction collision ít hơn và hành vi dễ eval hơn.</p>
+        <table><thead><tr><th>Intent</th><th>Skill chính</th><th>Điểm dừng</th></tr></thead><tbody>
+          <tr><td>“So sánh GraphRAG và RAPTOR”</td><td><code>$study</code></td><td>Source-backed note; chưa tự promote</td></tr>
+          <tr><td>“Phân tích thay đổi webhook”</td><td><code>$change-request</code></td><td>Plan/impact sẵn sàng approval; chưa code</td></tr>
+          <tr><td>“Implement CR đã duyệt”</td><td><code>$gen-code</code></td><td>Code + focused tests + evidence</td></tr>
+          <tr><td>“Review diff”</td><td><code>$review-code</code></td><td>Findings read-only; không sửa ngầm</td></tr>
+          <tr><td>“Promote lesson vào KB”</td><td><code>$kb-curator</code></td><td>Canonical chỉ sau provenance/conflict/owner gate</td></tr>
+        </tbody></table>
+        <div class="callout warning"><strong>Router không cấp thêm quyền.</strong> Chọn đúng skill chỉ xác định procedure; approval authority, sensitivity và write scope vẫn phải được kiểm tra độc lập.</div>
+      </section>
+
+      <section id="contract"><span class="eyebrow">02. Delegation contract</span><h2>Một agent chỉ nhận một “hộp công việc” có thể kiểm chứng.</h2>
+        <div class="grid-2"><div class="card"><h3>Input bắt buộc</h3><p>Objective, frozen inputs, dependency, read/write scope, constraints, budget và authority.</p></div><div class="card"><h3>Output bắt buộc</h3><p>Artifact hoặc structured result, acceptance evidence, open risks và stop condition.</p></div></div>
+        <pre><code>{
+  "id": "review-security",
+  "depends_on": ["implement"],
+  "read_set": ["src/**", "tests/**"],
+  "write_set": [],
+  "acceptance": ["findings have file and line evidence"],
+  "stop": "return findings; never repair"
+}</code></pre>
+        <p>Nếu prompt chỉ nói “hãy xem phần security”, agent khó biết ranh giới và manager khó phân biệt hoàn thành với “có vẻ đã làm”. Contract biến delegation thành dữ liệu có thể validate.</p>
+      </section>
+
+      <section id="dag"><span class="eyebrow">03. Dependency DAG</span><h2>Parallelism được suy ra từ dependency, không từ cảm giác.</h2>
+        <div class="flow"><div class="flow-step"><strong>Normalize</strong><small>Freeze scope</small></div><div class="flow-step"><strong>Plan DAG</strong><small>depends_on + read/write</small></div><div class="flow-step guard"><strong>Ready wave</strong><small>Conflict check</small></div><div class="flow-step"><strong>Execute</strong><small>Bounded parallel</small></div><div class="flow-step output"><strong>Join</strong><small>Integrate + verify</small></div></div>
+        <h3>Khi nào song song?</h3>
+        <ul><li>Node không phụ thuộc output của nhau.</li><li>Input đã đóng băng và output contract rõ.</li><li>Write scope rời nhau, hoặc tất cả read-only.</li><li>Không chia sẻ side effect/lock/resource nguy hiểm.</li></ul>
+        <h3>Khi nào tuần tự?</h3>
+        <ul><li>Planning trước implementation; implementation trước review.</li><li>Hai node cùng sửa một file hoặc cùng migration/database.</li><li>Integration, approval và final verification.</li><li>Node sau cần version/artifact chính xác của node trước.</li></ul>
+      </section>
+
+      <section id="conflict"><span class="eyebrow">04. Static conflict detection</span><h2>Dependency độc lập chưa chắc write-safe.</h2>
+        <p>Hai node có thể đều “ready” nhưng cùng ghi <code>README.md</code>. Planner so <code>write_set</code>, resource/lock và side-effect class trước khi xếp cùng wave.</p>
+        <div class="concept-pair"><div class="card"><h3>Review code</h3><p><code>write_set: []</code><br>read-only security lens</p></div><div class="versus">+</div><div class="card"><h3>Review tests</h3><p><code>write_set: []</code><br>read-only coverage lens</p></div></div>
+        <p><strong>Kết luận:</strong> có thể song song. Nhưng hai agent đều sửa <code>src/payments/webhook.py</code> thì phải chia lại ownership hoặc chạy tuần tự.</p>
+      </section>
+
+      <section id="fanout"><span class="eyebrow">05. Hierarchical fan-out/join</span><h2>Epic lớn được chia theo inventory, rồi join bằng acceptance contract.</h2>
+        <p>Story inventory khai báo dependency và write scope. <code>compile-fanout</code> validate inventory, xếp topo wave và truyền parameter vào subworkflow. Join chỉ mở khi mọi child đạt terminal state được chấp nhận.</p>
+        <pre><code>python scripts/kb.py compile-fanout `
+  --workflow bmad-epic `
+  --node execute-stories `
+  --inventory kb/projects/_template/delivery/story-inventory.template.json</code></pre>
+        <div class="callout danger"><strong>Không join theo “agent đã trả lời”.</strong> Join theo artifact version + acceptance evidence + trạng thái accepted. Một child trả lời dài không đồng nghĩa work item hợp lệ.</div>
+      </section>
+
+      <section id="context"><span class="eyebrow">06. Shared context</span><h2>Chia sẻ state có kiểm soát, không đổ toàn bộ transcript vào mọi agent.</h2>
+        <p>LangGraph adapter dùng typed shared state và reducer. Manager giữ intent, access context, evidence IDs và version; mỗi role nhận một projection tối thiểu.</p>
+        <div class="flow"><div class="flow-step"><strong>Manager state</strong><small>intent + authority</small></div><div class="flow-step"><strong>Projection</strong><small>role-needed fields</small></div><div class="flow-step"><strong>Agent result</strong><small>structured delta</small></div><div class="flow-step guard"><strong>Reducer</strong><small>dedupe/version check</small></div><div class="flow-step output"><strong>Checkpoint</strong><small>resume/audit</small></div></div>
+        <p><strong>Use case:</strong> retriever chỉ cần query và access filters; answerer cần evidence envelope nhưng không cần secrets; verifier cần claims, citations và rubric. Least-context làm giảm leak, confusion và token cost.</p>
+      </section>
+
+      <section id="scenario"><span class="eyebrow">07. Flow thực tế</span><h2>Review một feature payments.</h2>
+        <ol><li>Manager freeze diff SHA và acceptance criteria.</li><li>Ba lens read-only — correctness, security, test coverage — chạy song song.</li><li>Mỗi lens trả finding có severity, file/line, evidence và remediation.</li><li>Manager dedupe/correlate; không để “đa số phiếu” xóa finding nghiêm trọng.</li><li>Nếu user yêu cầu fix, một implementation pass riêng chạy tuần tự.</li><li><code>$verify-delivery</code> độc lập kiểm tra acceptance và test evidence.</li></ol>
+        <p class="source-note">Source contracts: .agents/skills/kb-orchestrator/ · orchestration/policy.json · orchestration/workflows/</p>
+      </section>
+
+      <section id="quiz" class="quiz"><span class="eyebrow">Self-check</span><h2>Ba câu kiểm tra</h2>
+        <p><strong>1.</strong> Hai node không có <code>depends_on</code> nhau thì luôn song song?</p><details><summary>Xem đáp án</summary><p>Không. Còn phải kiểm tra write set, resource/lock, side effect và frozen input.</p></details>
+        <p><strong>2.</strong> Shared context tốt nhất là toàn bộ lịch sử chat?</p><details><summary>Xem đáp án</summary><p>Không. Dùng typed state và role projection tối thiểu; retrieved text vẫn là untrusted data.</p></details>
+        <p><strong>3.</strong> Final verification có nên do chính implementation agent tự chứng nhận?</p><details><summary>Xem đáp án</summary><p>Self-check hữu ích, nhưng gate vật liệu/rủi ro cần verifier độc lập và deterministic evidence trước.</p></details>
+      </section>
+      <div class="complete-bar"><div><strong>Hoàn thành bài 03</strong><br><small>Tiếp theo: BMAD biến độ lớn/rủi ro của change thành planning path phù hợp.</small></div><button class="button complete-button" data-complete-lesson type="button"></button></div>
+    </article><aside class="toc"><strong>Trong bài này</strong><a href="#skills">Skill routing</a><a href="#contract">Task contract</a><a href="#dag">Dependency DAG</a><a href="#conflict">Conflict detection</a><a href="#fanout">Fan-out/join</a><a href="#context">Shared context</a><a href="#scenario">Scenario</a><a href="#quiz">Self-check</a></aside></div>
+  </main>
+  <footer class="site-footer"><div class="footer-grid"><a href="02-retrieval-rag.html">← Bài 02</a><a href="04-bmad-delivery.html">Bài 04: BMAD delivery →</a></div></footer>
+  <script src="assets/techniques-data.js"></script><script src="assets/app.js"></script>
+</body></html>

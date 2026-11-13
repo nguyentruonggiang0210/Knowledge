@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import type { SourceContentLoader } from '../../application/use-cases/loadSourceContent'
 import type { KnowledgeTopic } from '../../domain/knowledge/KnowledgeTopic'
 import type { SourceCoverage } from '../../domain/knowledge/SourceDocument'
@@ -18,6 +18,8 @@ import { TopicPager } from '../components/TopicPager'
 import { useKnowledgeExplorer } from '../hooks/useKnowledgeExplorer'
 import { useLearningProgress } from '../hooks/useLearningProgress'
 import { useTheme } from '../hooks/useTheme'
+import { useI18n } from '../i18n/I18nProvider'
+import { localizeTopics } from '../i18n/topicTranslations'
 
 interface KnowledgeLibraryPageProps {
   readonly topics: readonly KnowledgeTopic[]
@@ -30,8 +32,13 @@ export function KnowledgeLibraryPage({
   sourceCoverage,
   loadSourceContent,
 }: KnowledgeLibraryPageProps) {
-  const explorer = useKnowledgeExplorer(topics)
-  const progress = useLearningProgress(topics.map((topic) => topic.id))
+  const { formatNumber, locale, t } = useI18n()
+  const localizedTopics = useMemo(
+    () => localizeTopics(topics, locale),
+    [locale, topics],
+  )
+  const explorer = useKnowledgeExplorer(localizedTopics)
+  const progress = useLearningProgress(localizedTopics.map((topic) => topic.id))
   const { theme, toggleTheme } = useTheme()
   const [learningMode, setLearningMode] = useState<LearningMode>('summary')
   const [visitedLearningModes, setVisitedLearningModes] = useState<
@@ -49,8 +56,8 @@ export function KnowledgeLibraryPage({
   if (!explorer.activeTopic) {
     return (
       <main className="catalog-empty">
-        <h1>Chưa có chủ đề kiến thức</h1>
-        <p>Hãy thêm một folder vào src/content/knowledge để bắt đầu.</p>
+        <h1>{t('catalog.emptyTitle')}</h1>
+        <p>{t('catalog.emptyBody')}</p>
       </main>
     )
   }
@@ -76,7 +83,7 @@ export function KnowledgeLibraryPage({
       />
 
       <MobileTopicTabs
-        topics={topics}
+        topics={localizedTopics}
         activeTopicId={topic.id}
         completed={progress.completed}
         onSelect={explorer.selectTopic}
@@ -84,7 +91,7 @@ export function KnowledgeLibraryPage({
 
       <div className="library-layout">
         <TopicNavigation
-          topics={topics}
+          topics={localizedTopics}
           activeTopicId={topic.id}
           completed={progress.completed}
           completedCount={progress.completedCount}
@@ -97,7 +104,7 @@ export function KnowledgeLibraryPage({
             <KnowledgeHero
               topic={topic}
               position={explorer.activeIndex + 1}
-              total={topics.length}
+              total={localizedTopics.length}
               isCompleted={progress.completed.has(topic.id)}
               onToggleCompleted={() => progress.toggleCompleted(topic.id)}
             />
@@ -108,6 +115,11 @@ export function KnowledgeLibraryPage({
               questionCount={topic.questions.length}
               onChange={selectLearningMode}
             />
+            {locale === 'en' && (
+              <p className="content-language-note" role="note">
+                {t('content.originalLanguage')}
+              </p>
+            )}
             <div
               id="learning-mode-panel-summary"
               className="learning-mode-panel"
@@ -151,17 +163,18 @@ export function KnowledgeLibraryPage({
               )}
             </div>
             <TopicPager
-              previous={topics[explorer.activeIndex - 1]}
-              next={topics[explorer.activeIndex + 1]}
+              previous={localizedTopics[explorer.activeIndex - 1]}
+              next={localizedTopics[explorer.activeIndex + 1]}
               onPrevious={explorer.selectPrevious}
               onNext={explorer.selectNext}
             />
             <footer className="site-footer">
               <span>Knowledge Atlas</span>
               <span>
-                Đã phân loại {sourceCoverage.totalSourceFiles} file Markdown ·{' '}
-                {sourceCoverage.totalWords.toLocaleString('vi-VN')} từ sau khử bản
-                tổng hợp.
+                {t('footer.coverage', {
+                  files: formatNumber(sourceCoverage.totalSourceFiles),
+                  words: formatNumber(sourceCoverage.totalWords),
+                })}
               </span>
             </footer>
           </section>

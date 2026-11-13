@@ -1,6 +1,7 @@
 import { Check } from 'lucide-react'
 import { useEffect, useRef, type KeyboardEvent } from 'react'
 import type { KnowledgeTopic } from '../../domain/knowledge/KnowledgeTopic'
+import { useI18n } from '../i18n/I18nProvider'
 import { TopicIcon } from './TopicIcon'
 
 interface MobileTopicTabsProps {
@@ -16,6 +17,7 @@ export function MobileTopicTabs({
   completed,
   onSelect,
 }: MobileTopicTabsProps) {
+  const { t } = useI18n()
   const tabList = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -53,7 +55,7 @@ export function MobileTopicTabs({
       ref={tabList}
       className="mobile-tabs"
       role="tablist"
-      aria-label="Danh mục kiến thức"
+      aria-label={t('navigation.label')}
     >
       {topics.map((topic, index) => (
         <button

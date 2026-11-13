@@ -1,0 +1,4 @@
+interface:
+  display_name: "KB Orchestrator"
+  short_description: "Plan and coordinate dependency-aware agent workflows."
+  default_prompt: "Use $kb-orchestrator to plan and coordinate this multi-step repository task."

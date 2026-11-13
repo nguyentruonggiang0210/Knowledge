@@ -1,0 +1,5 @@
+# Optional runtime only. The core KB validator remains standard-library-only.
+# Current LangChain requires Python 3.11+.
+langchain>=1.5,<2
+langchain-core>=1.8,<2
+langgraph>=1.2,<2

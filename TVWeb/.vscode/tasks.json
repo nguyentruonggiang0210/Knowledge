@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run TvWeb Local",
+			"type": "shell",
+			"command": "$env:DB_PATH='E:\\SourceCode\\TVWeb\\data\\tvweb.db'; dotnet run --project src/TvWeb/TvWeb.csproj --urls http://localhost:5125",
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}

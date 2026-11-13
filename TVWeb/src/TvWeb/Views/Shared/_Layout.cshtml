@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TvWeb</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
+    <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/tv.css" asp-append-version="true" />
+</head>
+<body class="@(Context.Request.Query.ContainsKey("tv") ? "tv-mode" : "")">
+    <nav class="navbar navbar-expand-lg navbar-dark tv-nav sticky-top">
+        <div class="container-fluid px-3 px-lg-4">
+            <a class="navbar-brand fw-bold text-danger fs-3" href="/">TV<span class="text-white">WEB</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/phim">Khám phá</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/phim?status=phim-le">Phim lẻ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/phim?status=phim-bo">Phim bộ</a></li>
+                </ul>
+                <form class="d-flex" action="/phim" method="get">
+                    <input class="form-control me-2 tv-search" name="q" value="@ViewBag.Query" placeholder="Tìm phim..." />
+                    <button class="btn btn-danger">Tìm</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <main>@RenderBody()</main>
+    <footer class="text-center text-secondary py-4 small">TvWeb — đồng bộ mỗi 3h • Phát trong trang khi có nguồn hỗ trợ</footer>
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+    <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
+    <script src="~/js/tv.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

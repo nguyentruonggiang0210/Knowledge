@@ -67,6 +67,8 @@ Chi tiết lịch học và tiêu chí qua môn nằm ở [00-roadmap-prerequisi
 
 Không sao chép YAML từ blog cũ rồi áp thẳng vào production.
 
+Tại thời điểm đối chiếu **2026-08-28**, ba minor được Kubernetes duy trì là **1.37, 1.36 và 1.35**; 1.37.0 phát hành ngày 2026-08-26. Đây chỉ là snapshot: luôn kiểm tra lại trang [Kubernetes Releases](https://kubernetes.io/releases/) trước khi chọn/upgrade. Lab pin 1.36.1 vì đó là node image có digest được kind v0.32.0 phát hành chính thức, không phải vì nó là minor mới nhất.
+
 ```powershell
 kubectl version
 kubectl api-versions

@@ -1,5 +1,6 @@
 import { Check, CheckCircle2, Clock3, FolderTree } from 'lucide-react'
 import type { KnowledgeTopic } from '../../domain/knowledge/KnowledgeTopic'
+import { useI18n } from '../i18n/I18nProvider'
 import { TopicIcon } from './TopicIcon'
 
 interface KnowledgeHeroProps {
@@ -17,6 +18,8 @@ export function KnowledgeHero({
   total,
   onToggleCompleted,
 }: KnowledgeHeroProps) {
+  const { t } = useI18n()
+
   return (
     <section className="knowledge-hero" data-accent={topic.accent}>
       <div className="knowledge-hero__orb knowledge-hero__orb--one" />
@@ -24,9 +27,12 @@ export function KnowledgeHero({
 
       <div className="knowledge-hero__topline">
         <span className="topic-kicker">
-          Chủ đề {String(position).padStart(2, '0')} / {String(total).padStart(2, '0')}
+          {t('topic.position', {
+            position: String(position).padStart(2, '0'),
+            total: String(total).padStart(2, '0'),
+          })}
         </span>
-        <span className="level-badge">{topic.level}</span>
+        <span className="level-badge">{t(`level.${topic.level}`)}</span>
       </div>
 
       <div className="knowledge-hero__body">
@@ -42,11 +48,12 @@ export function KnowledgeHero({
 
       <div className="knowledge-hero__meta">
         <span>
-          <Clock3 size={16} aria-hidden="true" /> {topic.estimatedMinutes} phút học
+          <Clock3 size={16} aria-hidden="true" />{' '}
+          {t('topic.minutes', { minutes: topic.estimatedMinutes })}
         </span>
         <span>
-          <FolderTree size={16} aria-hidden="true" /> {topic.sourceFolders.length}{' '}
-          nguồn đã gom
+          <FolderTree size={16} aria-hidden="true" />{' '}
+          {t('topic.sources', { count: topic.sourceFolders.length })}
         </span>
         <button
           type="button"
@@ -56,11 +63,11 @@ export function KnowledgeHero({
         >
           {isCompleted ? (
             <>
-              <CheckCircle2 size={17} /> Đã hoàn thành
+              <CheckCircle2 size={17} /> {t('topic.completed')}
             </>
           ) : (
             <>
-              <Check size={17} /> Đánh dấu đã học
+              <Check size={17} /> {t('topic.markComplete')}
             </>
           )}
         </button>

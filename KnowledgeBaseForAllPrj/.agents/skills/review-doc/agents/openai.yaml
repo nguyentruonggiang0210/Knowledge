@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Documentation"
+  short_description: "Review documentation accuracy, consistency, and freshness."
+  default_prompt: "Use $review-doc to review these documents against their sources of truth."

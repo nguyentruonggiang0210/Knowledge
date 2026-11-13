@@ -1,0 +1,10 @@
+@model TvWeb.Models.Film
+<a class="film-card" href="@Model.FilmLink" tabindex="0">
+  <div class="poster-wrap">
+    <img src="@Model.Poster" data-artwork="portrait" data-alternative="@Model.Backdrop" alt="@Model.TitleVi" loading="lazy" />
+    @if (Model.Imdb != null) { <span class="badge-imdb">IMDb @Model.Imdb</span> }
+    @if (!string.IsNullOrEmpty(Model.Quality)) { <span class="badge-q">@Model.Quality</span> }
+  </div>
+  <div class="film-title">@Model.TitleVi</div>
+  <div class="film-sub">@Model.TitleEn @Model.Year</div>
+</a>

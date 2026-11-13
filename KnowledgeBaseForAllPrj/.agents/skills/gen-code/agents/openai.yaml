@@ -1,0 +1,4 @@
+interface:
+  display_name: "Generate Code"
+  short_description: "Implement approved code changes with tests and evidence."
+  default_prompt: "Use $gen-code to implement this approved change and verify it."

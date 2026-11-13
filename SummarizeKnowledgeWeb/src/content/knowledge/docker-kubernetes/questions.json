@@ -1,0 +1,282 @@
+[
+  {
+    "id": "docker-kubernetes-001",
+    "question": "Mô tả nào phân biệt chính xác nhất giữa Docker image và container đang chạy?",
+    "options": [
+      "Image là filesystem layers và metadata bất biến; container là process cô lập cùng runtime config và writable layer",
+      "Image là máy ảo đang chạy, còn container chỉ là file cấu hình",
+      "Image và container là hai tên cho cùng một process",
+      "Container là registry cục bộ chứa nhiều image"
+    ],
+    "answerIndex": 0,
+    "explanation": "Image là template content-addressed; runtime tạo container từ image và thêm cấu hình, namespace cùng writable layer. Nhiều container độc lập có thể được tạo từ một image.",
+    "difficulty": "Cơ bản",
+    "source": "Docker/Lessions/Docker/01-mental-model-va-kien-truc.md"
+  },
+  {
+    "id": "docker-kubernetes-002",
+    "question": "Container thoát với code 137; bước kết luận nào đáng tin cậy nhất?",
+    "options": [
+      "Khẳng định ngay ứng dụng bị memory leak",
+      "Đối chiếu OOMKilled, Docker events, giới hạn tài nguyên và telemetry host trước khi kết luận",
+      "Xóa container và volume để loại bỏ lỗi",
+      "Đổi restart policy thành always rồi ngừng điều tra"
+    ],
+    "answerIndex": 1,
+    "explanation": "137 thường là SIGKILL nhưng signal có thể đến từ OOM hoặc operator. State, events và host telemetry mới phân biệt được nguyên nhân và tránh kết luận chỉ từ exit code.",
+    "difficulty": "Trung cấp",
+    "source": "Docker/Lessions/Docker/02-cli-va-vong-doi-container.md"
+  },
+  {
+    "id": "docker-kubernetes-003",
+    "question": "Vì sao production nên deploy image bằng digest thay vì chỉ dùng tag `latest`?",
+    "options": [
+      "Digest luôn làm image nhỏ hơn",
+      "Digest tự động vá mọi CVE trong base image",
+      "Digest định danh nội dung bất biến, tránh tag bị trỏ sang artifact khác",
+      "Digest khiến container không cần registry"
+    ],
+    "answerIndex": 2,
+    "explanation": "Tag là tham chiếu có thể thay đổi còn digest gắn với nội dung. Promote và deploy đúng digest giúp staging với production chạy cùng bytes đã được kiểm thử.",
+    "difficulty": "Cơ bản",
+    "source": "Docker/Lessions/Docker/03-image-layer-registry.md"
+  },
+  {
+    "id": "docker-kubernetes-004",
+    "question": "Thứ tự Dockerfile nào thường tối ưu cache cài dependency mà vẫn giữ build tái lập?",
+    "options": [
+      "COPY toàn bộ source, xóa lockfile rồi cài bản mới nhất",
+      "Cài compiler trực tiếp trong final runtime stage",
+      "Đưa token vào ARG để cache registry login",
+      "Copy manifest/lockfile, cài dependency, sau đó mới copy source và build"
+    ],
+    "answerIndex": 3,
+    "explanation": "Manifest ít đổi được copy trước để dependency layer tiếp tục dùng cache khi chỉ source thay đổi. Lockfile và multi-stage đồng thời cải thiện reproducibility và giảm runtime surface.",
+    "difficulty": "Trung cấp",
+    "source": "Docker/Lessions/Docker/04-dockerfile-thuc-chien.md"
+  },
+  {
+    "id": "docker-kubernetes-005",
+    "question": "Nhận định nào đúng về BuildKit secret mount trong một bước build?",
+    "options": [
+      "Secret không bị lưu mặc định vào layer, nhưng lệnh build vẫn có thể tự ghi nó vào artifact hoặc log",
+      "Secret mount biến mọi output của bước build thành dữ liệu mã hóa",
+      "Secret mount thay thế hoàn toàn credential rotation",
+      "Secret mount chỉ hoạt động khi khai báo secret bằng Dockerfile ENV"
+    ],
+    "answerIndex": 0,
+    "explanation": "Mount tạm tránh đưa secret vào ARG/ENV hay layer theo mặc định, nhưng không thể ngăn chính command copy hoặc in giá trị. Pipeline vẫn cần redaction và credential ngắn hạn.",
+    "difficulty": "Nâng cao",
+    "source": "Docker/Lessions/Docker/05-buildkit-buildx.md"
+  },
+  {
+    "id": "docker-kubernetes-006",
+    "question": "API và database ở cùng user-defined Docker network; API nên kết nối database theo cách nào?",
+    "options": [
+      "Dùng localhost và host published port",
+      "Dùng Compose service name cùng container port, không cần publish database ra host",
+      "Hard-code container IP lấy từ lần chạy đầu",
+      "Chuyển cả hai container sang host network"
+    ],
+    "answerIndex": 1,
+    "explanation": "Docker DNS phân giải service name trên network chung và peer dùng container port. Published port chỉ cần khi host hoặc bên ngoài phải truy cập, còn IP có thể đổi khi recreate.",
+    "difficulty": "Cơ bản",
+    "source": "Docker/Lessions/Docker/06-networking-chuyen-sau.md"
+  },
+  {
+    "id": "docker-kubernetes-007",
+    "question": "Tại sao named volume giữ dữ liệu qua container recreate vẫn chưa được coi là backup?",
+    "options": [
+      "Vì named volume luôn bị xóa khi container restart",
+      "Vì volume không hỗ trợ database",
+      "Vì volume cùng failure domain không bảo vệ khỏi corruption, xóa nhầm hoặc host hỏng và chưa chứng minh restore",
+      "Vì chỉ bind mount mới có thể lưu dữ liệu"
+    ],
+    "answerIndex": 2,
+    "explanation": "Persistence chỉ tách lifecycle khỏi container. Backup cần consistency, bản sao ngoài failure domain, retention, access control và restore drill đo RPO/RTO.",
+    "difficulty": "Trung cấp",
+    "source": "Docker/Lessions/Docker/07-storage-va-du-lieu.md"
+  },
+  {
+    "id": "docker-kubernetes-008",
+    "question": "Vì sao phải chạy `docker compose config` sau khi dùng nhiều file override?",
+    "options": [
+      "Để Compose tự động push toàn bộ image",
+      "Để xóa các volume không còn khai báo",
+      "Để chuyển mọi secret thành encrypted vault entry",
+      "Để xem model cuối sau interpolation và merge, phát hiện cấu hình thực khác dự đoán"
+    ],
+    "answerIndex": 3,
+    "explanation": "Compose merge có rule riêng và biến được nội suy trước khi gửi model. Resolved config là bằng chứng cần review, validate trong CI và dùng khi debug môi trường.",
+    "difficulty": "Trung cấp",
+    "source": "Docker/Lessions/Docker/08-compose-tu-dev-den-prod.md"
+  },
+  {
+    "id": "docker-kubernetes-009",
+    "question": "Rủi ro chính của việc mount `/var/run/docker.sock` vào một container là gì?",
+    "options": [
+      "Process có thể yêu cầu daemon tạo container đặc quyền hoặc mount host, gần tương đương quyền root host",
+      "Container sẽ không thể ghi log ra stdout",
+      "Image sẽ mất toàn bộ layer history",
+      "Docker DNS ngừng phân giải service name"
+    ],
+    "answerIndex": 0,
+    "explanation": "Quyền gọi Docker daemon thường đủ để tạo workload có mount hoặc privilege mạnh trên host. Non-root bên trong container không tự vô hiệu hóa quyền qua socket.",
+    "difficulty": "Nâng cao",
+    "source": "Docker/Lessions/Docker/09-security-hardening.md"
+  },
+  {
+    "id": "docker-kubernetes-010",
+    "question": "Một Docker container chuyển sang trạng thái `unhealthy`; standalone Engine mặc định làm gì?",
+    "options": [
+      "Luôn restart container ngay lập tức",
+      "Chỉ cập nhật health status; cần orchestrator, monitor hoặc chiến lược app quyết định hành động",
+      "Tự động rút container khỏi mọi load balancer bên ngoài",
+      "Xóa image hiện tại rồi pull lại"
+    ],
+    "answerIndex": 1,
+    "explanation": "Healthcheck tạo tín hiệu health nhưng standalone Docker không tự restart chỉ vì unhealthy. Restart policy chủ yếu phản ứng với process exit và không thay thiết kế readiness/liveness.",
+    "difficulty": "Trung cấp",
+    "source": "Docker/Lessions/Docker/10-reliability-va-tai-nguyen.md"
+  },
+  {
+    "id": "docker-kubernetes-011",
+    "question": "Metric label nào có nguy cơ cardinality cao và không nên dùng trực tiếp?",
+    "options": [
+      "HTTP method với tập giá trị nhỏ",
+      "Tên service đã chuẩn hóa",
+      "Request ID duy nhất của từng request",
+      "Nhóm status code như 2xx hoặc 5xx"
+    ],
+    "answerIndex": 2,
+    "explanation": "Request ID sinh gần như một time series cho mỗi request, làm nổ cardinality và chi phí backend. Nó phù hợp log/trace correlation hơn metric label.",
+    "difficulty": "Cơ bản",
+    "source": "Docker/Lessions/Docker/11-observability.md"
+  },
+  {
+    "id": "docker-kubernetes-012",
+    "question": "Khi container production không reachable, bước điều tra đầu tiên nào phù hợp runbook nhất?",
+    "options": [
+      "Chạy prune toàn hệ thống để lấy lại trạng thái sạch",
+      "Restart liên tục cho tới khi request thành công",
+      "Sửa trực tiếp file trong container bằng exec",
+      "Giữ evidence rồi kiểm tra context, state/log/event, listen, network và port mapping theo từng tầng"
+    ],
+    "answerIndex": 3,
+    "explanation": "Điều tra có tầng giúp bảo toàn timeline và loại giả thuyết bằng evidence. Restart, prune hoặc sửa live trước sẽ phá bằng chứng và tạo drift khó tái hiện.",
+    "difficulty": "Trung cấp",
+    "source": "Docker/Lessions/Docker/12-debugging-runbook.md"
+  },
+  {
+    "id": "docker-kubernetes-013",
+    "question": "Trong Kubernetes, `kubectl apply` trả về thành công chứng minh điều gì?",
+    "options": [
+      "API đã chấp nhận desired object, còn controller, scheduler và kubelet vẫn phải hội tụ trạng thái",
+      "Mọi Pod đã Ready và nhận traffic",
+      "Ứng dụng đã vượt qua smoke test production",
+      "Etcd và dữ liệu PVC đã được backup"
+    ],
+    "answerIndex": 0,
+    "explanation": "Apply success nằm ở API request path. Status, conditions, Events, rollout và endpoint mới cho biết reconciliation cùng workload đã thực sự sẵn sàng hay chưa.",
+    "difficulty": "Cơ bản",
+    "source": "Docker/Lessions/Kubernetes/01-architecture-api-objects.md"
+  },
+  {
+    "id": "docker-kubernetes-014",
+    "question": "StatefulSet tự động cung cấp khả năng nào cho một database?",
+    "options": [
+      "Replication, quorum và backup application-consistent",
+      "Ordinal/network identity ổn định cùng PVC riêng theo Pod khi được cấu hình",
+      "Global multi-region failover không cần operator",
+      "Exactly-once transaction cho mọi replica"
+    ],
+    "answerIndex": 1,
+    "explanation": "StatefulSet quản lý identity, ordering và claim template; replication, leader election, fencing, backup và schema lifecycle vẫn thuộc database hoặc operator.",
+    "difficulty": "Trung cấp",
+    "source": "Docker/Lessions/Kubernetes/02-workloads-lifecycle.md"
+  },
+  {
+    "id": "docker-kubernetes-015",
+    "question": "Scheduler Kubernetes dùng giá trị nào để xác định Pod có vừa capacity của một node?",
+    "options": [
+      "CPU usage trung bình của cluster trong ngày",
+      "Resource limits cộng với số request HTTP",
+      "Resource requests cùng các constraint như taint, affinity và volume topology",
+      "Chỉ số replica mong muốn của Deployment"
+    ],
+    "answerIndex": 2,
+    "explanation": "Requests được scheduler cộng với allocatable trong khi limits chủ yếu được runtime thực thi. Placement còn phụ thuộc constraint, quota, port và topology chứ không chỉ CPU.",
+    "difficulty": "Trung cấp",
+    "source": "Docker/Lessions/Kubernetes/03-scheduling-resources.md"
+  },
+  {
+    "id": "docker-kubernetes-016",
+    "question": "NetworkPolicy default-deny đã apply nhưng Pod vẫn truy cập được mọi nơi; giả thuyết ưu tiên là gì?",
+    "options": [
+      "Service bắt buộc phải đổi sang NodePort",
+      "Mọi namespace cần dùng hostNetwork",
+      "Kubelet chưa restart sau khi apply YAML",
+      "CNI không hỗ trợ hoặc không thực thi NetworkPolicy, hoặc selector policy không chọn Pod"
+    ],
+    "answerIndex": 3,
+    "explanation": "API có thể chấp nhận NetworkPolicy dù data plane không enforce. Cần xác minh CNI capability và selector trước khi tin rằng object tồn tại đồng nghĩa traffic bị chặn.",
+    "difficulty": "Nâng cao",
+    "source": "Docker/Lessions/Kubernetes/04-networking-services-gateway.md"
+  },
+  {
+    "id": "docker-kubernetes-017",
+    "question": "Lợi ích chính của StorageClass `WaitForFirstConsumer` trong cluster nhiều zone là gì?",
+    "options": [
+      "Trì hoãn bind/provision để scheduler chọn topology volume phù hợp với Pod",
+      "Tự động biến RWO thành RWX",
+      "Mã hóa mọi PVC mà không cần storage backend",
+      "Bảo đảm snapshot luôn application-consistent"
+    ],
+    "answerIndex": 0,
+    "explanation": "Delayed binding cho phép placement của Pod tham gia quyết định zone, tránh provision disk ở nơi không thể gắn vào node mà Pod được phép chạy.",
+    "difficulty": "Nâng cao",
+    "source": "Docker/Lessions/Kubernetes/05-storage-stateful.md"
+  },
+  {
+    "id": "docker-kubernetes-018",
+    "question": "Readiness probe thất bại trong khi liveness vẫn thành công sẽ có tác động chính nào?",
+    "options": [
+      "Kubelet xóa PVC của Pod",
+      "Pod bị rút khỏi endpoint nhận traffic nhưng container không nhất thiết restart",
+      "Deployment tự động rollback revision trước",
+      "Scheduler chuyển container hiện tại sang node khác"
+    ],
+    "answerIndex": 1,
+    "explanation": "Readiness trả lời instance có nên nhận traffic mới hay không. Liveness mới quyết định restart khi failure vượt threshold; hai probe không nên bị đánh đồng.",
+    "difficulty": "Cơ bản",
+    "source": "Docker/Lessions/Kubernetes/06-config-secrets-probes.md"
+  },
+  {
+    "id": "docker-kubernetes-019",
+    "question": "Vì sao HPA theo CPU utilization cần CPU request được đặt hợp lý?",
+    "options": [
+      "Request quyết định image nào được pull",
+      "Request mã hóa metric trước khi gửi Metrics Server",
+      "Utilization là tỷ lệ usage trên request; request sai làm recommendation scale sai và còn ảnh hưởng scheduling",
+      "HPA dùng request để cấp địa chỉ Service"
+    ],
+    "answerIndex": 2,
+    "explanation": "Cùng một CPU usage nhưng request khác sẽ tạo utilization khác. Request còn là đầu vào placement, nên giá trị không đo đạc làm hỏng cả autoscaling lẫn capacity signal.",
+    "difficulty": "Nâng cao",
+    "source": "Docker/Lessions/Kubernetes/07-autoscaling-resilience.md"
+  },
+  {
+    "id": "docker-kubernetes-020",
+    "question": "Bộ artifact nào phản ánh đúng ba lớp phục hồi Kubernetes sau thảm họa?",
+    "options": [
+      "Chỉ Git repository vì mọi trạng thái đều declarative",
+      "Chỉ etcd snapshot vì nó chứa cả dữ liệu ứng dụng trong PVC",
+      "Chỉ bản sao registry vì image có thể tái tạo cluster",
+      "Git/IaC cho desired resources, etcd snapshot cho cluster state, và backup riêng cho dữ liệu ứng dụng cùng key phụ thuộc"
+    ],
+    "answerIndex": 3,
+    "explanation": "Git không giữ live data, etcd không chứa nội dung PVC/database, còn data backup không tái tạo toàn bộ API/control plane. DR cần cả ba lớp cùng identity, KMS, registry và restore test.",
+    "difficulty": "Nâng cao",
+    "source": "Docker/Lessions/Kubernetes/11-cluster-operations-ha-upgrade-dr.md"
+  }
+]

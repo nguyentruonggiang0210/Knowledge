@@ -1,0 +1,4 @@
+interface:
+  display_name: "BMAD Adapter"
+  short_description: "Route BMAD delivery through existing KB workflows."
+  default_prompt: "Use $bmad-adapter to choose the smallest safe BMAD-compatible delivery path for this initiative."

@@ -7,7 +7,7 @@
   z-index: 50;
   top: 0;
   display: grid;
-  grid-template-columns: minmax(190px, 1fr) minmax(320px, 620px) minmax(44px, 1fr);
+  grid-template-columns: minmax(190px, 1fr) minmax(320px, 620px) minmax(148px, 1fr);
   align-items: center;
   gap: 24px;
   min-height: 76px;
@@ -39,6 +39,7 @@
 
 .brand > span:last-child {
   display: grid;
+  min-width: 0;
 }
 
 .brand strong {
@@ -195,6 +196,41 @@
 .icon-button:hover {
   border-color: var(--line-strong);
   transform: translateY(-1px);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 8px;
+}
+
+.language-switcher {
+  display: grid;
+  grid-template-columns: repeat(2, 34px);
+  align-items: center;
+  min-height: 42px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-soft);
+}
+
+.language-switcher button {
+  min-height: 34px;
+  border-radius: 9px;
+  color: var(--ink-faint);
+  background: transparent;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+
+.language-switcher button[data-active='true'] {
+  color: var(--ink);
+  background: var(--surface-soft);
 }
 
 .icon-button--mobile {
@@ -653,6 +689,8 @@
 
 .topic-pager button > span {
   display: grid;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .topic-pager small {
@@ -687,6 +725,17 @@
 .site-footer span:first-child {
   color: var(--ink-soft);
   font-weight: 750;
+}
+
+.content-language-note {
+  margin: 12px 0 0;
+  padding: 10px 13px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  color: var(--ink-faint);
+  background: var(--surface-soft);
+  font-size: 10px;
+  line-height: 1.55;
 }
 
 .catalog-empty {
@@ -810,6 +859,15 @@
     height: 38px;
   }
 
+  .language-switcher {
+    grid-template-columns: repeat(2, 31px);
+    min-height: 38px;
+  }
+
+  .language-switcher button {
+    min-height: 30px;
+  }
+
   .icon-button--desktop {
     display: none;
   }
@@ -913,8 +971,22 @@
 }
 
 @media (max-width: 430px) {
+  .app-header {
+    gap: 8px;
+    padding-inline: 10px;
+  }
+
+  .header-actions {
+    gap: 5px;
+  }
+
   .brand strong {
     font-size: 13px;
+  }
+
+  .brand__mark {
+    width: 34px;
+    height: 34px;
   }
 
   .knowledge-hero__body {

@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "study-default",
+  "intent": "study",
+  "owner": "kb-orchestrator",
+  "budget": {"max_concurrency": 3, "max_retries_per_node": 1},
+  "nodes": [
+    {
+      "id": "frame",
+      "skill": "study", "objective": "Define the decision question, subquestions, cutoff date, source rules, and deliverable.",
+      "depends_on": [], "execution": "manager", "parallel_group": null, "read_set": ["kb/**"], "write_set": [],
+      "output": "research contract", "acceptance": ["subquestions are independent and collectively cover the decision"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "evidence-track-a",
+      "skill": "study", "objective": "Research the first independent subquestion using primary or authoritative sources.",
+      "depends_on": ["frame"], "execution": "read-only", "parallel_group": "research-tracks", "read_set": ["kb/**", "<external-sources>"], "write_set": [],
+      "output": "claim ledger A", "acceptance": ["facts, inference, dates, confidence, and citations are separated"],
+      "risk": "low", "approval": "none", "effects": {"resources": ["web"], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "evidence-track-b",
+      "skill": "study", "objective": "Research the second independent subquestion using primary or authoritative sources.",
+      "depends_on": ["frame"], "execution": "read-only", "parallel_group": "research-tracks", "read_set": ["kb/**", "<external-sources>"], "write_set": [],
+      "output": "claim ledger B", "acceptance": ["disputed and missing evidence is visible"],
+      "risk": "low", "approval": "none", "effects": {"resources": ["web"], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "synthesize-critique",
+      "skill": "study", "objective": "Cross-check evidence, explain trade-offs, critique weak claims, and produce the study note.",
+      "depends_on": ["evidence-track-a", "evidence-track-b"], "execution": "manager", "parallel_group": null,
+      "read_set": ["kb/**"], "write_set": [], "output": "source-backed study note",
+      "acceptance": ["recommendations follow from cited evidence", "open questions and experiments are explicit"],
+      "risk": "low", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    }
+  ]
+}

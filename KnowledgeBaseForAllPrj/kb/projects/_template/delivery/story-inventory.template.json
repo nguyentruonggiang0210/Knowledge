@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "kind": "story-inventory",
+  "items": [
+    {
+      "story_id": "STORY-001",
+      "depends_on": [],
+      "write_set": ["src/component-a/**", "<isolated-story-build-artifacts>/**"],
+      "parameters": {
+        "epic-id": "EPIC-001",
+        "story-artifact": "kb/projects/<project>/delivery/EPIC-001/STORY-001.md",
+        "story-worktree": "<isolated-story-worktree>",
+        "story-build-artifacts": "<isolated-story-build-artifacts>"
+      }
+    }
+  ]
+}

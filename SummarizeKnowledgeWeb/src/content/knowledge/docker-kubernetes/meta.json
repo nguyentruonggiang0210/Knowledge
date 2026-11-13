@@ -1,0 +1,30 @@
+{
+  "id": "docker-kubernetes",
+  "title": "Docker & Kubernetes Production",
+  "navTitle": "Docker & Kubernetes",
+  "eyebrow": "Containers · Orchestration · Operations",
+  "description": "Từ tiến trình Linux, image và BuildKit đến Kubernetes reconciliation, workload, security, delivery, observability và disaster recovery ở mức production.",
+  "order": 13,
+  "icon": "boxes",
+  "accent": "lime",
+  "level": "Thực chiến",
+  "estimatedMinutes": 180,
+  "tags": [
+    "Docker",
+    "Kubernetes",
+    "Containers",
+    "BuildKit",
+    "Compose",
+    "Cloud Native",
+    "Platform Engineering"
+  ],
+  "sourceFolders": [
+    "Docker"
+  ],
+  "outcomes": [
+    "Giải thích chính xác container từ Docker CLI qua daemon, OCI runtime đến namespace và cgroup của Linux",
+    "Xây dựng image tái lập, tối ưu cache, không rò secret và có provenance xuyên suốt supply chain",
+    "Thiết kế network, storage, Compose và runtime hardening có failure mode cùng bằng chứng vận hành rõ ràng",
+    "Vận hành workload Kubernetes theo reconciliation với scheduling, autoscaling, policy, observability, upgrade và DR"
+  ]
+}

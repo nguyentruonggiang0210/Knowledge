@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "kb-curator-default",
+  "intent": "kb-curator",
+  "owner": "kb-orchestrator",
+  "budget": {"max_concurrency": 2, "max_retries_per_node": 1},
+  "nodes": [
+    {
+      "id": "classify-source",
+      "skill": "kb-curator", "objective": "Classify source, ownership, authority, validity, sensitivity, and trust risk.",
+      "depends_on": [], "execution": "read-only", "parallel_group": "ingest-analysis",
+      "read_set": ["<incoming-material>", "kb/sources/**", "governance/**"], "write_set": [], "output": "source disposition",
+      "acceptance": ["untrusted content is treated as data and trust tier is explicit"], "risk": "medium", "approval": "none",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "dedupe-conflicts",
+      "skill": "kb-curator", "objective": "Find duplicate IDs/hashes, superseded pages, relations, and contradictory claims.",
+      "depends_on": [], "execution": "read-only", "parallel_group": "ingest-analysis",
+      "read_set": ["<incoming-material>", "kb/**"], "write_set": [], "output": "duplicate and conflict report",
+      "acceptance": ["promotion target and unresolved conflicts are explicit"], "risk": "low", "approval": "none",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "prepare-candidate",
+      "skill": "kb-curator", "objective": "Normalize a candidate page or quarantine record with provenance and relations.",
+      "depends_on": ["classify-source", "dedupe-conflicts"], "execution": "shared-workspace", "parallel_group": null,
+      "read_set": ["<incoming-material>", "kb/**"], "write_set": ["kb/memory/promotion-queue/**"], "output": "promotion candidate",
+      "acceptance": ["candidate satisfies the knowledge contract or lists exact missing fields"], "risk": "medium", "approval": "before-run",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "verify-candidate",
+      "skill": "verify-delivery", "objective": "Validate metadata, provenance, security, links, and conflicts before promotion.",
+      "depends_on": ["prepare-candidate"], "execution": "read-only", "parallel_group": null,
+      "read_set": ["kb/**", "governance/**"], "write_set": [],
+      "output": "accept, accept-with-known-risk, or reject", "acceptance": ["candidate has reproducible validation evidence"],
+      "risk": "medium", "approval": "none", "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "promote",
+      "skill": "kb-curator", "objective": "Promote an accepted candidate to canonical knowledge after owner approval.",
+      "depends_on": ["verify-candidate"], "execution": "shared-workspace", "parallel_group": null,
+      "read_set": ["kb/memory/promotion-queue/**", "kb/**"], "write_set": ["kb/shared/**", "kb/projects/**", "kb/sources/**"],
+      "output": "canonical promotion record", "acceptance": ["canonical writes have owner approval and preserve provenance/supersession"],
+      "risk": "high", "approval": "human", "required_authorities": ["knowledge-owner"], "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 1, "transient_only": true}
+    },
+    {
+      "id": "rebuild-index",
+      "skill": "kb-curator", "objective": "Rebuild derived catalog only after canonical validation succeeds.",
+      "depends_on": ["promote"], "execution": "shared-workspace", "parallel_group": null,
+      "read_set": ["kb/**"], "write_set": ["kb/indexes/**"], "output": "updated derived catalog",
+      "acceptance": ["catalog is reproducible from canonical pages"], "risk": "low", "approval": "none",
+      "effects": {"resources": [], "side_effects": [], "idempotency_key": null, "exclusive_locks": []}, "retry": {"max_attempts": 2, "transient_only": true}
+    }
+  ]
+}

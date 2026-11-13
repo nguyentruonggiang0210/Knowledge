@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import type { SourceContentLoader } from '../../application/use-cases/loadSourceContent'
 import type { SourceDocument } from '../../domain/knowledge/SourceDocument'
+import { useI18n } from '../i18n/I18nProvider'
 import {
   getMarkdownHeadingData,
   markdownSlugBase,
@@ -19,12 +20,8 @@ function normalizeSearch(value: string) {
   return value
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
-    .toLocaleLowerCase('vi')
+    .toLocaleLowerCase()
     .replace(/đ/g, 'd')
-}
-
-function formatNumber(value: number) {
-  return new Intl.NumberFormat('vi-VN').format(value)
 }
 
 function resolveRelativeSourcePath(sourcePath: string, href: string) {
@@ -50,11 +47,25 @@ function resolveRelativeSourcePath(sourcePath: string, href: string) {
   return normalized.join('/')
 }
 
+function sourceRepositoryHref(sourcePath: string, href: string) {
+  const resolvedPath = resolveRelativeSourcePath(sourcePath, href)
+  if (!resolvedPath) return ''
+  const rawPath = href.split(/[?#]/, 1)[0].replaceAll('\\', '/')
+  const lastSegment = rawPath.split('/').filter(Boolean).at(-1) ?? ''
+  const looksLikeDirectory =
+    rawPath.endsWith('/') || (!lastSegment.includes('.') && lastSegment !== 'Dockerfile')
+  const encodedPath = resolvedPath.split('/').map(encodeURIComponent).join('/')
+  return `https://github.com/nguyentruonggiang0210/Knowledge/${
+    looksLikeDirectory ? 'tree' : 'blob'
+  }/main/${encodedPath}`
+}
+
 export function SourceLibrary({
   documents,
   totalWorkspaceFiles,
   loadSourceContent,
 }: SourceLibraryProps) {
+  const { formatNumber, t } = useI18n()
   const [query, setQuery] = useState('')
   const [selectedId, setSelectedId] = useState(documents[0]?.id ?? '')
   const [loadedSource, setLoadedSource] = useState({
@@ -99,12 +110,12 @@ export function SourceLibrary({
         setLoadedSource({
           url: selectedUrl,
           markdown: '',
-          error: 'Không thể tải tài liệu. Hãy chạy lại npm run sync:sources.',
+          error: t('source.loadError'),
         })
       })
 
     return () => controller.abort()
-  }, [loadSourceContent, selectedDocument, selectedUrl])
+  }, [loadSourceContent, selectedDocument, selectedUrl, t])
 
   const loading = loadedSource.url !== selectedUrl
   const error = loadedSource.url === selectedUrl ? loadedSource.error : ''
@@ -131,45 +142,47 @@ export function SourceLibrary({
     return (
       <section className="source-library source-library--empty">
         <FileText size={28} />
-        <h2>Chưa có tài liệu nguồn</h2>
-        <p>Thêm mapping rồi chạy npm run sync:sources để cập nhật.</p>
+        <h2>{t('source.emptyTitle')}</h2>
+        <p>{t('source.emptyBody')}</p>
       </section>
     )
   }
 
   return (
-    <section className="source-library" aria-label="Tài liệu Markdown chi tiết">
+    <section className="source-library" aria-label={t('source.sectionLabel')}>
       <header className="source-library__summary">
         <div>
-          <span className="source-library__eyebrow">Coverage đã kiểm tra</span>
-          <h2>Đọc nguyên bản tài liệu Markdown</h2>
+          <span className="source-library__eyebrow">{t('source.coverage')}</span>
+          <h2>{t('source.readOriginal')}</h2>
           <p>
-            {formatNumber(topicFileCount)} file của chủ đề này ·{' '}
-            {formatNumber(topicWordCount)} từ · {formatNumber(totalWorkspaceFiles)} file
-            trong toàn workspace.
+            {t('source.summary', {
+              topicFiles: formatNumber(topicFileCount),
+              words: formatNumber(topicWordCount),
+              workspaceFiles: formatNumber(totalWorkspaceFiles),
+            })}
           </p>
         </div>
         <BookOpen size={30} aria-hidden="true" />
       </header>
 
       <div className="source-browser">
-        <aside className="source-browser__catalog" aria-label="Danh sách tài liệu">
+        <aside className="source-browser__catalog" aria-label={t('source.catalog')}>
           <div className="source-filter">
             <Search size={15} aria-hidden="true" />
             <label className="sr-only" htmlFor="source-document-search">
-              Tìm trong tài liệu của chủ đề
+              {t('source.search')}
             </label>
             <input
               id="source-document-search"
               type="search"
               value={query}
-              placeholder="Tên hoặc đường dẫn file..."
+              placeholder={t('source.searchPlaceholder')}
               onChange={(event) => setQuery(event.target.value)}
             />
             {query && (
               <button
                 type="button"
-                aria-label="Xóa tìm kiếm tài liệu"
+                aria-label={t('source.clearSearch')}
                 onClick={() => setQuery('')}
               >
                 <X size={14} />
@@ -194,14 +207,14 @@ export function SourceLibrary({
                   <small>{document.sourcePaths[0]}</small>
                   {document.isAggregate && (
                     <small className="source-document-list__aggregate">
-                      Bản tổng hợp · không cộng lại vào thống kê
+                      {t('source.aggregate')}
                     </small>
                   )}
                 </span>
               </button>
             ))}
             {filteredDocuments.length === 0 && (
-              <p className="source-document-list__empty">Không tìm thấy tài liệu.</p>
+              <p className="source-document-list__empty">{t('source.noResults')}</p>
             )}
           </div>
         </aside>
@@ -209,26 +222,28 @@ export function SourceLibrary({
         <div className="source-reader">
           <header className="source-reader__header">
             <div>
-              <span>Tài liệu chi tiết</span>
+              <span>{t('source.detail')}</span>
               <h2>{selectedDocument.title}</h2>
               {selectedDocument.sourcePaths.map((sourcePath) => (
                 <code key={sourcePath}>{sourcePath}</code>
               ))}
               {selectedDocument.isAggregate && (
                 <p className="source-reader__aggregate-note">
-                  Bản tổng hợp · không cộng lại vào thống kê
+                  {t('source.aggregate')}
                 </p>
               )}
             </div>
             <small>
-              {formatNumber(selectedDocument.wordCount)} từ ·{' '}
-              {formatNumber(selectedDocument.lineCount)} dòng
+              {t('source.metrics', {
+                words: formatNumber(selectedDocument.wordCount),
+                lines: formatNumber(selectedDocument.lineCount),
+              })}
             </small>
           </header>
 
           {loading && (
             <p className="source-reader__status" role="status">
-              Đang tải Markdown…
+              {t('source.loading')}
             </p>
           )}
           {error && (
@@ -282,7 +297,21 @@ export function SourceLibrary({
                         </button>
                       )
                     }
-                    return (
+                    const repositoryHref = sourceRepositoryHref(
+                      selectedDocument.sourcePaths[0],
+                      href,
+                    )
+                    return repositoryHref ? (
+                      <a
+                        className="source-relative-link"
+                        href={repositoryHref}
+                        target="_blank"
+                        rel="noreferrer"
+                        title={relatedSourcePath || href}
+                      >
+                        {children}
+                      </a>
+                    ) : (
                       <span className="source-relative-link" title={href}>
                         {children}
                       </span>
@@ -310,7 +339,9 @@ export function SourceLibrary({
                   ),
                   img: ({ alt, src }) => (
                     <span className="source-image-reference">
-                      Hình minh họa: {alt || src || 'xem trong source gốc'}
+                      {t('source.image', {
+                        description: alt || src || t('source.imageFallback'),
+                      })}
                     </span>
                   ),
                   table: ({ children }) => (

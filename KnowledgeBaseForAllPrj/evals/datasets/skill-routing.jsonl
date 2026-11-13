@@ -1,0 +1,5 @@
+{"id":"SR-001","request":"Áp dụng BMAD cho feature này và chọn planning path phù hợp.","expected_skill":"bmad-adapter","must_not_route_to":[]}
+{"id":"SR-002","request":"Sửa bug null pointer này; yêu cầu và phạm vi đã rõ.","expected_skill":"gen-code","must_not_route_to":["bmad-adapter"]}
+{"id":"SR-003","request":"Chia initiative BMAD này thành epic và story rồi kiểm tra readiness.","expected_skill":"bmad-adapter","must_not_route_to":[]}
+{"id":"SR-004","request":"Chỉ review code hiện tại, không sửa.","expected_skill":"review-code","must_not_route_to":["bmad-adapter"]}
+{"id":"SR-005","request":"Cài official BMAD plugin/runtime vào repo.","expected_skill":"bmad-adapter","expected_boundary":"report separate installation and security review; do not treat adapter as official runtime"}

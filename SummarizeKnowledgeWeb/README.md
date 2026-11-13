@@ -1,12 +1,14 @@
 # Knowledge Atlas
 
-Ứng dụng React một trang để học toàn bộ kiến thức trong workspace `E:\SourceCode`. Nội dung giao nhau được gom vào 12 chủ đề chuẩn; mỗi tab có ba chế độ:
+Ứng dụng React một trang để học toàn bộ kiến thức trong workspace `E:\SourceCode`. Nội dung giao nhau được gom vào 13 chủ đề chuẩn; mỗi tab có ba chế độ:
 
 - **Tóm tắt:** bài học cô đọng để ôn nhanh.
 - **Tài liệu chi tiết:** đọc nguyên bản toàn bộ Markdown đã được gán cho chủ đề, tải theo nhu cầu thay vì nhét hết vào JavaScript bundle.
 - **Kiểm tra Q&A:** 16 câu mỗi chủ đề, chấm điểm, giải thích đáp án, dẫn nguồn, ôn lại câu sai và lưu điểm tốt nhất.
 
-Hiện catalog kiểm soát coverage của **376 file Markdown**, **699.575 từ nguồn thô**, **633.759 từ học tập sau khử trùng/loại tài liệu tổng hợp khỏi tổng**, và **192 câu hỏi**. Tài liệu tổng hợp vẫn đọc được trong tab nguồn dù không được cộng lặp vào learning total.
+Hiện catalog kiểm soát coverage của **453 file Markdown**, **776.731 từ nguồn thô**, **710.915 từ học tập sau khử trùng/loại tài liệu tổng hợp khỏi tổng**, và **212 câu hỏi**. Tài liệu tổng hợp vẫn đọc được trong tab nguồn dù không được cộng lặp vào learning total.
+
+Giao diện hỗ trợ tiếng Việt và tiếng Anh qua nút `VI/EN`; lựa chọn được lưu trong trình duyệt và đồng bộ với tham số `?lang=`. Metadata chủ đề và toàn bộ điều khiển giao diện được bản địa hóa. Bài tóm tắt, quiz và Markdown nguồn giữ nguyên ngôn ngữ tác giả để bảo toàn thuật ngữ kỹ thuật; các link tới code/config ngoài catalog Markdown mở trực tiếp source tương ứng trên GitHub.
 
 ## Chạy dự án
 
@@ -91,6 +93,6 @@ src/
 └── presentation/       # Component, page, hook và responsive styles
 ```
 
-Dependency hướng vào application/domain; `App.tsx` là composition root. Search, theme, tiến độ học và điểm quiz chạy cục bộ. Giao diện responsive từ mobile 320 px tới desktop, có keyboard tab navigation, focus state, semantic controls và hỗ trợ reduced motion.
+Dependency hướng vào application/domain; `App.tsx` là composition root. Search, theme, ngôn ngữ, tiến độ học và điểm quiz chạy cục bộ. Giao diện responsive từ mobile 320 px tới desktop, có keyboard tab navigation, focus state, semantic controls và hỗ trợ reduced motion.
 
 Chi tiết phân loại nằm tại [docs/CONTENT_MAP.md](docs/CONTENT_MAP.md).
